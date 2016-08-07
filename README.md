@@ -1,2 +1,7 @@
-# Hawki-server
-Indoor positioning server
+# Hawki
+
+Indoor positioning system
+
+# License
+
+MIT
