@@ -54,7 +54,7 @@ daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
 class BuildingInfo(Resource):
     def getBuildInfoByName(self):  # 다음 키워드 검색 api를 사용, 다음에 장소정보 검색을 요청
         daum_search_keyword = '&query=' + '국제캠퍼스'
-        daym_search_latitude = ''  # 경도
+        daum_search_latitude = ''  # 경도
         daum_search_logitude = ''  # 위도
         daum_search_location = ''  # 다음 서치 쿼리를 만들기 위한 경도,위도 형식으로 만들어줘야함 &location
         daum_search_radius = ''  # 반경 &radius
