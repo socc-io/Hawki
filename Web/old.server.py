@@ -11,11 +11,13 @@ import json
 app = Flask(__name__)
 api = Api(app)
 
+
 client_id = 'sqp83uhdtH1HAE7jPREy'
 client_secret = 'HJEBO3Aod8'
 search_url = "http://openapi.naver.com/v1/search/local.xml"
 daum_app_key = '1b53126df63a2e4ea0dc1a236c67d0d8'  # 다음 api 키
 daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
+
 
 ''' keyword 검색 response json data
 {
@@ -48,7 +50,6 @@ daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
       "totalCount": "11"
     }
   }
-
 '''
 
 class BuildingInfo(Resource):
@@ -80,18 +81,22 @@ class BuildingInfo(Resource):
         print request.json['latitude']
         return {'message': 'building good!'}
 
-
 class IndoorPosition(Resource):
     def get(self):
         print request.json['bid']
         print request.json['rssi']
         return {'message': 'indoor good!'}
 
+class SunoTest(Resource):
+    def post(self):
+        print request.json
+        return json.dumps(request.json)
 
 # Request Routing
+api.add_resource(SunoTest, '/test')
 api.add_resource(BuildingInfo, '/buildinginfo')
 api.add_resource(IndoorPosition, '/indoorposition')
 
 # Init Flask server
 if __name__ == '__main__':
-    app.run(debug=True, port=3000, host='0,0,0,0')
+    app.run(debug=True, port=4000, host='0,0,0,0')
