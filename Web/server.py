@@ -1,9 +1,8 @@
 # -*-coding:utf-8
 from flask import Flask, request
 from flask_restful import Resource, Api
-import simplejson
 import requests
-import json
+
 
 # urllib2 는 https 를 지원하지 않는다고함
 # kakao restapi https://developers.kakao.com/docs/restapi
