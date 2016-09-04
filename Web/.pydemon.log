@@ -1,0 +1,3179 @@
+T: 2016-08-21 20:24:10 #1 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:25:48 #2 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:25:53 #3 Log
+T: 2016-08-21 20:27:33 #4 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:27:33 #4 Log
+Traceback (most recent call last):
+  File "server.py", line 2, in <module>
+    from flask_restful import Resources, Api
+ImportError: cannot import name Resources
+T: 2016-08-21 20:27:46 #5 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:27:46 #5 Log
+T: 2016-08-21 20:28:03 #6 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:28:04 #7 Log
+T: 2016-08-21 20:28:33 #8 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:28:39 #9 Log
+HTTP/1.0 404 NOT FOUND
+Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:28:39 GMT
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+HTTP/1.0 404 NOT FOUND
+Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:28:39 GMT
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   329  100   233  100    96   5610   2311 --:--:-- --:--:-- --:--:--  5682
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   286  100   233  100    53  31418   7146 --:--:-- --:--:-- --:--:-- 33285
+T: 2016-08-21 20:28:33 #9 Log
+T: 2016-08-21 20:35:27 #10 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 25
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:35:27 GMT
+
+{
+    "hello": "world"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 25
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:35:27 GMT
+
+{
+    "hello": "world"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   121  100    25  100    96   1231   4728 --:--:-- --:--:-- --:--:--  4800
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    78  100    25  100    53   1921   4074 --:--:-- --:--:-- --:--:--  4416
+T: 2016-08-21 20:36:05 #11 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:36:05 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:36:06 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2049   5466 --:--:-- --:--:-- --:--:--  5647
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    87  100    34  100    53   2420   3773 --:--:-- --:--:-- --:--:--  4076
+T: 2016-08-21 20:38:47 #12 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:38:47 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 500 INTERNAL SERVER ERROR
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Connection: close
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:38:47 GMT
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>NameError: global name 'request' is not defined // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 140460189359568,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "LSEql3D2jnusCUNaQNw7";
+    </script>
+  </head>
+  <body>
+    <div class="debugger">
+<h1>NameError</h1>
+<div class="detail">
+  <p class="errormsg">NameError: global name 'request' is not defined</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-140460189359440">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">2000</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                </span>error = None</pre>
+<pre class="line before"><span class="ws">            </span>ctx.auto_pop(error)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Shortcut for :attr:`wsgi_app`.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return '&lt;%s %r&gt;' % (</pre>
+<pre class="line after"><span class="ws">            </span>self.__class__.__name__,</pre>
+<pre class="line after"><span class="ws">            </span>self.name,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189359696">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1991</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre>
+<pre class="line after"><span class="ws">            </span>if self.should_ignore_error(error):</pre>
+<pre class="line after"><span class="ws">                </span>error = None</pre>
+<pre class="line after"><span class="ws">            </span>ctx.auto_pop(error)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189359888">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189359824">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1567</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>if handler is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189360016">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189359760">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1988</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189359632">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1641</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189359952">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189360080">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1544</em>,
+      in <code class="function">handle_user_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+<pre class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Default exception handling that kicks in when an exception</pre>
+<pre class="line after"><span class="ws">        </span>occurs that is not caught.  In debug mode the exception will</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189511952">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189511824">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1639</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189512080">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1625</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span># request came with the OPTIONS method, reply automatically</pre>
+<pre class="line before"><span class="ws">        </span>if getattr(rule, 'provide_automatic_options', False) \</pre>
+<pre class="line before"><span class="ws">           </span>and req.method == 'OPTIONS':</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189512144">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">477</em>,
+      in <code class="function">wrapper</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:param resource: The resource as a flask view function</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>@wraps(resource)</pre>
+<pre class="line before"><span class="ws">        </span>def wrapper(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">            </span>resp = resource(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws">            </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">                </span>return resp</pre>
+<pre class="line after"><span class="ws">            </span>data, code, headers = unpack(resp)</pre>
+<pre class="line after"><span class="ws">            </span>return self.make_response(data, code, headers=headers)</pre>
+<pre class="line after"><span class="ws">        </span>return wrapper</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189512016">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/views.py"</cite>,
+      line <em class="line">84</em>,
+      in <code class="function">view</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>The arguments passed to :meth:`as_view` are forwarded to the</pre>
+<pre class="line before"><span class="ws">        </span>constructor of the class.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>def view(*args, **kwargs):</pre>
+<pre class="line before"><span class="ws">            </span>self = view.view_class(*class_args, **class_kwargs)</pre>
+<pre class="line current"><span class="ws">            </span>return self.dispatch_request(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if cls.decorators:</pre>
+<pre class="line after"><span class="ws">            </span>view.__name__ = name</pre>
+<pre class="line after"><span class="ws">            </span>view.__module__ = cls.__module__</pre>
+<pre class="line after"><span class="ws">            </span>for decorator in cls.decorators:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189511888">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">587</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>assert meth is not None, 'Unimplemented method %r' % request.method</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>for decorator in self.method_decorators:</pre>
+<pre class="line before"><span class="ws">            </span>meth = decorator(meth)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>resp = meth(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">            </span>return resp</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>representations = self.representations or OrderedDict()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140460189512272">
+  <h4>File <cite class="filename">"/home/socc/project/Hawki-server/Web/server.py"</cite>,
+      line <em class="line">14</em>,
+      in <code class="function">get</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def get(self):</pre>
+<pre class="line before"><span class="ws">        </span>return {'message': 'building good!'}</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>class IndoorPosition(Resource):</pre>
+<pre class="line before"><span class="ws">    </span>def get(self):</pre>
+<pre class="line current"><span class="ws">        </span>bid = request.form['bid']</pre>
+<pre class="line after"><span class="ws">        </span>print bid</pre>
+<pre class="line after"><span class="ws">        </span>return {'message': 'indoor good!'}</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(BuildInfo, '/buildinginfo')</pre></div>
+</div>
+</ul>
+  <blockquote>NameError: global name 'request' is not defined</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 14, in get
+    bid = request.form['bid']
+NameError: global name 'request' is not defined</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 14, in get
+    bid = request.form['bid']
+NameError: global name 'request' is not defined
+
+-->
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3875  10335 --:--:-- --:--:-- --:--:-- 10666
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 27906    0 27853  100    53   284k    554 --:--:-- --:--:-- --:--:--  286k
+T: 2016-08-21 20:39:07 #13 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:39:07 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 400 BAD REQUEST
+Content-Type: application/json
+Content-Length: 98
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:39:07 GMT
+
+{
+    "message": "The browser (or proxy) sent a request that this server could not understand."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2896   7723 --:--:-- --:--:-- --:--:--  8000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   151  100    98  100    53   6047   3270 --:--:-- --:--:-- --:--:--  6125
+T: 2016-08-21 20:40:13 #14 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:40:13 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 400 BAD REQUEST
+Content-Type: application/json
+Content-Length: 98
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:40:13 GMT
+
+{
+    "message": "The browser (or proxy) sent a request that this server could not understand."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3869  10319 --:--:-- --:--:-- --:--:-- 10666
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    53    0     0  100    53      0   5994 --:--:-- --:--:-- --:--:--  5888100   151  100    98  100    53  10829   5857 --:--:-- --:--:-- --:--:-- 10888
+T: 2016-08-21 20:40:40 #15 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:40:40 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 400 BAD REQUEST
+Content-Type: application/json
+Content-Length: 98
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:40:40 GMT
+
+{
+    "message": "The browser (or proxy) sent a request that this server could not understand."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2266   6043 --:--:-- --:--:-- --:--:--  6400
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   151  100    98  100    53   8475   4583 --:--:-- --:--:-- --:--:--  8909
+T: 2016-08-21 20:41:24 #16 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:41:24 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 5
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:41:24 GMT
+
+null
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3321   8856 --:--:-- --:--:-- --:--:--  9600
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    58  100     5  100    53    549   5819 --:--:-- --:--:-- --:--:--  6625
+T: 2016-08-21 20:41:56 #17 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:42:08 #18 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:42:08 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:42:08 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2027   5405 --:--:-- --:--:-- --:--:--  5647
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    87  100    34  100    53   3825   5963 --:--:-- --:--:-- --:--:--  6625
+T: 2016-08-21 20:43:55 #19 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:43:55 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:43:55 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96    137    367 --:--:-- --:--:-- --:--:--   369
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    87  100    34  100    53   1704   2656 --:--:-- --:--:-- --:--:--  2789
+T: 2016-08-21 20:44:09 #20 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:44:09 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:44:09 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96    122    326 --:--:-- --:--:-- --:--:--   327
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    87  100    34  100    53   2862   4461 --:--:-- --:--:-- --:--:--  4818
+T: 2016-08-21 20:46:13 #21 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:46:13 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:46:13 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96     66    177 --:--:-- --:--:-- --:--:--   178
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    87  100    34  100    53    894   1394 --:--:-- --:--:-- --:--:--  1432
+T: 2016-08-21 20:46:21 #22 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:46:21 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:46:21 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3706   9883 --:--:-- --:--:-- --:--:-- 10666
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    87  100    34  100    53   1365   2128 --:--:-- --:--:-- --:--:--  2208
+T: 2016-08-21 20:47:14 #23 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+T: 2016-08-21 20:47:26 #24 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:47:26 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 400 BAD REQUEST
+Content-Type: application/json
+Content-Length: 98
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:47:26 GMT
+
+{
+    "message": "The browser (or proxy) sent a request that this server could not understand."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3585   9560 --:--:-- --:--:-- --:--:-- 10666
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   151  100    98  100    53   5631   3045 --:--:-- --:--:-- --:--:--  5764
+T: 2016-08-21 20:50:43 #25 Log
+HTTP/1.0 405 METHOD NOT ALLOWED
+Content-Type: application/json
+Content-Length: 70
+Allow: HEAD, OPTIONS, GET
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:50:43 GMT
+
+{
+    "message": "The method is not allowed for the requested URL."
+}
+HTTP/1.0 405 METHOD NOT ALLOWED
+Content-Type: application/json
+Content-Length: 70
+Allow: HEAD, OPTIONS, GET
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:50:44 GMT
+
+{
+    "message": "The method is not allowed for the requested URL."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   166  100    70  100    96   4609   6321 --:--:-- --:--:-- --:--:--  6857
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   122  100    70  100    52   5625   4178 --:--:-- --:--:-- --:--:--  5833
+T: 2016-08-21 20:51:00 #26 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:51:00 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 400 BAD REQUEST
+Content-Type: application/json
+Content-Length: 98
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:51:00 GMT
+
+{
+    "message": "The browser (or proxy) sent a request that this server could not understand."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   1866   4976 --:--:-- --:--:-- --:--:--  5052
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   150  100    98  100    52   9751   5174 --:--:-- --:--:-- --:--:-- 10888
+T: 2016-08-21 20:51:30 #27 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:51:30 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:51:30 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2145   5720 --:--:-- --:--:-- --:--:--  6000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   2742   4193 --:--:-- --:--:-- --:--:--  4333
+T: 2016-08-21 20:52:06 #28 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:52:06 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:52:06 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4034  10757 --:--:-- --:--:-- --:--:-- 12000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   5175   7915 --:--:-- --:--:-- --:--:--  8666
+T: 2016-08-21 20:52:34 #29 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:52:34 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:52:34 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4409  11757 --:--:-- --:--:-- --:--:-- 12000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   3789   5796 --:--:-- --:--:-- --:--:--  6500
+T: 2016-08-21 20:52:50 #30 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:52:50 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:52:50 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   1774   4733 --:--:-- --:--:-- --:--:--  5052
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   1342   2053 --:--:-- --:--:-- --:--:--  2080
+T: 2016-08-21 20:53:05 #31 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:53:05 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:53:05 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2276   6070 --:--:-- --:--:-- --:--:--  6400
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   4355   6660 --:--:-- --:--:-- --:--:--  7428
+T: 2016-08-21 20:55:14 #32 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:55:14 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 500 INTERNAL SERVER ERROR
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Connection: close
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:55:14 GMT
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>TypeError: 'Request' object has no attribute '__getitem__' // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 140266858388496,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "j7aBmxP031Zp60RHYBr0";
+    </script>
+  </head>
+  <body>
+    <div class="debugger">
+<h1>TypeError</h1>
+<div class="detail">
+  <p class="errormsg">TypeError: 'Request' object has no attribute '__getitem__'</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-140266858388368">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">2000</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                </span>error = None</pre>
+<pre class="line before"><span class="ws">            </span>ctx.auto_pop(error)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Shortcut for :attr:`wsgi_app`.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return '&lt;%s %r&gt;' % (</pre>
+<pre class="line after"><span class="ws">            </span>self.__class__.__name__,</pre>
+<pre class="line after"><span class="ws">            </span>self.name,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858388624">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1991</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre>
+<pre class="line after"><span class="ws">            </span>if self.should_ignore_error(error):</pre>
+<pre class="line after"><span class="ws">                </span>error = None</pre>
+<pre class="line after"><span class="ws">            </span>ctx.auto_pop(error)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858388816">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858388752">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1567</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>if handler is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858388944">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858388688">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1988</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389072">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1641</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389136">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389008">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1544</em>,
+      in <code class="function">handle_user_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+<pre class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Default exception handling that kicks in when an exception</pre>
+<pre class="line after"><span class="ws">        </span>occurs that is not caught.  In debug mode the exception will</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389264">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858388880">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1639</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389392">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1625</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span># request came with the OPTIONS method, reply automatically</pre>
+<pre class="line before"><span class="ws">        </span>if getattr(rule, 'provide_automatic_options', False) \</pre>
+<pre class="line before"><span class="ws">           </span>and req.method == 'OPTIONS':</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389456">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">477</em>,
+      in <code class="function">wrapper</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:param resource: The resource as a flask view function</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>@wraps(resource)</pre>
+<pre class="line before"><span class="ws">        </span>def wrapper(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">            </span>resp = resource(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws">            </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">                </span>return resp</pre>
+<pre class="line after"><span class="ws">            </span>data, code, headers = unpack(resp)</pre>
+<pre class="line after"><span class="ws">            </span>return self.make_response(data, code, headers=headers)</pre>
+<pre class="line after"><span class="ws">        </span>return wrapper</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389328">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/views.py"</cite>,
+      line <em class="line">84</em>,
+      in <code class="function">view</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>The arguments passed to :meth:`as_view` are forwarded to the</pre>
+<pre class="line before"><span class="ws">        </span>constructor of the class.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>def view(*args, **kwargs):</pre>
+<pre class="line before"><span class="ws">            </span>self = view.view_class(*class_args, **class_kwargs)</pre>
+<pre class="line current"><span class="ws">            </span>return self.dispatch_request(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if cls.decorators:</pre>
+<pre class="line after"><span class="ws">            </span>view.__name__ = name</pre>
+<pre class="line after"><span class="ws">            </span>view.__module__ = cls.__module__</pre>
+<pre class="line after"><span class="ws">            </span>for decorator in cls.decorators:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858389200">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">587</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>assert meth is not None, 'Unimplemented method %r' % request.method</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>for decorator in self.method_decorators:</pre>
+<pre class="line before"><span class="ws">            </span>meth = decorator(meth)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>resp = meth(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">            </span>return resp</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>representations = self.representations or OrderedDict()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266858388560">
+  <h4>File <cite class="filename">"/home/socc/project/Hawki-server/Web/server.py"</cite>,
+      line <em class="line">13</em>,
+      in <code class="function">post</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line before"><span class="ws">        </span>return {'message': 'building good!'}</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>class IndoorPosition(Resource):</pre>
+<pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line current"><span class="ws">        </span>print request['get_data']</pre>
+<pre class="line after"><span class="ws">        </span>return {'message': 'indoor good!'}</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(BuildInfo, '/buildinginfo')</pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(IndoorPosition, '/indoorposition')</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140266849341520">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/werkzeug/local.py"</cite>,
+      line <em class="line">373</em>,
+      in <code class="function">&lt;lambda&gt;</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>__ge__ = lambda x, o: x._get_current_object() &gt;= o</pre>
+<pre class="line before"><span class="ws">    </span>__cmp__ = lambda x, o: cmp(x._get_current_object(), o)  # noqa</pre>
+<pre class="line before"><span class="ws">    </span>__hash__ = lambda x: hash(x._get_current_object())</pre>
+<pre class="line before"><span class="ws">    </span>__call__ = lambda x, *a, **kw: x._get_current_object()(*a, **kw)</pre>
+<pre class="line before"><span class="ws">    </span>__len__ = lambda x: len(x._get_current_object())</pre>
+<pre class="line current"><span class="ws">    </span>__getitem__ = lambda x, i: x._get_current_object()[i]</pre>
+<pre class="line after"><span class="ws">    </span>__iter__ = lambda x: iter(x._get_current_object())</pre>
+<pre class="line after"><span class="ws">    </span>__contains__ = lambda x, i: i in x._get_current_object()</pre>
+<pre class="line after"><span class="ws">    </span>__add__ = lambda x, o: x._get_current_object() + o</pre>
+<pre class="line after"><span class="ws">    </span>__sub__ = lambda x, o: x._get_current_object() - o</pre>
+<pre class="line after"><span class="ws">    </span>__mul__ = lambda x, o: x._get_current_object() * o</pre></div>
+</div>
+</ul>
+  <blockquote>TypeError: 'Request' object has no attribute '__getitem__'</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request['get_data']
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/local.py", line 373, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+TypeError: 'Request' object has no attribute '__getitem__'</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request['get_data']
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/local.py", line 373, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+TypeError: 'Request' object has no attribute '__getitem__'
+
+-->
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3686   9830 --:--:-- --:--:-- --:--:-- 10666
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 29820    0 29768  100    52   444k    794 --:--:-- --:--:-- --:--:--  447k
+T: 2016-08-21 20:55:26 #33 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:55:27 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 500 INTERNAL SERVER ERROR
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Connection: close
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:55:27 GMT
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>TypeError: 'Request' object has no attribute '__getitem__' // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 140309986119632,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "aXMsyBFT4VF4524AQaXJ";
+    </script>
+  </head>
+  <body>
+    <div class="debugger">
+<h1>TypeError</h1>
+<div class="detail">
+  <p class="errormsg">TypeError: 'Request' object has no attribute '__getitem__'</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-140309986119504">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">2000</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                </span>error = None</pre>
+<pre class="line before"><span class="ws">            </span>ctx.auto_pop(error)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Shortcut for :attr:`wsgi_app`.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return '&lt;%s %r&gt;' % (</pre>
+<pre class="line after"><span class="ws">            </span>self.__class__.__name__,</pre>
+<pre class="line after"><span class="ws">            </span>self.name,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974626960">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1991</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre>
+<pre class="line after"><span class="ws">            </span>if self.should_ignore_error(error):</pre>
+<pre class="line after"><span class="ws">                </span>error = None</pre>
+<pre class="line after"><span class="ws">            </span>ctx.auto_pop(error)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974627088">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974626896">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1567</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>if handler is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974627408">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974627280">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1988</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974627536">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1641</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974628880">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974628816">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1544</em>,
+      in <code class="function">handle_user_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+<pre class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Default exception handling that kicks in when an exception</pre>
+<pre class="line after"><span class="ws">        </span>occurs that is not caught.  In debug mode the exception will</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974629072">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974628752">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1639</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974629200">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1625</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span># request came with the OPTIONS method, reply automatically</pre>
+<pre class="line before"><span class="ws">        </span>if getattr(rule, 'provide_automatic_options', False) \</pre>
+<pre class="line before"><span class="ws">           </span>and req.method == 'OPTIONS':</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974629264">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">477</em>,
+      in <code class="function">wrapper</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:param resource: The resource as a flask view function</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>@wraps(resource)</pre>
+<pre class="line before"><span class="ws">        </span>def wrapper(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">            </span>resp = resource(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws">            </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">                </span>return resp</pre>
+<pre class="line after"><span class="ws">            </span>data, code, headers = unpack(resp)</pre>
+<pre class="line after"><span class="ws">            </span>return self.make_response(data, code, headers=headers)</pre>
+<pre class="line after"><span class="ws">        </span>return wrapper</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974629136">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/views.py"</cite>,
+      line <em class="line">84</em>,
+      in <code class="function">view</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>The arguments passed to :meth:`as_view` are forwarded to the</pre>
+<pre class="line before"><span class="ws">        </span>constructor of the class.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>def view(*args, **kwargs):</pre>
+<pre class="line before"><span class="ws">            </span>self = view.view_class(*class_args, **class_kwargs)</pre>
+<pre class="line current"><span class="ws">            </span>return self.dispatch_request(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if cls.decorators:</pre>
+<pre class="line after"><span class="ws">            </span>view.__name__ = name</pre>
+<pre class="line after"><span class="ws">            </span>view.__module__ = cls.__module__</pre>
+<pre class="line after"><span class="ws">            </span>for decorator in cls.decorators:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974629008">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">587</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>assert meth is not None, 'Unimplemented method %r' % request.method</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>for decorator in self.method_decorators:</pre>
+<pre class="line before"><span class="ws">            </span>meth = decorator(meth)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>resp = meth(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">            </span>return resp</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>representations = self.representations or OrderedDict()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974629328">
+  <h4>File <cite class="filename">"/home/socc/project/Hawki-server/Web/server.py"</cite>,
+      line <em class="line">13</em>,
+      in <code class="function">post</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line before"><span class="ws">        </span>return {'message': 'building good!'}</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>class IndoorPosition(Resource):</pre>
+<pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line current"><span class="ws">        </span>print request['data']</pre>
+<pre class="line after"><span class="ws">        </span>return {'message': 'indoor good!'}</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(BuildInfo, '/buildinginfo')</pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(IndoorPosition, '/indoorposition')</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140309974671632">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/werkzeug/local.py"</cite>,
+      line <em class="line">373</em>,
+      in <code class="function">&lt;lambda&gt;</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>__ge__ = lambda x, o: x._get_current_object() &gt;= o</pre>
+<pre class="line before"><span class="ws">    </span>__cmp__ = lambda x, o: cmp(x._get_current_object(), o)  # noqa</pre>
+<pre class="line before"><span class="ws">    </span>__hash__ = lambda x: hash(x._get_current_object())</pre>
+<pre class="line before"><span class="ws">    </span>__call__ = lambda x, *a, **kw: x._get_current_object()(*a, **kw)</pre>
+<pre class="line before"><span class="ws">    </span>__len__ = lambda x: len(x._get_current_object())</pre>
+<pre class="line current"><span class="ws">    </span>__getitem__ = lambda x, i: x._get_current_object()[i]</pre>
+<pre class="line after"><span class="ws">    </span>__iter__ = lambda x: iter(x._get_current_object())</pre>
+<pre class="line after"><span class="ws">    </span>__contains__ = lambda x, i: i in x._get_current_object()</pre>
+<pre class="line after"><span class="ws">    </span>__add__ = lambda x, o: x._get_current_object() + o</pre>
+<pre class="line after"><span class="ws">    </span>__sub__ = lambda x, o: x._get_current_object() - o</pre>
+<pre class="line after"><span class="ws">    </span>__mul__ = lambda x, o: x._get_current_object() * o</pre></div>
+</div>
+</ul>
+  <blockquote>TypeError: 'Request' object has no attribute '__getitem__'</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request['data']
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/local.py", line 373, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+TypeError: 'Request' object has no attribute '__getitem__'</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request['data']
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/local.py", line 373, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+TypeError: 'Request' object has no attribute '__getitem__'
+
+-->
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    96    0     0  100    96      0    159 --:--:-- --:--:-- --:--:--   159100   132  100    36  100    96     59    159 --:--:-- --:--:-- --:--:--   159
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 29808    0 29756  100    52   246k    440 --:--:-- --:--:-- --:--:--  248k
+T: 2016-08-21 20:55:34 #34 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:55:34 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 400 BAD REQUEST
+Content-Type: application/json
+Content-Length: 98
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:55:34 GMT
+
+{
+    "message": "The browser (or proxy) sent a request that this server could not understand."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4868  12983 --:--:-- --:--:-- --:--:-- 13714
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   150  100    98  100    52   3387   1797 --:--:-- --:--:-- --:--:--  9800
+T: 2016-08-21 20:56:37 #35 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:56:38 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:56:38 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3353   8943 --:--:-- --:--:-- --:--:--  9600
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   3260   4986 --:--:-- --:--:-- --:--:--  5200
+T: 2016-08-21 20:56:51 #36 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:56:51 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:56:51 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4110  10961 --:--:-- --:--:-- --:--:-- 12000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   3908   5977 --:--:-- --:--:-- --:--:--  6500
+T: 2016-08-21 20:57:08 #37 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:57:08 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 500 INTERNAL SERVER ERROR
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Connection: close
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:57:08 GMT
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>TypeError: string indices must be integers, not str // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 139707860250448,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "RqPUAgmhny96TIpad2Tw";
+    </script>
+  </head>
+  <body>
+    <div class="debugger">
+<h1>TypeError</h1>
+<div class="detail">
+  <p class="errormsg">TypeError: string indices must be integers, not str</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-139707860402512">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">2000</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                </span>error = None</pre>
+<pre class="line before"><span class="ws">            </span>ctx.auto_pop(error)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Shortcut for :attr:`wsgi_app`.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return '&lt;%s %r&gt;' % (</pre>
+<pre class="line after"><span class="ws">            </span>self.__class__.__name__,</pre>
+<pre class="line after"><span class="ws">            </span>self.name,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860402704">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1991</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre>
+<pre class="line after"><span class="ws">            </span>if self.should_ignore_error(error):</pre>
+<pre class="line after"><span class="ws">                </span>error = None</pre>
+<pre class="line after"><span class="ws">            </span>ctx.auto_pop(error)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860402896">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860402768">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1567</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>if handler is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403024">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860402640">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1988</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403152">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1641</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403216">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403088">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1544</em>,
+      in <code class="function">handle_user_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+<pre class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Default exception handling that kicks in when an exception</pre>
+<pre class="line after"><span class="ws">        </span>occurs that is not caught.  In debug mode the exception will</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403344">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860402960">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1639</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403472">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1625</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span># request came with the OPTIONS method, reply automatically</pre>
+<pre class="line before"><span class="ws">        </span>if getattr(rule, 'provide_automatic_options', False) \</pre>
+<pre class="line before"><span class="ws">           </span>and req.method == 'OPTIONS':</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403536">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">477</em>,
+      in <code class="function">wrapper</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:param resource: The resource as a flask view function</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>@wraps(resource)</pre>
+<pre class="line before"><span class="ws">        </span>def wrapper(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">            </span>resp = resource(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws">            </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">                </span>return resp</pre>
+<pre class="line after"><span class="ws">            </span>data, code, headers = unpack(resp)</pre>
+<pre class="line after"><span class="ws">            </span>return self.make_response(data, code, headers=headers)</pre>
+<pre class="line after"><span class="ws">        </span>return wrapper</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403408">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/views.py"</cite>,
+      line <em class="line">84</em>,
+      in <code class="function">view</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>The arguments passed to :meth:`as_view` are forwarded to the</pre>
+<pre class="line before"><span class="ws">        </span>constructor of the class.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>def view(*args, **kwargs):</pre>
+<pre class="line before"><span class="ws">            </span>self = view.view_class(*class_args, **class_kwargs)</pre>
+<pre class="line current"><span class="ws">            </span>return self.dispatch_request(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if cls.decorators:</pre>
+<pre class="line after"><span class="ws">            </span>view.__name__ = name</pre>
+<pre class="line after"><span class="ws">            </span>view.__module__ = cls.__module__</pre>
+<pre class="line after"><span class="ws">            </span>for decorator in cls.decorators:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403280">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">587</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>assert meth is not None, 'Unimplemented method %r' % request.method</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>for decorator in self.method_decorators:</pre>
+<pre class="line before"><span class="ws">            </span>meth = decorator(meth)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>resp = meth(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">            </span>return resp</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>representations = self.representations or OrderedDict()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139707860403664">
+  <h4>File <cite class="filename">"/home/socc/project/Hawki-server/Web/server.py"</cite>,
+      line <em class="line">13</em>,
+      in <code class="function">post</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line before"><span class="ws">        </span>return {'message': 'building good!'}</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>class IndoorPosition(Resource):</pre>
+<pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line current"><span class="ws">        </span>print request.data['bid']</pre>
+<pre class="line after"><span class="ws">        </span>return {'message': 'indoor good!'}</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(BuildInfo, '/buildinginfo')</pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(IndoorPosition, '/indoorposition')</pre></div>
+</div>
+</ul>
+  <blockquote>TypeError: string indices must be integers, not str</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request.data['bid']
+TypeError: string indices must be integers, not str</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request.data['bid']
+TypeError: string indices must be integers, not str
+
+-->
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3265   8709 --:--:-- --:--:-- --:--:--  9600
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 27964    0 27912  100    52   455k    868 --:--:-- --:--:-- --:--:--  461k
+T: 2016-08-21 20:57:25 #38 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:57:25 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 500 INTERNAL SERVER ERROR
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+Connection: close
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:57:25 GMT
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>AttributeError: 'str' object has no attribute 'form' // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 140473284734800,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "tR5viSz6u3dXlGbCw22w";
+    </script>
+  </head>
+  <body>
+    <div class="debugger">
+<h1>AttributeError</h1>
+<div class="detail">
+  <p class="errormsg">AttributeError: 'str' object has no attribute 'form'</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-140473284870480">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">2000</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                </span>error = None</pre>
+<pre class="line before"><span class="ws">            </span>ctx.auto_pop(error)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Shortcut for :attr:`wsgi_app`.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return '&lt;%s %r&gt;' % (</pre>
+<pre class="line after"><span class="ws">            </span>self.__class__.__name__,</pre>
+<pre class="line after"><span class="ws">            </span>self.name,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284870672">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1991</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre>
+<pre class="line after"><span class="ws">            </span>if self.should_ignore_error(error):</pre>
+<pre class="line after"><span class="ws">                </span>error = None</pre>
+<pre class="line after"><span class="ws">            </span>ctx.auto_pop(error)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284870864">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284870736">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1567</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>if handler is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284870992">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284870608">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1988</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.make_response(self.handle_exception(e))</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871120">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1641</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871184">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">271</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line before"><span class="ws">            </span>except Exception:</pre>
+<pre class="line before"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line current"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Error handler for the API transforms a raised exception into a Flask</pre>
+<pre class="line after"><span class="ws">        </span>response, with the appropriate HTTP status code and body.</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871056">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1544</em>,
+      in <code class="function">handle_user_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+<pre class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Default exception handling that kicks in when an exception</pre>
+<pre class="line after"><span class="ws">        </span>occurs that is not caught.  In debug mode the exception will</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871312">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">268</em>,
+      in <code class="function">error_router</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>:type e: Exception</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>return self.handle_error(e)</pre>
+<pre class="line after"><span class="ws">            </span>except Exception:</pre>
+<pre class="line after"><span class="ws">                </span>pass  # Fall through to original handler</pre>
+<pre class="line after"><span class="ws">        </span>return original_handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_error(self, e):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284870928">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1639</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">        </span>request_finished.send(self, response=response)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871440">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/app.py"</cite>,
+      line <em class="line">1625</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span># request came with the OPTIONS method, reply automatically</pre>
+<pre class="line before"><span class="ws">        </span>if getattr(rule, 'provide_automatic_options', False) \</pre>
+<pre class="line before"><span class="ws">           </span>and req.method == 'OPTIONS':</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871504">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">477</em>,
+      in <code class="function">wrapper</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:param resource: The resource as a flask view function</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>@wraps(resource)</pre>
+<pre class="line before"><span class="ws">        </span>def wrapper(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">            </span>resp = resource(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws">            </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">                </span>return resp</pre>
+<pre class="line after"><span class="ws">            </span>data, code, headers = unpack(resp)</pre>
+<pre class="line after"><span class="ws">            </span>return self.make_response(data, code, headers=headers)</pre>
+<pre class="line after"><span class="ws">        </span>return wrapper</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871376">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask/views.py"</cite>,
+      line <em class="line">84</em>,
+      in <code class="function">view</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>The arguments passed to :meth:`as_view` are forwarded to the</pre>
+<pre class="line before"><span class="ws">        </span>constructor of the class.</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>def view(*args, **kwargs):</pre>
+<pre class="line before"><span class="ws">            </span>self = view.view_class(*class_args, **class_kwargs)</pre>
+<pre class="line current"><span class="ws">            </span>return self.dispatch_request(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if cls.decorators:</pre>
+<pre class="line after"><span class="ws">            </span>view.__name__ = name</pre>
+<pre class="line after"><span class="ws">            </span>view.__module__ = cls.__module__</pre>
+<pre class="line after"><span class="ws">            </span>for decorator in cls.decorators:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871248">
+  <h4>File <cite class="filename">"/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py"</cite>,
+      line <em class="line">587</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>assert meth is not None, 'Unimplemented method %r' % request.method</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>for decorator in self.method_decorators:</pre>
+<pre class="line before"><span class="ws">            </span>meth = decorator(meth)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>resp = meth(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if isinstance(resp, ResponseBase):  # There may be a better way to test</pre>
+<pre class="line after"><span class="ws">            </span>return resp</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>representations = self.representations or OrderedDict()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140473284871632">
+  <h4>File <cite class="filename">"/home/socc/project/Hawki-server/Web/server.py"</cite>,
+      line <em class="line">13</em>,
+      in <code class="function">post</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line before"><span class="ws">        </span>return {'message': 'building good!'}</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>class IndoorPosition(Resource):</pre>
+<pre class="line before"><span class="ws">    </span>def post(self):</pre>
+<pre class="line current"><span class="ws">        </span>print request.data.form['bid']</pre>
+<pre class="line after"><span class="ws">        </span>return {'message': 'indoor good!'}</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(BuildInfo, '/buildinginfo')</pre>
+<pre class="line after"><span class="ws"></span>api.add_resource(IndoorPosition, '/indoorposition')</pre></div>
+</div>
+</ul>
+  <blockquote>AttributeError: 'str' object has no attribute 'form'</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request.data.form['bid']
+AttributeError: 'str' object has no attribute 'form'</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 268, in error_router
+    return self.handle_error(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 477, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 587, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/socc/project/Hawki-server/Web/server.py", line 13, in post
+    print request.data.form['bid']
+AttributeError: 'str' object has no attribute 'form'
+
+-->
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2261   6030 --:--:-- --:--:-- --:--:--  6400
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 27989    0 27937  100    52   404k    771 --:--:-- --:--:-- --:--:--  407k
+T: 2016-08-21 20:58:10 #39 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:10 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:11 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   2163   5768 --:--:-- --:--:-- --:--:--  6000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   2517   3850 --:--:-- --:--:-- --:--:--  4000
+T: 2016-08-21 20:58:20 #40 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:20 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:20 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    96    0     0  100    96      0    663 --:--:-- --:--:-- --:--:--   662100   132  100    36  100    96    248    662 --:--:-- --:--:-- --:--:--   662
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   1213   1855 --:--:-- --:--:-- --:--:--  1925
+T: 2016-08-21 20:58:51 #41 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:51 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:51 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   3876  10338 --:--:-- --:--:-- --:--:-- 12000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   3390   5184 --:--:-- --:--:-- --:--:--  5777
+T: 2016-08-21 20:58:54 #42 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:55 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 11:58:55 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96    119    318 --:--:-- --:--:-- --:--:--   318
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   3393   5190 --:--:-- --:--:-- --:--:--  5777
+T: 2016-08-21 21:02:04 #43 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:04 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 405 METHOD NOT ALLOWED
+Content-Type: application/json
+Content-Length: 70
+Allow: POST, OPTIONS
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:04 GMT
+
+{
+    "message": "The method is not allowed for the requested URL."
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4694  12519 --:--:-- --:--:-- --:--:-- 13714
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   122  100    70  100    52   9163   6807 --:--:-- --:--:-- --:--:-- 10000
+T: 2016-08-21 21:02:14 #44 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:14 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:14 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4632  12352 --:--:-- --:--:-- --:--:-- 13714
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   4622   7069 --:--:-- --:--:-- --:--:--  7428
+T: 2016-08-21 21:02:39 #45 Log
+HTTP/1.0 405 METHOD NOT ALLOWED
+Content-Type: application/json
+Content-Length: 70
+Allow: POST, OPTIONS
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:39 GMT
+
+{
+    "message": "The method is not allowed for the requested URL."
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:39 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   166  100    70  100    96   8335  11431 --:--:-- --:--:-- --:--:-- 12000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   4439   6790 --:--:-- --:--:-- --:--:--  7428
+T: 2016-08-21 21:02:43 #46 Log
+HTTP/1.0 405 METHOD NOT ALLOWED
+Content-Type: application/json
+Content-Length: 70
+Allow: POST, OPTIONS
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:43 GMT
+
+{
+    "message": "The method is not allowed for the requested URL."
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:02:43 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    96    0     0  100    96      0  11563 --:--:-- --:--:-- --:--:-- 10666100   166  100    70  100    96   8237  11296 --:--:-- --:--:-- --:--:-- 10666
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   4313   6596 --:--:-- --:--:-- --:--:--  7428
+T: 2016-08-21 21:03:02 #47 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:03:02 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:03:02 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   5092  13580 --:--:-- --:--:-- --:--:-- 16000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   4965   7594 --:--:-- --:--:-- --:--:--  8666
+T: 2016-08-21 21:04:01 #48 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:04:01 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:04:01 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4390  11708 --:--:-- --:--:-- --:--:-- 12000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   4727   7230 --:--:-- --:--:-- --:--:--  7428
+T: 2016-08-21 21:05:05 #49 Log
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 36
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:05:05 GMT
+
+{
+    "message": "building good!"
+}
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 34
+Server: Werkzeug/0.11.10 Python/2.7.11+
+Date: Sun, 21 Aug 2016 12:05:05 GMT
+
+{
+    "message": "indoor good!"
+}
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   132  100    36  100    96   4126  11002 --:--:-- --:--:-- --:--:-- 12000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    86  100    34  100    52   4718   7217 --:--:-- --:--:-- --:--:--  7428
+T: 2016-08-21 21:18:30 #50 Log
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 3000: 연결이 거부됨

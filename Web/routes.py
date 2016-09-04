@@ -93,7 +93,7 @@ class SunoTest(Resource):
         return json.dumps(request.json)
 
 # Request Routing
-#api.add_resource(SunoTest, '/test')
+#api.add_resource(SunoTest, '/test'):
 #api.add_resource(BuildingInfo, '/buildinginfo')
 api.add_resource(BuildingInfo, '/test')
 
