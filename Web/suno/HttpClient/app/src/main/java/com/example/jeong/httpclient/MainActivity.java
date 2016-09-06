@@ -1,61 +1,27 @@
 package com.example.jeong.httpclient;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class MainActivity extends ActionBarActivity {
-    TextView textView;
+    View rootView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView)findViewById(R.id.textView);
-
-
-
+        rootView = (View)findViewById(android.R.id.content);
     }
 
     public void onButtonClicked(View v){
-        String url = "http://192.168.0.2:4000/test";
+        //String url = "http://192.168.0.2:4000/test";
+        String url = "http://172.20.10.3:4000/test";
+        HttpHandler httpUtil = new HttpHandler(rootView);
 
-        HttpUtil httpUtil = new HttpUtil();
-        httpUtil.execute(url);
-    }
-
-    public JSONObject makeJson(){
-        JSONObject jsonObj = new JSONObject();
-        try {
-//            jsonObj.put("name", "suno");
-//            jsonObj.put("phone", "123-4567");
-
-            jsonObj.put("bid", "0228777");
-            jsonObj.put("name", "socc_building");
-            jsonObj.put("longitude", "123");
-            jsonObj.put("latitude", "456");
-
-        } catch (JSONException e1) {
-            e1.printStackTrace();
-        }
-
-        return jsonObj;
+        // POST = execute(url, "POST"), GET = execute(url, "GET")    해당 method parameter로 넘겨주기!
+        httpUtil.execute(url,"POST");
     }
 
     @Override
@@ -78,54 +44,6 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public class HttpUtil extends AsyncTask <String, Void, String>{
-
-        @Override
-        protected String doInBackground(String... params) {
-            String url = params[0];
-            DefaultHttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(url);
-            HttpParams httpParams = client.getParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
-            HttpConnectionParams.setSoTimeout(httpParams, 3000);
-            post.setHeader("Content-type", "application/json; charset=utf-8");
-
-            try{
-                StringEntity se=null;
-                JSONObject jsonObject = makeJson();
-                se = new StringEntity(jsonObject.toString());
-                HttpEntity he=se;
-                post.setEntity(he);
-
-                HttpResponse response = client.execute(post);
-                BufferedReader bufReader =
-                        new BufferedReader(new InputStreamReader(
-                                response.getEntity().getContent(), "utf-8")
-                        );
-
-                String line = null;
-                String result = "";
-
-                while ((line = bufReader.readLine())!=null){
-                    result +=line;
-                }
-                return result;
-            }
-            catch(Exception e){
-                e.printStackTrace();
-                return null;
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(String str) {
-            //jsonParsing(str)
-            textView.setText(str);
-        }
-
     }
 
 }
