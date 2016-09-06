@@ -5,24 +5,36 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity {
     View rootView;
+    EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rootView = (View)findViewById(android.R.id.content);
+        editText = (EditText)findViewById(R.id.editText);
     }
 
-    public void onButtonClicked(View v){
-        //String url = "http://192.168.0.2:4000/test";
-        String url = "http://172.20.10.3:4000/test";
-        HttpHandler httpUtil = new HttpHandler(rootView);
+    public void onPostBtnClicked(View v){
+        String url = "http://192.168.0.32:4000/test";
+        HttpHandler httpHandler = new HttpHandler(rootView);
 
-        // POST = execute(url, "POST"), GET = execute(url, "GET")    해당 method parameter로 넘겨주기!
-        httpUtil.execute(url,"POST");
+        httpHandler.execute(url, "POST");
     }
+
+    public void onGetBtnClicked(View v){
+        String url = editText.getText().toString();
+        if(!url.contains("http://")){
+            url = "http://" + url;
+        }
+
+        HttpHandler httpHandler = new HttpHandler(rootView);
+        httpHandler.execute(url, "GET");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

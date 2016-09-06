@@ -12,9 +12,26 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onButtonClicked"
-        android:text="request!"
+        android:onClick="onPostBtnClicked"
+        android:text="POST"
         android:id="@+id/button" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GET"
+            android:onClick="onGetBtnClicked"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
