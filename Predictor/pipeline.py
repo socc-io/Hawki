@@ -59,5 +59,6 @@ ppl.load_pipe('COEX_SIMPLE')
 res = ppl.process(test_mat)
 
 print 'Test result : ', res
+print 'Original Answer : ', (test_lbl[0][0], test_lbl[0][1])
 
 ########################################################################
