@@ -9,7 +9,7 @@ class GNB:
         with open('Predictor/Module/GNB/bin/gnb_y_0.pkl', 'rb') as f:
             self.clf_y = pickle.load(f)
 
-    def resume(self):
+    def resume(self, config):
         #Always load data (load each process)
         pass
 

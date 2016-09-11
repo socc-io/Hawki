@@ -16,7 +16,7 @@ module_list = {
 }
 
 pipeline_list = {
-    'COEX' : ['COEST_APVOCA', 'COEX_GNB'],
+    'COEX' : ['COEX_APVOCA', 'COEX_GNB'],
     'COEX_SIMPLE' : ['COEX_GNB']
 }
 
@@ -32,32 +32,37 @@ class Pipeline:
         self.main_pipe = pipeline_list[pipe_name]
         self.main_name = pipe_name
 
-    def process(self, input_data):
+    def process(self, input_data, config):
         global module_list
         print "[Pipeline : '", self.main_name, "'] is now processing..."
         last_vector = input_data
         pipe_result = []
         for mname in self.main_pipe:
             mod = module_list[mname]
-            mod.resume()
+            mod.resume(config)
             last_vector = mod.convert(last_vector)
             pipe_result.append(last_vector)
         return pipe_result[-1]
 
 #################### Test code for predicting test #####################
-
-min_val = -999
 test_data = np.genfromtxt('Data/WRM/RAW/TS.csv', delimiter=',')
-
+test_rssi = open('Data/WRM/RAW/LS.csv').read().split('\n')[0].split(',')[3:]
 test_lbl = test_data[[1],:3]
 test_mat = test_data[[1],3:]
-test_mat[np.isnan(test_mat)] = min_val
-test_mat[np.isinf(test_mat)] = min_val
 
+test_wrm = {}
+for idx, v in enumerate(test_mat[0]):
+    if not np.isnan(v) and not np.isinf(v) :
+        test_wrm[test_rssi[idx]] = v
+
+
+print test_wrm
 ppl = Pipeline()
-ppl.load_pipe('COEX_SIMPLE')
-res = ppl.process(test_mat)
+ppl.load_pipe('COEX')
+res = ppl.process(test_wrm, config = {"building_id" : 'COEX', "min_rssi" : -999})
 
 print 'Test result : ', res
+print 'Original Answer : ', (test_lbl[0][0], test_lbl[0][1])
 
 ########################################################################
+
