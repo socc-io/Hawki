@@ -44,6 +44,7 @@ class Pipeline:
             pipe_result.append(last_vector)
         return pipe_result[-1]
 
+'''
 #################### Test code for predicting test #####################
 test_data = np.genfromtxt('Data/WRM/RAW/TS.csv', delimiter=',')
 test_rssi = open('Data/WRM/RAW/LS.csv').read().split('\n')[0].split(',')[3:]
@@ -65,4 +66,5 @@ print 'Test result : ', res
 print 'Original Answer : ', (test_lbl[0][0], test_lbl[0][1])
 
 ########################################################################
+'''
 

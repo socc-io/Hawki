@@ -1,6 +1,7 @@
 # -*-coding:utf-8
 from flask import Flask, request, json
 from flask_restful import Resource, Api, reqparse
+from Predictor.pipeline import Pipeline
 import requests
 
 app = Flask(__name__)
@@ -12,8 +13,8 @@ search_url = "http://openapi.naver.com/v1/search/local.xml"
 daum_app_key = '1b53126df63a2e4ea0dc1a236c67d0d8'  # 다음 api 키
 daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
 
-parser = reqparse.RequestParser()
-parser.add_argument('buildName')
+# Init Pipeline
+ppl = Pipeline()
 
 ''' keyword 검색 response json data
 {
@@ -55,7 +56,6 @@ class BuildingInfo(Resource):
         #daum_search_keyword = '&query=' + args['buildName']
         #print daum_search_keyword
         daum_search_keyword = '&query=' + name
-        print daum_search_keyword
         daym_search_latitude = ''  # 경도
         daum_search_logitude = ''  # 위도
         daum_search_location = ''  # 다음 서치 쿼리를 만들기 위한 경도,위도 형식으로 만들어줘야함 &location
@@ -89,29 +89,34 @@ class BuildingInfo(Resource):
         return {'Build':results}
 
     def get(self):
-        parser = reqparse.RequestParser()
-        args = parser.parse_args()
-        print args
-        return json.dumps(self.getBuildInfoByName())
+        buildName = request.args.get('buildName')
+        if buildName == '':
+            return json.dumps(self.getBuildInfoByName())
+        else:
+            return json.dumps(self.getBuildInfoByName(name=buildName))
+
+class GetPosition(Resource):
+    global ppl
+    def predictPositionByRssi(self, wrm={'abcd':-99}, buildId='COEX'):
+        ppl.load_pipe(buildId)
+
+        res = ppl.process(wrm, config={'building_id':buildId, 'min_rssi':-999})
+        resJson = {
+            'position': {
+                'x': res[0],
+                'y': res[1]
+            }
+        }
+        return resJson
+
+    def get(self):
+        return json.dumps(self.predictPositionByRssi())
 
     def post(self):
-        print request.json['bid']
-        print request.json['name']
-        print request.json['longitude']
-        print request.json['latitude']
-        return json.dumps(self.getBuildInfoByName())
-        #return json.dumps(request.json)
-
-class SunoTest(Resource):
-    def post(self):
-        print request.json
-        return json.dumps(request.json)
+        return json.dumps(self.predictPositionByRssi())
 
 # Request Routing
-#api.add_resource(SunoTest, '/test'):
 #api.add_resource(BuildingInfo, '/buildinginfo')
 api.add_resource(BuildingInfo, '/test')
+api.add_resource(GetPosition, '/getPosition')
 
-# Init Flask server
-if __name__ == '__main__':
-    app.run(debug=True, port=4000,host='0.0.0.0')

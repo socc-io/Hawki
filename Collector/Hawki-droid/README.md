@@ -1,3 +1,0 @@
-### Now in developing...
-
-# IndoorPosition
