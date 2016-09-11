@@ -1,6 +1,6 @@
 # -*-coding:utf-8
 from flask import Flask, request, json
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse
 import requests
 
 app = Flask(__name__)
@@ -11,6 +11,9 @@ client_secret = 'HJEBO3Aod8'
 search_url = "http://openapi.naver.com/v1/search/local.xml"
 daum_app_key = '1b53126df63a2e4ea0dc1a236c67d0d8'  # 다음 api 키
 daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
+
+parser = reqparse.RequestParser()
+parser.add_argument('buildName')
 
 ''' keyword 검색 response json data
 {
@@ -43,11 +46,16 @@ daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
       "totalCount": "11"
     }
   }
+
 '''
 
 class BuildingInfo(Resource):
-    def getBuildInfoByName(self):  # 다음 키워드 검색 api를 사용, 다음에 장소정보 검색을 요청
-        daum_search_keyword = '&query=' + '국제캠퍼스'
+    def getBuildInfoByName(self, name='국제캠퍼스'):  # 다음 키워드 검색 api를 사용, 다음에 장소정보 검색을 요청
+        #args = parser.parse_args()
+        #daum_search_keyword = '&query=' + args['buildName']
+        #print daum_search_keyword
+        daum_search_keyword = '&query=' + name
+        print daum_search_keyword
         daym_search_latitude = ''  # 경도
         daum_search_logitude = ''  # 위도
         daum_search_location = ''  # 다음 서치 쿼리를 만들기 위한 경도,위도 형식으로 만들어줘야함 &location
@@ -55,6 +63,7 @@ class BuildingInfo(Resource):
         # 한글입력은 uriencode 를 사용해서 호출해야된다는데 그냥 되는걸 확인
         daum_search_full_query = daum_search_query + daum_app_key + daum_search_keyword;
         r = requests.get(daum_search_full_query)
+        print r
         #print 'url = ' + r.url
         #print 'text = ' + r.text
         #print 'status code = ' + str(r.status_code)
@@ -77,7 +86,13 @@ class BuildingInfo(Resource):
 
         #print json_data['channel']['info']['count']  # 저 이름이 들어간 마커의 갯수
         print 'parsing json data'
-        return {'data':results}
+        return {'Build':results}
+
+    def get(self):
+        parser = reqparse.RequestParser()
+        args = parser.parse_args()
+        print args
+        return json.dumps(self.getBuildInfoByName())
 
     def post(self):
         print request.json['bid']
