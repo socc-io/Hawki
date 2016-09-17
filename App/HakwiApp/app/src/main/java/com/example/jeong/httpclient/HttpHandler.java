@@ -47,15 +47,12 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
             conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
 
             OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
-            os.write(makeJson().toString());
+            //os.write(makeRssiSetJson().toString());
+            // TODO: 2016. 9. 17. makeRssiSetJson 바뀜에 따라 일단 주석
             os.flush();
 
             InputStream in = new BufferedInputStream(conn.getInputStream());
             response = convertStreamToString(in);
-
-//            conn.connect();
-//            response = conn.getResponseMessage();
-//            Log.d("RESPONSE", "The response is: " + response);
 
             //read response
             StringBuilder sb = new StringBuilder();
@@ -82,22 +79,25 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         return response;
     }
 
-    public String makeServiceCall(String reqUrl) {
+    public String makeServiceCall(String reqUrl,String method) {
         String response = null;
-        try {
-            URL url = new URL(reqUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            // read the response
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            response = convertStreamToString(in);
-        } catch (MalformedURLException e) {
-            Log.e(TAG, "MalformedURLException: " + e.getMessage());
-        } catch (IOException e) {
-            Log.e(TAG, "IOException: " + e.getMessage());
-        } catch (Exception e) {
-            Log.e(TAG, "Exception: " + e.getMessage());
-        }
+
+            try {
+                URL url = new URL(reqUrl);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                // read the response
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                response = convertStreamToString(in);
+            } catch (MalformedURLException e) {
+                Log.e(TAG, "MalformedURLException: " + e.getMessage());
+            } catch (IOException e) {
+                Log.e(TAG, "IOException: " + e.getMessage());
+            } catch (Exception e) {
+                Log.e(TAG, "Exception: " + e.getMessage());
+            }
+
+
         return response;
     }
 
@@ -125,7 +125,9 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         return sb.toString();
     }
 
-    public JSONObject makeJson(){
+    public JSONObject makeRssiSetJson(String rssiSetJson){
+
+        // TODO: 2016. 9. 17. 여기서 제이썬 처리를 해줘야될듯
         JSONObject jsonObj = new JSONObject();
         try {
 

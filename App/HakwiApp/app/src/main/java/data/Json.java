@@ -30,8 +30,12 @@ public class Json {
 
             if(dataformat == DATAFORMAT.BuildingInfo)
                 dataArray = root.getJSONArray("Build");
+
             else if(dataformat == DATAFORMAT.IndoorPosition)
                 dataArray = root.getJSONArray("Indoor");
+
+            else if(dataformat == DATAFORMAT.RSSIDSET)
+                dataArray = root.getJSONArray("RssIdSet");
 
 
         } catch (JSONException e) {
@@ -53,6 +57,10 @@ public class Json {
 
                     case IndoorPosition:
                         proMarker = processIndoorJsonObject(jo);
+                        break;
+
+                    case RSSIDSET:
+                        proMarker = processRSSIDSetJsonObject(jo);
                         break;
                 }
                 markers.add(proMarker);
@@ -87,6 +95,12 @@ public class Json {
         Marker ma = null;
         return ma;
 
+    }
+
+
+    public Marker processRSSIDSetJsonObject(JSONObject jo) throws JSONException {
+        Marker ma = null;
+        return ma;
     }
 
 
