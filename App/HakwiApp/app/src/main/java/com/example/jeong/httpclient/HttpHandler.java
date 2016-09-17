@@ -1,14 +1,19 @@
 package com.example.jeong.httpclient;
 
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,16 +21,65 @@ import java.net.URL;
 /**
  * Created by Jeong on 2016-09-04.
  */
-public class HttpHandler {
+public class HttpHandler extends AsyncTask<String, Void, String>{
 
     private static final String TAG = HttpHandler.class.getSimpleName();
     TextView textView;
     View rootView; //MainActivity
 
     public HttpHandler() {}
-
     public HttpHandler(View rootView){
         this.rootView = rootView;
+    }
+
+    @Override
+    protected String doInBackground(String... params) {
+        URL url ;
+        String response = null;
+        try {
+            url = new URL(params[0]);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);//응답 헤더와 메시지를 읽어들이겠다
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
+
+            OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
+            os.write(makeJson().toString());
+            os.flush();
+
+            InputStream in = new BufferedInputStream(conn.getInputStream());
+            response = convertStreamToString(in);
+
+//            conn.connect();
+//            response = conn.getResponseMessage();
+//            Log.d("RESPONSE", "The response is: " + response);
+
+            //read response
+            StringBuilder sb = new StringBuilder();
+            int HttpResult = conn.getResponseCode();
+            if (HttpResult == HttpURLConnection.HTTP_OK) {
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(conn.getInputStream(), "utf-8"));
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+                System.out.println("" + sb.toString());
+            } else {
+                Log.d("TAG", "HttpResult error!" );
+            }
+
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "MalformedURLException: " + e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, "IOException: " + e.getMessage());
+        }
+
+        return response;
     }
 
     public String makeServiceCall(String reqUrl) {
@@ -69,6 +123,22 @@ public class HttpHandler {
         sb = sb.deleteCharAt(0);
 
         return sb.toString();
+    }
+
+    public JSONObject makeJson(){
+        JSONObject jsonObj = new JSONObject();
+        try {
+
+            jsonObj.put("bid", "0228777");
+            jsonObj.put("name", "socc_building");
+            jsonObj.put("longitude", "123");
+            jsonObj.put("latitude", "456");
+
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+
+        return jsonObj;
     }
 
     /*

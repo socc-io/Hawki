@@ -23,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CollectorActivity"></activity>
+        <activity android:name=".LocalizationActivity"></activity>
     </application>
 
 </manifest>
