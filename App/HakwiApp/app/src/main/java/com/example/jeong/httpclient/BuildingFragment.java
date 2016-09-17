@@ -36,6 +36,7 @@ public class BuildingFragment extends Fragment {
 
     private ProgressDialog pDialog;
     private String selectedBuildId;
+    private String selectedBuildName;
     private ListView listView;
     ArrayList<HashMap<String, String>> buildList;
     List<Marker> markers = new ArrayList<>();
@@ -184,7 +185,8 @@ public class BuildingFragment extends Fragment {
         public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
         {
         //TODO: itemClickListener 발생시 CollectorActivity의 textView값 update 필요!
-            selectedBuildId = markers.get(pos).getBuildId();
+            selectedBuildId = "빌딩 Id : " + markers.get(pos).getBuildId();
+            selectedBuildName = "빌딩 Name : " + markers.get(pos).getTitle();
             String toastMessage = selectedBuildId;
 
             Toast.makeText(
@@ -195,8 +197,8 @@ public class BuildingFragment extends Fragment {
 //            if(getActivity()==){  같이 고민해봅시다....
 //
 //            }
-            textViewName.setText("빌딩이름 추가");
             textViewId.setText(selectedBuildId);
+            textViewName.setText(selectedBuildName);
             //textViewLoc.setText("현재 위치는 x, y, z입니다");
 
         }
