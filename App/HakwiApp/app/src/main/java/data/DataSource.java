@@ -1,7 +1,5 @@
 package data;
 
-import java.util.zip.DeflaterOutputStream;
-
 /**
  * Created by joyeongje on 2016. 9. 4..
  */

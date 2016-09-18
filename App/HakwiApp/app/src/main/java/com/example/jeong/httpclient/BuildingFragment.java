@@ -16,12 +16,14 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import data.DataSource;
 import data.Json;
 
@@ -32,7 +34,7 @@ public class BuildingFragment extends Fragment {
     View rootView;
     EditText editText;
     Button inputButton;
-    TextView textViewName, textViewId, textViewLoc;
+    TextView textViewName, textViewId;
 
     private ProgressDialog pDialog;
     private String selectedBuildId;
@@ -51,7 +53,6 @@ public class BuildingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         textViewName = (TextView)getActivity().findViewById(R.id.textView_buildingName);
         textViewId = (TextView)getActivity().findViewById(R.id.textView_buildingId);
-        textViewLoc = (TextView)getActivity().findViewById(R.id.textView_location);
 
         inputButton = (Button) rootView.findViewById(R.id.requestBuild);
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
@@ -186,8 +187,12 @@ public class BuildingFragment extends Fragment {
         public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
         {
         //TODO: itemClickListener 발생시 CollectorActivity의 textView값 update 필요!
+
+            selectedBuildId = markers.get(pos).getBuildId();
+            selectedBuildName = markers.get(pos).getTitle();
             selectedBuildId = "빌딩 Id : " + markers.get(pos).getBuildId();
             selectedBuildName = "빌딩 Name : " + markers.get(pos).getTitle();
+
             String toastMessage = selectedBuildId;
 
             Toast.makeText(
@@ -195,15 +200,21 @@ public class BuildingFragment extends Fragment {
                     toastMessage,
                     Toast.LENGTH_SHORT
             ).show();
-//            if(getActivity()==){  같이 고민해봅시다....
-//
-//            }
+
+            if(getActivity().getClass().getSimpleName().equals(CollectorActivity.class.getSimpleName())) {
+                Log.d(TAG, "----COLLECTORACTICITY!-------");
+            }else if(getActivity().getClass().getSimpleName().equals(LocalizationActivity.class.getSimpleName())){
+                Log.d(TAG, "----LOCALIZATIONACTIVITY!!-------");
+            }
+            else{
+                Log.d(TAG, "------ERROR!-------");
+            }
+            textViewName.setText(selectedBuildName);
+            textViewId.setText(selectedBuildId);
             textViewId.setText(selectedBuildId);
             textViewName.setText(selectedBuildName);
 
-
-            //textViewLoc.setText("현재 위치는 x, y, z입니다");
-
         }
     };
+
 }
