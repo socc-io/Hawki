@@ -29,8 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <TextView
-                android:id="@+id/textView_buildingName"
+            <EditText
+                android:id="@+id/editText_buildingName"
                 android:text="name~"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
@@ -52,8 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <TextView
-                android:id="@+id/textView_buildingId"
+            <EditText
+                android:id="@+id/editText_buildingId"
                 android:text="id~"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"

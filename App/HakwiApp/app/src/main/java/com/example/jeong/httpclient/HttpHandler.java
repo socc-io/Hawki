@@ -1,6 +1,5 @@
 package com.example.jeong.httpclient;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -19,47 +18,46 @@ import java.net.URL;
 /**
  * Created by Jeong on 2016-09-04.
  */
-public class HttpHandler extends AsyncTask<String, Void, String>{
+public class HttpHandler  {
     private static final String TAG = HttpHandler.class.getSimpleName();
 
-    public HttpHandler() {}
-
-    @Override
-    protected String doInBackground(String... params) {
-        URL url ;
+    public String httpPost(String reqUrl, JSONObject json){
+        URL url;
         String response = null;
+        StringBuilder sb = new StringBuilder();
         try {
-            url = new URL(params[0]);
+            url = new URL(reqUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
+            conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
             conn.setRequestMethod("POST");
             conn.setDoInput(true);//응답 헤더와 메시지를 읽어들이겠다
             conn.setDoOutput(true);
-            conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
 
+            //write json
             OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
             //os.write(makeRssiSetJson().toString());
+            //os.wrote(json.toString());
             // TODO: 2016. 9. 17. makeRssiSetJson 바뀜에 따라 일단 주석
             os.flush();
 
             InputStream in = new BufferedInputStream(conn.getInputStream());
-            response = convertStreamToString(in);
+            //response = convertStreamToString(in);
 
             //read response
-            StringBuilder sb = new StringBuilder();
             int HttpResult = conn.getResponseCode();
+
             if (HttpResult == HttpURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(
-                        new InputStreamReader(conn.getInputStream(), "utf-8"));
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
                 String line = null;
+
                 while ((line = br.readLine()) != null) {
                     sb.append(line + "\n");
                 }
                 br.close();
-                System.out.println("" + sb.toString());
             } else {
-                Log.d("TAG", "HttpResult error!" );
+                Log.d("TAG", "HttpResult error!");
             }
 
         } catch (MalformedURLException e) {
@@ -68,30 +66,31 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
             Log.e(TAG, "IOException: " + e.getMessage());
         }
 
-        return response;
+        return sb.toString();
     }
 
-    public String makeServiceCall(String reqUrl,String method) {
+    public String httpGet(String reqUrl){
         String response = null;
 
-            try {
-                URL url = new URL(reqUrl);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                // read the response
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-                response = convertStreamToString(in);
-            } catch (MalformedURLException e) {
-                Log.e(TAG, "MalformedURLException: " + e.getMessage());
-            } catch (IOException e) {
-                Log.e(TAG, "IOException: " + e.getMessage());
-            } catch (Exception e) {
-                Log.e(TAG, "Exception: " + e.getMessage());
-            }
+        try {
+            URL url = new URL(reqUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
 
+            // read the response
+            InputStream in = new BufferedInputStream(conn.getInputStream());
+            response = convertStreamToString(in);
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "MalformedURLException: " + e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, "IOException: " + e.getMessage());
+        } catch (Exception e) {
+            Log.e(TAG, "Exception: " + e.getMessage());
+        }
 
         return response;
     }
+
 
     private String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -101,7 +100,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
             String line;
             while ((line = reader.readLine()) != null) {
                 // TODO: 2016. 9. 13. 왜 라인 맨앞에 " 하나 더드가는가 
-                sb.append(line +'\n');
+                sb.append(line + '\n');
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -117,7 +116,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         return sb.toString();
     }
 
-    public JSONObject makeRssiSetJson(String rssiSetJson){
+    public JSONObject makeRssiSetJson(String rssiSetJson) {
 
         // TODO: 2016. 9. 17. 여기서 제이썬 처리를 해줘야될듯
         JSONObject jsonObj = new JSONObject();
@@ -134,6 +133,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
 
         return jsonObj;
     }
+}
 
     /*
     @Override
@@ -246,4 +246,4 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         return jsonObj;
     }*/
 
-}
+
