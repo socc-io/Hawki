@@ -2,8 +2,6 @@ package com.example.jeong.httpclient;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,15 +20,9 @@ import java.net.URL;
  * Created by Jeong on 2016-09-04.
  */
 public class HttpHandler extends AsyncTask<String, Void, String>{
-
     private static final String TAG = HttpHandler.class.getSimpleName();
-    TextView textView;
-    View rootView; //MainActivity
 
     public HttpHandler() {}
-    public HttpHandler(View rootView){
-        this.rootView = rootView;
-    }
 
     @Override
     protected String doInBackground(String... params) {
