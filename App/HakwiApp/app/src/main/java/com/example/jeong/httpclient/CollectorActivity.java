@@ -9,9 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,17 +45,10 @@ public class CollectorActivity  extends Activity {
 
     //버튼클릭 이벤트
     //TODO: 버튼 클릭시 현재위치 수집기능(서버에 rssi 보내주기) 구현
-<<<<<<< HEAD
-    public void collectorClicked(View v){
-=======
-<<<<<<< HEAD
+
     public void collectorClicked(View v) throws JSONException {
-=======
-    public void localizationClicked(View v){
->>>>>>> 13d2f8ea2f2d2f0edd064d3d8e6286c65f113831
         String loc = editText.getText().toString();
         Toast.makeText(getApplication(), loc, Toast.LENGTH_LONG).show();
->>>>>>> afe8b8751f2862569861cc9f4bdd526569331095
 
         WifiCollector wifiCollector = new WifiCollector(wifimanager);
         wifiScanResult = wifiCollector.getWIFIScanResult();
