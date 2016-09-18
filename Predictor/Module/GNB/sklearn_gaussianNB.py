@@ -1,4 +1,5 @@
 import os, sys
+import json
 import numpy as np
 from sklearn import naive_bayes
 
@@ -31,7 +32,59 @@ def make_test_data():
 
     return test_mat, test_lbl
 
+def make_train_data2(inName, vocaName):
+    inPath = '../../../Data/WRM/RAW/' + inName
+    vocaPath = '../APVOCA/VOCAS/' + vocaName
+    min_val = -999
+
+    vocaIdxMap = {}
+    with open(vocaPath) as f:
+        vocaList = f.read().split(',')
+        for idx, val in enumerate(vocaList):
+            vocaIdxMap[val] = idx
+
+    res_mat = []
+    res_lbl = []
+
+    with open(inPath) as f:
+        rawList = f.read().split('\n')
+        rawList.pop()
+        for line in rawList:
+            row = json.loads(line)
+            matItem = [min_val for x in range(len(vocaIdxMap))]
+            lblItem = []
+
+            # make rssi matrix
+            for rssi in row['rssi']:
+                idx = vocaIdxMap[rssi['sid']]
+                matItem[idx] = rssi['dbm']
+            res_mat.append(matItem)
+
+            # make label(x,y,z) array
+            lblItem.append(row['x'])
+            lblItem.append(row['y'])
+            lblItem.append(row['z'])
+            res_lbl.append(lblItem)
+
+    return np.array(res_mat), np.array(res_lbl)
+
 if __name__ == '__main__':
+    inName = sys.argv[1]
+    vocaName = sys.argv[2]
+    outName = sys.argv[3]
+    train_mat, train_lbl = make_train_data2(inName, vocaName)
+
+    clf_x = fit(train_mat, train_lbl[:,0].ravel())
+    clf_y = fit(train_mat, train_lbl[:,1].ravel())
+#    clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
+
+    import pickle
+    # now you can save it to a file
+    with open('bin/' + outName + '_gnb_x_0.pkl', 'wb') as f:
+        pickle.dump(clf_x, f)
+    with open('bin/' + outName + '_gnb_y_0.pkl', 'wb') as f:
+        pickle.dump(clf_y, f)
+'''
     # test data load
     train_mat, train_lbl = make_train_data()
     test_mat, test_lbl = make_test_data()
@@ -48,11 +101,10 @@ if __name__ == '__main__':
 
     import pickle
     # now you can save it to a file
-    with open('model/gnb_x_0.pkl', 'wb') as f:
+    with open('bin/gnb_x_0.pkl', 'wb') as f:
         pickle.dump(clf_x, f)
-    with open('model/gnb_y_0.pkl', 'wb') as f:
+    with open('bin/gnb_y_0.pkl', 'wb') as f:
         pickle.dump(clf_y, f)
-
     # predict
     preds_x = predict(clf_x, test_mat)
     preds_y = predict(clf_y, test_mat)
@@ -68,3 +120,5 @@ if __name__ == '__main__':
 
 #    distances_z = [(abs(preds_z[i] - test_lbl[:,2][i])) for i in range(len(test_lbl))]
 #    print("error distance(z): %lf" % (np.mean(distances_z)))
+'''
+
