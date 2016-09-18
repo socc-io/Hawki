@@ -115,8 +115,16 @@ class GetPosition(Resource):
     def post(self):
         return json.dumps(self.predictPositionByRssi())
 
+class CollectRssi(Resource):
+    def get(self):
+        pass
+
+    def post(self):
+        return "hello world"
+
 # Request Routing
-#api.add_resource(BuildingInfo, '/buildinginfo')
-api.add_resource(BuildingInfo, '/test')
-api.add_resource(GetPosition, '/getPosition')
+api.add_resource(BuildingInfo, '/buildinginfo')
+#api.add_resource(BuildingInfo, '/test')
+api.add_resource(GetPosition, '/getposition')
+api.add_resource(CollectRssi, '/collectrssi')
 
