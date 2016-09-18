@@ -57,9 +57,12 @@ public class CollectorActivity  extends Activity {
 
         HttpHandler httpHandler = new HttpHandler();
         // TODO: 2016. 9. 17. 컬렉트 액티비티 시나리오
+
         String collectorUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.RSSIDSET,0,0,0,0,null);
-        JSONObject rssiJsonObject = layer.createRssiJson("bid","x","y","z",wifiScanResult);
+        JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(),"x","y","z",wifiScanResult);
         Log.i("rssijson test",rssiJsonObject.toString());
+
+
         // 2. Datasource.json 에 있는 함수를 이용해서 wifiscanResultstring 을 json형태로 담음
         // 3. 통합된 서버 http post 코드로 new GetContacts().execute(makeURL, "POST")방식으로 함
         // 4. 서버에 정상적으로 올려져있는지 확인하면 이기능 구현 끝

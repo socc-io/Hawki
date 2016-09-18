@@ -112,7 +112,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
                 e.printStackTrace();
             }
         }
-        sb = sb.deleteCharAt(0);
+
 
         return sb.toString();
     }

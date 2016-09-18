@@ -31,7 +31,7 @@ public class DataSource {
 
             case IndoorPosition: // 건물내에서 나의 위치를 요청한다
                 // TODO: 2016. 9. 4. 이것도 해야됨 
-                //selectedURL = "http://beaver.hp100.net:4000/
+                selectedURL = "http://beaver.hp100.net:4000/getposition";
                 break;
 
             case RSSIDSET: // rssid 셋을 서버로 보낸다

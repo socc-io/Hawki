@@ -4,6 +4,7 @@ import android.app.job.JobScheduler;
 import android.net.wifi.ScanResult;
 
 import com.example.jeong.httpclient.BuildingMarker;
+import com.example.jeong.httpclient.IndoorMarker;
 import com.example.jeong.httpclient.Marker;
 
 import org.json.JSONArray;
@@ -33,7 +34,7 @@ public class Json {
                 dataArray = root.getJSONArray("Build");
 
             else if(dataformat == DATAFORMAT.IndoorPosition)
-                dataArray = root.getJSONArray("Indoor");
+                dataArray = root.getJSONArray("IndoorPosition");
 
             else if(dataformat == DATAFORMAT.RSSIDSET)
                 dataArray = root.getJSONArray("RssIdSet");
@@ -94,6 +95,10 @@ public class Json {
     public Marker processIndoorJsonObject(JSONObject jo) throws JSONException { // 실내위치
 
         Marker ma = null;
+
+        ma = new IndoorMarker(jo.getString("id"),jo.getString("title"),null,null,
+                jo.getString("x"),jo.getString("y"),jo.getString("z"));
+
         return ma;
 
     }
@@ -126,6 +131,22 @@ public class Json {
     }
 
 
+    public JSONObject createRequestIndoorJson(String bid, List<ScanResult> scanResults) throws JSONException {
+        JSONObject indoorData = new JSONObject();
+        indoorData.put("bid",bid);
+
+        JSONArray rssiArray = new JSONArray();
+
+        for(int i = 0 ; i<scanResults.size() ; i++) {
+            JSONObject rssidata = new JSONObject();
+            rssidata.put("ssid",scanResults.get(i).SSID);
+            rssidata.put("dbm",scanResults.get(i).level);
+            rssiArray.put(i,rssidata);
+        }
+        indoorData.put("rssi",rssiArray);
+
+        return indoorData;
 
 
+    }
 }
