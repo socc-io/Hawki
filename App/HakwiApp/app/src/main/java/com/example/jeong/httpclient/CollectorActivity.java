@@ -45,9 +45,10 @@ public class CollectorActivity  extends Activity {
 
     //버튼클릭 이벤트
     //TODO: 버튼 클릭시 현재위치 수집기능(서버에 rssi 보내주기) 구현
-
+    //TODO: xyz입력시 키패드가 가림 현상 수정!
     public void collectorClicked(View v) throws JSONException {
         String loc = editText.getText().toString();
+        editText.setText("");
         Toast.makeText(getApplication(), loc, Toast.LENGTH_LONG).show();
 
         WifiCollector wifiCollector = new WifiCollector(wifimanager);

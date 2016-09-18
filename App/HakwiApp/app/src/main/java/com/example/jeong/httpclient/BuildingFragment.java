@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -34,7 +33,7 @@ public class BuildingFragment extends Fragment {
     View rootView;
     EditText editText;
     Button inputButton;
-    TextView textViewName, textViewId;
+    EditText editTextName, editTextId;
 
     private ProgressDialog pDialog;
     private String selectedBuildId;
@@ -51,8 +50,8 @@ public class BuildingFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        textViewName = (TextView)getActivity().findViewById(R.id.textView_buildingName);
-        textViewId = (TextView)getActivity().findViewById(R.id.textView_buildingId);
+        editTextName = (EditText)getActivity().findViewById(R.id.editText_buildingName);
+        editTextId = (EditText)getActivity().findViewById(R.id.editText_buildingId);
 
         inputButton = (Button) rootView.findViewById(R.id.requestBuild);
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
@@ -94,12 +93,13 @@ public class BuildingFragment extends Fragment {
 
             HttpHandler sh = new HttpHandler();
             String url = params[0];
-            String method = params[1];
+            //String method = params[1]; 일단 지금은 필요없을듯!
             Json layer = new Json();
 
             // Making a request to url and getting response
             // TODO: 2016. 9. 17. 여기서  method 가 get 인지 post인지 makeserviceCall 에서 하는 행동 바꿔야 되지 않을가생각 
-            String jsonStr = sh.makeServiceCall(url,method);
+
+            String jsonStr = sh.httpGet(url);//get
 
             Log.e(TAG, "Response from url: " + jsonStr);
 
@@ -207,8 +207,8 @@ public class BuildingFragment extends Fragment {
             else{
                 Log.d(TAG, "------ERROR!-------");
             }
-            textViewName.setText(selectedBuildName);
-            textViewId.setText(selectedBuildId);
+            editTextName.setText(selectedBuildName);
+            editTextId.setText(selectedBuildId);
 
         }
     };

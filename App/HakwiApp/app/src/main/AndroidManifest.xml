@@ -23,8 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CollectorActivity"></activity>
-        <activity android:name=".LocalizationActivity"></activity>
+        <activity android:name=".CollectorActivity" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".LocalizationActivity" android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
