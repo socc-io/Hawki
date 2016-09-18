@@ -109,18 +109,34 @@ class GetPosition(Resource):
         }
         return resJson
 
-    def get(self):
-        return json.dumps(self.predictPositionByRssi())
-
     def post(self):
         return json.dumps(self.predictPositionByRssi())
 
 class CollectRssi(Resource):
-    def get(self):
-        pass
+    def saveRssiInfo(self, data={"bid":"TEST","x":2,"y":2,"z":2,"rssi":[{"sid":"39:33:34:f2:dd:cc","dbm":-47}]}):
+        bid = data['bid']
+        savePath = 'Data/WRM/RAW/' + bid + '.dat'
+        x = data['x']
+        y = data['y']
+        z = data['z']
+        rssiList = data['rssi']
+
+        with open(savePath, 'a') as f:
+            for rssi in rssiList:
+                line = {
+                    "x":x,
+                    "y":y,
+                    "z":z,
+                    "sid":rssi['sid'],
+                    "dbm":rssi['dbm']
+                }
+                f.write(json.dumps(line) + '\n')
+
+        return 'save data'
 
     def post(self):
-        return "hello world"
+        jsonObj = request.get_json()
+        return self.saveRssiInfo(jsonObj)
 
 # Request Routing
 api.add_resource(BuildingInfo, '/buildinginfo')
