@@ -26,9 +26,9 @@ Hawki system is built on three main components,
 ### 2. Install Client
 
     For Developers,
-    
+
     Install Anroid-Studio : https://developer.android.com/studio/index.html?hl=ko
-    
+
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
 ### 3. Collecting your indoor data using APP
@@ -38,6 +38,19 @@ Hawki system is built on three main components,
 
 ### 4. Training indoor data
 
+    1) After Step 3, You can show your collected indoor data in below path
+     - PROJECT_HOME/Data/WRM/RAW/[buildingName].dat
+    2) Make bssid vocabulary mapping file (.voca)
+     $ cd PROJECT_HOME/Predictor/Module/APVOCA/
+     $ python testBuild_APVOCA.py
+     - You can see your vocabulary file in below path
+     - PROJECT_HOME/Predictor/Module/APVOCA/VOCAS/[buildingName].voca
+    3) Training Indoor data and make pickle file (.pkl)
+     $ cd PROJECT_HOME/Predictor/Module/GNB/
+     $ python sklearn_gaussianNB.py [.dat file] [.voca file] [outfilename]
+       - e.g. python sklearn_gaussianNB.py ex.dat ex.voca ex
+     - You can see your pre-trained file in below path
+     - PROJECT_HOME/Predictor/Module/GNB/bin/[outfilename]_gnb_[x|y]_0.pkl
     ******  NEED TO EXPLAIN !!!!!!
 
 ### 5. Predicting location using APP
@@ -64,7 +77,7 @@ Vessel integrated information management system based on Wifi Positioning techno
 
 Copyright (c) 2016 Captain-Americano
 
-Hyeok Oh [  ] site : 
+Hyeok Oh [ oh4851@gmail.com ] site : https://github.com/oh4851
 
 Sunho Jung [  ] site : 
 
@@ -95,3 +108,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
