@@ -1,13 +1,14 @@
 # Hawki
 
-Hawki is the framework system for indoor positioning service. Hawki allows you to find where you are in the builing or subway or basement by using your wifi-enabled device such as android, iphone, etc. Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation.
+Hawki is the framework system for indoor positioning service. Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation. Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc.
 
 Simply, Hawki provide whole systems for indoor positioning that include Server-side, Client-side, Predicting model
 
 Hawki system is built on three main components,
-1. Server
-2. Predictors (server)
-3. Client Application
+
+  1. Server : Mediating between Predictor and client. Built with Flask (python)
+  2. Client Application : Collect wifi rssi map, show position on the map. Android >= 6.0, iPhone(Not-Implemented) 
+  3. Predictors (server) : Predicting user's position in the building. Built with Scikit, Pytrain
 
 # Quick start
 
