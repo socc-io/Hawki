@@ -114,6 +114,7 @@ public class BuildingFragment extends Fragment {
 
                     // Getting JSON Array node
                     //JSONArray contacts = jsonObj.getJSONArray("Build");
+                    buildList.clear();
 
                     // looping through All Contacts
                     for (int i = 0; i < markers.size(); i++) {

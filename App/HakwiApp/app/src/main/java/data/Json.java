@@ -1,6 +1,7 @@
 package data;
 
 import android.app.job.JobScheduler;
+import android.net.wifi.ScanResult;
 
 import com.example.jeong.httpclient.BuildingMarker;
 import com.example.jeong.httpclient.Marker;
@@ -101,6 +102,27 @@ public class Json {
     public Marker processRSSIDSetJsonObject(JSONObject jo) throws JSONException {
         Marker ma = null;
         return ma;
+    }
+
+
+    public JSONObject createRssiJson(String bid, String x, String y, String z, List<ScanResult> scanResults) throws JSONException {
+        JSONObject collecterData = new JSONObject();
+        collecterData.put("bid",bid);
+        collecterData.put("x",x);
+        collecterData.put("y",y);
+        collecterData.put("z",z);
+
+        JSONArray rssiArray = new JSONArray();
+
+        for(int i = 0 ; i<scanResults.size() ; i++) {
+            JSONObject rssidata = new JSONObject();
+            rssidata.put("ssid",scanResults.get(i).SSID);
+            rssidata.put("dbm",scanResults.get(i).level);
+            rssiArray.put(i,rssidata);
+        }
+        collecterData.put("rssi",rssiArray);
+
+        return collecterData;
     }
 
 
