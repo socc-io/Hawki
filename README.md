@@ -1,8 +1,9 @@
-# Hawki
+# Hawki (Indoor Positioning Framework)
 
-![alt Hawki](https://github.com/socc-io/Hawki/raw/master/hawki.jpg)
+![alt Hawki](https://github.com/socc-io/Hawki/raw/master/Hawki.png)
 
-Hawki is the framework system for indoor positioning service. Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation. Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc.
+### Hawki is the framework system for indoor positioning service. 
+Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation. Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc.
 
 Simply, Hawki provide whole systems for indoor positioning that include Server-side, Client-side, Predicting model
 
@@ -28,11 +29,15 @@ Hawki system is built on three main components,
     
     Install Anroid-Studio : https://developer.android.com/studio/index.html?hl=ko
     
-    File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/HawkiApp
+    File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
 ### 3. Collecting your indoor data using APP
 
+    ****** Application Capture Should be here!!!!!!!!!!
+
 ### 4. Predicting location using APP
+
+    ****** Application Capture Should be here!!!!!!!!!!
 
 # License
 
