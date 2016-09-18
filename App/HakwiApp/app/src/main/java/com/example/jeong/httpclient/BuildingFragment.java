@@ -62,9 +62,9 @@ public class BuildingFragment extends Fragment {
             public void onClick(View view) {
                 // TODO: 2016. 9. 10. buildname 예외처리해야됨
                 String buildName = editText.getText().toString();
-                String makeURL = DataSource.createRequestURL(DataSource.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
 
-                new GetContacts().execute(makeURL, "GET");
+                String makeURL = DataSource.createRequestURL(DataSource.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
+                new GetContacts().execute(makeURL, "GET"); // 이러면 겟방식으로감
 
             }
 
@@ -95,9 +95,9 @@ public class BuildingFragment extends Fragment {
             String method = params[1];
             Json layer = new Json();
 
-
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+            // TODO: 2016. 9. 17. 여기서  method 가 get 인지 post인지 makeserviceCall 에서 하는 행동 바꿔야 되지 않을가생각 
+            String jsonStr = sh.makeServiceCall(url,method);
 
             Log.e(TAG, "Response from url: " + jsonStr);
 
@@ -111,10 +111,10 @@ public class BuildingFragment extends Fragment {
                     System.out.println(markers.toString());
 
                     // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("Build");
+                    //JSONArray contacts = jsonObj.getJSONArray("Build");
 
                     // looping through All Contacts
-                    for (int i = 0; i < contacts.length(); i++) {
+                    for (int i = 0; i < markers.size(); i++) {
 
                         BuildingMarker buildMarkerTemp = (BuildingMarker) markers.get(i);
 
@@ -184,8 +184,13 @@ public class BuildingFragment extends Fragment {
         public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
         {
         //TODO: itemClickListener 발생시 CollectorActivity의 textView값 update 필요!
+<<<<<<< HEAD
             selectedBuildId = markers.get(pos).getBuildId();
             selectedBuildName = markers.get(pos).getTitle();
+=======
+            selectedBuildId = "빌딩 Id : " + markers.get(pos).getBuildId();
+            selectedBuildName = "빌딩 Name : " + markers.get(pos).getTitle();
+>>>>>>> 3b83bb54492c1faa6d239aecd01b898729da7ea5
             String toastMessage = selectedBuildId;
 
             Toast.makeText(
@@ -198,6 +203,7 @@ public class BuildingFragment extends Fragment {
 //                textViewId.setText(selectedBuildId);
 //                textViewLoc.setText("현재 위치는 x, y, z입니다");
 //            }
+<<<<<<< HEAD
 //            else if(getActivity().getClass().getSimpleName()==LocalizationActivity.class.getName()){
 //                textViewName.setText("빌딩이름 추가");
 //                textViewId.setText(selectedBuildId);
@@ -212,6 +218,13 @@ public class BuildingFragment extends Fragment {
             }
             textViewName.setText(selectedBuildName);
             textViewId.setText(selectedBuildId);
+=======
+            textViewId.setText(selectedBuildId);
+            textViewName.setText(selectedBuildName);
+
+
+            //textViewLoc.setText("현재 위치는 x, y, z입니다");
+>>>>>>> 3b83bb54492c1faa6d239aecd01b898729da7ea5
 
         }
     };

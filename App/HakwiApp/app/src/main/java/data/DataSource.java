@@ -6,7 +6,7 @@ package data;
 public class DataSource {
 
     public enum DATAFORMAT {
-        BuildingInfo, IndoorPosition
+        BuildingInfo, IndoorPosition, RSSIDSET
     }
 
     public DataSource(){}
@@ -29,9 +29,13 @@ public class DataSource {
 
                 break;
 
-            case IndoorPosition: // 건물 내 위치, 건물 ID,RSSI SET,BLE,GEOMETRIC, 여기에도 비슷한형식
+            case IndoorPosition: // 건물내에서 나의 위치를 요청한다
                 // TODO: 2016. 9. 4. 이것도 해야됨 
                 selectedURL = "여기에 서버주소 " ;
+                break;
+
+            case RSSIDSET: // rssid 셋을 서버로 보낸다
+                selectedURL = "";
                 break;
         }
 
