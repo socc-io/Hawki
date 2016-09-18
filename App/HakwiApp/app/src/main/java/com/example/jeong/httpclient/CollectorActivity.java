@@ -6,6 +6,8 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,9 @@ import java.util.List;
  */
 public class CollectorActivity  extends Activity {
 
+    final String TAG = CollectorActivity.class.getSimpleName();
+    EditText editText;
+
     // WifiManager variable
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
@@ -23,6 +28,9 @@ public class CollectorActivity  extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector);
+
+        editText = (EditText)findViewById(R.id.editText_location);
+
         // Setup WIFI
         wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
         //Log.d(TAG, "Setup WIfiManager getSystemService");
@@ -31,7 +39,9 @@ public class CollectorActivity  extends Activity {
 
     //버튼클릭 이벤트
     //TODO: 버튼 클릭시 현재위치 수집기능(서버에 rssi 보내주기) 구현
-    public void collectorClicked(View v){
+    public void localizationClicked(View v){
+        String loc = editText.getText().toString();
+        Toast.makeText(getApplication(), loc, Toast.LENGTH_LONG).show();
 
         WifiCollector wifiCollector = new WifiCollector(wifimanager);
         wifiScanResult = wifiCollector.getWIFIScanResult();
