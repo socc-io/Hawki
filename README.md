@@ -95,7 +95,7 @@ Hyeok Oh [ oh4851@gmail.com ] site : https://github.com/oh4851
 
 Sunho Jung [  ] site : 
 
-Youngjae Cho [  ] site : 
+Youngje jo [ siosio3103@gmail.com ] site : https://github.com/siosio34
 
 Jinwon Lee  [  ] site : 
 
