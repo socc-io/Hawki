@@ -16,37 +16,32 @@ import java.util.List;
  * Created by Jeong on 2016-09-16.
  */
 public class CollectorActivity  extends Activity {
-<<<<<<< HEAD
+
     final String TAG = CollectorActivity.class.getSimpleName();
     EditText editText;
-=======
 
     // WifiManager variable
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
 
->>>>>>> 3b83bb54492c1faa6d239aecd01b898729da7ea5
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector);
-<<<<<<< HEAD
+
         editText = (EditText)findViewById(R.id.editText_location);
-=======
+
         // Setup WIFI
         wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
         //Log.d(TAG, "Setup WIfiManager getSystemService");
->>>>>>> 3b83bb54492c1faa6d239aecd01b898729da7ea5
 
     }
 
     //버튼클릭 이벤트
     //TODO: 버튼 클릭시 현재위치 수집기능(서버에 rssi 보내주기) 구현
-    public void collectorClicked(View v){
-<<<<<<< HEAD
+    public void localizationClicked(View v){
         String loc = editText.getText().toString();
         Toast.makeText(getApplication(), loc, Toast.LENGTH_LONG).show();
-=======
 
         WifiCollector wifiCollector = new WifiCollector(wifimanager);
         wifiScanResult = wifiCollector.getWIFIScanResult();
@@ -60,7 +55,6 @@ public class CollectorActivity  extends Activity {
         httpHandler.makeRssiSetJson(wifiScanResult.toString());
         Log.i("collector to string",wifiScanResult.toString());
         // TODO: 2016. 9. 17. 여기서 포스트로 보내는거 주는거 나랑 순호형거 합치고 그리고 서버코드도 통합.
->>>>>>> 3b83bb54492c1faa6d239aecd01b898729da7ea5
 
     }
 
