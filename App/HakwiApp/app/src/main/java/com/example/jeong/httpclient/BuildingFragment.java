@@ -32,10 +32,11 @@ public class BuildingFragment extends Fragment {
     View rootView;
     EditText editText;
     Button inputButton;
-    TextView textViewName, textViewId, textViewLoc;
+    TextView textViewName, textViewId;
 
     private ProgressDialog pDialog;
     private String selectedBuildId;
+    private String selectedBuildName;
     private ListView listView;
     ArrayList<HashMap<String, String>> buildList;
     List<Marker> markers = new ArrayList<>();
@@ -50,7 +51,6 @@ public class BuildingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         textViewName = (TextView)getActivity().findViewById(R.id.textView_buildingName);
         textViewId = (TextView)getActivity().findViewById(R.id.textView_buildingId);
-        textViewLoc = (TextView)getActivity().findViewById(R.id.textView_location);
 
         inputButton = (Button) rootView.findViewById(R.id.requestBuild);
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
@@ -185,6 +185,7 @@ public class BuildingFragment extends Fragment {
         {
         //TODO: itemClickListener 발생시 CollectorActivity의 textView값 update 필요!
             selectedBuildId = markers.get(pos).getBuildId();
+            selectedBuildName = markers.get(pos).getTitle();
             String toastMessage = selectedBuildId;
 
             Toast.makeText(
@@ -192,13 +193,27 @@ public class BuildingFragment extends Fragment {
                     toastMessage,
                     Toast.LENGTH_SHORT
             ).show();
-//            if(getActivity()==){  같이 고민해봅시다....
-//
+//            if(getActivity().getClass().getSimpleName()==CollectorActivity.class.getName()){
+//                textViewName.setText("빌딩이름 추가");
+//                textViewId.setText(selectedBuildId);
+//                textViewLoc.setText("현재 위치는 x, y, z입니다");
 //            }
-            textViewName.setText("빌딩이름 추가");
+//            else if(getActivity().getClass().getSimpleName()==LocalizationActivity.class.getName()){
+//                textViewName.setText("빌딩이름 추가");
+//                textViewId.setText(selectedBuildId);
+//            }
+            if(getActivity().getClass().getSimpleName().equals(CollectorActivity.class.getSimpleName())) {
+                Log.d(TAG, "----COLLECTORACTICITY!-------");
+            }else if(getActivity().getClass().getSimpleName().equals(LocalizationActivity.class.getSimpleName())){
+                Log.d(TAG, "----LOCALIZATIONACTIVITY!!-------");
+            }
+            else{
+                Log.d(TAG, "------ERROR!-------");
+            }
+            textViewName.setText(selectedBuildName);
             textViewId.setText(selectedBuildId);
-            //textViewLoc.setText("현재 위치는 x, y, z입니다");
 
         }
     };
+
 }

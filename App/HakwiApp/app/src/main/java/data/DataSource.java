@@ -1,7 +1,5 @@
 package data;
 
-import java.util.zip.DeflaterOutputStream;
-
 /**
  * Created by joyeongje on 2016. 9. 4..
  */
@@ -22,7 +20,7 @@ public class DataSource {
                // selectedURL = "http://beaver.hp100.net:4000/test" + "?lat=" + Double.toString(lat) + "&lon=" + Double.toString(lon) +
                  //               "&radius=" + Double.toString(radius) + "&buildName=" + name;
 
-                selectedURL = "http://beaver.hp100.net:4000/test" + "?buildName=" + name;
+                selectedURL = "http://beaver.hp100.net:4000/buildinginfo" + "?buildName=" + name;
                 System.out.println(selectedURL);
                 //
 
