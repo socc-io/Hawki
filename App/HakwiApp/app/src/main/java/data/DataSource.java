@@ -22,7 +22,7 @@ public class DataSource {
                // selectedURL = "http://beaver.hp100.net:4000/test" + "?lat=" + Double.toString(lat) + "&lon=" + Double.toString(lon) +
                  //               "&radius=" + Double.toString(radius) + "&buildName=" + name;
 
-                selectedURL = "http://beaver.hp100.net:4000/test" + "?buildName=" + name;
+                selectedURL = "http://beaver.hp100.net:4000/buildinginfo" + "?buildName=" + name;
                 System.out.println(selectedURL);
                 //
 
@@ -33,11 +33,11 @@ public class DataSource {
 
             case IndoorPosition: // 건물내에서 나의 위치를 요청한다
                 // TODO: 2016. 9. 4. 이것도 해야됨 
-                selectedURL = "여기에 서버주소 " ;
+                //selectedURL = "http://beaver.hp100.net:4000/
                 break;
 
             case RSSIDSET: // rssid 셋을 서버로 보낸다
-                selectedURL = "";
+                selectedURL = "http://beaver.hp100.net:4000/collectrssi";
                 break;
         }
 
