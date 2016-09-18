@@ -40,10 +40,19 @@ Hawki system is built on three main components,
     ****** Application Capture Should be here!!!!!!!!!!
 
 
-
-
 # References
 
+An Unsupervised Indoor Localization Method based on Received Signal Strength RSS Measurements [http://www.merl.com/publications/docs/TR2015-129.pdf]
+
+Unsupervised Indoor Localization No Need to War-Drive [http://engr.uconn.edu/~song/classes/nes/unloc.pdf]
+
+글로벌 실내 위치인식 및 실내,외 통합 내비게이션 시스템, 한동수, 정석훈, 한국과학기술원 전산학과, 한국과학기술원 정보통신공학과
+
+Building a Practical Wifi-Based Indoor Navigation System, Dongsoo Han, Sukhoon Jung, Minkyu Lee and Giwan Yoon, KAIST
+
+Indoor Location Sensing Using Geo-Magnetism, Jaewoo Chung, Matt Donahoe, Chris Schmandt, Ig-Jae Kim, Pedram Razavai, Micaela Wiseman, MIT Media Laboratory 20 Ames St.
+
+Vessel integrated information management system based on Wifi Positioning technology, Hyuk-soon Kwan, Dongsoo Han, Song-Que Park, Won-Hee An, Taehyun Park, Net Co.Ltd.
 
 
 # Copyright
