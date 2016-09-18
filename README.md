@@ -50,15 +50,15 @@ Hawki system is built on three main components,
 
 Copyright (c) 2016 Captain-Americano
 
-Hyeok Oh [  ]
+Hyeok Oh [  ] site : 
 
-Sunho Jung [  ]
+Sunho Jung [  ] site : 
 
-Youngjae Cho [  ]
+Youngjae Cho [  ] site : 
 
-Jinwon Lee  [  ]
+Jinwon Lee  [  ] site : 
 
-SeoHyun Back [ becxer87@gmail.com ] https://github.com/becxer
+SeoHyun Back [ becxer87@gmail.com ] site : https://github.com/becxer
 
 # License
 
