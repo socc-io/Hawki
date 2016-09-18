@@ -33,7 +33,11 @@ Hawki system is built on three main components,
 
 ### 3. Collecting your indoor data using APP
 
+    ****** Application Capture Should be here!!!!!!!!!!
+
 ### 4. Predicting location using APP
+
+    ****** Application Capture Should be here!!!!!!!!!!
 
 # License
 
