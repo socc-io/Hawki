@@ -20,6 +20,6 @@ def build(path = ""):
         bset = building_set[bid]
         output = "VOCAS/" + bid + ".voca"
         with open(output, 'w') as f:
-            f.write(",".join(bset.keys()) + "\n")
+            f.write(",".join(bset.keys()))
 
 build(path = "../../../Data/WRM/RAW/testbuilding.dat")
