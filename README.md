@@ -2,7 +2,8 @@
 
 ![alt Hawki](https://github.com/socc-io/Hawki/raw/master/Hawki.png)
 
-Hawki is the framework system for indoor positioning service. Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation. Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc.
+### Hawki is the framework system for indoor positioning service. 
+Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation. Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc.
 
 Simply, Hawki provide whole systems for indoor positioning that include Server-side, Client-side, Predicting model
 
