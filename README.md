@@ -12,13 +12,25 @@ Hawki system is built on three main components,
 
 # Quick start
 
-1. Install server
+### 1. Install server
 
-2. Install Client
+    $ git clone https://github.com/socc-io/Hawki.git
 
-3. Collecting your indoor data using APP
+    $ cd Hawki
 
-4. Predicting location using APP
+    $ ./start.py --port 4000
+
+### 2. Install Client
+
+    For Developers,
+    
+    Install Anroid-Studio : https://developer.android.com/studio/index.html?hl=ko
+    
+    File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/HawkiApp
+
+### 3. Collecting your indoor data using APP
+
+### 4. Predicting location using APP
 
 # License
 
