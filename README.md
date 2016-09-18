@@ -39,11 +39,30 @@ Hawki system is built on three main components,
 
     ****** Application Capture Should be here!!!!!!!!!!
 
+
+
+
+# References
+
+
+
+# Copyright
+
+Copyright (c) 2016 Captain-Americano
+
+Hyeok Oh [  ]
+
+Sunho Jung [  ]
+
+Youngjae Cho [  ]
+
+Jinwon Lee  [  ]
+
+SeoHyun Back [ becxer87@gmail.com ] https://github.com/becxer
+
 # License
 
 The MIT License (MIT)
-
-Copyright (c) 2016 Captain-Americano team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
