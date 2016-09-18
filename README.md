@@ -51,7 +51,6 @@ Hawki system is built on three main components,
        - e.g. python sklearn_gaussianNB.py ex.dat ex.voca ex
      - You can see your pre-trained file in below path
      - PROJECT_HOME/Predictor/Module/GNB/bin/[outfilename]_gnb_[x|y]_0.pkl
-    ******  NEED TO EXPLAIN !!!!!!
 
 ### 5. Predicting location using APP
 
