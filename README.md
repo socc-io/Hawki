@@ -29,7 +29,7 @@ Hawki system is built on three main components,
     
     Install Anroid-Studio : https://developer.android.com/studio/index.html?hl=ko
     
-    File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/HawkiApp
+    File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
 ### 3. Collecting your indoor data using APP
 
