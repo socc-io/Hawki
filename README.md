@@ -1,4 +1,4 @@
-# Hawki
+# Hawki (Indoor Positioning Framework)
 
 ![alt Hawki](https://github.com/socc-io/Hawki/raw/master/Hawki.png)
 
