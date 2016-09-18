@@ -1,5 +1,6 @@
 package com.example.jeong.httpclient;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -18,15 +19,16 @@ import java.net.URL;
 /**
  * Created by Jeong on 2016-09-04.
  */
-public class HttpHandler  {
+public class HttpHandler extends AsyncTask<String, Void, String>{
     private static final String TAG = HttpHandler.class.getSimpleName();
 
-    public String httpPost(String reqUrl, JSONObject json){
+    @Override
+    protected String doInBackground(String... params) {//params[0] = url, params[1] = json
         URL url;
         String response = null;
         StringBuilder sb = new StringBuilder();
         try {
-            url = new URL(reqUrl);
+            url = new URL(params[0]);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);

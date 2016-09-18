@@ -8,12 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import data.DataSource;
 import data.Json;
@@ -24,7 +23,7 @@ import data.Json;
 public class CollectorActivity  extends Activity {
 
     final String TAG = CollectorActivity.class.getSimpleName();
-    EditText editText;
+    EditText editTextX, editTextY, editTextZ;
 
     // WifiManager variable
     WifiManager wifimanager;
@@ -35,7 +34,9 @@ public class CollectorActivity  extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector);
 
-        editText = (EditText)findViewById(R.id.editText_location);
+        editTextX = (EditText)findViewById(R.id.editTextX);
+        editTextY = (EditText)findViewById(R.id.editTextY);
+        editTextZ = (EditText)findViewById(R.id.editTextZ);
 
         // Setup WIFI
         wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
@@ -47,9 +48,13 @@ public class CollectorActivity  extends Activity {
     //TODO: 버튼 클릭시 현재위치 수집기능(서버에 rssi 보내주기) 구현
     //TODO: xyz입력시 키패드가 가림 현상 수정!
     public void collectorClicked(View v) throws JSONException {
-        String loc = editText.getText().toString();
-        editText.setText("");
-        Toast.makeText(getApplication(), loc, Toast.LENGTH_LONG).show();
+        String loc_x = editTextX.getText().toString();
+        String loc_y = editTextY.getText().toString();
+        String loc_z = editTextZ.getText().toString();
+        editTextX.setText("");
+        editTextY.setText("");
+        editTextY.setText("");
+        Toast.makeText(getApplication(), loc_x+","+loc_y+","+loc_z, Toast.LENGTH_LONG).show();
 
         WifiCollector wifiCollector = new WifiCollector(wifimanager);
         wifiScanResult = wifiCollector.getWIFIScanResult();
@@ -57,6 +62,13 @@ public class CollectorActivity  extends Activity {
         Json layer = new Json();
 
         HttpHandler httpHandler = new HttpHandler();
+        try {
+            String result = httpHandler.execute("url","json").get().toString();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         // TODO: 2016. 9. 17. 컬렉트 액티비티 시나리오
         String collectorUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.RSSIDSET,0,0,0,0,null);
         JSONObject rssiJsonObject = layer.createRssiJson("bid","x","y","z",wifiScanResult);
