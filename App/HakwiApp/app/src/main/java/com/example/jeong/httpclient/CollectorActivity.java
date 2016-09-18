@@ -39,7 +39,7 @@ public class CollectorActivity  extends Activity {
 
     //버튼클릭 이벤트
     //TODO: 버튼 클릭시 현재위치 수집기능(서버에 rssi 보내주기) 구현
-    public void localizationClicked(View v){
+    public void collectorClicked(View v){
         String loc = editText.getText().toString();
         Toast.makeText(getApplication(), loc, Toast.LENGTH_LONG).show();
 

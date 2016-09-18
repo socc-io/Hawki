@@ -189,8 +189,6 @@ public class BuildingFragment extends Fragment {
 
             selectedBuildId = markers.get(pos).getBuildId();
             selectedBuildName = markers.get(pos).getTitle();
-            selectedBuildId = "빌딩 Id : " + markers.get(pos).getBuildId();
-            selectedBuildName = "빌딩 Name : " + markers.get(pos).getTitle();
 
             String toastMessage = selectedBuildId;
 
@@ -210,8 +208,6 @@ public class BuildingFragment extends Fragment {
             }
             textViewName.setText(selectedBuildName);
             textViewId.setText(selectedBuildId);
-            textViewId.setText(selectedBuildId);
-            textViewName.setText(selectedBuildName);
 
         }
     };
