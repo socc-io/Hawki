@@ -116,21 +116,8 @@ class CollectRssi(Resource):
     def saveRssiInfo(self, data={"bid":"TEST","x":2,"y":2,"z":2,"rssi":[{"sid":"39:33:34:f2:dd:cc","dbm":-47}]}):
         bid = data['bid']
         savePath = 'Data/WRM/RAW/' + bid + '.dat'
-        x = data['x']
-        y = data['y']
-        z = data['z']
-        rssiList = data['rssi']
-
         with open(savePath, 'a') as f:
-            for rssi in rssiList:
-                line = {
-                    "x":x,
-                    "y":y,
-                    "z":z,
-                    "sid":rssi['sid'],
-                    "dbm":rssi['dbm']
-                }
-                f.write(json.dumps(line) + '\n')
+            f.write(json.dumps(data) + '\n')
 
         return 'save data'
 

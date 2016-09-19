@@ -29,8 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <TextView
-                android:id="@+id/textView_buildingName"
+            <EditText
+                android:id="@+id/editText_buildingName"
                 android:text="name~"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
@@ -52,8 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <TextView
-                android:id="@+id/textView_buildingId"
+            <EditText
+                android:id="@+id/editText_buildingId"
                 android:text="id~"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
@@ -71,17 +71,54 @@
             <TextView
                 android:text="현재위치"
                 android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"/>
 
-            <EditText
-                android:id="@+id/editText_location"
-                android:text="(x, y, z)"
-                android:textSize="20dp"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="  X:"
+                    android:textSize="20dp"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/editTextX"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="  Y:"
+                    android:textSize="20dp"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/editTextY"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="  Z:"
+                    android:textSize="20dp"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/editTextZ"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

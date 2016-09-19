@@ -26,24 +26,84 @@ Hawki system is built on three main components,
 ### 2. Install Client
 
     For Developers,
-    
+
     Install Anroid-Studio : https://developer.android.com/studio/index.html?hl=ko
-    
+
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
 ### 3. Collecting your indoor data using APP
 
     ****** Application Capture Should be here!!!!!!!!!!
 
-### 4. Predicting location using APP
+
+### 4. Training indoor data
+
+    1) After Step 3, You can show your collected indoor data in below path
+
+     - PROJECT_HOME/Data/WRM/RAW/[BUILDING_NAME].dat
+
+    2) Make bssid vocabulary mapping file (.voca)
+
+     $ cd PROJECT_HOME/Predictor/Module/APVOCA/
+
+     [ ****** TO BE UPDATING ****** ]
+     $ python make_APVOCA.py [BUILDING_NAME]
+
+       - ex) python make_APVOCA.py ex
+
+     - You can see your vocabulary file in below path
+
+     - PROJECT_HOME/Predictor/Module/APVOCA/VOCAS/[BUILDING_NAME].voca
+
+    3) Training Indoor data and make pickle file (.pkl)
+
+     $ cd PROJECT_HOME/Predictor/Module/GNB/
+
+     $ python [TRAINING_MODULE_NAME].py [.dat FILE] [.voca FILE] [OUT_FILENAME]
+
+       - ex) python sklearn_gaussianNB.py ex.dat ex.voca ex
+
+     - You can see your pre-trained file in below path
+
+     - PROJECT_HOME/Predictor/Module/GNB/bin/[OUT_FILENAME]_gnb_[x|y]_0.pkl
+
+### 5. Predicting location using APP
 
     ****** Application Capture Should be here!!!!!!!!!!
+
+
+# References
+
+An Unsupervised Indoor Localization Method based on Received Signal Strength RSS Measurements [http://www.merl.com/publications/docs/TR2015-129.pdf]
+
+Unsupervised Indoor Localization No Need to War-Drive [http://engr.uconn.edu/~song/classes/nes/unloc.pdf]
+
+글로벌 실내 위치인식 및 실내,외 통합 내비게이션 시스템, 한동수, 정석훈, 한국과학기술원 전산학과, 한국과학기술원 정보통신공학과
+
+Building a Practical Wifi-Based Indoor Navigation System, Dongsoo Han, Sukhoon Jung, Minkyu Lee and Giwan Yoon, KAIST
+
+Indoor Location Sensing Using Geo-Magnetism, Jaewoo Chung, Matt Donahoe, Chris Schmandt, Ig-Jae Kim, Pedram Razavai, Micaela Wiseman, MIT Media Laboratory 20 Ames St.
+
+Vessel integrated information management system based on Wifi Positioning technology, Hyuk-soon Kwan, Dongsoo Han, Song-Que Park, Won-Hee An, Taehyun Park, Net Co.Ltd.
+
+
+# Copyright
+
+Copyright (c) 2016 Captain-Americano
+
+Hyeok Oh [ oh4851@gmail.com ] site : https://github.com/oh4851
+
+Sunho Jung [ tnsgh1992@gmail.com ] site : https://github.com/sunhojeong 
+
+Youngje jo [ siosio3103@gmail.com ] site : https://github.com/siosio34
+
+Jinwon Lee  [  ] site : 
+
+SeoHyun Back [ becxer87@gmail.com ] site : https://github.com/becxer
 
 # License
 
 The MIT License (MIT)
-
-Copyright (c) 2016 Captain-Americano team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -62,3 +122,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+

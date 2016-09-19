@@ -40,6 +40,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
             //write json
             OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
             os.write(params[1]);
+
             //os.wrote(json.toString());
             // TODO: 2016. 9. 17. makeRssiSetJson 바뀜에 따라 일단 주석
             os.flush();
@@ -101,7 +102,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         try {
             String line;
             while ((line = reader.readLine()) != null) {
-                // TODO: 2016. 9. 13. 왜 라인 맨앞에 " 하나 더드가는가
+
                 sb.append(line + '\n');
             }
         } catch (IOException e) {
