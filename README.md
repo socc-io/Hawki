@@ -27,7 +27,7 @@ Hawki system is built on three main components,
 
     For Developers,
 
-    Install Anroid-Studio : https://developer.android.com/studio/index.html?hl=ko
+    Install Android-Studio : https://developer.android.com/studio/index.html?hl=ko
 
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
@@ -97,7 +97,7 @@ Sunho Jung [ tnsgh1992@gmail.com ] site : https://github.com/sunhojeong
 
 Youngje jo [ siosio3103@gmail.com ] site : https://github.com/siosio34
 
-Jinwon Lee  [  ] site : 
+Jinwon Lee  [ jino3871@gmail.com ] site : https://github.com/jino678
 
 SeoHyun Back [ becxer87@gmail.com ] site : https://github.com/becxer
 
