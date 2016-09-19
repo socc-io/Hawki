@@ -7,6 +7,10 @@ Indoor positioning technology will use in a variety of ways including IOT, Indoo
 
 Simply, Hawki provide whole systems for indoor positioning that include Server-side, Client-side, Predicting model
 
+
+***** YOUTUBE VIDEO MUST BE INCLUDE!! *****
+
+
 Hawki system is built on three main components,
 
   1. Server : Mediating between Predictor and client. Built with Flask (python)
