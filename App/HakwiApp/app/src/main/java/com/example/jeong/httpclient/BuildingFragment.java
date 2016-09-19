@@ -104,7 +104,7 @@ public class BuildingFragment extends Fragment {
 
             // Making a request to url and getting response
             // TODO: 2016. 9. 17. 여기서  method 가 get 인지 post인지 makeserviceCall 에서 하는 행동 바꿔야 되지 않을가생각 
-            String jsonStr = sh.makeServiceCall(url,method);
+            String jsonStr = sh.httpGet(url);//get
 
             Log.e(TAG, "Response from url: " + jsonStr);
 
