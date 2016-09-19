@@ -5,11 +5,38 @@ package com.example.jeong.httpclient;
  */
 public class IndoorMarker extends Marker{
 
-    public IndoorMarker(String bid, String title,String description,String url, double latitude, double longitude,
-                        String phoneNumber, String address) {
+    private String x,y,z; // 내 위치
+
+    public IndoorMarker(String bid, String title,String description,String url, String x, String y,
+                        String z) {
         super(bid,title,description,url);
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
 
+    public String getX() {
+        return x;
+    }
 
+    public void setX(String x) {
+        this.x = x;
+    }
+
+    public String getY() {
+        return y;
+    }
+
+    public void setY(String y) {
+        this.y = y;
+    }
+
+    public String getZ() {
+        return z;
+    }
+
+    public void setZ(String z) {
+        this.z = z;
+    }
 }

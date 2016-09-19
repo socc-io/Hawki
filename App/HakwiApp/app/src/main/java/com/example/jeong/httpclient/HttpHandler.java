@@ -39,7 +39,8 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
 
             //write json
             OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
-            //os.write(makeRssiSetJson().toString());
+            os.write(params[1]);
+
             //os.wrote(json.toString());
             // TODO: 2016. 9. 17. makeRssiSetJson 바뀜에 따라 일단 주석
             os.flush();
@@ -101,7 +102,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         try {
             String line;
             while ((line = reader.readLine()) != null) {
-                // TODO: 2016. 9. 13. 왜 라인 맨앞에 " 하나 더드가는가 
+
                 sb.append(line + '\n');
             }
         } catch (IOException e) {
@@ -205,7 +206,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
     protected void onPostExecute(String res_str) {
 
         // TODO: 2016. 9. 10. 여기에 제이선 파싱해서 리스트 어댑터씌워서 출력해야된다
-        Json layer = new Json();	// JSON 파일을 다룰 객체
+        Json layer = new Json();   // JSON 파일을 다룰 객체
         JSONObject jo = null;
         //JSONArray dataArray = null;
         List<Marker> markers = null;
@@ -247,5 +248,4 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
 
         return jsonObj;
     }*/
-
 

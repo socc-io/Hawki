@@ -36,11 +36,16 @@ public class BuildingFragment extends Fragment {
     EditText editTextName, editTextId;
 
     private ProgressDialog pDialog;
+    public static Marker selectedMarker;
     private String selectedBuildId;
     private String selectedBuildName;
     private ListView listView;
     ArrayList<HashMap<String, String>> buildList;
     List<Marker> markers = new ArrayList<>();
+
+    public static Marker getInstance() {
+        return selectedMarker;
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_building, container, false);
@@ -176,6 +181,7 @@ public class BuildingFragment extends Fragment {
                     "phone"}, new int[]{R.id.name,
                     R.id.email, R.id.mobile});
 
+
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(itemClickListener);
         }
@@ -188,6 +194,7 @@ public class BuildingFragment extends Fragment {
         {
         //TODO: itemClickListener 발생시 CollectorActivity의 textView값 update 필요!
 
+            selectedMarker = markers.get(pos);
             selectedBuildId = markers.get(pos).getBuildId();
             selectedBuildName = markers.get(pos).getTitle();
 
