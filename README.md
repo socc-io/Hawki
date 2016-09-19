@@ -93,7 +93,7 @@ Copyright (c) 2016 Captain-Americano
 
 Hyeok Oh [ oh4851@gmail.com ] site : https://github.com/oh4851
 
-Sunho Jung [  ] site : 
+Sunho Jung [ tnsgh1992@gmail.com ] site : https://github.com/sunhojeong 
 
 Youngje jo [ siosio3103@gmail.com ] site : https://github.com/siosio34
 
