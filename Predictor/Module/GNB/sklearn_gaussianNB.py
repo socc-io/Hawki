@@ -84,41 +84,4 @@ if __name__ == '__main__':
         pickle.dump(clf_x, f)
     with open('bin/' + outName + '_gnb_y_0.pkl', 'wb') as f:
         pickle.dump(clf_y, f)
-'''
-    # test data load
-    train_mat, train_lbl = make_train_data()
-    test_mat, test_lbl = make_test_data()
-
-    # label x,y to mapped area (each 3m)
-    divide_val = 1
-    train_lbl[:, :2] = (train_lbl[:, :2] / divide_val).astype('int')
-    test_lbl[:, :2] = (test_lbl[:, :2] / divide_val).astype('int')
-
-    # fitting
-    clf_x = fit(train_mat, train_lbl[:,0].ravel())
-    clf_y = fit(train_mat, train_lbl[:,1].ravel())
-#    clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
-
-    import pickle
-    # now you can save it to a file
-    with open('bin/gnb_x_0.pkl', 'wb') as f:
-        pickle.dump(clf_x, f)
-    with open('bin/gnb_y_0.pkl', 'wb') as f:
-        pickle.dump(clf_y, f)
-    # predict
-    preds_x = predict(clf_x, test_mat)
-    preds_y = predict(clf_y, test_mat)
-#    preds_z = predict(clf_z, test_mat) # z has variance 0 issue
-
-    # show result
-    print("div value: %lf" % (divide_val))
-    distances_x = [(abs(preds_x[i] - test_lbl[:,0][i])) for i in range(len(test_lbl))]
-    print("error distance(x): %lf m" % (np.mean(distances_x) * divide_val))
-
-    distances_y = [(abs(preds_y[i] - test_lbl[:,1][i])) for i in range(len(test_lbl))]
-    print("error distance(y): %lf m" % (np.mean(distances_y) * divide_val))
-
-#    distances_z = [(abs(preds_z[i] - test_lbl[:,2][i])) for i in range(len(test_lbl))]
-#    print("error distance(z): %lf" % (np.mean(distances_z)))
-'''
 
