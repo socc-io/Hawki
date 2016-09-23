@@ -69,19 +69,20 @@ def make_train_data2(inName, vocaName):
     return np.array(res_mat), np.array(res_lbl)
 
 if __name__ == '__main__':
-    inName = sys.argv[1]
-    vocaName = sys.argv[2]
-    outName = sys.argv[3]
-    train_mat, train_lbl = make_train_data2(inName, vocaName)
+    if len(sys.argv) > 1:
+        build_id = sys.argv[1]
+        datName = build_id + '.dat'
+        vocaName = build_id + '.voca'
+        train_mat, train_lbl = make_train_data2(datName, vocaName)
 
-    clf_x = fit(train_mat, train_lbl[:,0].ravel())
-    clf_y = fit(train_mat, train_lbl[:,1].ravel())
-#    clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
+        clf_x = fit(train_mat, train_lbl[:,0].ravel())
+        clf_y = fit(train_mat, train_lbl[:,1].ravel())
+#        clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
 
-    import pickle
-    # now you can save it to a file
-    with open('bin/' + outName + '_gnb_x_0.pkl', 'wb') as f:
-        pickle.dump(clf_x, f)
-    with open('bin/' + outName + '_gnb_y_0.pkl', 'wb') as f:
-        pickle.dump(clf_y, f)
+        import pickle
+        # now you can save it to a file
+        with open('bin/' + build_id + '_gnb_x_0.pkl', 'wb') as f:
+            pickle.dump(clf_x, f)
+        with open('bin/' + build_id + '_gnb_y_0.pkl', 'wb') as f:
+            pickle.dump(clf_y, f)
 
