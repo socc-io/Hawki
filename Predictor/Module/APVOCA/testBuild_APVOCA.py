@@ -1,10 +1,9 @@
-import json
+import sys, json
 
-def build(path = ""):
-    building_id = path.split('/')[-1]
-    building_id = building_id.split('.')[0]
-
-    opf = open(path).read().split("\n")
+def build(building_id=''):
+    dataPath = '../../../Data/WRM/RAW/'
+    fullPath = dataPath + building_id + '.dat'
+    opf = open(fullPath).read().split("\n")
     opf.pop()
     building_set = {}
     for line in opf:
@@ -22,4 +21,10 @@ def build(path = ""):
         with open(output, 'w') as f:
             f.write(",".join(bset.keys()))
 
-build(path = "../../../Data/WRM/RAW/testbuilding.dat")
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        building_id = sys.argv[1]
+        build(building_id)
+    else:
+        print('please run with argument: python SUPER_APVOCA.py testbuilding')
+#build(path = "../../../Data/WRM/RAW/testbuilding.dat")
