@@ -44,32 +44,31 @@ Hawki system is built on three main components,
 
     1) After Step 3, You can show your collected indoor data in below path
 
-     - PROJECT_HOME/Data/WRM/RAW/[BUILDING_NAME].dat
+     - PROJECT_HOME/Data/WRM/RAW/[BUILDING_ID].dat
 
     2) Make bssid vocabulary mapping file (.voca)
 
      $ cd PROJECT_HOME/Predictor/Module/APVOCA/
 
-     [ ****** TO BE UPDATING ****** ]
-     $ python make_APVOCA.py [BUILDING_NAME]
+     $ python SUPER_APVOCA.py [BUILDING_ID
 
-       - ex) python make_APVOCA.py ex
+       - ex) python SUPER_APVOCA.py testbuilding
 
      - You can see your vocabulary file in below path
 
-     - PROJECT_HOME/Predictor/Module/APVOCA/VOCAS/[BUILDING_NAME].voca
+     - PROJECT_HOME/Predictor/Module/APVOCA/VOCAS/[BUILDING_ID].voca
 
     3) Training Indoor data and make pickle file (.pkl)
 
      $ cd PROJECT_HOME/Predictor/Module/GNB/
 
-     $ python [TRAINING_MODULE_NAME].py [.dat FILE] [.voca FILE] [OUT_FILENAME]
+     $ python [TRAINING_MODULE_NAME].py [BUILDING_ID]
 
-       - ex) python sklearn_gaussianNB.py ex.dat ex.voca ex
+       - ex) python sklearn_gaussianNB.py testbuilding
 
      - You can see your pre-trained file in below path
 
-     - PROJECT_HOME/Predictor/Module/GNB/bin/[OUT_FILENAME]_gnb_[x|y]_0.pkl
+     - PROJECT_HOME/Predictor/Module/GNB/bin/[BUILDING_ID]_gnb_[x|y]_0.pkl
 
 ### 5. Predicting location using APP
 
