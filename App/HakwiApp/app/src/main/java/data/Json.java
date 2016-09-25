@@ -2,6 +2,7 @@ package data;
 
 import android.app.job.JobScheduler;
 import android.net.wifi.ScanResult;
+import android.text.Html;
 
 import com.example.jeong.httpclient.BuildingMarker;
 import com.example.jeong.httpclient.IndoorMarker;
@@ -96,8 +97,9 @@ public class Json {
 
         Marker ma = null;
 
+
         ma = new IndoorMarker(jo.getString("id"),jo.getString("title"),null,null,
-                jo.getString("x"),jo.getString("y"),jo.getString("z"));
+                jo.getString("x"),jo.getString("y"),"");
 
         return ma;
 
@@ -121,7 +123,7 @@ public class Json {
 
         for(int i = 0 ; i<scanResults.size() ; i++) {
             JSONObject rssidata = new JSONObject();
-            rssidata.put("ssid",scanResults.get(i).SSID);
+            rssidata.put("bssid",scanResults.get(i).BSSID);
             rssidata.put("dbm",scanResults.get(i).level);
             rssiArray.put(i,rssidata);
         }
@@ -133,20 +135,31 @@ public class Json {
 
     public JSONObject createRequestIndoorJson(String bid, List<ScanResult> scanResults) throws JSONException {
         JSONObject indoorData = new JSONObject();
+
         indoorData.put("bid",bid);
 
         JSONArray rssiArray = new JSONArray();
 
         for(int i = 0 ; i<scanResults.size() ; i++) {
             JSONObject rssidata = new JSONObject();
-            rssidata.put("ssid",scanResults.get(i).SSID);
+            rssidata.put("bssid",scanResults.get(i).BSSID);
             rssidata.put("dbm",scanResults.get(i).level);
             rssiArray.put(i,rssidata);
         }
+
+
         indoorData.put("rssi",rssiArray);
 
         return indoorData;
 
+
+    }
+
+    public static String convertStandardJSONString(String data_json) {
+        data_json = data_json.replace("\\\"","\"");
+        data_json = data_json.replace("\\\\","\\");
+        //data_json = data_json.replace("\\\"","\"");
+        return data_json;
 
     }
 }

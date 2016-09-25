@@ -20,7 +20,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="2dip"
-        android:textColor="#f2f2f2" />
+        android:textColor="#4d4d4d" />
 
     <TextView
         android:id="@+id/mobile"

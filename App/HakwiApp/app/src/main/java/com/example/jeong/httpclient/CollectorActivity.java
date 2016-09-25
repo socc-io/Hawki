@@ -51,9 +51,7 @@ public class CollectorActivity  extends Activity {
         String loc_x = editTextX.getText().toString();
         String loc_y = editTextY.getText().toString();
         String loc_z = editTextZ.getText().toString();
-        editTextX.setText("");
-        editTextY.setText("");
-        editTextY.setText("");
+
         Toast.makeText(getApplication(), loc_x+","+loc_y+","+loc_z, Toast.LENGTH_LONG).show();
 
         WifiCollector wifiCollector = new WifiCollector(wifimanager);
@@ -61,34 +59,24 @@ public class CollectorActivity  extends Activity {
 
         Json layer = new Json();
 
-
         HttpHandler httpHandler = new HttpHandler();
-        try {
-            String result = httpHandler.execute("url","json").get().toString();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        // TODO: 2016. 9. 17. 컬렉트 액티비티 시나리오
 
         String collectorUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.RSSIDSET,0,0,0,0,null);
-        JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(),"1","2","3",wifiScanResult);
+        // TODO: 2016. 9. 19. 여기에 x,y,z 받아와서 넣어야됨
+        JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(),loc_x,loc_y,loc_z,wifiScanResult);
 
         Log.i("url test",collectorUrl.toString());
         Log.i("rssijson test",rssiJsonObject.toString());
 
         try {
             String result = httpHandler.execute(collectorUrl,rssiJsonObject.toString()).get().toString();
+            Log.i("리절트값",result.toString());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // 2. Datasource.json 에 있는 함수를 이용해서 wifiscanResultstring 을 json형태로 담음
-        // 3. 통합된 서버 http post 코드로 new GetContacts().execute(makeURL, "POST")방식으로 함
-        // 4. 서버에 정상적으로 올려져있는지 확인하면 이기능 구현 끝
+
 
         // TODO: 2016. 9. 17. 여기서 포스트로 보내는거 주는거 나랑 순호형거 합치고 그리고 서버코드도 통합.
 

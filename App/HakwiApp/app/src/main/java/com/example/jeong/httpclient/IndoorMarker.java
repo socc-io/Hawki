@@ -15,7 +15,6 @@ public class IndoorMarker extends Marker{
         this.z = z;
     }
 
-
     public String getX() {
         return x;
     }

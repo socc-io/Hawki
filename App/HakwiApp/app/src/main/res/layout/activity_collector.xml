@@ -15,7 +15,8 @@
         android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#f2f2f2">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -32,7 +33,7 @@
             <EditText
                 android:id="@+id/editText_buildingName"
                 android:text="name~"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"/>
@@ -66,7 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+
+            >
 
             <TextView
                 android:text="현재위치"
@@ -79,7 +82,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+
+                >
 
                 <TextView
                     android:layout_width="0dp"

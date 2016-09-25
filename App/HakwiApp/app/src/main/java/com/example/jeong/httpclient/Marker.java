@@ -19,7 +19,6 @@ public class Marker {
         this.URL = url;
     }
 
-
     public String getBuildId() {
         return BuildId;
     }
