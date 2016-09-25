@@ -3,15 +3,18 @@ import json
 import numpy as np
 from sklearn import naive_bayes
 
+# to fit learning model
 def fit(train_mat, train_lbl, force=False):
     clf = naive_bayes.GaussianNB()
     clf.fit(train_mat, train_lbl)
 
     return clf
 
+# return prediction result
 def predict(clf, test_mat):
     return clf.predict(test_mat)
 
+# (deprecated) make training dataset
 def make_train_data():
     min_val = -999
     raw_data = np.genfromtxt('../../Data/WRM/RAW/LS.csv', delimiter=',')
@@ -22,6 +25,7 @@ def make_train_data():
 
     return train_mat, train_lbl
 
+# (deprecated) make test dataset
 def make_test_data():
     min_val = -999
     test_data = np.genfromtxt('../../Data/WRM/RAW/TS.csv', delimiter=',')
@@ -32,6 +36,7 @@ def make_test_data():
 
     return test_mat, test_lbl
 
+# make train dataset
 def make_train_data2(inName, vocaName):
     inPath = '../../../Data/WRM/RAW/' + inName
     vocaPath = '../APVOCA/VOCAS/' + vocaName
@@ -56,7 +61,7 @@ def make_train_data2(inName, vocaName):
 
             # make rssi matrix
             for rssi in row['rssi']:
-                idx = vocaIdxMap[rssi['sid']]
+                idx = vocaIdxMap[rssi['bssid']]
                 matItem[idx] = rssi['dbm']
             res_mat.append(matItem)
 
@@ -69,56 +74,21 @@ def make_train_data2(inName, vocaName):
     return np.array(res_mat), np.array(res_lbl)
 
 if __name__ == '__main__':
-    inName = sys.argv[1]
-    vocaName = sys.argv[2]
-    outName = sys.argv[3]
-    train_mat, train_lbl = make_train_data2(inName, vocaName)
+    if len(sys.argv) > 1:
+        build_id = sys.argv[1]
+        datName = build_id + '.dat'
+        vocaName = build_id + '.voca'
+        train_mat, train_lbl = make_train_data2(datName, vocaName)
 
-    clf_x = fit(train_mat, train_lbl[:,0].ravel())
-    clf_y = fit(train_mat, train_lbl[:,1].ravel())
-#    clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
+        # fitting
+        clf_x = fit(train_mat, train_lbl[:,0].ravel())
+        clf_y = fit(train_mat, train_lbl[:,1].ravel())
+#        clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
 
-    import pickle
-    # now you can save it to a file
-    with open('bin/' + outName + '_gnb_x_0.pkl', 'wb') as f:
-        pickle.dump(clf_x, f)
-    with open('bin/' + outName + '_gnb_y_0.pkl', 'wb') as f:
-        pickle.dump(clf_y, f)
-'''
-    # test data load
-    train_mat, train_lbl = make_train_data()
-    test_mat, test_lbl = make_test_data()
-
-    # label x,y to mapped area (each 3m)
-    divide_val = 1
-    train_lbl[:, :2] = (train_lbl[:, :2] / divide_val).astype('int')
-    test_lbl[:, :2] = (test_lbl[:, :2] / divide_val).astype('int')
-
-    # fitting
-    clf_x = fit(train_mat, train_lbl[:,0].ravel())
-    clf_y = fit(train_mat, train_lbl[:,1].ravel())
-#    clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
-
-    import pickle
-    # now you can save it to a file
-    with open('bin/gnb_x_0.pkl', 'wb') as f:
-        pickle.dump(clf_x, f)
-    with open('bin/gnb_y_0.pkl', 'wb') as f:
-        pickle.dump(clf_y, f)
-    # predict
-    preds_x = predict(clf_x, test_mat)
-    preds_y = predict(clf_y, test_mat)
-#    preds_z = predict(clf_z, test_mat) # z has variance 0 issue
-
-    # show result
-    print("div value: %lf" % (divide_val))
-    distances_x = [(abs(preds_x[i] - test_lbl[:,0][i])) for i in range(len(test_lbl))]
-    print("error distance(x): %lf m" % (np.mean(distances_x) * divide_val))
-
-    distances_y = [(abs(preds_y[i] - test_lbl[:,1][i])) for i in range(len(test_lbl))]
-    print("error distance(y): %lf m" % (np.mean(distances_y) * divide_val))
-
-#    distances_z = [(abs(preds_z[i] - test_lbl[:,2][i])) for i in range(len(test_lbl))]
-#    print("error distance(z): %lf" % (np.mean(distances_z)))
-'''
+        import pickle
+        # save pre trained model to pickle
+        with open('bin/' + build_id + '_gnb_x_0.pkl', 'wb') as f:
+            pickle.dump(clf_x, f)
+        with open('bin/' + build_id + '_gnb_y_0.pkl', 'wb') as f:
+            pickle.dump(clf_y, f)
 

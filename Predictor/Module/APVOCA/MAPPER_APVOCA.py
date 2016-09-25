@@ -19,7 +19,9 @@ class APVOCA:
 
     def convert(self, vector):
         res = [self.min_val  for x in range(len(self.voca))]
-        for bssid, rssi in vector.iteritems():
+        for jsonRow in vector:
+            bssid = jsonRow['bssid']
+            rssi = jsonRow['dbm']
             if bssid in self.voca:
                 res[self.voca_idx_map[bssid]] = rssi
         return np.array([res])

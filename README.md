@@ -7,6 +7,10 @@ Indoor positioning technology will use in a variety of ways including IOT, Indoo
 
 Simply, Hawki provide whole systems for indoor positioning that include Server-side, Client-side, Predicting model
 
+
+***** YOUTUBE VIDEO MUST BE INCLUDE!! *****
+
+
 Hawki system is built on three main components,
 
   1. Server : Mediating between Predictor and client. Built with Flask (python)
@@ -27,7 +31,7 @@ Hawki system is built on three main components,
 
     For Developers,
 
-    Install Anroid-Studio : https://developer.android.com/studio/index.html?hl=ko
+    Install Android-Studio : https://developer.android.com/studio/index.html?hl=ko
 
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
@@ -40,32 +44,31 @@ Hawki system is built on three main components,
 
     1) After Step 3, You can show your collected indoor data in below path
 
-     - PROJECT_HOME/Data/WRM/RAW/[BUILDING_NAME].dat
+     - PROJECT_HOME/Data/WRM/RAW/[BUILDING_ID].dat
 
     2) Make bssid vocabulary mapping file (.voca)
 
      $ cd PROJECT_HOME/Predictor/Module/APVOCA/
 
-     [ ****** TO BE UPDATING ****** ]
-     $ python make_APVOCA.py [BUILDING_NAME]
+     $ python SUPER_APVOCA.py [BUILDING_ID
 
-       - ex) python make_APVOCA.py ex
+       - ex) python SUPER_APVOCA.py testbuilding
 
      - You can see your vocabulary file in below path
 
-     - PROJECT_HOME/Predictor/Module/APVOCA/VOCAS/[BUILDING_NAME].voca
+     - PROJECT_HOME/Predictor/Module/APVOCA/VOCAS/[BUILDING_ID].voca
 
     3) Training Indoor data and make pickle file (.pkl)
 
      $ cd PROJECT_HOME/Predictor/Module/GNB/
 
-     $ python [TRAINING_MODULE_NAME].py [.dat FILE] [.voca FILE] [OUT_FILENAME]
+     $ python [TRAINING_MODULE_NAME].py [BUILDING_ID]
 
-       - ex) python sklearn_gaussianNB.py ex.dat ex.voca ex
+       - ex) python sklearn_gaussianNB.py testbuilding
 
      - You can see your pre-trained file in below path
 
-     - PROJECT_HOME/Predictor/Module/GNB/bin/[OUT_FILENAME]_gnb_[x|y]_0.pkl
+     - PROJECT_HOME/Predictor/Module/GNB/bin/[BUILDING_ID]_gnb_[x|y]_0.pkl
 
 ### 5. Predicting location using APP
 
@@ -97,7 +100,7 @@ Sunho Jung [ tnsgh1992@gmail.com ] site : https://github.com/sunhojeong
 
 Youngje jo [ siosio3103@gmail.com ] site : https://github.com/siosio34
 
-Jinwon Lee  [  ] site : 
+Jinwon Lee  [ jino3871@gmail.com ] site : https://github.com/jino678
 
 SeoHyun Back [ becxer87@gmail.com ] site : https://github.com/becxer
 

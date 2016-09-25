@@ -8,11 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import data.DataSource;
 import data.Json;
@@ -62,7 +63,6 @@ public class CollectorActivity  extends Activity {
         HttpHandler httpHandler = new HttpHandler();
 
         String collectorUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.RSSIDSET,0,0,0,0,null);
-        // TODO: 2016. 9. 19. 여기에 x,y,z 받아와서 넣어야됨
         JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(),loc_x,loc_y,loc_z,wifiScanResult);
 
         Log.i("url test",collectorUrl.toString());
@@ -76,10 +76,6 @@ public class CollectorActivity  extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        // TODO: 2016. 9. 17. 여기서 포스트로 보내는거 주는거 나랑 순호형거 합치고 그리고 서버코드도 통합.
-
     }
 
 }

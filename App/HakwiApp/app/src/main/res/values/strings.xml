@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HttpClient</string>
+    <string name="app_name">Hawki</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_build_info">BuildInfoActivity</string>
     <string name="large_text">

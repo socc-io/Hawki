@@ -1,6 +1,5 @@
 package data;
 
-import android.app.job.JobScheduler;
 import android.net.wifi.ScanResult;
 import android.text.Html;
 
@@ -11,11 +10,11 @@ import com.example.jeong.httpclient.Marker;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import data.DataSource.DATAFORMAT;
-
 
 import java.util.ArrayList;
 import java.util.List;
+
+import data.DataSource.DATAFORMAT;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
