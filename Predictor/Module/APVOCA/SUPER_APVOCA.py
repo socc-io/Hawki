@@ -12,7 +12,7 @@ def build(building_id=''):
         for item in row.keys():
             if item not in ['x', 'y', 'z', 'bid']:
                 for apinfo in row[item]:
-                    bset[apinfo['sid']] = bset.get(apinfo['sid'], 0) + 1
+                    bset[apinfo['bssid']] = bset.get(apinfo['bssid'], 0) + 1
         building_set[building_id] = bset
 
     for bid in building_set.keys():

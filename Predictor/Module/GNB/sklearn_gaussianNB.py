@@ -3,15 +3,18 @@ import json
 import numpy as np
 from sklearn import naive_bayes
 
+# to fit learning model
 def fit(train_mat, train_lbl, force=False):
     clf = naive_bayes.GaussianNB()
     clf.fit(train_mat, train_lbl)
 
     return clf
 
+# return prediction result
 def predict(clf, test_mat):
     return clf.predict(test_mat)
 
+# (deprecated) make training dataset
 def make_train_data():
     min_val = -999
     raw_data = np.genfromtxt('../../Data/WRM/RAW/LS.csv', delimiter=',')
@@ -22,6 +25,7 @@ def make_train_data():
 
     return train_mat, train_lbl
 
+# (deprecated) make test dataset
 def make_test_data():
     min_val = -999
     test_data = np.genfromtxt('../../Data/WRM/RAW/TS.csv', delimiter=',')
@@ -32,6 +36,7 @@ def make_test_data():
 
     return test_mat, test_lbl
 
+# make train dataset
 def make_train_data2(inName, vocaName):
     inPath = '../../../Data/WRM/RAW/' + inName
     vocaPath = '../APVOCA/VOCAS/' + vocaName
@@ -56,7 +61,7 @@ def make_train_data2(inName, vocaName):
 
             # make rssi matrix
             for rssi in row['rssi']:
-                idx = vocaIdxMap[rssi['sid']]
+                idx = vocaIdxMap[rssi['bssid']]
                 matItem[idx] = rssi['dbm']
             res_mat.append(matItem)
 
@@ -75,12 +80,13 @@ if __name__ == '__main__':
         vocaName = build_id + '.voca'
         train_mat, train_lbl = make_train_data2(datName, vocaName)
 
+        # fitting
         clf_x = fit(train_mat, train_lbl[:,0].ravel())
         clf_y = fit(train_mat, train_lbl[:,1].ravel())
 #        clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
 
         import pickle
-        # now you can save it to a file
+        # save pre trained model to pickle
         with open('bin/' + build_id + '_gnb_x_0.pkl', 'wb') as f:
             pickle.dump(clf_x, f)
         with open('bin/' + build_id + '_gnb_y_0.pkl', 'wb') as f:

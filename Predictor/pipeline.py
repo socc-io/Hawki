@@ -5,19 +5,18 @@
 # @Email becxer87@gmail.com
 #
 
-from Predictor.Module.GNB import COEX_GNB
-from Predictor.Module.APVOCA import COEX_APVOCA
+from Predictor.Module.GNB import SUPER_GNB
+from Predictor.Module.APVOCA import MAPPER_APVOCA
 import numpy as np
 
 # Prepared Pipeline module list
 module_list = {
-    'COEX_GNB' : COEX_GNB.GNB(),
-    'COEX_APVOCA' : COEX_APVOCA.APVOCA()
+    'MAPPER_APVOCA' : MAPPER_APVOCA.APVOCA(),
+    'SUPER_GNB' : SUPER_GNB.GNB()
 }
 
 pipeline_list = {
-    'COEX' : ['COEX_APVOCA', 'COEX_GNB'],
-    'COEX_SIMPLE' : ['COEX_GNB']
+    'GNB' : ['MAPPER_APVOCA', 'SUPER_GNB']
 }
 
 # PIPLINE Main Module

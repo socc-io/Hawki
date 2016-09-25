@@ -93,3 +93,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# custom ignore
+*.pkl
+*.dat
+*.voca
