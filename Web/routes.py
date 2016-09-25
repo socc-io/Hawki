@@ -46,14 +46,19 @@ class BuildingInfo(Resource):
     def get(self):
         buildName = request.args.get('buildName')
         if buildName == '':
-            return json.dumps(self.getBuildInfoByName())
+            res = json.dumps(self.getBuildInfoByName())
+            res = res.encode('utf-8')
+            return res
         else:
-            return json.dumps(self.getBuildInfoByName(name=buildName))
+            res = json.dumps(self.getBuildInfoByName(name=buildName))
+            print res
+            return res
 
 class GetPosition(Resource):
     global ppl
     def predictPositionByRssi(self, wrm={'abcd':-99}, buildId='COEX'):
-        ppl.load_pipe(buildId)
+        print('Request position at: ' + buildId)
+        ppl.load_pipe('GNB')
 
         res = ppl.process(wrm, config={'building_id':buildId, 'min_rssi':-999})
         resJson = {
@@ -65,10 +70,14 @@ class GetPosition(Resource):
         return resJson
 
     def post(self):
-        return json.dumps(self.predictPositionByRssi())
+        jsonObj = request.get_json()
+        rssiSet = jsonObj['rssi']
+        buildingId = jsonObj['bid']
+
+        return json.dumps(self.predictPositionByRssi(rssiSet, buildingId))
 
 class CollectRssi(Resource):
-    def saveRssiInfo(self, data={"bid":"TEST","x":2,"y":2,"z":2,"rssi":[{"sid":"39:33:34:f2:dd:cc","dbm":-47}]}):
+    def saveRssiInfo(self, data={"bid":"TEST","x":2,"y":2,"z":2,"rssi":[{"bssid":"39:33:34:f2:dd:cc","dbm":-47}]}):
         bid = data['bid']
         savePath = 'Data/WRM/RAW/' + bid + '.dat'
         with open(savePath, 'a') as f:
