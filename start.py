@@ -1,4 +1,10 @@
 #!/usr/bin/python
+import sys
 from Web import routes
 if __name__ == '__main__':
-    routes.app.run(debug=True,port=4000,host='0.0.0.0')
+    if len(sys.argv) > 1:
+        portNo = sys.argv[1]
+        portNo = int(portNo)
+        routes.app.run(debug=True,port=portNo,host='0.0.0.0')
+    else:
+        print 'usage: ./start.py [PORT_NUMBER]'

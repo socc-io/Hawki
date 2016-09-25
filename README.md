@@ -25,7 +25,9 @@ Hawki system is built on three main components,
 
     $ cd Hawki
 
-    $ ./start.py --port 4000
+    $ ./start.py [PORT_NUMBER]
+
+      - ex) ./start.py 4000
 
 ### 2. Install Client
 
@@ -50,7 +52,7 @@ Hawki system is built on three main components,
 
      $ cd PROJECT_HOME/Predictor/Module/APVOCA/
 
-     $ python SUPER_APVOCA.py [BUILDING_ID
+     $ python SUPER_APVOCA.py [BUILDING_ID]
 
        - ex) python SUPER_APVOCA.py testbuilding
 
