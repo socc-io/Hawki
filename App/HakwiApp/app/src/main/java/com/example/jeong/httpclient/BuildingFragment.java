@@ -208,7 +208,7 @@ public class BuildingFragment extends Fragment {
 
             if(getActivity().getClass().getSimpleName().equals(CollectorActivity.class.getSimpleName())) {
                 Log.d(TAG, "----COLLECTORACTICITY!-------");
-            }else if(getActivity().getClass().getSimpleName().equals(LocalizationActivity.class.getSimpleName())){
+            }else if(getActivity().getClass().getSimpleName().equals(FinderActivity.class.getSimpleName())){
                 Log.d(TAG, "----LOCALIZATIONACTIVITY!!-------");
             }
             else{

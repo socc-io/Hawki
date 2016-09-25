@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import data.DataSource;
 import data.Json;
@@ -51,25 +51,13 @@ public class CollectorActivity  extends Activity {
         String loc_x = editTextX.getText().toString();
         String loc_y = editTextY.getText().toString();
         String loc_z = editTextZ.getText().toString();
-        editTextX.setText("");
-        editTextY.setText("");
-        editTextY.setText("");
-        Toast.makeText(getApplication(), loc_x+","+loc_y+","+loc_z, Toast.LENGTH_LONG).show();
 
         WifiCollector wifiCollector = new WifiCollector(wifimanager);
         wifiScanResult = wifiCollector.getWIFIScanResult();
 
         Json layer = new Json();
 
-
         HttpHandler httpHandler = new HttpHandler();
-        try {
-            String result = httpHandler.execute("url","json").get().toString();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
 
         // TODO: 2016. 9. 17. 컬렉트 액티비티 시나리오
 
@@ -86,6 +74,8 @@ public class CollectorActivity  extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         // 2. Datasource.json 에 있는 함수를 이용해서 wifiscanResultstring 을 json형태로 담음
         // 3. 통합된 서버 http post 코드로 new GetContacts().execute(makeURL, "POST")방식으로 함
         // 4. 서버에 정상적으로 올려져있는지 확인하면 이기능 구현 끝

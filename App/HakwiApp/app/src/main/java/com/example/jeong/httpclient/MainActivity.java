@@ -3,11 +3,9 @@ package com.example.jeong.httpclient;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), CollectorActivity.class);
         startActivityForResult(intent, REQUEST_CODE_COLLECTOR);
     }
-    public void locationBtnClicked(View v){
-        Intent intent = new Intent(getApplicationContext(), LocalizationActivity.class);
+    public void finderBtnClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), FinderActivity.class);
         startActivityForResult(intent, REQUEST_CODE_LOCALIZATION);
     }
 
