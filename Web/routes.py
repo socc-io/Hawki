@@ -76,6 +76,9 @@ class CollectRssi(Resource):
 
         return 'save data'
 
+    def get(self):
+        return 'do not access with GET Method'
+
     def post(self):
         jsonObj = request.get_json()
         return self.saveRssiInfo(jsonObj)
