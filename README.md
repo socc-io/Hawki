@@ -38,17 +38,18 @@ Hawki system is built on three main components,
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
 ### 3. Collecting your indoor data using APP
-
-  
-    1)After Open application, Click Collector button
+ ![alt Hawki](https://github.com/socc-io/Hawki/raw/master/collector1.jpg)
+ 
+    1)After Open application, Click the Collector button
     
-    2)Input building name that you are located on and next click seach button.
+    2)Input building name that you are located on and next click seach button
     
-    3)Select building name from seached lists.
+    3)Select building name from seached lists
     
-    4)At intervals of one meter, Input x, y, z(repeat 10 times) in a single place.
-    - x means 
-    - y ~
+    4)At intervals of one meter, Input x, y, z(repeat 10 times) in a single place and click collection button
+    If you do, a toast message that shows input values appears on the screen
+    - x means x-intercept in building.
+    - y means y-intercept in building.
     - z means the number of layers
     
 
@@ -84,8 +85,15 @@ Hawki system is built on three main components,
 
 ### 5. Predicting location using APP
 
-    ****** Application Capture Should be here!!!!!!!!!!
-
+![alt Hawki](https://github.com/socc-io/Hawki/raw/master/finder1.jpg)
+    
+    1)After Open application, Click the Finder button
+    
+    2)Input building name that you are located on and next click seach button
+    
+    3)Select building name from seached lists
+    
+    4)And if you click find button, a toast message confirms a location that you are on 
 
 # References
 
