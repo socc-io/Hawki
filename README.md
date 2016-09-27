@@ -14,7 +14,7 @@ Simply, Hawki provide whole systems for indoor positioning that include Server-s
 Hawki system is built on three main components,
 
   1. Server : Mediating between Predictor and client. Built with Flask (python)
-  2. Client Application : Collect wifi rssi map, show position on the map. Android >= 6.0, iPhone(Not-Implemented) 
+  2. Client Application : Collect wifi radio map, show position on the map. Android >= 6.0, iPhone(Not-Implemented) 
   3. Predictors (server) : Predicting user's position in the building. Built with Scikit, Pytrain
 
 # Quick start
@@ -42,15 +42,15 @@ Hawki system is built on three main components,
  
     1)After Open application, Click the Collector button
     
-    2)Input building name that you are located on and next click seach button
+    2)Input building name that you are located on and next click search button
     
-    3)Select building name from seached lists
+    3)Select building name from searched lists
     
     4)At intervals of one meter, Input x, y, z(repeat 10 times) in a single place and click collection button
     If you do, a toast message that shows input values appears on the screen
-    - x means x-intercept in building.
-    - y means y-intercept in building.
-    - z means the number of layers
+    - x means x-axis in building.
+    - y means y-axis in building.
+    - z means level of floor
     
 
 ### 4. Training indoor data
@@ -90,9 +90,9 @@ Hawki system is built on three main components,
     
     1)After Open application, Click the Finder button
     
-    2)Input building name that you are located on and next click seach button
+    2)Input building name that you are located on and next click search button
     
-    3)Select building name from seached lists
+    3)Select building name from searched lists
     
     4)And if you click find button, a toast message confirms a location that you are on 
 
