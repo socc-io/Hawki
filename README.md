@@ -38,7 +38,8 @@ Hawki system is built on three main components,
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
 ### 3. Collecting your indoor data using APP
-  
+ ![alt Hawki](https://github.com/socc-io/Hawki/raw/master/collector1.jpg)
+ 
     1)After Open application, Click the Collector button
     
     2)Input building name that you are located on and next click seach button
@@ -84,8 +85,8 @@ Hawki system is built on three main components,
 
 ### 5. Predicting location using APP
 
-
-    ****** Application Capture Should be here!!!!!!!!!!
+![alt Hawki](https://github.com/socc-io/Hawki/raw/master/finder1.jpg)
+    
     1)After Open application, Click the Finder button
     
     2)Input building name that you are located on and next click seach button
