@@ -1,6 +1,6 @@
 # Hawki (Indoor Positioning Framework)
 
-![alt Hawki](https://github.com/socc-io/Hawki/raw/master/Hawki.png)
+![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/Hawki.png)
 
 ### Hawki is the framework system for indoor positioning service. 
 Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation. Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc.
@@ -38,7 +38,7 @@ Hawki system is built on three main components,
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
 ### 3. Collecting your indoor data using APP
- ![alt Hawki](https://github.com/socc-io/Hawki/raw/master/collector1.jpg)
+ ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/collector1.jpg)
  
     1)After Open application, Click the Collector button
     
@@ -54,6 +54,7 @@ Hawki system is built on three main components,
     
 
 ### 4. Training indoor data
+![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/raw_data.PNG)
 
     1) After Step 3, You can see your collected indoor data in below path
 
@@ -85,7 +86,7 @@ Hawki system is built on three main components,
 
 ### 5. Predicting location using APP
 
-![alt Hawki](https://github.com/socc-io/Hawki/raw/master/finder1.jpg)
+![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/finder1.jpg)
     
     1)After Open application, Click the Finder button
     
