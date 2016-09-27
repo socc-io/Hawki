@@ -39,12 +39,22 @@ Hawki system is built on three main components,
 
 ### 3. Collecting your indoor data using APP
 
-    ****** Application Capture Should be here!!!!!!!!!!
-
+  
+    1)After Open application, Click Collector button
+    
+    2)Input building name that you are located on and next click seach button.
+    
+    3)Select building name from seached lists.
+    
+    4)At intervals of one meter, Input x, y, z(repeat 10 times) in a single place.
+    - x means 
+    - y ~
+    - z means the number of layers
+    
 
 ### 4. Training indoor data
 
-    1) After Step 3, You can show your collected indoor data in below path
+    1) After Step 3, You can see your collected indoor data in below path
 
      - PROJECT_HOME/Data/WRM/RAW/[BUILDING_ID].dat
 
