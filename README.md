@@ -7,13 +7,14 @@ Indoor positioning technology will use in a variety of ways including IOT, Indoo
 
 Simply, Hawki provide whole systems for indoor positioning that include Server-side, Client-side, Predicting model
 
-Test Video -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be
-
 Hawki system is built on three main components,
 
   1. Server : Mediating between Predictor and client. Built with Flask (python)
   2. Client Application : Collect wifi radio map, show position on the map. Android >= 6.0, iPhone(Not-Implemented) 
   3. Predictors (server) : Predicting user's position in the building. Built with Scikit, Pytrain
+
+
+* Hawki Test Video -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be 
 
 # Quick start
 
