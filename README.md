@@ -7,9 +7,7 @@ Indoor positioning technology will use in a variety of ways including IOT, Indoo
 
 Simply, Hawki provide whole systems for indoor positioning that include Server-side, Client-side, Predicting model
 
-
-***** YOUTUBE VIDEO MUST BE INCLUDE!! *****
-
+Test Video -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be
 
 Hawki system is built on three main components,
 
