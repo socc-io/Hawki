@@ -14,7 +14,9 @@ Hawki system is built on three main components,
   3. Predictors (server) : Predicting user's position in the building. Built with Scikit, Pytrain
 
 
-* Hawki Test Video -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be 
+* Hawki test video -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be 
+
+* Hawki field test video ( in coex mall ) -> https://www.youtube.com/watch?v=PaCcq-pzsbY
 
 # Quick start
 
