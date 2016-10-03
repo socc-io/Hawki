@@ -1,4 +1,4 @@
-package com.example.jeong.httpclient;
+package com.socc.Hawki.app;
 
 /**
  * Created by joyeongje on 2016. 9. 4..

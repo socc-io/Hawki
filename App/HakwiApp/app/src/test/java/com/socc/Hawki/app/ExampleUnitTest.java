@@ -1,4 +1,4 @@
-package com.example.jeong.httpclient;
+package com.socc.Hawki.app;
 
 import org.junit.Test;
 

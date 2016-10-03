@@ -1,4 +1,4 @@
-package com.example.jeong.httpclient;
+package com.socc.Hawki.app;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;

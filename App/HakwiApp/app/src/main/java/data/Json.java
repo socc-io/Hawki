@@ -1,11 +1,10 @@
 package data;
 
 import android.net.wifi.ScanResult;
-import android.text.Html;
 
-import com.example.jeong.httpclient.BuildingMarker;
-import com.example.jeong.httpclient.IndoorMarker;
-import com.example.jeong.httpclient.Marker;
+import com.socc.Hawki.app.BuildingMarker;
+import com.socc.Hawki.app.IndoorMarker;
+import com.socc.Hawki.app.Marker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,14 +26,20 @@ public class Json {
         JSONObject jo = null;
         JSONArray dataArray = null;
         List<Marker> markers = new ArrayList<Marker>();
+        Marker proMarker = null;
 
         try {
 
             if(dataformat == DATAFORMAT.BuildingInfo)
                 dataArray = root.getJSONArray("Build");
 
-            else if(dataformat == DATAFORMAT.IndoorPosition)
-                dataArray = root.getJSONArray("IndoorPosition");
+            else if(dataformat == DATAFORMAT.IndoorPosition) {
+                jo = root.getJSONObject("position");
+                proMarker = processIndoorJsonObject(jo);
+                markers.add(proMarker);
+
+
+            }
 
             else if(dataformat == DATAFORMAT.RSSIDSET)
                 dataArray = root.getJSONArray("RssIdSet");
@@ -46,7 +51,7 @@ public class Json {
 
         if(dataArray != null) {
 
-            Marker proMarker = null;
+
             int top = Math.min(MAX_JSON_OBJECT,dataArray.length());
 
             for(int i=0; i < top; i++) {
@@ -97,8 +102,8 @@ public class Json {
         Marker ma = null;
 
 
-        ma = new IndoorMarker(jo.getString("id"),jo.getString("title"),null,null,
-                jo.getString("x"),jo.getString("y"),"");
+        ma = new IndoorMarker("","",null,null,
+                jo.getString("x"),jo.getString("y"),jo.getString("z"));
 
         return ma;
 
