@@ -102,7 +102,6 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         try {
             String line;
             while ((line = reader.readLine()) != null) {
-
                 sb.append(line + '\n');
             }
         } catch (IOException e) {
@@ -119,23 +118,6 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         return sb.toString();
     }
 
-    public JSONObject makeRssiSetJson(String rssiSetJson) {
-
-        // TODO: 2016. 9. 17. 여기서 제이썬 처리를 해줘야될듯
-        JSONObject jsonObj = new JSONObject();
-        try {
-
-            jsonObj.put("bid", "0228777");
-            jsonObj.put("name", "socc_building");
-            jsonObj.put("longitude", "123");
-            jsonObj.put("latitude", "456");
-
-        } catch (JSONException e1) {
-            e1.printStackTrace();
-        }
-
-        return jsonObj;
-    }
 }
 
 

@@ -30,31 +30,23 @@ public class Json {
 
         try {
 
-            if(dataformat == DATAFORMAT.BuildingInfo)
+            if (dataformat == DATAFORMAT.BuildingInfo)
                 dataArray = root.getJSONArray("Build");
 
-            else if(dataformat == DATAFORMAT.IndoorPosition) {
+            else if (dataformat == DATAFORMAT.IndoorPosition) {
                 jo = root.getJSONObject("position");
                 proMarker = processIndoorJsonObject(jo);
                 markers.add(proMarker);
-
-
             }
-
-            else if(dataformat == DATAFORMAT.RSSIDSET)
-                dataArray = root.getJSONArray("RssIdSet");
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        if(dataArray != null) {
+        if (dataArray != null) {
 
+            int top = Math.min(MAX_JSON_OBJECT, dataArray.length());
 
-            int top = Math.min(MAX_JSON_OBJECT,dataArray.length());
-
-            for(int i=0; i < top; i++) {
+            for (int i = 0; i < top; i++) {
                 jo = dataArray.getJSONObject(i);
 
                 switch (dataformat) {
@@ -62,13 +54,7 @@ public class Json {
                         proMarker = processBuildingJsonObject(jo);
                         break;
 
-                    case IndoorPosition:
-                        proMarker = processIndoorJsonObject(jo);
-                        break;
 
-                    case RSSIDSET:
-                        proMarker = processRSSIDSetJsonObject(jo);
-                        break;
                 }
                 markers.add(proMarker);
             }
@@ -82,14 +68,10 @@ public class Json {
     public Marker processBuildingJsonObject(JSONObject jo) throws JSONException {
         Marker ma = null;
 
-        if(jo.has("id") && jo.has("phone") && jo.has("title") && jo.has("address")) {
+        if (jo.has("id") && jo.has("phone") && jo.has("title") && jo.has("address")) {
 
-            ma = new BuildingMarker(jo.getString("id"),jo.getString("title"),null,null,
-                                    0,0,jo.getString("phone"),jo.getString("address"));
-
-            // TODO: 2016. 9. 4. has 에 들어갈거 정확히 서버랑 맞춰야된다.
-            // 받아올것 건물 id, 경도, 위도, 주소 대표번호 건물명, 도면 url
-            //ma = new BuildingMarker();
+            ma = new BuildingMarker(jo.getString("id"), jo.getString("title"), null, null,
+                    0, 0, jo.getString("phone"), jo.getString("address"));
 
         }
 
@@ -101,37 +83,32 @@ public class Json {
 
         Marker ma = null;
 
-
-        ma = new IndoorMarker("","",null,null,
-                jo.getString("x"),jo.getString("y"),jo.getString("z"));
+        if (jo.has("x") && jo.has("y")) {
+            ma = new IndoorMarker("", "", null, null,
+                    jo.getString("x"), jo.getString("y"),"");
+        }
 
         return ma;
 
-    }
-
-
-    public Marker processRSSIDSetJsonObject(JSONObject jo) throws JSONException {
-        Marker ma = null;
-        return ma;
     }
 
 
     public JSONObject createRssiJson(String bid, String x, String y, String z, List<ScanResult> scanResults) throws JSONException {
         JSONObject collecterData = new JSONObject();
-        collecterData.put("bid",bid);
-        collecterData.put("x",x);
-        collecterData.put("y",y);
-        collecterData.put("z",z);
+        collecterData.put("bid", bid);
+        collecterData.put("x", x);
+        collecterData.put("y", y);
+        collecterData.put("z", z);
 
         JSONArray rssiArray = new JSONArray();
 
-        for(int i = 0 ; i<scanResults.size() ; i++) {
+        for (int i = 0; i < scanResults.size(); i++) {
             JSONObject rssidata = new JSONObject();
-            rssidata.put("bssid",scanResults.get(i).BSSID);
-            rssidata.put("dbm",scanResults.get(i).level);
-            rssiArray.put(i,rssidata);
+            rssidata.put("bssid", scanResults.get(i).BSSID);
+            rssidata.put("dbm", scanResults.get(i).level);
+            rssiArray.put(i, rssidata);
         }
-        collecterData.put("rssi",rssiArray);
+        collecterData.put("rssi", rssiArray);
 
         return collecterData;
     }
@@ -140,29 +117,26 @@ public class Json {
     public JSONObject createRequestIndoorJson(String bid, List<ScanResult> scanResults) throws JSONException {
         JSONObject indoorData = new JSONObject();
 
-        indoorData.put("bid",bid);
+        indoorData.put("bid", bid);
 
         JSONArray rssiArray = new JSONArray();
 
-        for(int i = 0 ; i<scanResults.size() ; i++) {
+        for (int i = 0; i < scanResults.size(); i++) {
             JSONObject rssidata = new JSONObject();
-            rssidata.put("bssid",scanResults.get(i).BSSID);
-            rssidata.put("dbm",scanResults.get(i).level);
-            rssiArray.put(i,rssidata);
+            rssidata.put("bssid", scanResults.get(i).BSSID);
+            rssidata.put("dbm", scanResults.get(i).level);
+            rssiArray.put(i, rssidata);
         }
 
-
-        indoorData.put("rssi",rssiArray);
+        indoorData.put("rssi", rssiArray);
 
         return indoorData;
-
 
     }
 
     public static String convertStandardJSONString(String data_json) {
-        data_json = data_json.replace("\\\"","\"");
-        data_json = data_json.replace("\\\\","\\");
-        //data_json = data_json.replace("\\\"","\"");
+        data_json = data_json.replace("\\\"", "\"");
+        data_json = data_json.replace("\\\\", "\\");
         return data_json;
 
     }

@@ -31,7 +31,6 @@ public class FinderActivity extends Activity {
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
     List<Marker> Indoor = new ArrayList<>();
 
-
     public void getWIFIScanResult() {
         wifiScanResult = wifimanager.getScanResults();
 
@@ -55,7 +54,7 @@ public class FinderActivity extends Activity {
             int getY = Integer.parseInt(indoorMarker.getY());
 
 
-            Toast.makeText(getApplicationContext(),"x : " + getX + " y : " + getY ,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"x : " + getX + ", y : " + getY ,Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
             e.printStackTrace();
