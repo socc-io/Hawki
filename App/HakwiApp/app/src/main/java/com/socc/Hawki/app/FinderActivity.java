@@ -43,8 +43,11 @@ public class FinderActivity extends Activity {
 
             String result = httpHandler.execute(locateUrl, rssiJsonObject.toString()).get().toString();
             String convertStr = Json.convertStandardJSONString(result);
-            convertStr = convertStr.substring(1,convertStr.length()-1);
 
+            if(convertStr != null)
+                convertStr = convertStr.substring(1,convertStr.length()-1);
+            else
+                Toast.makeText(getApplicationContext(),"아직 서버에 학습되지 않은 상태입니다",Toast.LENGTH_SHORT).show();
 
             JSONObject jsonObject = new JSONObject(convertStr);
             Indoor = layer.load(jsonObject, DataSource.DATAFORMAT.IndoorPosition);
@@ -52,7 +55,6 @@ public class FinderActivity extends Activity {
             IndoorMarker indoorMarker = (IndoorMarker) Indoor.get(0);
             int getX = Integer.parseInt(indoorMarker.getX());
             int getY = Integer.parseInt(indoorMarker.getY());
-
 
             Toast.makeText(getApplicationContext(),"x : " + getX + ", y : " + getY ,Toast.LENGTH_LONG).show();
 
