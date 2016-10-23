@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys, json
 import importlib
 import Predictor.Module.APVOCA.SUPER_APVOCA as apvoca

@@ -1,4 +1,5 @@
 .pydemon.*
+.idea/
 
 # python ignore guide
 # >> https://github.com/github/gitignore/blob/master/Python.gitignore

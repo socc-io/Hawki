@@ -1,8 +1,10 @@
 # -*-coding:utf-8
-from flask import Flask, request, json
+from flask import Flask, request, json, render_template, url_for, send_from_directory, redirect
 from flask_restful import Resource, Api, reqparse
 from Predictor.pipeline import Pipeline
 import requests
+import os
+import string
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,6 +17,11 @@ daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
 
 # Init Pipeline
 ppl = Pipeline()
+
+def chexc(content):
+    exclude = set(string.punctuation)
+    content_punc_removed = ''.join(ch for ch in content if ch not in exclude)
+    return content_punc_removed
 
 class BuildingInfo(Resource):
     # Request location info to DAUM
@@ -40,18 +47,15 @@ class BuildingInfo(Resource):
                     'title': r['title'],
                     'address': r['address']}
             results.append(temp)
-
         return {'Build':results}
 
     def get(self):
         buildName = request.args.get('buildName')
         if buildName == '':
             res = json.dumps(self.getBuildInfoByName())
-            res = res.encode('utf-8')
             return res
         else:
             res = json.dumps(self.getBuildInfoByName(name=buildName))
-            print res
             return res
 
 class GetPosition(Resource):
@@ -64,7 +68,8 @@ class GetPosition(Resource):
         resJson = {
             'position': {
                 'x': res[0],
-                'y': res[1]
+                'y': res[1],
+                'z': "0"
             }
         }
         return resJson
@@ -97,3 +102,33 @@ api.add_resource(BuildingInfo, '/buildinginfo')
 api.add_resource(GetPosition, '/getposition')
 api.add_resource(CollectRssi, '/collectrssi')
 
+# Request for static page
+UPLOAD_FOLDER = 'Maps'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route("/static/<string:path>")
+def static_pages(path):
+    return app.send_static_file(path)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+@app.route('/mapupload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(path)
+            return 'Saved Succesfully'
+    return 'Save failed'

@@ -27,7 +27,6 @@ Hawki system is built on three main components,
     $ cd Hawki
 
     $ ./start.py [PORT_NUMBER]
-
       - ex) ./start.py 4000
 
 ### 2. Install Client
@@ -58,19 +57,13 @@ Hawki system is built on three main components,
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/raw_data.PNG)
 
     1) After Step 3, You can see your collected indoor data in below path
-
      - PROJECT_HOME/Data/WRM/RAW/[BUILDING_ID].dat
 
     2) Run trainer.py
+     $ ./trainer.py [BUILDING_ID]
+       - ex) ./trainer.py 1552323
 
-     $ cd PROJECT_HOME/Predictor/
-
-     $ python trainer.py [BUILDING_ID]
-
-       - ex) python trainer.py testbuilding
-
-     - You can see your pre-trained file in below path
-
+     - You confirm your trained binary in below path
      - PROJECT_HOME/Predictor/Module/GNB/bin/[BUILDING_ID]_gnb_[x|y]_0.pkl
 
 ### 5. Predicting location using APP

@@ -1,6 +1,9 @@
 import sys, json
+import numpy as np
 
 def build(building_id='', source='../../../Data/WRM/RAW/', target='VOCAS/'):
+    top_rmv = 0
+    cut_thr = 15
     fullPath = source + building_id + '.dat'
     opf = open(fullPath).read().split("\n")
     opf.pop()
@@ -9,9 +12,15 @@ def build(building_id='', source='../../../Data/WRM/RAW/', target='VOCAS/'):
         row = json.loads(line)
         bset = building_set.get(building_id, {})
         for item in row.keys():
+            dbm_list = []
+            bssid_list = []
             if item not in ['x', 'y', 'z', 'bid']:
                 for apinfo in row[item]:
-                    bset[apinfo['bssid']] = bset.get(apinfo['bssid'], 0) + 1
+                    dbm_list.append(int(apinfo['dbm']))
+                    bssid_list.append(apinfo['bssid'])
+            cut_dbms = np.argsort(dbm_list)[::-1][top_rmv:cut_thr]
+            for idx in cut_dbms:
+                bset[bssid_list[idx]] = 1
         building_set[building_id] = bset
 
     for bid in building_set.keys():
