@@ -64,23 +64,17 @@ public class BuildingFragment extends Fragment {
         buildList = new ArrayList<>();
         listView = (ListView) rootView.findViewById(R.id.list);
 
-        final HttpHandler httpHandler = new HttpHandler();
         final Json layer = new Json();
 
         inputButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                pDialog = new ProgressDialog(getActivity());
-                pDialog.setMessage("로딩 중입니다...");
-                pDialog.setCancelable(false);
-                pDialog.show();
-
                 String buildName = editText.getText().toString();
                 String requestBuildURL = DataSource.createRequestURL(DataSource.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
                 try {
 
-                    String result = httpHandler.execute(requestBuildURL,"GET").get();
+                    String result = new HttpHandler().execute(requestBuildURL,"GET").get();
 
                     if (result != null) {
                         try {
@@ -132,8 +126,6 @@ public class BuildingFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                if (pDialog.isShowing())
-                    pDialog.dismiss();
 
                 ListAdapter adapter = new SimpleAdapter(
                         getActivity(), buildList,

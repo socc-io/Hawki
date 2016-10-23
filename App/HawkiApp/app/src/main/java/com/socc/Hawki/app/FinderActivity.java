@@ -35,11 +35,10 @@ public class FinderActivity extends Activity {
 
         try {
             Json layer = new Json();
-            HttpHandler httpHandler = new HttpHandler();
 
             String locateUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.IndoorPosition, 0, 0, 0, 0, null);
             JSONObject rssiJsonObject = layer.createRequestIndoorJson(BuildingFragment.getInstance().getBuildId(), wifiScanResult);
-            String result = httpHandler.execute(locateUrl,"POST",rssiJsonObject.toString()).get();
+            String result = new HttpHandler().execute(locateUrl,"POST",rssiJsonObject.toString()).get();
 
             if(result != null) {
                 String convertStr = Json.convertStandardJSONString(result);
