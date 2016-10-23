@@ -17,7 +17,6 @@ public class DataSource {
 
         switch (dataformat) {
             case BuildingInfo: // 건물 정보 요청 다음지도 url : 경도, 위도, 반경, 건물이름
-
                 selectedURL = "http://beaver.hp100.net:4000/buildinginfo" + "?buildName=" + name;
                 break;
 

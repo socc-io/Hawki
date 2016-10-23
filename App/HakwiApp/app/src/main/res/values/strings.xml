@@ -91,4 +91,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="finder">finder</string>
+    <string name="collector">collector</string>
+    <string name="requestBuild">건물 정보 요청</string>
 </resources>

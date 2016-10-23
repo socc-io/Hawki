@@ -38,9 +38,9 @@ public class Json {
                 proMarker = processIndoorJsonObject(jo);
                 markers.add(proMarker);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+        } catch (JSONException e) { e.printStackTrace(); }
+
 
         if (dataArray != null) {
 
@@ -53,7 +53,6 @@ public class Json {
                     case BuildingInfo:
                         proMarker = processBuildingJsonObject(jo);
                         break;
-
 
                 }
                 markers.add(proMarker);
@@ -72,7 +71,6 @@ public class Json {
 
             ma = new BuildingMarker(jo.getString("id"), jo.getString("title"), null, null,
                     0, 0, jo.getString("phone"), jo.getString("address"));
-
         }
 
         return ma;
@@ -138,6 +136,5 @@ public class Json {
         data_json = data_json.replace("\\\"", "\"");
         data_json = data_json.replace("\\\\", "\\");
         return data_json;
-
     }
 }

@@ -26,7 +26,6 @@ import data.Json;
  */
 public class FinderActivity extends Activity {
 
-    // WifiManager variable
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
     List<Marker> Indoor = new ArrayList<>();
@@ -41,20 +40,21 @@ public class FinderActivity extends Activity {
             String locateUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.IndoorPosition, 0, 0, 0, 0, null);
             JSONObject rssiJsonObject = layer.createRequestIndoorJson(BuildingFragment.getInstance().getBuildId(), wifiScanResult);
 
-            String result = httpHandler.execute(locateUrl, rssiJsonObject.toString()).get().toString();
+            String result = httpHandler.execute(locateUrl, rssiJsonObject.toString()).get();
             String convertStr = Json.convertStandardJSONString(result);
-            convertStr = convertStr.substring(1,convertStr.length()-1);
 
+            if(convertStr.length() > 0) {
+                convertStr = convertStr.substring(1, convertStr.length() - 1);
+                JSONObject jsonObject = new JSONObject(convertStr);
+                Indoor = layer.load(jsonObject, DataSource.DATAFORMAT.IndoorPosition);
+                IndoorMarker indoorMarker = (IndoorMarker) Indoor.get(0);
+                int getX = Integer.parseInt(indoorMarker.getX());
+                int getY = Integer.parseInt(indoorMarker.getY());
 
-            JSONObject jsonObject = new JSONObject(convertStr);
-            Indoor = layer.load(jsonObject, DataSource.DATAFORMAT.IndoorPosition);
-
-            IndoorMarker indoorMarker = (IndoorMarker) Indoor.get(0);
-            int getX = Integer.parseInt(indoorMarker.getX());
-            int getY = Integer.parseInt(indoorMarker.getY());
-
-
-            Toast.makeText(getApplicationContext(),"x : " + getX + ", y : " + getY ,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"x : " + getX + ", y : " + getY ,Toast.LENGTH_LONG).show();
+            }
+            else
+                Toast.makeText(getApplicationContext(),"아직 서버에 학습되지 않은 상태입니다",Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +86,6 @@ public class FinderActivity extends Activity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
-
         wifimanager.startScan();
 
     }

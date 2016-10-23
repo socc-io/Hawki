@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = MainActivity.class.getSimpleName();
     public static final int REQUEST_CODE_COLLECTOR = 1001;
     public static final int REQUEST_CODE_LOCALIZATION = 1004;
+
     private static final int PERMISSIONS_REQUEST_CODE_ACCESS_COARSE_LOCATION = 9001;
 
 
@@ -34,29 +35,11 @@ public class MainActivity extends AppCompatActivity {
     public void collectorBtnClicked(View v){
         Intent intent = new Intent(getApplicationContext(), CollectorActivity.class);
         startActivityForResult(intent, REQUEST_CODE_COLLECTOR);
+
     }
     public void finderBtnClicked(View v){
         Intent intent = new Intent(getApplicationContext(), FinderActivity.class);
         startActivityForResult(intent, REQUEST_CODE_LOCALIZATION);
-    }
-
-    //응답처리, 필요할경우 사용하기위해 미리 짜놓음!
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-        if(requestCode == REQUEST_CODE_COLLECTOR){
-            if(resultCode == RESULT_OK){
-                String name = intent.getExtras().getString("res");
-                Toast.makeText(getBaseContext(), "응답:" + name, Toast.LENGTH_LONG).show();
-            }
-        }
-        else if(requestCode == REQUEST_CODE_LOCALIZATION){
-            if(resultCode == RESULT_OK){
-                String name = intent.getExtras().getString("res");
-                Toast.makeText(getBaseContext(), "응답:" + name, Toast.LENGTH_LONG).show();
-            }
-        }
     }
 
     @Override
@@ -75,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if(requestCode == REQUEST_CODE_LOCALIZATION){
+            if(resultCode == RESULT_OK){
+                String name = intent.getExtras().getString("res");
+                Toast.makeText(getBaseContext(), "응답:" + name, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 }

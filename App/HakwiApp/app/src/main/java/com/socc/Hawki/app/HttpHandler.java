@@ -23,7 +23,7 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
     private static final String TAG = HttpHandler.class.getSimpleName();
 
     @Override
-    protected String doInBackground(String... params) {//params[0] = url, params[1] = json
+    protected String doInBackground(String... params) { //params[0] = url, params[1] = json
         URL url;
         String response = null;
         StringBuilder sb = new StringBuilder();
@@ -32,30 +32,24 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
             url = new URL(params[0]);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
-            conn.setConnectTimeout(15000);
+            conn.setConnectTimeout(10000);
             conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
             conn.setRequestMethod("POST");
-            conn.setDoInput(true);//응답 헤더와 메시지를 읽어들이겠다
+            conn.setDoInput(true);
             conn.setDoOutput(true);
 
-            //write json
             OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
             os.write(params[1]);
-
-            //os.wrote(json.toString());
-            // TODO: 2016. 9. 17. makeRssiSetJson 바뀜에 따라 일단 주석
             os.flush();
-            InputStream in = new BufferedInputStream(conn.getInputStream());
 
-            //read response
             int HttpResult = conn.getResponseCode();
 
             if (HttpResult == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-                String line = null;
+                String line;
 
                 while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
+                    sb.append(line).append("\n");
                 }
                 br.close();
             } else {
@@ -79,7 +73,6 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
-            // read the response
             InputStream in = new BufferedInputStream(conn.getInputStream());
             response = convertStreamToString(in);
 
@@ -102,10 +95,11 @@ public class HttpHandler extends AsyncTask<String, Void, String>{
         try {
             String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line + '\n');
+                sb.append(line).append('\n');
             }
         } catch (IOException e) {
             e.printStackTrace();
+
         } finally {
             try {
                 is.close();

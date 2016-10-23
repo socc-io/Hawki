@@ -50,14 +50,13 @@ public class CollectorActivity extends Activity {
             String collectorUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.RSSIDSET, 0, 0, 0, 0, null);
             JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(), loc_x, loc_y, loc_z, wifiScanResult);
 
-            Log.i("url test", collectorUrl.toString());
+            Log.i("url test", collectorUrl);
             Log.i("rssijson test", rssiJsonObject.toString());
 
-            String result = httpHandler.execute(collectorUrl, rssiJsonObject.toString()).get().toString();
-            Log.i("리절트값", result.toString());
+            String result = httpHandler.execute(collectorUrl, rssiJsonObject.toString()).get();
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.i("result : ", result.toString());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

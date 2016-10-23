@@ -5,12 +5,12 @@ package com.socc.Hawki.app;
  */
 public class Marker {
 
-    private String BuildId; // 건물 id
-    private String title; // 마커의 이름
-    private String description; // 마커의 내용
-    private String URL; // 연동 가능한 유알엘
+    private String BuildId;
+    private String title;
+    private String description;
+    private String URL;
 
-    Marker(){};
+    Marker(){}
 
     Marker(String BuildId, String title, String description, String url) {
         this.BuildId = BuildId;
