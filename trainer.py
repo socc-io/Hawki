@@ -1,14 +1,14 @@
 import sys, json
 import importlib
-import Module.APVOCA.SUPER_APVOCA as apvoca
+import Predictor.Module.APVOCA.SUPER_APVOCA as apvoca
 
 def start_train_pipe(building_id, train_algorithm='sklearn_gaussianNB'):
-    datPath = '../Data/WRM/RAW/'
-    vocaPath = 'Module/APVOCA/VOCAS/'
-    targetPath = 'Module/GNB/bin/'
+    datPath = 'Data/WRM/RAW/'
+    vocaPath = 'Predictor/Module/APVOCA/VOCAS/'
+    targetPath = 'Predictor/Module/GNB/bin/'
 
     apvoca.build(building_id, datPath, vocaPath)
-    gnb = importlib.import_module('Module.GNB.' + train_algorithm)
+    gnb = importlib.import_module('Predictor.Module.GNB.' + train_algorithm)
     gnb.build(building_id, datPath, vocaPath, targetPath)
 
 if __name__ == '__main__':
