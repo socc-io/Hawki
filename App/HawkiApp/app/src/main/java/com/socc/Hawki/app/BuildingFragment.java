@@ -2,8 +2,15 @@ package com.socc.Hawki.app;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +18,27 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
+import com.squareup.picasso.Target;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Handler;
 
 import DataPacket.DataSource;
 import DataPacket.Json;
@@ -36,6 +52,11 @@ public class BuildingFragment extends Fragment {
     EditText editText;
     Button inputButton;
     EditText editTextName, editTextId;
+    ImageView mapView;
+    Bitmap newBitmap;
+    Canvas canvas;
+    private Paint mPaint = null;
+
 
     private ProgressDialog pDialog;
     public static Data selectedData;
@@ -63,6 +84,8 @@ public class BuildingFragment extends Fragment {
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
         buildList = new ArrayList<>();
         listView = (ListView) rootView.findViewById(R.id.list);
+        mapView = (ImageView) rootView.findViewById(R.id.mapView);
+
 
         final Json layer = new Json();
 
@@ -136,6 +159,9 @@ public class BuildingFragment extends Fragment {
                 listView.setAdapter(adapter);
                 listView.setOnItemClickListener(itemClickListener);
 
+                listView.setVisibility(View.VISIBLE);
+                mapView.setVisibility(View.GONE);
+
             }
 
         });
@@ -162,8 +188,12 @@ public class BuildingFragment extends Fragment {
             editTextName.setText(selectedBuildName);
             editTextId.setText(selectedBuildId);
 
+
         }
     };
+
+
+
 
 }
 
