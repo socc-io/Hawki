@@ -1,8 +1,7 @@
 import sys, json
 
-def build(building_id=''):
-    dataPath = '../../../Data/WRM/RAW/'
-    fullPath = dataPath + building_id + '.dat'
+def build(building_id='', source='../../../Data/WRM/RAW/', target='VOCAS/'):
+    fullPath = source + building_id + '.dat'
     opf = open(fullPath).read().split("\n")
     opf.pop()
     building_set = {}
@@ -17,7 +16,7 @@ def build(building_id=''):
 
     for bid in building_set.keys():
         bset = building_set[bid]
-        output = "VOCAS/" + bid + ".voca"
+        output = target + bid + ".voca"
         with open(output, 'w') as f:
             f.write(",".join(bset.keys()))
 
