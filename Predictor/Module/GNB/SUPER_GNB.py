@@ -9,8 +9,10 @@ class GNB:
     def resume(self, config):
         #Always load data (load each process)
         building_id = config['building_id']
-        pklXPath = 'Predictor/Module/GNB/bin/' + building_id + '_gnb_x_0.pkl'
-        pklYPath = 'Predictor/Module/GNB/bin/' + building_id + '_gnb_y_0.pkl'
+        algorithm = config['algorithm']
+        pklPath = 'Predictor/Module/GNB/bin/'
+        pklXPath = pklPath + building_id + '_' + algorithm + '_x_0.pkl'
+        pklYPath = pklPath + building_id + '_' + algorithm + '_y_0.pkl'
         with open(pklXPath, 'rb') as f:
             self.clf_x = pickle.load(f)
         with open(pklYPath, 'rb') as f:
