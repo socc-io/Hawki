@@ -60,11 +60,12 @@ class BuildingInfo(Resource):
 
 class GetPosition(Resource):
     global ppl
-    def predictPositionByRssi(self, wrm={'abcd':-99}, buildId='COEX'):
+    def predictPositionByRssi(self, wrm={'abcd':-99}, buildId='COEX',\
+            module='SCIKIT', algorithm='GNB'):
         print('Request position at: ' + buildId)
-        ppl.load_pipe('GNB')
+        ppl.load_pipe(module)
 
-        res = ppl.process(wrm, config={'building_id':buildId, 'min_rssi':-999})
+        res = ppl.process(wrm, config={'building_id':buildId, 'algorithm':algorithm, 'min_rssi':-999})
         resJson = {
             'position': {
                 'x': res[0],

@@ -16,7 +16,7 @@ module_list = {
 }
 
 pipeline_list = {
-    'GNB' : ['MAPPER_APVOCA', 'SUPER_GNB']
+    'SCIKIT' : ['MAPPER_APVOCA', 'SUPER_GNB']
 }
 
 # PIPLINE Main Module

@@ -1,11 +1,11 @@
 import os, sys
 import json
 import numpy as np
-from sklearn import naive_bayes
+from sklearn import linear_model
 
 # to fit learning model
 def fit(train_mat, train_lbl, force=False):
-    clf = naive_bayes.GaussianNB()
+    clf = linear_model.BayesianRidge()
     clf.fit(train_mat, train_lbl)
 
     return clf
@@ -50,7 +50,7 @@ def make_train_data(build_id, source, voca, target):
             lblItem.append(row['z'])
             res_lbl.append(lblItem)
 
-    return np.array(res_mat), np.array(res_lbl)
+    return np.array(res_mat).astype(np.float), np.array(res_lbl).astype(np.float)
 
 def build(build_id, source='../../../Data/WRM/RAW/', voca='../APVOCA/VOCAS/', target='bin/'):
     train_mat, train_lbl = make_train_data(build_id, source, voca, target)
@@ -58,13 +58,13 @@ def build(build_id, source='../../../Data/WRM/RAW/', voca='../APVOCA/VOCAS/', ta
     # fitting
     clf_x = fit(train_mat, train_lbl[:,0].ravel())
     clf_y = fit(train_mat, train_lbl[:,1].ravel())
-#        clf_z = fit(train_mat, train_lbl[:,2].ravel()) # z has variance 0 issue
+    #clf_z = fit(train_mat, train_lbl[:,2].ravel())
 
     import pickle
     # save pre trained model to pickle
-    with open(target + build_id + '_GNB_x_0.pkl', 'wb') as f:
+    with open(target + build_id + '_RIDGE_x_0.pkl', 'wb') as f:
         pickle.dump(clf_x, f)
-    with open(target + build_id + '_GNB_y_0.pkl', 'wb') as f:
+    with open(target + build_id + '_RIDGE_y_0.pkl', 'wb') as f:
         pickle.dump(clf_y, f)
 
 if __name__ == '__main__':
