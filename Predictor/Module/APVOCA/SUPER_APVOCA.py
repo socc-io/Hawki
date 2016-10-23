@@ -1,11 +1,10 @@
 import sys, json
 import numpy as np
 
-def build(building_id=''):
+def build(building_id='', source='../../../Data/WRM/RAW/', target='VOCAS/'):
     top_rmv = 0
     cut_thr = 15
-    dataPath = '../../../Data/WRM/RAW/'
-    fullPath = dataPath + building_id + '.dat'
+    fullPath = source + building_id + '.dat'
     opf = open(fullPath).read().split("\n")
     opf.pop()
     building_set = {}
@@ -26,7 +25,7 @@ def build(building_id=''):
 
     for bid in building_set.keys():
         bset = building_set[bid]
-        output = "VOCAS/" + bid + ".voca"
+        output = target + bid + ".voca"
         with open(output, 'w') as f:
             f.write(",".join(bset.keys()))
 
@@ -36,4 +35,3 @@ if __name__ == '__main__':
         build(building_id)
     else:
         print('please run with argument: python SUPER_APVOCA.py testbuilding')
-#build(path = "../../../Data/WRM/RAW/testbuilding.dat")
