@@ -61,25 +61,13 @@ Hawki system is built on three main components,
 
      - PROJECT_HOME/Data/WRM/RAW/[BUILDING_ID].dat
 
-    2) Make bssid vocabulary mapping file (.voca)
+    2) Run trainer.py
 
-     $ cd PROJECT_HOME/Predictor/Module/APVOCA/
+     $ cd PROJECT_HOME/Predictor/
 
-     $ python SUPER_APVOCA.py [BUILDING_ID]
+     $ python trainer.py [BUILDING_ID]
 
-       - ex) python SUPER_APVOCA.py testbuilding
-
-     - You can see your vocabulary file in below path
-
-     - PROJECT_HOME/Predictor/Module/APVOCA/VOCAS/[BUILDING_ID].voca
-
-    3) Training Indoor data and make pickle file (.pkl)
-
-     $ cd PROJECT_HOME/Predictor/Module/GNB/
-
-     $ python [TRAINING_MODULE_NAME].py [BUILDING_ID]
-
-       - ex) python sklearn_gaussianNB.py testbuilding
+       - ex) python trainer.py testbuilding
 
      - You can see your pre-trained file in below path
 
