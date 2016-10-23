@@ -3,17 +3,17 @@ package com.socc.Hawki.app;
 /**
  * Created by joyeongje on 2016. 9. 4..
  */
-public class BuildingMarker extends Marker{
+public class BuildingData extends Data {
 
     private Double latitude;
     private Double longitude;
     private String phoneNumber;
     private String address;
 
-    public BuildingMarker(){};
+    public BuildingData(){};
 
-    public BuildingMarker(String bid, String title,String description,String url, double latitude, double longitude,
-                           String phoneNumber, String address) {
+    public BuildingData(String bid, String title, String description, String url, double latitude, double longitude,
+                        String phoneNumber, String address) {
 
         super(bid,title,description,url);
         this.latitude = latitude;

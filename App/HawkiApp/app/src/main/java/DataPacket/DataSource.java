@@ -1,4 +1,4 @@
-package data;
+package DataPacket;
 
 /**
  * Created by joyeongje on 2016. 9. 4..

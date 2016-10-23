@@ -3,12 +3,12 @@ package com.socc.Hawki.app;
 /**
  * Created by joyeongje on 2016. 9. 4..
  */
-public class IndoorMarker extends Marker{
+public class IndoorData extends Data {
 
     private String x,y,z; // 내 위치
 
-    public IndoorMarker(String bid, String title,String description,String url, String x, String y,
-                        String z) {
+    public IndoorData(String bid, String title, String description, String url, String x, String y,
+                      String z) {
         super(bid,title,description,url);
         this.x = x;
         this.y = y;

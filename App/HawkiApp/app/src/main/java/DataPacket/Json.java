@@ -1,10 +1,10 @@
-package data;
+package DataPacket;
 
 import android.net.wifi.ScanResult;
 
-import com.socc.Hawki.app.BuildingMarker;
-import com.socc.Hawki.app.IndoorMarker;
-import com.socc.Hawki.app.Marker;
+import com.socc.Hawki.app.BuildingData;
+import com.socc.Hawki.app.IndoorData;
+import com.socc.Hawki.app.Data;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import data.DataSource.DATAFORMAT;
+import DataPacket.DataSource.DATAFORMAT;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
@@ -22,11 +22,11 @@ public class Json {
 
     public static final int MAX_JSON_OBJECT = 50; // 최대 갯수
 
-    public List<Marker> load(JSONObject root, DATAFORMAT dataformat) throws JSONException {
+    public List<Data> load(JSONObject root, DATAFORMAT dataformat) throws JSONException {
         JSONObject jo = null;
         JSONArray dataArray = null;
-        List<Marker> markers = new ArrayList<Marker>();
-        Marker proMarker = null;
+        List<Data> datas = new ArrayList<Data>();
+        Data proData = null;
 
         try {
 
@@ -35,8 +35,8 @@ public class Json {
 
             else if (dataformat == DATAFORMAT.IndoorPosition) {
                 jo = root.getJSONObject("position");
-                proMarker = processIndoorJsonObject(jo);
-                markers.add(proMarker);
+                proData = processIndoorJsonObject(jo);
+                datas.add(proData);
             }
 
         } catch (JSONException e) { e.printStackTrace(); }
@@ -51,25 +51,25 @@ public class Json {
 
                 switch (dataformat) {
                     case BuildingInfo:
-                        proMarker = processBuildingJsonObject(jo);
+                        proData = processBuildingJsonObject(jo);
                         break;
 
                 }
-                markers.add(proMarker);
+                datas.add(proData);
             }
 
         }
 
-        return markers;
+        return datas;
 
     }
 
-    public Marker processBuildingJsonObject(JSONObject jo) throws JSONException {
-        Marker ma = null;
+    public Data processBuildingJsonObject(JSONObject jo) throws JSONException {
+        Data ma = null;
 
         if (jo.has("id") && jo.has("phone") && jo.has("title") && jo.has("address")) {
 
-            ma = new BuildingMarker(jo.getString("id"), jo.getString("title"), null, null,
+            ma = new BuildingData(jo.getString("id"), jo.getString("title"), null, null,
                     0, 0, jo.getString("phone"), jo.getString("address"));
         }
 
@@ -77,12 +77,12 @@ public class Json {
 
     }
 
-    public Marker processIndoorJsonObject(JSONObject jo) throws JSONException { // 실내위치
+    public Data processIndoorJsonObject(JSONObject jo) throws JSONException { // 실내위치
 
-        Marker ma = null;
+        Data ma = null;
 
         if (jo.has("x") && jo.has("y")) {
-            ma = new IndoorMarker("", "", null, null,
+            ma = new IndoorData("", "", null, null,
                     jo.getString("x"), jo.getString("y"),"");
         }
 
@@ -114,7 +114,6 @@ public class Json {
 
     public JSONObject createRequestIndoorJson(String bid, List<ScanResult> scanResults) throws JSONException {
         JSONObject indoorData = new JSONObject();
-
         indoorData.put("bid", bid);
 
         JSONArray rssiArray = new JSONArray();
