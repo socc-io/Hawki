@@ -43,16 +43,14 @@ public class CollectorActivity extends Activity {
         Toast.makeText(getApplication(), loc_x + "," + loc_y + "," + loc_z, Toast.LENGTH_LONG).show();
 
         try {
-            Json layer = new Json();
-            HttpHandler httpHandler = new HttpHandler();
 
+            Json layer = new Json();
             String collectorUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.RSSIDSET, 0, 0, 0, 0, null);
             JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(), loc_x, loc_y, loc_z, wifiScanResult);
             Log.i("Wifi Json : ", rssiJsonObject.toString());
 
-            String result = httpHandler.execute(collectorUrl,"POST",rssiJsonObject.toString()).get();
+            String result = new HttpHandler().execute(collectorUrl,"POST",rssiJsonObject.toString()).get();
             Log.i("Collect Result", result);
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +62,7 @@ public class CollectorActivity extends Activity {
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+
             if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
                 getWIFIScanResult();
             }

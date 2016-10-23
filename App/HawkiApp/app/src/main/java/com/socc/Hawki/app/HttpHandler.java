@@ -29,7 +29,6 @@ public class HttpHandler extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) { //params[0] = url, params[1] = get,post params[2] = json
         URL url;
         String response = null;
-        StringBuilder sb = new StringBuilder();
 
         String urlString = params[0];
         String httpFlag = params[1];
