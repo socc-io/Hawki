@@ -26,4 +26,3 @@ if __name__ == '__main__':
         build(building_id)
     else:
         print('please run with argument: python SUPER_APVOCA.py testbuilding')
-#build(path = "../../../Data/WRM/RAW/testbuilding.dat")
