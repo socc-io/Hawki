@@ -19,7 +19,7 @@ class GNB:
     def convert(self, vector):
         #Return ( x,y,z,confidence )
         preds_x = self.clf_x.predict(vector)
-        print('x_result_set: ' + preds_x)
+        print('x_result_set: ' + str(preds_x))
         preds_y = self.clf_y.predict(vector)
-        print('y_result_set: ' + preds_y)
+        print('y_result_set: ' + str(preds_y))
         return preds_x[0], preds_y[0]

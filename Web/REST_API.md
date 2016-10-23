@@ -34,15 +34,8 @@
             POSITION: {
                 x: ''
                 y: ''
-                floor: ''
+                z(floor) : ''
             }
             POI: ''
         }
 
-2. 포맷 
-Request
-{
-    
-}
-
-Response

@@ -61,8 +61,9 @@ def make_train_data2(inName, vocaName):
 
             # make rssi matrix
             for rssi in row['rssi']:
-                idx = vocaIdxMap[rssi['bssid']]
-                matItem[idx] = rssi['dbm']
+                if rssi['bssid'] in vocaIdxMap.keys():
+                    idx = vocaIdxMap[rssi['bssid']]
+                    matItem[idx] = rssi['dbm']
             res_mat.append(matItem)
 
             # make label(x,y,z) array
