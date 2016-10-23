@@ -2,6 +2,8 @@
 from flask import Flask, request, json, render_template, url_for, send_from_directory, redirect
 from flask_restful import Resource, Api, reqparse
 from Predictor.pipeline import Pipeline
+from werkzeug import secure_filename
+
 import requests
 import os
 import string
@@ -103,10 +105,12 @@ api.add_resource(GetPosition, '/getposition')
 api.add_resource(CollectRssi, '/collectrssi')
 
 # Request for static page
-UPLOAD_FOLDER = 'Maps'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+app.config['UPLOAD_FOLDER'] = 'static/map'
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+@app.route("/admin")
+def admin_pages():
+    return app.send_static_file("admin.html")
 
 @app.route("/static/<string:path>")
 def static_pages(path):
@@ -128,7 +132,8 @@ def upload_file():
         if file.filename == '':
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            filename = secure_filename(file.filename)
+            path = os.path.join(os.path.dirname(__file__), app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
-            return 'Saved Succesfully'
+            return 'Save successed'
     return 'Save failed'
