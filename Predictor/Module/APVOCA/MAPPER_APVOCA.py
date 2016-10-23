@@ -6,7 +6,7 @@ class APVOCA:
     def __init__(self):
         #Once Load module (only in start server)
         pass
-       
+
     def resume(self, config):
         #Always load data (load each process)
         bd_voca_file = 'Predictor/Module/APVOCA/VOCAS/' + config['building_id'] + ".voca"
