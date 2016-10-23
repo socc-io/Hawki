@@ -21,14 +21,13 @@
             android:layout_height="40dp"
             android:layout_weight="0.7"
             android:id="@+id/nameEdit"
-
             />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
-            android:text="건물 정보 요청!"
+            android:text="@string/requestBuild"
             android:id="@+id/requestBuild"
             android:onClick="searchBtnClicked"
             android:clickable="false" />

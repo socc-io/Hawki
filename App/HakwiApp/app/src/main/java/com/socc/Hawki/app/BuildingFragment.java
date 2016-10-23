@@ -37,8 +37,7 @@ public class BuildingFragment extends Fragment {
 
     private ProgressDialog pDialog;
     public static Marker selectedMarker;
-    private String selectedBuildId;
-    private String selectedBuildName;
+
     private ListView listView;
     ArrayList<HashMap<String, String>> buildList;
     List<Marker> markers = new ArrayList<>();
@@ -66,20 +65,42 @@ public class BuildingFragment extends Fragment {
         inputButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 2016. 9. 10. buildname 예외처리해야됨
-                String buildName = editText.getText().toString();
 
+                String buildName = editText.getText().toString();
                 String makeURL = DataSource.createRequestURL(DataSource.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
-                new GetContacts().execute(makeURL, "GET"); // 이러면 겟방식으로감
+                new GetContacts().execute(makeURL, "GET");
 
             }
 
         });
     }
 
-    /**
-     * Async task class to get json by making HTTP call
-     */
+    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener()
+    {
+        public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
+        {
+
+            String selectedBuildId;
+            String selectedBuildName;
+            String toastMessage;
+
+            selectedMarker = markers.get(pos);
+            selectedBuildId = selectedMarker.getBuildId();
+            selectedBuildName = selectedMarker.getTitle();
+
+            Toast.makeText(
+                    getActivity(),
+                    selectedBuildId,
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            editTextName.setText(selectedBuildName);
+            editTextId.setText(selectedBuildId);
+
+        }
+    };
+
+
     private class GetContacts extends AsyncTask<String, Void, Void> {
 
         @Override
@@ -183,36 +204,6 @@ public class BuildingFragment extends Fragment {
 
     }
 
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener()
-    {
-        public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
-        {
-
-            selectedMarker = markers.get(pos);
-            selectedBuildId = markers.get(pos).getBuildId();
-            selectedBuildName = markers.get(pos).getTitle();
-
-            String toastMessage = selectedBuildId;
-
-            Toast.makeText(
-                    getActivity(),
-                    toastMessage,
-                    Toast.LENGTH_SHORT
-            ).show();
-
-            if(getActivity().getClass().getSimpleName().equals(CollectorActivity.class.getSimpleName())) {
-                Log.d(TAG, "----COLLECTORACTICITY!-------");
-            }else if(getActivity().getClass().getSimpleName().equals(FinderActivity.class.getSimpleName())){
-                Log.d(TAG, "----LOCALIZATIONACTIVITY!!-------");
-            }
-            else{
-                Log.d(TAG, "------ERROR!-------");
-            }
-            editTextName.setText(selectedBuildName);
-            editTextId.setText(selectedBuildId);
-
-        }
-    };
 
 
 
