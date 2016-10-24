@@ -31,9 +31,10 @@ class Pipeline:
         self.main_pipe = pipeline_list[pipe_name]
         self.main_name = pipe_name
 
-    def process(self, input_data, config):
+    def process(self, input_data, config, verbose=False):
         global module_list
-        print "[Pipeline : '", self.main_name, "'] is now processing..."
+        if verbose:
+            print('[Pipeline : ', self.main_name, '] is now processing...')
         last_vector = input_data
         pipe_result = []
         for mname in self.main_pipe:

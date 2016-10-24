@@ -18,10 +18,12 @@ class GNB:
         with open(pklYPath, 'rb') as f:
             self.clf_y = pickle.load(f)
 
-    def convert(self, vector):
+    def convert(self, vector, verbose=False):
         #Return ( x,y,z,confidence )
         preds_x = self.clf_x.predict(vector)
-        print('x_result_set: ' + str(preds_x))
+        if verbose:
+            print('x_result_set: ' + str(preds_x))
         preds_y = self.clf_y.predict(vector)
-        print('y_result_set: ' + str(preds_y))
+        if verbose:
+            print('y_result_set: ' + str(preds_y))
         return preds_x[0], preds_y[0]
