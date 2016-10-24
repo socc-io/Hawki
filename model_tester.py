@@ -25,7 +25,7 @@ def readAllfiles(path):
 def testTrainedModule(train_data, test_data, pre_trained):
     total = 0
     correct = 0
-    testDataPath = 'TestData/'
+    testDataPath = 'Data/TestData/'
 
     ppl.load_pipe('SCIKIT')
 
@@ -59,9 +59,9 @@ def startTest(buildings):
         train_data = buildings[building_id]['train']
         test_data = buildings[building_id]['test']
         for key in modules:
-            tr.start_train_pipe(train_data, 'TestData/', key)
+            tr.start_train_pipe(train_data, 'Data/TestData/', key)
             testTrainedModule(train_data, test_data, modules[key])
 
 if __name__ == '__main__':
-    result = readAllfiles('TestData/')
+    result = readAllfiles('Data/TestData/')
     startTest(result)
