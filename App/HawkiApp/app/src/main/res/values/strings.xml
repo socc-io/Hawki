@@ -95,4 +95,11 @@
     <string name="collector">collector</string>
     <string name="requestBuild">건물 정보 요청</string>
     <string name="loading">로딩 중입니다</string>
+    <string name="z">Z:</string>
+    <string name="y">Y:</string>
+    <string name="x">X:</string>
+    <string name="collect">수집</string>
+    <string name="name">name</string>
+    <string name="buildName">빌딩이름</string>
+    <string name="id">빌딩ID</string>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,7 +10,8 @@
         android:layout_weight="7"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        class="com.socc.Hawki.app.BuildingFragment" >
+        class="com.socc.Hawki.app.BuildingFragment"
+        tools:layout="@layout/fragment_building">
 
     <ImageView
         android:layout_width="match_parent"
@@ -34,15 +36,15 @@
             android:layout_weight="1">
 
             <TextView
-                android:text="빌딩이름"
+                android:text="@string/buildName"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/editText_buildingName"
-                android:hint="name"
+                android:hint="@string/name"
                 android:textSize="17sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,13 +59,13 @@
             android:layout_weight="1">
 
             <TextView
-                android:text="빌딩ID"
+                android:text="@string/id"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/editText_buildingId"
                 android:text="id"
                 android:textSize="20sp"
@@ -82,7 +84,7 @@
             >
 
             <TextView
-                android:text="현재위치"
+                android:text="현재위치  "
                 android:textSize="20sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -93,15 +95,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:orientation="horizontal"
-
                 >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="  X:"
+                    android:text="@string/x"
                     android:textSize="20sp"
                     android:layout_weight="1"/>
+
                 <EditText
                     android:id="@+id/editTextX"
                     android:layout_width="0dp"
@@ -112,7 +114,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="  Y:"
+                    android:text="@string/y"
                     android:textSize="20sp"
                     android:layout_weight="1"/>
                 <EditText
@@ -125,7 +127,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="  Z:"
+                    android:text="@string/z"
                     android:textSize="20sp"
                     android:layout_weight="1"/>
                 <EditText
@@ -146,7 +148,7 @@
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="수집"
+        android:text="@string/collect"
         android:textSize="25sp"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

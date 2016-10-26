@@ -29,7 +29,6 @@ public class HttpHandler extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) { //params[0] = url, params[1] = get,post params[2] = json
         URL url;
         String response = null;
-
         String urlString = params[0];
         String httpFlag = params[1];
 
@@ -41,8 +40,12 @@ public class HttpHandler extends AsyncTask<String, Void, String> {
                 conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
                 conn.setRequestMethod("GET");
 
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-                response = convertStreamToString(in);
+                int HttpResult = conn.getResponseCode();
+
+                if (HttpResult == HttpURLConnection.HTTP_OK) {
+                    InputStream in = new BufferedInputStream(conn.getInputStream());
+                    response = convertStreamToString(in);
+                }
 
             } catch (MalformedURLException e) {
                 Log.e(TAG, "MalformedURLException: " + e.getMessage());
@@ -57,12 +60,8 @@ public class HttpHandler extends AsyncTask<String, Void, String> {
             try {
                 url = new URL(urlString);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(10000);
-                conn.setConnectTimeout(10000);
                 conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
                 conn.setRequestMethod("POST");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
 
                 OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
                 os.write(params[2]);
@@ -73,11 +72,9 @@ public class HttpHandler extends AsyncTask<String, Void, String> {
                 if (HttpResult == HttpURLConnection.HTTP_OK) {
                     InputStream in = new BufferedInputStream(conn.getInputStream());
                     response = convertStreamToString(in);
-
                 }
 
-            }
-            catch (MalformedURLException e) {
+            } catch (MalformedURLException e) {
                 Log.e(TAG, "MalformedURLException: " + e.getMessage());
             } catch (IOException e) {
                 Log.e(TAG, "IOException: " + e.getMessage());
@@ -86,6 +83,7 @@ public class HttpHandler extends AsyncTask<String, Void, String> {
             }
 
         }
+
         return response;
     }
 

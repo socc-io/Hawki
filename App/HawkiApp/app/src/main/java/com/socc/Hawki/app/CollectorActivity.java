@@ -53,6 +53,22 @@ public class CollectorActivity extends Activity {
 
     Paint mPaint;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_collector);
+
+        editTextX = (EditText) findViewById(R.id.editTextX);
+        editTextY = (EditText) findViewById(R.id.editTextY);
+        editTextZ = (EditText) findViewById(R.id.editTextZ);
+
+        mapView = (ImageView) findViewById(R.id.mapView);
+        listView = (ListView) findViewById(R.id.list);
+
+        wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
+
+    }
+
     public void getWIFIScanResult() {
         wifiScanResult = wifimanager.getScanResults(); // ScanResult
 
@@ -92,7 +108,6 @@ public class CollectorActivity extends Activity {
 
             @Override
             public void onBitmapFailed(Drawable errorDrawable) {
-                // TODO: 2016. 10. 23. 실패했을시 이미지 넣기.
 
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.noimage);
                 Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
@@ -153,22 +168,6 @@ public class CollectorActivity extends Activity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collector);
-
-        editTextX = (EditText) findViewById(R.id.editTextX);
-        editTextY = (EditText) findViewById(R.id.editTextY);
-        editTextZ = (EditText) findViewById(R.id.editTextZ);
-
-        mapView = (ImageView) findViewById(R.id.mapView);
-        listView = (ListView) findViewById(R.id.list);
-
-        wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
-
-    }
-
     public void collectorClicked(View v) throws JSONException {
 
         IntentFilter filter = new IntentFilter();
@@ -177,16 +176,5 @@ public class CollectorActivity extends Activity {
         wifimanager.startScan();
 
     }
-
-    public void onDraw() {
-
-
-    }
-
-
-
-
-
-
 
 }

@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = MainActivity.class.getSimpleName();
     public static final int REQUEST_CODE_COLLECTOR = 1001;
     public static final int REQUEST_CODE_LOCALIZATION = 1004;
-
     private static final int PERMISSIONS_REQUEST_CODE_ACCESS_COARSE_LOCATION = 9001;
 
 

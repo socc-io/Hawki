@@ -97,7 +97,6 @@ public class FinderActivity extends Activity {
 
                     @Override
                     public void onBitmapFailed(Drawable errorDrawable) {
-                        // TODO: 2016. 10. 23. 실패했을시 이미지 넣기.
 
                         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.noimage);
                         Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);

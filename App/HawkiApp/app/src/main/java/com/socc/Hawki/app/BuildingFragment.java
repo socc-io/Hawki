@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -51,12 +52,8 @@ public class BuildingFragment extends Fragment {
     View rootView;
     EditText editText;
     Button inputButton;
-    EditText editTextName, editTextId;
+    TextView editTextName, editTextId;
     ImageView mapView;
-    Bitmap newBitmap;
-    Canvas canvas;
-    private Paint mPaint = null;
-
 
     private ProgressDialog pDialog;
     public static Data selectedData;
@@ -77,8 +74,8 @@ public class BuildingFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        editTextName = (EditText)getActivity().findViewById(R.id.editText_buildingName);
-        editTextId = (EditText)getActivity().findViewById(R.id.editText_buildingId);
+        editTextName = (TextView)getActivity().findViewById(R.id.editText_buildingName);
+        editTextId = (TextView)getActivity().findViewById(R.id.editText_buildingId);
 
         inputButton = (Button) rootView.findViewById(R.id.requestBuild);
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
@@ -191,10 +188,6 @@ public class BuildingFragment extends Fragment {
 
         }
     };
-
-
-
-
 }
 
 
