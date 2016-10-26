@@ -3,6 +3,7 @@ from flask import Flask, request, json, render_template, url_for, send_from_dire
 from flask_restful import Resource, Api, reqparse
 from Predictor.pipeline import Pipeline
 from werkzeug import secure_filename
+import CONFIG
 
 import requests
 import os
@@ -10,12 +11,6 @@ import string
 
 app = Flask(__name__)
 api = Api(app)
-
-client_id = 'sqp83uhdtH1HAE7jPREy'
-client_secret = 'HJEBO3Aod8'
-search_url = "http://openapi.naver.com/v1/search/local.xml"
-daum_app_key = '1b53126df63a2e4ea0dc1a236c67d0d8'  # DAUM API KEY
-daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
 
 # Init Pipeline
 ppl = Pipeline()
@@ -25,18 +20,14 @@ def chexc(content):
     content_punc_removed = ''.join(ch for ch in content if ch not in exclude)
     return content_punc_removed
 
-class BuildingInfo(Resource):
-    # Request location info to DAUM
-    def getBuildInfoByName(self, name='국제캠퍼스'):  # Request location info to DAUM
-        daum_search_keyword = '&query=' + name
-        daym_search_latitude = ''  # latitude
-        daum_search_logitude = ''  # longitude
-        daum_search_location = ''  # var for searcing query(get) (&location)
-        daum_search_radius = ''  # radius (&radius)
+class DaumSearchEngine:
 
+    def getBuildInfoByName(self, name):
+        daum_search_query = 'https://apis.daum.net/local/v1/search/keyword.json?apikey='
+        daum_app_key = CONFIG.DAUM['DAUM_KEY']
+        daum_search_keyword = '&query=' + name
         daum_search_full_query = daum_search_query + daum_app_key + daum_search_keyword;
         r = requests.get(daum_search_full_query)
-
         return self.parsingBuildInfoJsonData(json_data=r.json())
 
     # Parse json data from DAUM API
@@ -50,6 +41,14 @@ class BuildingInfo(Resource):
                     'address': r['address']}
             results.append(temp)
         return {'Build':results}
+
+class BuildingInfo(Resource):
+    # Request location info to DAUM
+    def getBuildInfoByName(self, name='김포공항'):  # Request location info to DAUM
+        building_search_engine = None
+        if CONFIG.COMMON['BUILDING_SEARCH_ENGINE'] == 'DAUM':
+            building_search_engine = DaumSearchEngine()
+        return building_search_engine.getBuildInfoByName(name)
 
     def get(self):
         buildName = request.args.get('buildName')
@@ -81,20 +80,19 @@ class GetPosition(Resource):
         jsonObj = request.get_json()
         rssiSet = jsonObj['rssi']
         buildingId = jsonObj['bid']
-
         return json.dumps(self.predictPositionByRssi(rssiSet, buildingId))
 
 class CollectRssi(Resource):
-    def saveRssiInfo(self, data={"bid":"TEST","x":2,"y":2,"z":2,"rssi":[{"bssid":"39:33:34:f2:dd:cc","dbm":-47}]}):
+    def saveRssiInfo(self, data = \
+      {"bid":"TEST","x":2,"y":2,"z":2,"rssi":[{"bssid":"39:33:34:f2:dd:cc","dbm":-47}]}):
         bid = data['bid']
         savePath = 'Data/WRM/RAW/' + bid + '.dat'
         with open(savePath, 'a') as f:
             f.write(json.dumps(data) + '\n')
-
         return 'save data'
 
     def get(self):
-        return 'do not access with GET Method'
+        return 'Unvalid access'
 
     def post(self):
         jsonObj = request.get_json()
@@ -124,17 +122,14 @@ def allowed_file(filename):
 @app.route('/mapupload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        # check if the post request has the file part
         if 'file' not in request.files:
             return redirect(request.url)
         file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
         if file.filename == '':
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             path = os.path.join(os.path.dirname(__file__), app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
-            return 'Save successed'
+            return 'Save success'
     return 'Save failed'
