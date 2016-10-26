@@ -39,4 +39,4 @@ if __name__ == '__main__':
         start_train_pipe(building_id, ratio)
     else:
         print('please run with argument!')
-        print('> python make_data.py [BUILDING_ID] [RATIO_FOR_TEST]')
+        print('> python mkdata.py [BUILDING_ID] [RATIO_FOR_TEST]')

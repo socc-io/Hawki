@@ -1,0 +1,7 @@
+COMMON = {
+  'BUILDING_SEARCH_ENGINE' : 'DAUM'
+}
+
+DAUM = {
+  'DAUM_KEY':'1b53126df63a2e4ea0dc1a236c67d0d8'
+}
