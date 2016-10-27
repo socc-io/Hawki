@@ -1,4 +1,4 @@
-# Hawki (Indoor Positioning Framework)
+# 호크아이 Hawki (Indoor Positioning Framework)
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/Hawki.png)
 
@@ -8,9 +8,9 @@
 
 호크아이는 크게 3가지 중요 모듈로 구성되어있습니다.
 
-  1. 수집/학습/판단 서버
-  2. 클라이언트 모듈
-  3. 알고리즘 
+  1. 수집/학습/판단 서버 : 빌딩 맵정보를 관리하고, 알고리즘과 클라이언트 사이의 중개자 역할을 합니다
+  2. 클라이언트 모듈 : WRM등의 신호를 수집하고, 맵상에 추정된 현재 위치를 표시합니다. 현재 안드로이드만 지원합니다.
+  3. 알고리즘 : Gaussian Naive Bayesian 알고리즘 등 여러가지 실내위치 추정 알고리즘을 지원합니다.
 
 
 ### Hawki is the framework system for indoor positioning service. 
@@ -21,20 +21,20 @@ Simply, Hawki provide whole systems for indoor positioning that include Server-s
 Hawki system is built on three main components,
 
   1. Server : Mediating between Predictor and client. Built with Flask (python)
-  2. Client Application : Collect wifi radio map, show position on the map. Android >= 6.0, iPhone(Not-Implemented) 
+  2. Client Application : Collect wifi radio map or etc, show position on the map. Android >= 6.0, iPhone(Not-Implemented) 
   3. Predictors (server) : Predicting user's position in the building. Built with Scikit, Pytrain
 
 
-# Test video
+# 테스트영상 Test video
 
 * Hawki test video -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be 
 
 * Hawki field test video ( in coex mall ) -> https://www.youtube.com/watch?v=PaCcq-pzsbY
 
 
-# Quick start
+# 빨리 시작하기 Quick start
 
-### 1. Install server
+### 1. 서버 설치 Install server
 
     $ git clone https://github.com/socc-io/Hawki.git
 
@@ -43,15 +43,14 @@ Hawki system is built on three main components,
     $ ./start.py [PORT_NUMBER]
       - ex) ./start.py 4000
 
-### 2. Install Client
-
-    For Developers,
+### 2. 클라이언트 설치 Install Client
 
     Install Android-Studio : https://developer.android.com/studio/index.html?hl=ko
 
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
 
-### 3. Collecting your indoor data using APP
+### 3. 실내 신호 수집하기 Collecting your indoor data using APP
+
  ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/collector1.jpg)
  
     1)After Open application, Click the Collector button
@@ -67,19 +66,20 @@ Hawki system is built on three main components,
     - z means level of floor
     
 
-### 4. Training indoor data
+### 4. 학습시키기 Training indoor data
+
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/raw_data.PNG)
 
-    1) After Step 3, You can see your collected building's indoor data
+    1) 빌딩데이터 확인 After Step 3, You can see your collected building's indoor data
      $ ./lsbid.sh
        YOUR BUILDING DATAS =================================================
        12665691.dat  17573702.dat  18059921.dat  22251293.dat  27539636.dat
 
-    2) Run trainer.py
+    2) 빌딩학습 시키기 Run trainer.py
      $ ./trainer.py [BUILDING_ID]
        - ex) ./trainer.py 12665691
 
-### 5. Predicting location using APP
+### 5. 실내위치 추정하기 Predicting location using APP
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/finder1.jpg)
     
@@ -91,7 +91,7 @@ Hawki system is built on three main components,
     
     4)And if you click find button, a toast message confirms a location that you are on 
 
-# References
+# 참조 References
 
 An Unsupervised Indoor Localization Method based on Received Signal Strength RSS Measurements [http://www.merl.com/publications/docs/TR2015-129.pdf]
 
@@ -104,7 +104,7 @@ Indoor Location Sensing Using Geo-Magnetism, Jaewoo Chung, Matt Donahoe, Chris S
 Vessel integrated information management system based on Wifi Positioning technology, Hyuk-soon Kwan, Dongsoo Han, Song-Que Park, Won-Hee An, Taehyun Park, Net Co.Ltd.
 
 
-# Copyright
+# 저작권 Copyright
 
 Copyright (c) 2016 Captain-Americano
 
@@ -118,7 +118,7 @@ Jinwon Lee  [ jino3871@gmail.com ] site : https://github.com/jino678
 
 SeoHyun Back [ becxer87@gmail.com ] site : https://github.com/becxer
 
-# License
+# 라이센스 License
 
 The MIT License (MIT)
 
