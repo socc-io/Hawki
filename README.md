@@ -14,9 +14,23 @@ Hawki system is built on three main components,
   3. Predictors (server) : Predicting user's position in the building. Built with Scikit, Pytrain
 
 
+### 실내 위치 측정 프레임워크 호크아이
+Hawki is the framework system for indoor positioning service. 
+
+실내 위치 측정 기술은 IOT 시대를 맞이하여 점점 더 그 중요성이 커져가고 있습니다. 호크아이 프레임워크는 와이파이와 같은 신호를 사용하여 실내에서 사용자의 디바이스가 어디에 위치되어있는지 알기위한 전체 시스템을 제공합니다.
+호크아이는 실내위치 수집/학습/판단 서버와 클라이언트 송수신모듈 그리고 학습 알고리즘 모두를 제공합니다.
+
+호크아이는 크게 3가지 중요 모듈로 구성되어있습니다.
+
+  1. 수집/학습/판단 서버
+  2. 클라이언트 모듈
+  3. 알고리즘 
+
+
 * Hawki test video -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be 
 
 * Hawki field test video ( in coex mall ) -> https://www.youtube.com/watch?v=PaCcq-pzsbY
+
 
 # Quick start
 
