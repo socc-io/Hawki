@@ -56,15 +56,14 @@ Hawki system is built on three main components,
 ### 4. Training indoor data
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/raw_data.PNG)
 
-    1) After Step 3, You can see your collected indoor data in below path
-     - PROJECT_HOME/Data/WRM/RAW/[BUILDING_ID].dat
+    1) After Step 3, You can see your collected building's indoor data
+     $ ./lsbid.sh
+       YOUR BUILDING DATAS =================================================
+       12665691.dat  17573702.dat  18059921.dat  22251293.dat  27539636.dat
 
     2) Run trainer.py
      $ ./trainer.py [BUILDING_ID]
-       - ex) ./trainer.py 1552323
-
-     - You confirm your trained binary in below path
-     - PROJECT_HOME/Predictor/Module/GNB/bin/[BUILDING_ID]_gnb_[x|y]_0.pkl
+       - ex) ./trainer.py 12665691
 
 ### 5. Predicting location using APP
 
