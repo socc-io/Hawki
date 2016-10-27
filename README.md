@@ -52,44 +52,52 @@ Hawki system is built on three main components,
 ### 3. 실내 신호 수집하기 Collecting your indoor data using APP
 
  ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/collector1.jpg)
- 
+
+
+    1)어플리케이션을 켠후에 Collector 버튼을 눌러주세요
+    
+    2)실내 신호를 수집하고 싶은 빌딩이름을 검색후에 선택해주세요
+    
+    3)현재 위치를 입력하고, 수집 버튼을 눌러주세요
+
+
     1)After Open application, Click the Collector button
     
-    2)Input building name that you are located on and next click search button
+    2)Search building name that you are located on and select
     
-    3)Select building name from searched lists
-    
-    4)At intervals of one meter, Input x, y, z(repeat 10 times) in a single place and click collection button
-    If you do, a toast message that shows input values appears on the screen
-    - x means x-axis in building.
-    - y means y-axis in building.
-    - z means level of floor
+    3)Input your coordinate on map and push collect button
     
 
 ### 4. 학습시키기 Training indoor data
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/raw_data.PNG)
 
-    1) 빌딩데이터 확인 After Step 3, You can see your collected building's indoor data
+    1) 3번에서 수집한 빌딩데이터 확인
+       After Step 3, You can see your collected building's indoor data
+
      $ ./lsbid.sh
        YOUR BUILDING DATAS =================================================
        12665691.dat  17573702.dat  18059921.dat  22251293.dat  27539636.dat
 
-    2) 빌딩학습 시키기 Run trainer.py
+    2) 빌딩학습 시키기
+       Train your building data
+       
      $ ./trainer.py [BUILDING_ID]
        - ex) ./trainer.py 12665691
 
 ### 5. 실내위치 추정하기 Predicting location using APP
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/finder1.jpg)
-    
+
+    1)어플리케이션을 켠후에 Finder 버튼을 눌러주세요
+
+    2)실내 위치를 추정하고 싶은 빌딩이름을 검색한후에 측정 버튼을 눌러주세요
+
+
     1)After Open application, Click the Finder button
     
-    2)Input building name that you are located on and next click search button
-    
-    3)Select building name from searched lists
-    
-    4)And if you click find button, a toast message confirms a location that you are on 
+    2)Search building name that you are located on and push find button
+
 
 # 참조 References
 
@@ -106,7 +114,7 @@ Vessel integrated information management system based on Wifi Positioning techno
 
 # 저작권 Copyright
 
-Copyright (c) 2016 Captain-Americano
+Copyright (c) 2016 팀 캡틴아메리카노 Captain-Americano
 
 Hyeok Oh [ oh4851@gmail.com ] site : https://github.com/oh4851
 
