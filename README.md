@@ -1,4 +1,4 @@
-[한글 (in Korean)]()
+[한글 (in Korean)](https://github.com/socc-io/Hawki#호크아이-실내-위치-측정-프레임워크)
 
 # Hawki (Indoor Positioning Framework)
 
@@ -124,7 +124,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
+---
 
 # 호크아이 (실내 위치 측정 프레임워크)
 
