@@ -1,5 +1,6 @@
-[한글 (in Korean)](#호크아이-실내-위치-측정-프레임워크)
+[한글 (in Korean)](#inkorean)
 
+<div id="inenglish"></div>
 # Hawki (Indoor Positioning Framework)
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/Hawki.png)
@@ -128,6 +129,9 @@ SOFTWARE.
 ---
 
 
+[English (in English)](#inenglish)
+
+<div id="inkorean"></div>
 # 호크아이 (실내 위치 측정 프레임워크)
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/Hawki.png)
