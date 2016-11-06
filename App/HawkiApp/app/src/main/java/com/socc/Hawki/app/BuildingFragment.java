@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.SyncStateContract;
@@ -62,6 +63,9 @@ public class BuildingFragment extends Fragment {
     ArrayList<HashMap<String, String>> buildList;
     List<Data> datas = new ArrayList<>();
 
+    int xSize;
+    int ySize;
+
     public static Data getInstance() {
         return selectedData;
     }
@@ -79,16 +83,19 @@ public class BuildingFragment extends Fragment {
 
         inputButton = (Button) rootView.findViewById(R.id.requestBuild);
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
-        buildList = new ArrayList<>();
-        listView = (ListView) rootView.findViewById(R.id.list);
-        mapView = (ImageView) rootView.findViewById(R.id.mapView);
 
+        mapView = (ImageView) rootView.findViewById(R.id.mapView);
+        listView = (ListView) rootView.findViewById(R.id.list);
+        buildList = new ArrayList<>();
 
         final Json layer = new Json();
 
         inputButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                mapView.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
 
                 String buildName = editText.getText().toString();
                 String requestBuildURL = DataSource.createRequestURL(DataSource.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
@@ -156,9 +163,6 @@ public class BuildingFragment extends Fragment {
                 listView.setAdapter(adapter);
                 listView.setOnItemClickListener(itemClickListener);
 
-                listView.setVisibility(View.VISIBLE);
-                mapView.setVisibility(View.GONE);
-
             }
 
         });
@@ -185,7 +189,37 @@ public class BuildingFragment extends Fragment {
             editTextName.setText(selectedBuildName);
             editTextId.setText(selectedBuildId);
 
+            String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" + selectedBuildId + ".jpg";
 
+            Picasso.with(getActivity()).load(mapImageUrl).into(new Target() {
+                @Override
+                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                    Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+                    Canvas canvas = new Canvas(newBitmap);
+
+                    mapView.setImageBitmap(newBitmap);
+                    mapView.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
+
+                }
+
+                @Override
+                public void onBitmapFailed(Drawable errorDrawable) {
+
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.noimage);
+                    Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+                    mapView.setImageBitmap(newBitmap);
+                    mapView.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
+
+                }
+
+                @Override
+                public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                }
+            });
         }
     };
 }

@@ -70,23 +70,16 @@ public class FinderActivity extends Activity {
                 String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" +  selectedBuildId +".jpg";
                 Log.d("Map Url : ", mapImageUrl);
 
-                Picasso.with(getApplicationContext()).load(mapImageUrl).into(new Target() {
+                Picasso.with(getApplicationContext()).load(mapImageUrl).resize(mapView.getWidth(),mapView.getHeight()).into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                         Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
                         Canvas canvas = new Canvas(newBitmap);
 
-                        float x_Size = newBitmap.getWidth() / 20;
-                        float y_Size = newBitmap.getHeight() / 10;
-
-                        Log.i("x_size",Float.toString(x_Size));
-                        Log.i("y_size", Float.toString(y_Size));
-
                         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                        mPaint.setStyle(Paint.Style.STROKE);
-                        mPaint.setStrokeWidth(3);
+                        mPaint.setStyle(Paint.Style.FILL);
                         mPaint.setColor(Color.RED);
-                        canvas.drawCircle(x_Size * getX,y_Size * getY,15,mPaint);
+                        canvas.drawCircle(getX * 32,getY * 20,30,mPaint);
 
                         mapView.setImageBitmap(newBitmap);
 
@@ -97,29 +90,7 @@ public class FinderActivity extends Activity {
 
                     @Override
                     public void onBitmapFailed(Drawable errorDrawable) {
-
-                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.noimage);
-                        Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
-
-                        Canvas canvas = new Canvas(newBitmap);
-
-                        float x_Size = newBitmap.getWidth() / 20;
-                        float y_Size = newBitmap.getHeight() / 10;
-
-                        Log.i("x_size",Float.toString(x_Size));
-                        Log.i("y_size", Float.toString(y_Size));
-
-                        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                        mPaint.setStyle(Paint.Style.STROKE);
-                        mPaint.setStrokeWidth(3);
-                        mPaint.setColor(Color.RED);
-                        canvas.drawCircle(x_Size * getX,y_Size * getY,15,mPaint);
-
-                        mapView.setImageBitmap(newBitmap);
-
-                        mapView.setVisibility(View.VISIBLE);
-                        listView.setVisibility(View.GONE);
-
+                        Toast.makeText(getApplicationContext(),"지도를 등록해주세요",Toast.LENGTH_LONG).show();
                     }
 
                     @Override

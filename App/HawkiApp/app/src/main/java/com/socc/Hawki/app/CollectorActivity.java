@@ -18,6 +18,7 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,6 +54,10 @@ public class CollectorActivity extends Activity {
 
     Paint mPaint;
 
+    String loc_x;
+    String loc_y;
+    String loc_z;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,78 +71,68 @@ public class CollectorActivity extends Activity {
         listView = (ListView) findViewById(R.id.list);
 
         wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
+        mapView.setOnTouchListener(new View.OnTouchListener() {
 
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        final float x = event.getX();
+                        final float y = event.getY();
+
+                        String selectedBuildId = BuildingFragment.getInstance().getBuildId();
+                        String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" + selectedBuildId + ".jpg";
+                        Log.d("Map Url : ", mapImageUrl);
+
+                        // TODO: 2016. 11. 6. 맵뷰 사이즈 고정해야됨 
+
+                        Picasso.with(getApplicationContext()).load(mapImageUrl).resize(mapView.getWidth(),mapView.getHeight()).into(new Target() {
+                            @Override
+                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+                                Canvas canvas = new Canvas(newBitmap);
+
+                                mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                                mPaint.setStyle(Paint.Style.FILL);
+                                mPaint.setColor(Color.RED);
+                                canvas.drawCircle(x, y, 30, mPaint);
+
+                                mapView.setImageBitmap(newBitmap);
+
+                                mapView.setVisibility(View.VISIBLE);
+                                listView.setVisibility(View.GONE);
+
+                                editTextX.setText(String.valueOf((int)x/32));
+                                editTextY.setText(String.valueOf((int)y/20));
+                                editTextZ.setText(String.valueOf(0));
+
+                            }
+
+                            @Override
+                            public void onBitmapFailed(Drawable errorDrawable) {
+                                Toast.makeText(getApplicationContext(),"지도를 등록해주세요",Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                            }
+                        });
+
+                }
+                return true;
+            }
+        });
     }
+
 
     public void getWIFIScanResult() {
         wifiScanResult = wifimanager.getScanResults(); // ScanResult
 
-        final String loc_x = editTextX.getText().toString();
-        final String loc_y = editTextY.getText().toString();
-        final String loc_z = editTextZ.getText().toString();
-
-        String selectedBuildId = BuildingFragment.getInstance().getBuildId();
-
-        String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" +  selectedBuildId +".jpg";
-        Log.d("Map Url : ", mapImageUrl);
-
-        Picasso.with(getApplicationContext()).load(mapImageUrl).into(new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
-                Canvas canvas = new Canvas(newBitmap);
-
-                float x_Size = newBitmap.getWidth() / 20;
-                float y_Size = newBitmap.getHeight() / 10;
-
-                Log.i("x_size",Float.toString(x_Size));
-                Log.i("y_size", Float.toString(y_Size));
-
-                mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                mPaint.setStyle(Paint.Style.STROKE);
-                mPaint.setStrokeWidth(3);
-                mPaint.setColor(Color.RED);
-                canvas.drawCircle(x_Size * Float.parseFloat(loc_x),y_Size * Float.parseFloat(loc_y),15,mPaint);
-
-                mapView.setImageBitmap(newBitmap);
-
-                mapView.setVisibility(View.VISIBLE);
-                listView.setVisibility(View.GONE);
-
-            }
-
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.noimage);
-                Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
-
-                Canvas canvas = new Canvas(newBitmap);
-
-                float x_Size = newBitmap.getWidth() / 20;
-                float y_Size = newBitmap.getHeight() / 10;
-
-                Log.i("x_size",Float.toString(x_Size));
-                Log.i("y_size", Float.toString(y_Size));
-
-                mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                mPaint.setStyle(Paint.Style.STROKE);
-                mPaint.setStrokeWidth(3);
-                mPaint.setColor(Color.RED);
-                canvas.drawCircle(x_Size * Integer.parseInt(loc_x),y_Size * Integer.parseInt(loc_y),15,mPaint);
-
-                mapView.setImageBitmap(newBitmap);
-
-                mapView.setVisibility(View.VISIBLE);
-                listView.setVisibility(View.GONE);
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        });
+        loc_x = editTextX.getText().toString();
+        loc_y = editTextY.getText().toString();
+        loc_z = editTextZ.getText().toString();
 
         Toast.makeText(getApplication(), loc_x + " ," + loc_y + " ," + loc_z, Toast.LENGTH_LONG).show();
 
@@ -148,7 +143,7 @@ public class CollectorActivity extends Activity {
             JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(), loc_x, loc_y, loc_z, wifiScanResult);
             Log.i("Wifi Json : ", rssiJsonObject.toString());
 
-            String result = new HttpHandler().execute(collectorUrl,"POST",rssiJsonObject.toString()).get();
+            String result = new HttpHandler().execute(collectorUrl, "POST", rssiJsonObject.toString()).get();
             Log.i("Collect Result", result);
 
         } catch (Exception e) {
@@ -174,7 +169,7 @@ public class CollectorActivity extends Activity {
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
         wifimanager.startScan();
-
     }
+
 
 }

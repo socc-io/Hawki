@@ -13,12 +13,6 @@
         class="com.socc.Hawki.app.BuildingFragment"
         tools:layout="@layout/fragment_building">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:id="@+id/mapView"
-        />
 
     </fragment>
 
