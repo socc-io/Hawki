@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
-            android:text="@string/requestBuild"
+            android:text="@string/requestBuildingInfo"
             android:id="@+id/requestBuild"
             android:onClick="searchBtnClicked"
             android:clickable="false" />
@@ -34,7 +34,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/listView_building"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 

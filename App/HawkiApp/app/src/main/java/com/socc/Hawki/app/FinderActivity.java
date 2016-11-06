@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -128,7 +127,7 @@ public class FinderActivity extends Activity {
         wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
 
         mapView = (ImageView) findViewById(R.id.mapView);
-        listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.listView_building);
     }
 
 

@@ -93,7 +93,7 @@
     </string>
     <string name="finder">finder</string>
     <string name="collector">collector</string>
-    <string name="requestBuild">건물 정보 요청</string>
+    <string name="requestBuildingInfo">건물 정보</string>
     <string name="loading">로딩 중입니다</string>
     <string name="z">Z:</string>
     <string name="y">Y:</string>

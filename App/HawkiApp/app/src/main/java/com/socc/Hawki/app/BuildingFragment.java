@@ -3,15 +3,9 @@ package com.socc.Hawki.app;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,20 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Handler;
 
 import DataPacket.DataSource;
 import DataPacket.Json;
@@ -52,7 +41,7 @@ public class BuildingFragment extends Fragment {
 
     View rootView;
     EditText editText;
-    Button inputButton;
+    Button btn_buildingInfo;
     TextView editTextName, editTextId;
     ImageView mapView;
 
@@ -78,19 +67,20 @@ public class BuildingFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         editTextName = (TextView)getActivity().findViewById(R.id.editText_buildingName);
         editTextId = (TextView)getActivity().findViewById(R.id.editText_buildingId);
 
-        inputButton = (Button) rootView.findViewById(R.id.requestBuild);
+        btn_buildingInfo = (Button) rootView.findViewById(R.id.requestBuild);
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
 
         mapView = (ImageView) rootView.findViewById(R.id.mapView);
-        listView = (ListView) rootView.findViewById(R.id.list);
+        listView = (ListView) rootView.findViewById(R.id.listView_building);
         buildList = new ArrayList<>();
 
         final Json layer = new Json();
 
-        inputButton.setOnClickListener(new View.OnClickListener() {
+        btn_buildingInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -189,6 +179,7 @@ public class BuildingFragment extends Fragment {
             editTextName.setText(selectedBuildName);
             editTextId.setText(selectedBuildId);
 
+
             String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" + selectedBuildId + ".jpg";
 
             Picasso.with(getActivity()).load(mapImageUrl).into(new Target() {
@@ -205,11 +196,13 @@ public class BuildingFragment extends Fragment {
 
                 @Override
                 public void onBitmapFailed(Drawable errorDrawable) {
-
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.noimage);
-                    Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-
-                    mapView.setImageBitmap(newBitmap);
+                    //TODO 수노 16-11-06 listView, mapView fragment 분리 필요
+                    Toast.makeText(getActivity(),"!!지도를 등록해주세요",Toast.LENGTH_LONG).show();
+                    mapView.setImageResource(R.mipmap.nomapimage);
+//                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.noimage);
+//                    Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+//
+//                    mapView.setImageBitmap(newBitmap);
                     mapView.setVisibility(View.VISIBLE);
                     listView.setVisibility(View.GONE);
 

@@ -1,22 +1,18 @@
 package com.socc.Hawki.app;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,8 +32,6 @@ import java.util.List;
 
 import DataPacket.DataSource;
 import DataPacket.Json;
-
-import static com.socc.Hawki.app.R.id.mapView;
 
 /**
  * Created by Jeong on 2016-09-16.
@@ -68,7 +62,7 @@ public class CollectorActivity extends Activity {
         editTextZ = (EditText) findViewById(R.id.editTextZ);
 
         mapView = (ImageView) findViewById(R.id.mapView);
-        listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.listView_building);
 
         wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
         mapView.setOnTouchListener(new View.OnTouchListener() {
@@ -111,7 +105,7 @@ public class CollectorActivity extends Activity {
 
                             @Override
                             public void onBitmapFailed(Drawable errorDrawable) {
-                                Toast.makeText(getApplicationContext(),"지도를 등록해주세요",Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getApplicationContext(),"지도를 등록해주세요",Toast.LENGTH_LONG).show();
                             }
 
                             @Override
