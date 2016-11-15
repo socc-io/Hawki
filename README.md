@@ -3,7 +3,7 @@
 
 [한글 (in Korean)](#inkorean)
 
-![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/Hawki.png)
+![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/logo_Hawki.png)
 
 
 ### Hawki is the framework system for indoor positioning service.
@@ -134,8 +134,6 @@ SOFTWARE.
 
 [English (in English)](#inenglish)
 
-![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/Hawki.png)
-
 ### 실내 위치 측정 프레임워크 호크아이
 실내 위치 측정 기술은 IOT 시대를 맞이하여 점점 더 그 중요성이 커져가고 있습니다. 호크아이 프레임워크는 와이파이와 같은 신호를 사용하여 실내에서 사용자의 디바이스가 어디에 위치되어있는지 알기위한 전체 시스템을 제공합니다.
 호크아이는 실내위치 수집/학습/판단 서버와 클라이언트 송수신모듈 그리고 학습 알고리즘 모두를 제공합니다.
@@ -202,54 +200,4 @@ SOFTWARE.
     1)어플리케이션을 켠후에 Finder 버튼을 눌러주세요
 
     2)실내 위치를 확인하고 싶은 빌딩이름을 검색한후에 측정 버튼을 눌러주세요
-
-
-# 참조
-
-An Unsupervised Indoor Localization Method based on Received Signal Strength RSS Measurements [http://www.merl.com/publications/docs/TR2015-129.pdf]
-
-Unsupervised Indoor Localization No Need to War-Drive [http://engr.uconn.edu/~song/classes/nes/unloc.pdf]
-
-Building a Practical Wifi-Based Indoor Navigation System, Dongsoo Han, Sukhoon Jung, Minkyu Lee and Giwan Yoon, KAIST
-
-Indoor Location Sensing Using Geo-Magnetism, Jaewoo Chung, Matt Donahoe, Chris Schmandt, Ig-Jae Kim, Pedram Razavai, Micaela Wiseman, MIT Media Laboratory 20 Ames St.
-
-Vessel integrated information management system based on Wifi Positioning technology, Hyuk-soon Kwan, Dongsoo Han, Song-Que Park, Won-Hee An, Taehyun Park, Net Co.Ltd.
-
-
-# 저작권
-
-Copyright (c) 2016 팀 캡틴아메리카노 Captain-Americano
-
-Hyeok Oh [ oh4851@gmail.com ] site : https://github.com/oh4851
-
-Sunho Jung [ tnsgh1992@gmail.com ] site : https://github.com/sunhojeong
-
-Youngje jo [ siosio3103@gmail.com ] site : https://github.com/siosio34
-
-Jinwon Lee  [ jino3871@gmail.com ] site : https://github.com/jino678
-
-SeoHyun Back [ becxer87@gmail.com ] site : https://github.com/becxer
-
-# 라이센스
-
-The MIT License (MIT)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
+    
