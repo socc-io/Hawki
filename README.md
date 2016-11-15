@@ -1,7 +1,4 @@
-<div id="inenglish"></div>
 # Hawki (Indoor Positioning Framework)
-
-[한글 (in Korean)](#inkorean)
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/logo_Hawki.png)
 
@@ -124,80 +121,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
----
-
-
-<div id="inkorean"></div>
-# 호크아이 (실내 위치 측정 프레임워크)
-
-[English (in English)](#inenglish)
-
-### 실내 위치 측정 프레임워크 호크아이
-실내 위치 측정 기술은 IOT 시대를 맞이하여 점점 더 그 중요성이 커져가고 있습니다. 호크아이 프레임워크는 와이파이와 같은 신호를 사용하여 실내에서 사용자의 디바이스가 어디에 위치되어있는지 알기위한 전체 시스템을 제공합니다.
-호크아이는 실내위치 수집/학습/판단 서버와 클라이언트 송수신모듈 그리고 학습 알고리즘 모두를 제공합니다.
-
-호크아이는 크게 3가지 중요 모듈로 구성되어있습니다.
-
-  1. 수집/학습/판단 서버 : 빌딩 맵정보를 관리하고, 알고리즘과 클라이언트 사이의 중개자 역할을 합니다
-  2. 클라이언트 모듈 : WRM등의 신호를 수집하고, 맵상에 추정된 현재 위치를 표시합니다. 현재 안드로이드만 지원합니다.
-  3. 알고리즘 : Gaussian Naive Bayesian 알고리즘 등 여러가지 실내위치 추정 알고리즘을 지원합니다.
-
-# 테스트 영상
-
-* Hawki 테스트 영상 -> https://www.youtube.com/watch?v=EifW9AjWF0g&feature=youtu.be
-
-* Hawki 햔징 테스트 영상 ( 코엑스몰 ) -> https://www.youtube.com/watch?v=PaCcq-pzsbY
-
-
-# 설치 및 실행방법
-
-### 1. 서버 설치
-
-    $ git clone https://github.com/socc-io/Hawki.git
-
-    $ cd Hawki
-
-    $ ./start.py [PORT_NUMBER]
-      - ex) ./start.py 4000
-
-### 2. 클라이언트 설치
-
-    Android-Studio 설치 : https://developer.android.com/studio/index.html?hl=ko
-
-    File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
-
-### 3. 실내 신호 수집
-
- ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/collector1.jpg)
-
-    1) 어플리케이션을 켠후에 Collector 버튼을 눌러주세요
-
-    2) 실내 신호를 수집하고 싶은 빌딩이름을 검색후에 선택해주세요
-
-    3) 현재 위치를 입력하고, 수집 버튼을 눌러주세요
-
-### 4. 수집한 데이터 학습
-
-![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/raw_data.PNG)
-
-    1) 3번에서 수집한 빌딩데이터 확인
-
-     $ ./lsbid.sh
-       YOUR BUILDING DATAS =================================================
-       12665691.dat  17573702.dat  18059921.dat  22251293.dat  27539636.dat
-
-    2) 빌딩학습 시키기
-
-     $ ./trainer.py [BUILDING_ID]
-       - ex) ./trainer.py 12665691
-
-### 5. 실내 위치 확인
-
-![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/finder1.jpg)
-
-    1)어플리케이션을 켠후에 Finder 버튼을 눌러주세요
-
-    2)실내 위치를 확인하고 싶은 빌딩이름을 검색한후에 측정 버튼을 눌러주세요
-    
