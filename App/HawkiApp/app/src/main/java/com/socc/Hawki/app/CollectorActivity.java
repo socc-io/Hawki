@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.socc.Hawki.app.util.HttpHandler;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -30,8 +31,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import DataPacket.DataSource;
-import DataPacket.Json;
+import com.socc.Hawki.app.DataPacket.DataSource;
+import com.socc.Hawki.app.DataPacket.Json;
 
 /**
  * Created by Jeong on 2016-09-16.
@@ -64,7 +65,7 @@ public class CollectorActivity extends Activity {
         mapView = (ImageView) findViewById(R.id.mapView);
         listView = (ListView) findViewById(R.id.listView_building);
 
-        wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
+        wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         mapView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override

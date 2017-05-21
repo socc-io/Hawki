@@ -1,9 +1,11 @@
-package com.socc.Hawki.app;
+package com.socc.Hawki.app.model;
+
+import com.google.gson.JsonObject;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
  */
-public class BuildingData extends Data {
+public class BuildingData extends RecvData {
 
     private Double latitude;
     private Double longitude;
@@ -53,5 +55,9 @@ public class BuildingData extends Data {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public void mapFromJson(JsonObject json) {
+
     }
 }

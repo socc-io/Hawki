@@ -1,10 +1,10 @@
-package DataPacket;
+package com.socc.Hawki.app.DataPacket;
 
 import android.net.wifi.ScanResult;
 
-import com.socc.Hawki.app.BuildingData;
-import com.socc.Hawki.app.IndoorData;
-import com.socc.Hawki.app.Data;
+import com.socc.Hawki.app.model.BuildingData;
+import com.socc.Hawki.app.model.IndoorData;
+import com.socc.Hawki.app.model.RecvData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import DataPacket.DataSource.DATAFORMAT;
+import com.socc.Hawki.app.DataPacket.DataSource.DATAFORMAT;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
@@ -22,11 +22,11 @@ public class Json {
 
     public static final int MAX_JSON_OBJECT = 50; // 최대 갯수
 
-    public List<Data> load(JSONObject root, DATAFORMAT dataformat) throws JSONException {
+    public List<RecvData> load(JSONObject root, DATAFORMAT dataformat) throws JSONException {
         JSONObject jo = null;
         JSONArray dataArray = null;
-        List<Data> datas = new ArrayList<Data>();
-        Data proData = null;
+        List<RecvData> recvDatas = new ArrayList<RecvData>();
+        RecvData proRecvData = null;
 
         try {
 
@@ -35,8 +35,8 @@ public class Json {
 
             else if (dataformat == DATAFORMAT.IndoorPosition) {
                 jo = root.getJSONObject("position");
-                proData = processIndoorJsonObject(jo);
-                datas.add(proData);
+                proRecvData = processIndoorJsonObject(jo);
+                recvDatas.add(proRecvData);
             }
 
         } catch (JSONException e) { e.printStackTrace(); }
@@ -51,21 +51,21 @@ public class Json {
 
                 switch (dataformat) {
                     case BuildingInfo:
-                        proData = processBuildingJsonObject(jo);
+                        proRecvData = processBuildingJsonObject(jo);
                         break;
 
                 }
-                datas.add(proData);
+                recvDatas.add(proRecvData);
             }
 
         }
 
-        return datas;
+        return recvDatas;
 
     }
 
-    public Data processBuildingJsonObject(JSONObject jo) throws JSONException {
-        Data ma = null;
+    public RecvData processBuildingJsonObject(JSONObject jo) throws JSONException {
+        RecvData ma = null;
 
         if (jo.has("id") && jo.has("phone") && jo.has("title") && jo.has("address")) {
 
@@ -77,9 +77,9 @@ public class Json {
 
     }
 
-    public Data processIndoorJsonObject(JSONObject jo) throws JSONException { // 실내위치
+    public RecvData processIndoorJsonObject(JSONObject jo) throws JSONException { // 실내위치
 
-        Data ma = null;
+        RecvData ma = null;
 
         if (jo.has("x") && jo.has("y")) {
             ma = new IndoorData("", "", null, null,

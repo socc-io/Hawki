@@ -20,6 +20,9 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.socc.Hawki.app.model.BuildingData;
+import com.socc.Hawki.app.model.RecvData;
+import com.socc.Hawki.app.util.HttpHandler;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -31,8 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import DataPacket.DataSource;
-import DataPacket.Json;
+import com.socc.Hawki.app.DataPacket.DataSource;
+import com.socc.Hawki.app.DataPacket.Json;
 
 
 public class BuildingFragment extends Fragment {
@@ -46,17 +49,17 @@ public class BuildingFragment extends Fragment {
     ImageView mapView;
 
     private ProgressDialog pDialog;
-    public static Data selectedData;
+    public static RecvData selectedRecvData;
 
     private ListView listView;
     ArrayList<HashMap<String, String>> buildList;
-    List<Data> datas = new ArrayList<>();
+    List<RecvData> recvDatas = new ArrayList<>();
 
     int xSize;
     int ySize;
 
-    public static Data getInstance() {
-        return selectedData;
+    public static RecvData getInstance() {
+        return selectedRecvData;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -98,12 +101,12 @@ public class BuildingFragment extends Fragment {
 
                             String convertStr = Json.convertStandardJSONString(result);
                             JSONObject jsonObj = new JSONObject(convertStr);
-                            datas = layer.load(jsonObj, DataSource.DATAFORMAT.BuildingInfo);
+                            recvDatas = layer.load(jsonObj, DataSource.DATAFORMAT.BuildingInfo);
                             buildList.clear();
 
-                            for (int i = 0; i < datas.size(); i++) {
+                            for (int i = 0; i < recvDatas.size(); i++) {
 
-                                BuildingData buildMarker = (BuildingData) datas.get(i);
+                                BuildingData buildMarker = (BuildingData) recvDatas.get(i);
 
                                 HashMap<String, String> build = new HashMap<>();
                                 build.put("name", buildMarker.getTitle());
@@ -166,9 +169,9 @@ public class BuildingFragment extends Fragment {
             String selectedBuildId;
             String selectedBuildName;
 
-            selectedData = datas.get(pos);
-            selectedBuildId = selectedData.getBuildId();
-            selectedBuildName = selectedData.getTitle();
+            selectedRecvData = recvDatas.get(pos);
+            selectedBuildId = selectedRecvData.getBuildId();
+            selectedBuildName = selectedRecvData.getTitle();
 
             Toast.makeText(
                     getActivity(),

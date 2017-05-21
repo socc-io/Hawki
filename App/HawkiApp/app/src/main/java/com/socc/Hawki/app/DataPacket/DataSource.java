@@ -1,4 +1,4 @@
-package DataPacket;
+package com.socc.Hawki.app.DataPacket;
 
 /**
  * Created by joyeongje on 2016. 9. 4..

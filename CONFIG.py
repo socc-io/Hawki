@@ -3,5 +3,5 @@ COMMON = {
 }
 
 DAUM = {
-  'DAUM_KEY':'1b53126df63a2e4ea0dc1a236c67d0d8'
+  'DAUM_KEY':'bbaf7d4e709b3dfd9019e7a884525d80'
 }

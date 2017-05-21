@@ -1,30 +1,30 @@
-package com.socc.Hawki.app;
+package com.socc.Hawki.app.model;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
  */
-public class Data {
+public class RecvData {
 
-    private String BuildId;
+    private String buildId;
     private String title;
     private String description;
     private String URL;
 
-    Data(){}
+    RecvData(){}
 
-    Data(String BuildId, String title, String description, String url) {
-        this.BuildId = BuildId;
+    RecvData(String BuildId, String title, String description, String url) {
+        this.buildId = BuildId;
         this.title = title;
         this.description = description;
         this.URL = url;
     }
 
     public String getBuildId() {
-        return BuildId;
+        return buildId;
     }
 
     public void setBuildId(String buildId) {
-        BuildId = buildId;
+        this.buildId = buildId;
     }
 
     public String getTitle() {
@@ -50,4 +50,5 @@ public class Data {
     public void setURL(String URL) {
         this.URL = URL;
     }
+
 }

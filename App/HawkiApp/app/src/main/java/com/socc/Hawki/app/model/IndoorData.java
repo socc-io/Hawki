@@ -1,9 +1,9 @@
-package com.socc.Hawki.app;
+package com.socc.Hawki.app.model;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
  */
-public class IndoorData extends Data {
+public class IndoorData extends RecvData {
 
     private String x,y,z; // 내 위치
 

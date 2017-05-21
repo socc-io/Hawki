@@ -19,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.socc.Hawki.app.model.RecvData;
+import com.socc.Hawki.app.util.HttpHandler;
+import com.socc.Hawki.app.model.IndoorData;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -28,8 +31,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import DataPacket.DataSource;
-import DataPacket.Json;
+import com.socc.Hawki.app.DataPacket.DataSource;
+import com.socc.Hawki.app.DataPacket.Json;
 
 /**
  * Created by Jeong on 2016-09-17.
@@ -38,7 +41,7 @@ public class FinderActivity extends Activity {
 
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
-    List<Data> Indoor = new ArrayList<>();
+    List<RecvData> Indoor = new ArrayList<>();
 
     ImageView mapView;
     ListView listView;
@@ -124,7 +127,7 @@ public class FinderActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finder);
-        wifimanager = (WifiManager) getSystemService(WIFI_SERVICE);
+        wifimanager = (WifiManager)getApplicationContext().getSystemService(WIFI_SERVICE);
 
         mapView = (ImageView) findViewById(R.id.mapView);
         listView = (ListView) findViewById(R.id.listView_building);

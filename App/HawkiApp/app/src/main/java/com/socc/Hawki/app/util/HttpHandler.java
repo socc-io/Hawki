@@ -1,11 +1,7 @@
-package com.socc.Hawki.app;
+package com.socc.Hawki.app.util;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -16,8 +12,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import DataPacket.Json;
 
 /**
  * Created by Jeong on 2016-09-04.

@@ -1,136 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <fragment
         android:id="@+id/fragment_building"
-        android:layout_weight="7"
+        class="com.socc.Hawki.app.BuildingFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        class="com.socc.Hawki.app.BuildingFragment"
+        android:layout_weight="7"
         tools:layout="@layout/fragment_building">
 
 
     </fragment>
 
     <LinearLayout
-        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:background="#f2f2f2">
+        android:layout_weight="2"
+        android:background="#f2f2f2"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
-                android:text="@string/buildName"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="@string/buildName"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/editText_buildingName"
-                android:hint="@string/name"
-                android:textSize="17sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                android:hint="@string/name"
+                android:textSize="17sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
-                android:text="@string/id"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="@string/id"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/editText_buildingId"
-                android:text="id"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                android:text="id"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
             android:layout_weight="1"
+            android:orientation="horizontal"
 
             >
 
             <TextView
-                android:text="현재위치  "
-                android:textSize="20sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="현재위치  "
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:text="@string/x"
-                    android:textSize="20sp"
-                    android:layout_weight="1"/>
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/editTextX"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:inputType="number"
-                    android:textSize="20sp"
-                    android:layout_weight="1"/>
+                    android:textSize="20sp" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:text="@string/y"
-                    android:textSize="20sp"
-                    android:layout_weight="1"/>
+                    android:textSize="20sp" />
+
                 <EditText
                     android:id="@+id/editTextY"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:inputType="number"
-                    android:textSize="20sp"
-                    android:layout_weight="1"/>
+                    android:textSize="20sp" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:text="@string/z"
-                    android:textSize="20sp"
-                    android:layout_weight="1"/>
+                    android:textSize="20sp" />
+
                 <EditText
                     android:id="@+id/editTextZ"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:inputType="number"
-                    android:textSize="20sp"
-                    android:layout_weight="1"/>
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -138,11 +141,11 @@
     </LinearLayout>
 
     <Button
-        android:onClick="collectorClicked"
-        android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:onClick="collectorClicked"
         android:text="@string/collect"
-        android:textSize="25sp"
-        android:layout_gravity="center_horizontal" />
+        android:textSize="25sp" />
 </LinearLayout>
