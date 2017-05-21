@@ -100,6 +100,8 @@ Jinwon Lee  [ jino3871@gmail.com ] site : https://github.com/jino678
 
 SeoHyun Back [ becxer87@gmail.com ] site : https://github.com/becxer
 
+YoungJin Kim [ smliup2244@gmail.com ] site : https://github.com/smliu97
+
 # License
 
 The MIT License (MIT)
