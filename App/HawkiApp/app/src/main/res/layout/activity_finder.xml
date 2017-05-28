@@ -10,7 +10,7 @@
         android:layout_weight="7"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        class="com.socc.Hawki.app.BuildingFragment"
+        class="com.socc.Hawki.app.view.BuildingFragment"
         tools:layout="@layout/fragment_building">
 
     </fragment>

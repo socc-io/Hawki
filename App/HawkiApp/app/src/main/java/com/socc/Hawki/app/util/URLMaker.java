@@ -1,15 +1,15 @@
-package com.socc.Hawki.app.DataPacket;
+package com.socc.Hawki.app.util;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
  */
-public class DataSource {
+public class URLMaker {
 
     public enum DATAFORMAT {
         BuildingInfo, IndoorPosition, RSSIDSET
     }
 
-    public DataSource(){}
+    public URLMaker(){}
 
     public static String createRequestURL(DATAFORMAT dataformat, double lat,double lon, double alt, double radius, String name)
     {

@@ -1,4 +1,4 @@
-package com.socc.Hawki.app;
+package com.socc.Hawki.app.view;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.util.HttpHandler;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.socc.Hawki.app.DataPacket.DataSource;
+import com.socc.Hawki.app.util.URLMaker;
 import com.socc.Hawki.app.DataPacket.Json;
 
 /**
@@ -39,7 +40,6 @@ import com.socc.Hawki.app.DataPacket.Json;
  */
 public class CollectorActivity extends Activity {
 
-    final String TAG = CollectorActivity.class.getSimpleName();
     EditText editTextX, editTextY, editTextZ;
     ImageView mapView;
     ListView listView;
@@ -53,6 +53,18 @@ public class CollectorActivity extends Activity {
     String loc_y;
     String loc_z;
 
+    private Bitmap mapViewBitmap;
+
+    private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
+                getWIFIScanResult();
+            }
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +74,10 @@ public class CollectorActivity extends Activity {
         editTextY = (EditText) findViewById(R.id.editTextY);
         editTextZ = (EditText) findViewById(R.id.editTextZ);
 
-        mapView = (ImageView) findViewById(R.id.mapView);
         listView = (ListView) findViewById(R.id.listView_building);
-
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+
+        mapView = (ImageView) findViewById(R.id.mapView);
         mapView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -73,47 +85,26 @@ public class CollectorActivity extends Activity {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+
                         final float x = event.getX();
                         final float y = event.getY();
 
-                        String selectedBuildId = BuildingFragment.getInstance().getBuildId();
-                        String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" + selectedBuildId + ".jpg";
-                        Log.d("Map Url : ", mapImageUrl);
+                        Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+                        Canvas canvas = new Canvas(newDrawBitmap);
 
-                        // TODO: 2016. 11. 6. 맵뷰 사이즈 고정해야됨 
+                        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                        mPaint.setStyle(Paint.Style.FILL);
+                        mPaint.setColor(Color.RED);
+                        canvas.drawCircle(x, y, 30, mPaint);
 
-                        Picasso.with(getApplicationContext()).load(mapImageUrl).resize(mapView.getWidth(),mapView.getHeight()).into(new Target() {
-                            @Override
-                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                                Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-                                Canvas canvas = new Canvas(newBitmap);
+                        mapView.setImageBitmap(newDrawBitmap);
 
-                                mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                                mPaint.setStyle(Paint.Style.FILL);
-                                mPaint.setColor(Color.RED);
-                                canvas.drawCircle(x, y, 30, mPaint);
+                        mapView.setVisibility(View.VISIBLE);
+                        listView.setVisibility(View.GONE);
 
-                                mapView.setImageBitmap(newBitmap);
-
-                                mapView.setVisibility(View.VISIBLE);
-                                listView.setVisibility(View.GONE);
-
-                                editTextX.setText(String.valueOf((int)x/32));
-                                editTextY.setText(String.valueOf((int)y/20));
-                                editTextZ.setText(String.valueOf(0));
-
-                            }
-
-                            @Override
-                            public void onBitmapFailed(Drawable errorDrawable) {
-                                //Toast.makeText(getApplicationContext(),"지도를 등록해주세요",Toast.LENGTH_LONG).show();
-                            }
-
-                            @Override
-                            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                            }
-                        });
+                        editTextX.setText(String.valueOf((int)x/32));
+                        editTextY.setText(String.valueOf((int)y/20));
+                        editTextZ.setText(String.valueOf(0));
 
                 }
                 return true;
@@ -123,7 +114,7 @@ public class CollectorActivity extends Activity {
 
 
     public void getWIFIScanResult() {
-        wifiScanResult = wifimanager.getScanResults(); // ScanResult
+        wifiScanResult = wifimanager.getScanResults();
 
         loc_x = editTextX.getText().toString();
         loc_y = editTextY.getText().toString();
@@ -132,9 +123,8 @@ public class CollectorActivity extends Activity {
         Toast.makeText(getApplication(), loc_x + " ," + loc_y + " ," + loc_z, Toast.LENGTH_LONG).show();
 
         try {
-
             Json layer = new Json();
-            String collectorUrl = DataSource.createRequestURL(DataSource.DATAFORMAT.RSSIDSET, 0, 0, 0, 0, null);
+            String collectorUrl = URLMaker.createRequestURL(URLMaker.DATAFORMAT.RSSIDSET, 0, 0, 0, 0, null);
             JSONObject rssiJsonObject = layer.createRssiJson(BuildingFragment.getInstance().getBuildId(), loc_x, loc_y, loc_z, wifiScanResult);
             Log.i("Wifi Json : ", rssiJsonObject.toString());
 
@@ -148,18 +138,7 @@ public class CollectorActivity extends Activity {
         unregisterReceiver(wifiReceiver);
     }
 
-    private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
-                getWIFIScanResult();
-            }
-        }
-    };
-
     public void collectorClicked(View v) throws JSONException {
-
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);

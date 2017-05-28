@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.socc.Hawki.app.DataPacket.DataSource.DATAFORMAT;
+import com.socc.Hawki.app.util.URLMaker.DATAFORMAT;
 
 /**
  * Created by joyeongje on 2016. 9. 4..
@@ -87,9 +87,7 @@ public class Json {
         }
 
         return ma;
-
     }
-
 
     public JSONObject createRssiJson(String bid, String x, String y, String z, List<ScanResult> scanResults) throws JSONException {
         JSONObject collecterData = new JSONObject();

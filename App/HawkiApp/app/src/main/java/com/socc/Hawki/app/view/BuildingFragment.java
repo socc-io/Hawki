@@ -1,9 +1,8 @@
-package com.socc.Hawki.app;
+package com.socc.Hawki.app.view;
 
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +19,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.socc.Hawki.app.DataPacket.Json;
+import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.model.BuildingData;
 import com.socc.Hawki.app.model.RecvData;
 import com.socc.Hawki.app.util.HttpHandler;
+import com.socc.Hawki.app.util.URLMaker;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -34,9 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import com.socc.Hawki.app.DataPacket.DataSource;
-import com.socc.Hawki.app.DataPacket.Json;
-
 
 public class BuildingFragment extends Fragment {
 
@@ -44,19 +43,17 @@ public class BuildingFragment extends Fragment {
 
     View rootView;
     EditText editText;
-    Button btn_buildingInfo;
-    TextView editTextName, editTextId;
+    Button getBuildInfoButton;
+    TextView nameTextView, idTextView;
     ImageView mapView;
 
-    private ProgressDialog pDialog;
+    private Bitmap mapViewBitmap;
+
     public static RecvData selectedRecvData;
 
     private ListView listView;
     ArrayList<HashMap<String, String>> buildList;
     List<RecvData> recvDatas = new ArrayList<>();
-
-    int xSize;
-    int ySize;
 
     public static RecvData getInstance() {
         return selectedRecvData;
@@ -71,19 +68,12 @@ public class BuildingFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        editTextName = (TextView)getActivity().findViewById(R.id.editText_buildingName);
-        editTextId = (TextView)getActivity().findViewById(R.id.editText_buildingId);
-
-        btn_buildingInfo = (Button) rootView.findViewById(R.id.requestBuild);
+        nameTextView = (TextView) getActivity().findViewById(R.id.editText_buildingName);
+        idTextView = (TextView) getActivity().findViewById(R.id.editText_buildingId);
         editText = (EditText) rootView.findViewById(R.id.nameEdit);
 
-        mapView = (ImageView) rootView.findViewById(R.id.mapView);
-        listView = (ListView) rootView.findViewById(R.id.listView_building);
-        buildList = new ArrayList<>();
-
-        final Json layer = new Json();
-
-        btn_buildingInfo.setOnClickListener(new View.OnClickListener() {
+        getBuildInfoButton = (Button) rootView.findViewById(R.id.requestBuild);
+        getBuildInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -91,17 +81,17 @@ public class BuildingFragment extends Fragment {
                 listView.setVisibility(View.VISIBLE);
 
                 String buildName = editText.getText().toString();
-                String requestBuildURL = DataSource.createRequestURL(DataSource.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
-                try {
+                String requestBuildURL = URLMaker.createRequestURL(URLMaker.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
 
-                    String result = new HttpHandler().execute(requestBuildURL,"GET").get();
+                final Json layer = new Json();
+                try {
+                    String result = new HttpHandler().execute(requestBuildURL, "GET").get();
 
                     if (result != null) {
                         try {
-
                             String convertStr = Json.convertStandardJSONString(result);
                             JSONObject jsonObj = new JSONObject(convertStr);
-                            recvDatas = layer.load(jsonObj, DataSource.DATAFORMAT.BuildingInfo);
+                            recvDatas = layer.load(jsonObj, URLMaker.DATAFORMAT.BuildingInfo);
                             buildList.clear();
 
                             for (int i = 0; i < recvDatas.size(); i++) {
@@ -146,6 +136,8 @@ public class BuildingFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+                listView = (ListView) rootView.findViewById(R.id.listView_building);
+                buildList = new ArrayList<>();
 
                 ListAdapter adapter = new SimpleAdapter(
                         getActivity(), buildList,
@@ -161,64 +153,62 @@ public class BuildingFragment extends Fragment {
         });
     }
 
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener()
-    {
-        public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
+        private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener()
         {
+            public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
+            {
+                String selectedBuildId;
+                String selectedBuildName;
 
-            String selectedBuildId;
-            String selectedBuildName;
+                selectedRecvData = recvDatas.get(pos);
+                selectedBuildId = selectedRecvData.getBuildId();
+                selectedBuildName = selectedRecvData.getTitle();
 
-            selectedRecvData = recvDatas.get(pos);
-            selectedBuildId = selectedRecvData.getBuildId();
-            selectedBuildName = selectedRecvData.getTitle();
+                idTextView.setText(selectedBuildId);
+                nameTextView.setText(selectedBuildName);
 
-            Toast.makeText(
-                    getActivity(),
-                    selectedBuildId,
-                    Toast.LENGTH_SHORT
-            ).show();
+                Toast.makeText(
+                        getActivity(),
+                        selectedBuildId,
+                        Toast.LENGTH_SHORT
+                ).show();
 
-            editTextName.setText(selectedBuildName);
-            editTextId.setText(selectedBuildId);
+                String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" + selectedBuildId + ".jpg";
 
+                Picasso.with(getActivity()).load(mapImageUrl).resize(mapView.getWidth(),mapView.getHeight()).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        mapViewBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+                        mapView.setVisibility(View.VISIBLE);
+                        listView.setVisibility(View.GONE);
+                    }
 
-            String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" + selectedBuildId + ".jpg";
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+                        Bitmap noImagebitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.nomapimage);
+                        mapView.setImageBitmap(noImagebitmap);
+                        mapView.setVisibility(View.VISIBLE);
+                        listView.setVisibility(View.GONE);
 
-            Picasso.with(getActivity()).load(mapImageUrl).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-                    Canvas canvas = new Canvas(newBitmap);
+                        mapViewBitmap = noImagebitmap.copy(Bitmap.Config.ARGB_8888, true);
+                        Toast.makeText(getActivity(),"지도를 등록해주세요!!",Toast.LENGTH_LONG).show();
+                    }
 
-                    mapView.setImageBitmap(newBitmap);
-                    mapView.setVisibility(View.VISIBLE);
-                    listView.setVisibility(View.GONE);
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
 
-                }
+                    }
+                });
+            }
+        };
 
-                @Override
-                public void onBitmapFailed(Drawable errorDrawable) {
-                    //TODO 수노 16-11-06 listView, mapView fragment 분리 필요
-                    Toast.makeText(getActivity(),"!!지도를 등록해주세요",Toast.LENGTH_LONG).show();
-                    mapView.setImageResource(R.mipmap.nomapimage);
-//                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.noimage);
-//                    Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-//
-//                    mapView.setImageBitmap(newBitmap);
-                    mapView.setVisibility(View.VISIBLE);
-                    listView.setVisibility(View.GONE);
+    public Bitmap getMapViewBitmap() {
+        return mapViewBitmap;
+    }
 
-                }
-
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                }
-            });
-        }
-    };
 }
+
+
 
 
 

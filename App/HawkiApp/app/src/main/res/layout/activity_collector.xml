@@ -7,13 +7,11 @@
 
     <fragment
         android:id="@+id/fragment_building"
-        class="com.socc.Hawki.app.BuildingFragment"
+        class="com.socc.Hawki.app.view.BuildingFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
         tools:layout="@layout/fragment_building">
-
-
     </fragment>
 
     <LinearLayout

@@ -44,6 +44,7 @@ public class APIAgent {
     public void removeHeader(String key) {
         headers.remove(key);
     }
+
     public String getHttpResponse(String urlAppend, String method, String body) {
         try {
             URL url = new URL(baseURL + urlAppend);

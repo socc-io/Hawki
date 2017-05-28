@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.socc.Hawki.app.MainActivity"
+            android:name="com.socc.Hawki.app.view.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.socc.Hawki.app.CollectorActivity" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.socc.Hawki.app.FinderActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.socc.Hawki.app.view.CollectorActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.socc.Hawki.app.view.FinderActivity" android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>
