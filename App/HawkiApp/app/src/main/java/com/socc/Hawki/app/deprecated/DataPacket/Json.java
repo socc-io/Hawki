@@ -1,10 +1,10 @@
-package com.socc.Hawki.app.DataPacket;
+package com.socc.Hawki.app.deprecated.DataPacket;
 
 import android.net.wifi.ScanResult;
 
-import com.socc.Hawki.app.model.BuildingData;
-import com.socc.Hawki.app.model.IndoorData;
-import com.socc.Hawki.app.model.RecvData;
+import com.socc.Hawki.app.deprecated.model.BuildingData;
+import com.socc.Hawki.app.deprecated.model.IndoorData;
+import com.socc.Hawki.app.deprecated.model.RecvData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.socc.Hawki.app.util.URLMaker.DATAFORMAT;
+import com.socc.Hawki.app.deprecated.util.URLMaker.DATAFORMAT;
 
 /**
  * Created by joyeongje on 2016. 9. 4..

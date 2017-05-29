@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -19,26 +18,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
 import com.socc.Hawki.app.R;
-import com.socc.Hawki.app.model.RecvData;
+import com.socc.Hawki.app.deprecated.model.RecvData;
 import com.socc.Hawki.app.service.HawkAPI;
-import com.socc.Hawki.app.util.HttpHandler;
-import com.socc.Hawki.app.model.IndoorData;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
+import com.socc.Hawki.app.service.response.PostGetPositionRes;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-import com.socc.Hawki.app.util.URLMaker;
-import com.socc.Hawki.app.DataPacket.Json;
 
 /**
  * Created by Jeong on 2016-09-17.
@@ -93,9 +82,9 @@ public class FinderActivity extends Activity {
         try {
             HawkAPI api = HawkAPI.getInstance(); // get API Instance
 
-            String bid = BuildingFragment.getInstance().getBuildId(); // get BID
+            String bid = BuildingFragment.getInstance().getId(); // get BID
 
-            JsonObject res = api.postGetPosition(bid, wifiScanResult); // do fetching
+            PostGetPositionRes res = api.postGetPosition(bid, wifiScanResult); // do fetching
             if(res == null) {
                 Toast.makeText(this, "실패했습니다", Toast.LENGTH_SHORT).show();
                 return;
@@ -103,19 +92,13 @@ public class FinderActivity extends Activity {
 
             Log.i("Get position response: ", res.toString());
 
-            JsonObject position = res.getAsJsonObject("position");
-
-            final int x = (position.get("x").getAsInt());
-            final int y = (position.get("y").getAsInt());
-            final int z = (position.get("z").getAsInt());
-
             Bitmap newBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
             Canvas canvas = new Canvas(newBitmap);
 
             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(Color.RED);
-            canvas.drawCircle(x * 32, y * 20, 30, mPaint);
+            canvas.drawCircle(res.getX() * 32, res.getY() * 20, 30, mPaint);
 
             mapView.setImageBitmap(newBitmap);
             mapView.setVisibility(View.VISIBLE);

@@ -33,11 +33,9 @@ class GetPosition(Resource):
 
         res = ppl.process(wrm, config={'building_id':buildId, 'algorithm':algorithm, 'min_rssi':-999})
         resJson = {
-            'position': {
-                'x': res[0],
-                'y': res[1],
-                'z': "0"
-            }
+            'x': res[0],
+            'y': res[1],
+            'z': 0
         }
         return resJson
 

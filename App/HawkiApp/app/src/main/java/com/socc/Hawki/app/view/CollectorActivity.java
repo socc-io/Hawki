@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -22,23 +21,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.service.HawkAPI;
-import com.socc.Hawki.app.util.HttpHandler;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.socc.Hawki.app.util.URLMaker;
-import com.socc.Hawki.app.DataPacket.Json;
 
 /**
  * Created by Jeong on 2016-09-16.
@@ -135,14 +124,14 @@ public class CollectorActivity extends Activity {
         Toast.makeText(getApplication(), loc_x + " ," + loc_y + " ," + loc_z, Toast.LENGTH_LONG).show();
 
         try {
-            String bid = BuildingFragment.getInstance().getBuildId(); // get BID
+            String bid = BuildingFragment.getInstance().getId(); // get BID
 
             float x = Float.parseFloat(loc_x); // parse as Float
             float y = Float.parseFloat(loc_y);
             float z = Float.parseFloat(loc_z);
 
             HawkAPI api = HawkAPI.getInstance(); // get API Instance
-            JsonObject res = api.postCollectRssi(bid, x, y, z, wifiScanResult); // do fetching
+            String res = api.postCollectRssi(bid, x, y, z, wifiScanResult); // do fetching
 
             if(res == null) {
                 Toast.makeText(this, "실패했습니다", Toast.LENGTH_SHORT).show();

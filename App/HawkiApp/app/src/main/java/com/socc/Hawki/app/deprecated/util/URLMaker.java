@@ -1,4 +1,4 @@
-package com.socc.Hawki.app.util;
+package com.socc.Hawki.app.deprecated.util;
 
 /**
  * Created by joyeongje on 2016. 9. 4..

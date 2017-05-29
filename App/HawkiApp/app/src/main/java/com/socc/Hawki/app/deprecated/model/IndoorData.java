@@ -1,4 +1,4 @@
-package com.socc.Hawki.app.model;
+package com.socc.Hawki.app.deprecated.model;
 
 /**
  * Created by joyeongje on 2016. 9. 4..

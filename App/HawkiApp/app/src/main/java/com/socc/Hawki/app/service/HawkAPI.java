@@ -2,15 +2,17 @@ package com.socc.Hawki.app.service;
 
 import android.net.wifi.ScanResult;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.socc.Hawki.app.model.BuildingData;
+import com.google.gson.reflect.TypeToken;
+import com.socc.Hawki.app.service.request.PostCollectRssiReq;
+import com.socc.Hawki.app.service.request.PostGetPositionReq;
+import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
+import com.socc.Hawki.app.service.response.PostGetPositionRes;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,71 +34,34 @@ public class HawkAPI extends APIAgent {
         return baseURL + "/static/map/" + buildId + ".jpg";
     }
 
-    public List<BuildingData> getBuildingInfo(String buildingName) {
+    public List<GetBuildingInfoRes> getBuildingInfo(String buildingName) {
         String resString = this.getHttpResponse("/buildinginfo?buildName=" + buildingName, "GET", null);
         if(resString == null) return null;
 
-        JsonObject res = (new JsonParser()).parse(resString).getAsJsonObject();
-        ArrayList<BuildingData> resultData = new ArrayList<>();
-        JsonArray  buildings = res.getAsJsonArray("Build");
+        JsonObject response = (new JsonParser()).parse(resString).getAsJsonObject();
+        JsonArray  buildings = response.get("Build").getAsJsonArray();
 
-        for(JsonElement buildElement: buildings) {
-            JsonObject build = buildElement.getAsJsonObject();
-            resultData.add(new BuildingData(
-                    build.getAsJsonObject("id").getAsString(),
-                    build.getAsJsonObject("title").getAsString(),
-                    null,
-                    null,
-                    0,
-                    0,
-                    build.getAsJsonObject("phone").getAsString(),
-                    build.getAsJsonObject("address").getAsString()
-            ));
-        }
-        return resultData;
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<GetBuildingInfoRes>>(){}.getType();
+        List<GetBuildingInfoRes> res = gson.fromJson(buildings, listType);
+
+        return res;
     }
 
-    public JsonObject postCollectRssi(String bid, float x, float y, float z, List<ScanResult> scanResult) {
-        JsonObject body = new JsonObject();
-        body.addProperty("bid", bid);
-        body.addProperty("x", x);
-        body.addProperty("y", y);
-        body.addProperty("z", z);
-
-        JsonArray rssi = new JsonArray();
-        for(ScanResult scan: scanResult) {
-            JsonObject scanJson = new JsonObject();
-            scanJson.addProperty("bssid", scan.BSSID);
-            scanJson.addProperty("dbm", scan.level);
-
-            rssi.add(scanJson);
-        }
-        body.add("rssi", rssi);
-
-        String res = this.getHttpResponse("/collectrssi", "POST", body.toString());
-        if (res == null) return null;
-        JsonObject resJson = (new JsonParser()).parse(res).getAsJsonObject();
-
-        return resJson;
+    public String postCollectRssi(String bid, float x, float y, float z, List<ScanResult> scanResult) {
+        PostCollectRssiReq req = new PostCollectRssiReq(bid, x, y, z, scanResult);
+        Gson gson = new Gson();
+        return this.getHttpResponse("/collectrssi", "POST", gson.toJson(req));
     }
 
-    public JsonObject postGetPosition(String bid, List<ScanResult> scanResults) {
-        JsonObject body = new JsonObject();
-        body.addProperty("bid", bid);
+    public PostGetPositionRes postGetPosition(String bid, List<ScanResult> scanResults) {
+        PostGetPositionReq req = new PostGetPositionReq(bid, scanResults);
+        Gson gson = new Gson();
+        String response = this.getHttpResponse("/getposition", "POST", gson.toJson(req));
+        if(response == null) return null;
+        JsonObject resJson = (new JsonParser()).parse(response).getAsJsonObject();
+        PostGetPositionRes res = gson.fromJson(resJson, PostGetPositionRes.class);
 
-        JsonArray rssiArray = new JsonArray();
-        for(ScanResult result: scanResults) {
-            JsonObject sc = new JsonObject();
-            sc.addProperty("bssid", result.BSSID);
-            sc.addProperty("dbm", result.level);
-            rssiArray.add(sc);
-        }
-        body.add("rssi", rssiArray);
-
-        String res = this.getHttpResponse("/getposition", "POST", body.toString());
-        if(res == null) return null;
-        JsonObject resJson = (new JsonParser()).parse(res).getAsJsonObject();
-
-        return resJson;
+        return res;
     }
 }

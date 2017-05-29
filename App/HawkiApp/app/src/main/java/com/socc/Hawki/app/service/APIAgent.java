@@ -2,7 +2,7 @@ package com.socc.Hawki.app.service;
 
 import android.util.Pair;
 
-import com.socc.Hawki.app.model.BuildingData;
+import com.socc.Hawki.app.deprecated.model.BuildingData;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class APIAgent {
         headers.put(key, value);
     }
     public void setHeaders(List<Pair<String, String>> list) {
-        for(Pair<String, String> o : list) {
+        for(Pair<String, String> o: list) {
             headers.put(o.first, o.second);
         }
     }

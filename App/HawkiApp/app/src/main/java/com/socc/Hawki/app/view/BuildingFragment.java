@@ -20,9 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
-import com.socc.Hawki.app.model.BuildingData;
-import com.socc.Hawki.app.model.RecvData;
 import com.socc.Hawki.app.service.HawkAPI;
+import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -43,13 +42,13 @@ public class BuildingFragment extends Fragment {
 
     private Bitmap mapViewBitmap;
 
-    public static RecvData selectedRecvData;
+    public static GetBuildingInfoRes selectedRecvData;
 
     private ListView listView;
     List<HashMap<String, String>> buildList;
-    List<BuildingData> recvBuildingData = new ArrayList<>();
+    List<GetBuildingInfoRes> recvBuildingData = new ArrayList<>();
 
-    public static RecvData getInstance() {
+    public static GetBuildingInfoRes getInstance() {
         return selectedRecvData;
     }
 
@@ -96,11 +95,11 @@ public class BuildingFragment extends Fragment {
 
                 // convert List<BuildingData> to List<HashMap<String, String>>
                 buildList.clear();
-                for(BuildingData data: recvBuildingData) {
+                for(GetBuildingInfoRes data: recvBuildingData) {
                     HashMap<String, String> hm = new HashMap<>();
                     hm.put("name", data.getTitle());
                     hm.put("address", data.getAddress());
-                    hm.put("phone", data.getPhoneNumber());
+                    hm.put("phone", data.getPhone());
                     buildList.add(hm);
                 }
 
@@ -124,7 +123,7 @@ public class BuildingFragment extends Fragment {
             {
                 selectedRecvData = recvBuildingData.get(pos);
 
-                String selectedBuildId = selectedRecvData.getBuildId();
+                String selectedBuildId = selectedRecvData.getId();
                 String selectedBuildName = selectedRecvData.getTitle();
 
                 // apply data to TextView
