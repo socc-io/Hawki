@@ -2,9 +2,6 @@ package com.socc.Hawki.app.service;
 
 import android.util.Pair;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.socc.Hawki.app.model.BuildingData;
 
 import java.io.BufferedReader;
@@ -83,6 +80,10 @@ public class APIAgent {
             return null;
         }
         catch(IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }

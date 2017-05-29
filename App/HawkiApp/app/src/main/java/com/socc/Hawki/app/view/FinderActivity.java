@@ -19,8 +19,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.model.RecvData;
+import com.socc.Hawki.app.service.HawkAPI;
 import com.socc.Hawki.app.util.HttpHandler;
 import com.socc.Hawki.app.model.IndoorData;
 import com.squareup.picasso.Picasso;
@@ -48,6 +52,8 @@ public class FinderActivity extends Activity {
     ImageView mapView;
     ListView listView;
 
+    Bitmap mapViewBitmap;
+
     Paint mPaint;
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
@@ -62,14 +68,20 @@ public class FinderActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finder);
+
+        // Holding manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
+        // Holding View
         mapView = (ImageView) findViewById(R.id.mapView);
         listView = (ListView) findViewById(R.id.listView_building);
+
+        // Holding bitmap ??? TODO: Holding mapViewBitmap
     }
 
     public void finderClicked(View v) throws JSONException {
         IntentFilter filter = new IntentFilter();
+
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
         wifimanager.startScan();
@@ -79,40 +91,40 @@ public class FinderActivity extends Activity {
         wifiScanResult = wifimanager.getScanResults();
 
         try {
-            Json layer = new Json();
+            HawkAPI api = HawkAPI.getInstance(); // get API Instance
 
-            String locateUrl = URLMaker.createRequestURL(URLMaker.DATAFORMAT.IndoorPosition, 0, 0, 0, 0, null);
-            JSONObject rssiJsonObject = layer.createRequestIndoorJson(BuildingFragment.getInstance().getBuildId(), wifiScanResult);
-            String result = new HttpHandler().execute(locateUrl, "POST", rssiJsonObject.toString()).get();
+            String bid = BuildingFragment.getInstance().getBuildId(); // get BID
 
-            if (result != null) {
-                String convertStr = Json.convertStandardJSONString(result);
-                JSONObject jsonObject = new JSONObject(convertStr);
-                Indoor = layer.load(jsonObject, URLMaker.DATAFORMAT.IndoorPosition);
-
-                IndoorData indoorMarker = (IndoorData) Indoor.get(0);
-                final int getX = Integer.parseInt(indoorMarker.getX());
-                final int getY = Integer.parseInt(indoorMarker.getY());
-
-              //  Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-              //  Canvas canvas = new Canvas(newBitmap);
-//
-              //  mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-              //  mPaint.setStyle(Paint.Style.FILL);
-              //  mPaint.setColor(Color.RED);
-              //  canvas.drawCircle(getX * 32, getY * 20, 30, mPaint);
-//
-              //  mapView.setImageBitmap(newBitmap);
-              //  mapView.setVisibility(View.VISIBLE);
-              //  listView.setVisibility(View.GONE);
-              //  unregisterReceiver(wifiReceiver);
-
+            JsonObject res = api.postGetPosition(bid, wifiScanResult); // do fetching
+            if(res == null) {
+                Toast.makeText(this, "실패했습니다", Toast.LENGTH_SHORT).show();
+                return;
             }
-        } catch (InterruptedException e) {
+
+            Log.i("Get position response: ", res.toString());
+
+            JsonObject position = res.getAsJsonObject("position");
+
+            final int x = (position.get("x").getAsInt());
+            final int y = (position.get("y").getAsInt());
+            final int z = (position.get("z").getAsInt());
+
+            Bitmap newBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+            Canvas canvas = new Canvas(newBitmap);
+
+            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.RED);
+            canvas.drawCircle(x * 32, y * 20, 30, mPaint);
+
+            mapView.setImageBitmap(newBitmap);
+            mapView.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+            unregisterReceiver(wifiReceiver);
+
+        } catch (JsonParseException e) {
             e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

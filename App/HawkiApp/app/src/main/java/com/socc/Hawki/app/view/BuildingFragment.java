@@ -19,22 +19,16 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.socc.Hawki.app.DataPacket.Json;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.model.BuildingData;
 import com.socc.Hawki.app.model.RecvData;
-import com.socc.Hawki.app.util.HttpHandler;
-import com.socc.Hawki.app.util.URLMaker;
+import com.socc.Hawki.app.service.HawkAPI;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 public class BuildingFragment extends Fragment {
@@ -42,7 +36,7 @@ public class BuildingFragment extends Fragment {
     private String TAG = BuildingFragment.class.getSimpleName();
 
     View rootView;
-    EditText editText;
+    EditText buildingNameEdit;
     Button getBuildInfoButton;
     TextView nameTextView, idTextView;
     ImageView mapView;
@@ -52,8 +46,8 @@ public class BuildingFragment extends Fragment {
     public static RecvData selectedRecvData;
 
     private ListView listView;
-    ArrayList<HashMap<String, String>> buildList;
-    List<RecvData> recvDatas = new ArrayList<>();
+    List<HashMap<String, String>> buildList;
+    List<BuildingData> recvBuildingData = new ArrayList<>();
 
     public static RecvData getInstance() {
         return selectedRecvData;
@@ -68,76 +62,47 @@ public class BuildingFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        mapView = (ImageView)rootView.findViewById(R.id.mapView);
+        listView = (ListView)rootView.findViewById(R.id.listView_building);
         nameTextView = (TextView) getActivity().findViewById(R.id.editText_buildingName);
         idTextView = (TextView) getActivity().findViewById(R.id.editText_buildingId);
-        editText = (EditText) rootView.findViewById(R.id.nameEdit);
+        buildingNameEdit = (EditText) rootView.findViewById(R.id.nameEdit);
+
+        buildList = new ArrayList<>();
 
         getBuildInfoButton = (Button) rootView.findViewById(R.id.requestBuild);
         getBuildInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                Log.i("hawki", "getBuildInfoButton Pressed!");
+
                 mapView.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
 
-                String buildName = editText.getText().toString();
-                String requestBuildURL = URLMaker.createRequestURL(URLMaker.DATAFORMAT.BuildingInfo, 0, 0, 0, 0, buildName);
-
-                final Json layer = new Json();
-                try {
-                    String result = new HttpHandler().execute(requestBuildURL, "GET").get();
-
-                    if (result != null) {
-                        try {
-                            String convertStr = Json.convertStandardJSONString(result);
-                            JSONObject jsonObj = new JSONObject(convertStr);
-                            recvDatas = layer.load(jsonObj, URLMaker.DATAFORMAT.BuildingInfo);
-                            buildList.clear();
-
-                            for (int i = 0; i < recvDatas.size(); i++) {
-
-                                BuildingData buildMarker = (BuildingData) recvDatas.get(i);
-
-                                HashMap<String, String> build = new HashMap<>();
-                                build.put("name", buildMarker.getTitle());
-                                build.put("address", buildMarker.getAddress());
-                                build.put("phone", buildMarker.getPhoneNumber());
-                                buildList.add(build);
-
-                            }
-                        } catch (final JSONException e) {
-                            Log.e(TAG, "Json parsing error: " + e.getMessage());
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getActivity(),
-                                            "Json parsing error: " + e.getMessage(),
-                                            Toast.LENGTH_LONG)
-                                            .show();
-                                }
-                            });
-
-                        }
-                    } else {
-                        Log.e(TAG, "Couldn't get json from server.");
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getActivity(),
-                                        "Couldn't get json from server. Check LogCat for possible errors!",
-                                        Toast.LENGTH_LONG)
-                                        .show();
-                            }
-                        });
-
-                    }
-
-                } catch (InterruptedException | ExecutionException e) {
-                    e.printStackTrace();
+                String buildName = buildingNameEdit.getText().toString();
+                if(buildName.length() <= 0) {
+                    Toast.makeText(getActivity(), "건물 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                listView = (ListView) rootView.findViewById(R.id.listView_building);
-                buildList = new ArrayList<>();
+                HawkAPI api = HawkAPI.getInstance(); // get API Instance
+
+                recvBuildingData = api.getBuildingInfo(buildName); // fetch data
+                if(recvBuildingData == null) {
+                    Toast.makeText(getActivity(), "실패했습니다", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // convert List<BuildingData> to List<HashMap<String, String>>
+                buildList.clear();
+                for(BuildingData data: recvBuildingData) {
+                    HashMap<String, String> hm = new HashMap<>();
+                    hm.put("name", data.getTitle());
+                    hm.put("address", data.getAddress());
+                    hm.put("phone", data.getPhoneNumber());
+                    buildList.add(hm);
+                }
 
                 ListAdapter adapter = new SimpleAdapter(
                         getActivity(), buildList,
@@ -157,13 +122,12 @@ public class BuildingFragment extends Fragment {
         {
             public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
             {
-                String selectedBuildId;
-                String selectedBuildName;
+                selectedRecvData = recvBuildingData.get(pos);
 
-                selectedRecvData = recvDatas.get(pos);
-                selectedBuildId = selectedRecvData.getBuildId();
-                selectedBuildName = selectedRecvData.getTitle();
+                String selectedBuildId = selectedRecvData.getBuildId();
+                String selectedBuildName = selectedRecvData.getTitle();
 
+                // apply data to TextView
                 idTextView.setText(selectedBuildId);
                 nameTextView.setText(selectedBuildName);
 
@@ -173,7 +137,9 @@ public class BuildingFragment extends Fragment {
                         Toast.LENGTH_SHORT
                 ).show();
 
-                String mapImageUrl = "http://beaver.hp100.net:4000/static/map/" + selectedBuildId + ".jpg";
+                HawkAPI api = HawkAPI.getInstance();
+
+                String mapImageUrl = api.getMapImageURL(selectedBuildId);
 
                 Picasso.with(getActivity()).load(mapImageUrl).resize(mapView.getWidth(),mapView.getHeight()).into(new Target() {
                     @Override
