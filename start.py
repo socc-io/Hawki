@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import sys
-from web import app
+from Web import app
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         portNo = sys.argv[1]
