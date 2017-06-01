@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, redirect, render_template
 from werkzeug import secure_filename
-from web import ALLOWED_EXTENSIONS
+from Web import ALLOWED_EXTENSIONS
 
 import os
 

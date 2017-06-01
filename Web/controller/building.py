@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from web.service.daumAPI import DaumSearchEngine
+from Web.service.daumAPI import DaumSearchEngine
 from flask_restful import Resource
-from web import ppl
+from Web import ppl
 from flask import jsonify, request
 
 import CONFIG, json

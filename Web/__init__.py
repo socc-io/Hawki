@@ -17,5 +17,5 @@ app.config['UPLOAD_FOLDER'] = 'static/map'
 def static_pages(path):
     return app.send_static_file(path)
 
-from web.controller import register
+from Web.controller import register
 register(app, api)
