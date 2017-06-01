@@ -82,8 +82,8 @@ public class FinderActivity extends Activity {
         try {
             HawkAPI api = HawkAPI.getInstance(); // get API Instance
 
-            String bid = BuildingFragment.getInstance().getId(); // get BID
-
+            //String bid = BuildingFragment.getInstance().getId(); // get BID
+            String bid ="17573702";
             PostGetPositionRes res = api.postGetPosition(bid, wifiScanResult); // do fetching
             if(res == null) {
                 Toast.makeText(this, "실패했습니다", Toast.LENGTH_SHORT).show();

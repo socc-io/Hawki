@@ -5,26 +5,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/fragment_building"
+    <ImageView
+        android:id="@+id/mapView"
         class="com.socc.Hawki.app.view.BuildingFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         tools:layout="@layout/fragment_building">
-    </fragment>
+    </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:background="#f2f2f2"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -134,16 +132,14 @@
                     android:textSize="20sp" />
 
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
         android:onClick="collectorClicked"
-        android:text="@string/collect"
+        android:text="실내 위치 신호 수집"
         android:textSize="25sp" />
 </LinearLayout>

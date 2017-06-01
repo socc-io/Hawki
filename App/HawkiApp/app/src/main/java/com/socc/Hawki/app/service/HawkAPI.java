@@ -1,6 +1,8 @@
 package com.socc.Hawki.app.service;
 
 import android.net.wifi.ScanResult;
+import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -15,13 +17,14 @@ import com.socc.Hawki.app.service.response.PostGetPositionRes;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by gim-yeongjin on 2017. 5. 15..
  */
 
 public class HawkAPI extends APIAgent {
-    final static private HawkAPI _global = new HawkAPI("http://beaver.hp100.net:4000");
+    final static private HawkAPI _global = new HawkAPI("http://beaver.socc-io.net:4000");
 
     private HawkAPI(String baseURL) {
         super(baseURL);
@@ -35,7 +38,17 @@ public class HawkAPI extends APIAgent {
     }
 
     public List<GetBuildingInfoRes> getBuildingInfo(String buildingName) {
-        String resString = this.getHttpResponse("/buildinginfo?buildName=" + buildingName, "GET", null);
+        String resString = null;
+
+         try {
+             resString = new HawkAPI(baseURL).execute("/buildinginfo?buildName=" + buildingName, "GET", null).get();
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         } catch (ExecutionException e) {
+             e.printStackTrace();
+         }
+
+        // Log.d("건물정보", resString);
         if(resString == null) return null;
 
         JsonObject response = (new JsonParser()).parse(resString).getAsJsonObject();

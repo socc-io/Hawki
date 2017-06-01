@@ -1,5 +1,7 @@
 package com.socc.Hawki.app.service;
 
+import android.os.AsyncTask;
+import android.util.Log;
 import android.util.Pair;
 
 import com.socc.Hawki.app.deprecated.model.BuildingData;
@@ -21,7 +23,7 @@ import java.util.Map;
  * Created by gim-yeongjin on 2017. 5. 15..
  */
 
-public class APIAgent {
+public class APIAgent extends AsyncTask<String,String,String>{
     protected Map<String, String> headers;
     protected String baseURL;
 
@@ -42,11 +44,65 @@ public class APIAgent {
         headers.remove(key);
     }
 
+   @Override
+   protected String doInBackground(String... params) {
+       String urlAppend = params[0];
+       String method = params[1];
+       Log.d("method", method);
+       String body = params[2];
+//
+       try {
+           URL url = new URL(baseURL + urlAppend);
+           HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+           conn.setRequestMethod(method);
+          // conn.setDoOutput(true);
+//
+//
+           if(body != null) {
+               OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+               writer.write(URLEncoder.encode(body, "UTF-8"));
+               writer.close();
+           }
+//
+           for(String key : headers.keySet()) { // set headers
+               conn.setRequestProperty(key, headers.get(key));
+           }
+//
+           int respCode = conn.getResponseCode();
+           if(respCode == HttpURLConnection.HTTP_OK || respCode == HttpURLConnection.HTTP_NOT_FOUND) {
+               StringBuffer response = new StringBuffer();
+               String line;
+//
+               BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+               while((line = reader.readLine()) != null) {
+                   response.append(line);
+               }
+               reader.close();
+//
+               return response.toString();
+           }
+           return null;
+       }
+       catch(MalformedURLException e) {
+           e.printStackTrace();
+           return null;
+       }
+       catch(IOException e) {
+           e.printStackTrace();
+           return null;
+       }
+       catch (Exception e) {
+           e.printStackTrace();
+           return null;
+       }
+   }
+
     public String getHttpResponse(String urlAppend, String method, String body) {
+
         try {
             URL url = new URL(baseURL + urlAppend);
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            conn.setDoOutput(true);
+            //conn.setDoOutput(true);
             conn.setRequestMethod(method);
 
             if(body != null) {
@@ -61,7 +117,6 @@ public class APIAgent {
 
             int respCode = conn.getResponseCode();
             if(respCode == HttpURLConnection.HTTP_OK || respCode == HttpURLConnection.HTTP_NOT_FOUND) {
-                ArrayList<BuildingData> resultData = new ArrayList<>();
                 StringBuffer response = new StringBuffer();
                 String line;
 
@@ -88,4 +143,7 @@ public class APIAgent {
             return null;
         }
     }
+
+
+
 }

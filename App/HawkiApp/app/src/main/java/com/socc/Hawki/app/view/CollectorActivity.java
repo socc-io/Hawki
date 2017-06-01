@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -23,6 +24,9 @@ import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.service.HawkAPI;
+import com.socc.Hawki.app.service.SingleTonMapview;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 
@@ -47,6 +51,8 @@ public class CollectorActivity extends Activity {
     String loc_y;
     String loc_z;
 
+    String bid;
+
     private Bitmap mapViewBitmap;
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
@@ -57,7 +63,6 @@ public class CollectorActivity extends Activity {
             }
         }
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,9 @@ public class CollectorActivity extends Activity {
         // Holding WIFI manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
+        bid = "17573702";
+        initMap(bid);
+
         // Attach touch listener to MapView
         mapView.setOnTouchListener(new View.OnTouchListener() {
 
@@ -83,32 +91,51 @@ public class CollectorActivity extends Activity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN: // react on only down event
 
-                        /*
-                        클릭된 좌표를 인식해서 editText의 X, Y, Z 좌표를 자동으로 수정해준다
-                         */
+                        final int cliecdX = (int) (event.getX() / 4);
+                        final int cliecdY = (int) (event.getY() / 4);
 
-                        final float x = event.getX();
-                        final float y = event.getY();
+                        Log.d("찍은 좌표 위치값",cliecdX + " " + cliecdY);
 
-                        Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
-                        Canvas canvas = new Canvas(newDrawBitmap);
+                    //    Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+                    //    Canvas canvas = new Canvas(newDrawBitmap);
 
                         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                         mPaint.setStyle(Paint.Style.FILL);
                         mPaint.setColor(Color.RED);
-                        canvas.drawCircle(x, y, 30, mPaint);
+                    //     canvas.drawCircle(cliecdX,cliecdY,5,mPaint);
 
-                        mapView.setImageBitmap(newDrawBitmap);
+                     //   mapView.setImageBitmap(newDrawBitmap);
 
-                        mapView.setVisibility(View.VISIBLE);
-                        listView.setVisibility(View.GONE);
-
-                        editTextX.setText(String.valueOf((int)x/32));
-                        editTextY.setText(String.valueOf((int)y/20));
+                        editTextX.setText(String.valueOf((int)event.getX() / 80));
+                        editTextY.setText(String.valueOf((int)event.getY() / 80));
                         editTextZ.setText(String.valueOf(0));
 
                 }
                 return true;
+            }
+        });
+    }
+
+    private void initMap(String bid) {
+        String mapURL =  HawkAPI.getInstance().getMapImageURL(bid);
+        Log.d("Map Url : ", mapURL);
+        Picasso.with(getApplicationContext()).load(mapURL).resize(400,400).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                mapView.setImageBitmap(bitmap);
+                Log.d("맵뷰크기" , mapView.getWidth() + " " + mapView.getHeight());
+                mapView.setVisibility(View.VISIBLE);
+                mapViewBitmap = bitmap;
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
             }
         });
     }
@@ -124,7 +151,9 @@ public class CollectorActivity extends Activity {
         Toast.makeText(getApplication(), loc_x + " ," + loc_y + " ," + loc_z, Toast.LENGTH_LONG).show();
 
         try {
-            String bid = BuildingFragment.getInstance().getId(); // get BID
+            //String bid = BuildingFragment.getInstance().getId(); // get BID
+
+            bid = "17573702";
 
             float x = Float.parseFloat(loc_x); // parse as Float
             float y = Float.parseFloat(loc_y);
@@ -155,6 +184,5 @@ public class CollectorActivity extends Activity {
         registerReceiver(wifiReceiver, filter);
         wifimanager.startScan();
     }
-
 
 }
