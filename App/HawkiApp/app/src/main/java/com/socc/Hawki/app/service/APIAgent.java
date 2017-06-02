@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by gim-yeongjin on 2017. 5. 15..
  */
 
-public class APIAgent extends AsyncTask<String,String,String>{
+public class APIAgent extends AsyncTask<String,Void,String>{
     protected Map<String, String> headers;
     protected String baseURL;
 
@@ -54,13 +54,14 @@ public class APIAgent extends AsyncTask<String,String,String>{
        try {
            URL url = new URL(baseURL + urlAppend);
            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+           conn.setRequestProperty("Content-type", "application/json; charset=utf-8");
            conn.setRequestMethod(method);
-          // conn.setDoOutput(true);
+         //  conn.setDoOutput(true);
 //
 //
            if(body != null) {
                OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-               writer.write(URLEncoder.encode(body, "UTF-8"));
+               writer.write(params[2]);
                writer.close();
            }
 //

@@ -96,15 +96,14 @@ public class CollectorActivity extends Activity {
 
                         Log.d("찍은 좌표 위치값",cliecdX + " " + cliecdY);
 
-                    //    Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
-                    //    Canvas canvas = new Canvas(newDrawBitmap);
-
+                        Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+                        Canvas canvas = new Canvas(newDrawBitmap);
                         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                         mPaint.setStyle(Paint.Style.FILL);
                         mPaint.setColor(Color.RED);
-                    //     canvas.drawCircle(cliecdX,cliecdY,5,mPaint);
+                        canvas.drawCircle(cliecdX,cliecdY,5,mPaint);
 
-                     //   mapView.setImageBitmap(newDrawBitmap);
+                        mapView.setImageBitmap(newDrawBitmap);
 
                         editTextX.setText(String.valueOf((int)event.getX() / 80));
                         editTextY.setText(String.valueOf((int)event.getY() / 80));
@@ -112,6 +111,7 @@ public class CollectorActivity extends Activity {
 
                 }
                 return true;
+                // TODO: 2017-06-02 코드 정리. 
             }
         });
     }

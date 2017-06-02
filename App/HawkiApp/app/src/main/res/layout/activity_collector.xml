@@ -11,7 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        tools:layout="@layout/fragment_building">
+        >
     </ImageView>
 
     <LinearLayout

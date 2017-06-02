@@ -42,9 +42,7 @@ public class HawkAPI extends APIAgent {
 
          try {
              resString = new HawkAPI(baseURL).execute("/buildinginfo?buildName=" + buildingName, "GET", null).get();
-         } catch (InterruptedException e) {
-             e.printStackTrace();
-         } catch (ExecutionException e) {
+         } catch (InterruptedException | ExecutionException e) {
              e.printStackTrace();
          }
 
@@ -64,13 +62,29 @@ public class HawkAPI extends APIAgent {
     public String postCollectRssi(String bid, float x, float y, float z, List<ScanResult> scanResult) {
         PostCollectRssiReq req = new PostCollectRssiReq(bid, x, y, z, scanResult);
         Gson gson = new Gson();
-        return this.getHttpResponse("/collectrssi", "POST", gson.toJson(req));
+
+        try {
+            String resString = new HawkAPI(baseURL).execute("/collectrssi", "POST", gson.toJson(req)).get();
+            return resString;
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public PostGetPositionRes postGetPosition(String bid, List<ScanResult> scanResults) {
+
         PostGetPositionReq req = new PostGetPositionReq(bid, scanResults);
         Gson gson = new Gson();
-        String response = this.getHttpResponse("/getposition", "POST", gson.toJson(req));
+        String response = null;
+
+        try {
+             response =  new HawkAPI(baseURL).execute("/getposition", "POST", gson.toJson(req)).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
         if(response == null) return null;
         JsonObject resJson = (new JsonParser()).parse(response).getAsJsonObject();
         PostGetPositionRes res = gson.fromJson(resJson, PostGetPositionRes.class);

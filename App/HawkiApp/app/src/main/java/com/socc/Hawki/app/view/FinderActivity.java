@@ -39,10 +39,7 @@ public class FinderActivity extends Activity {
     List<RecvData> Indoor = new ArrayList<>();
 
     ImageView mapView;
-    ListView listView;
-
     Bitmap mapViewBitmap;
-
     Paint mPaint;
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
@@ -60,17 +57,11 @@ public class FinderActivity extends Activity {
 
         // Holding manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-
-        // Holding View
         mapView = (ImageView) findViewById(R.id.mapView);
-        listView = (ListView) findViewById(R.id.listView_building);
-
-        // Holding bitmap ??? TODO: Holding mapViewBitmap
     }
 
     public void finderClicked(View v) throws JSONException {
         IntentFilter filter = new IntentFilter();
-
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
         wifimanager.startScan();
@@ -90,19 +81,14 @@ public class FinderActivity extends Activity {
                 return;
             }
 
-            Log.i("Get position response: ", res.toString());
-
-            Bitmap newBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
-            Canvas canvas = new Canvas(newBitmap);
-
+            Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+            Canvas canvas = new Canvas(newDrawBitmap);
             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(Color.RED);
-            canvas.drawCircle(res.getX() * 32, res.getY() * 20, 30, mPaint);
+            canvas.drawCircle(res.getX() * 20, res.getY() * 20, 5, mPaint);
+            mapView.setImageBitmap(newDrawBitmap);
 
-            mapView.setImageBitmap(newBitmap);
-            mapView.setVisibility(View.VISIBLE);
-            listView.setVisibility(View.GONE);
             unregisterReceiver(wifiReceiver);
 
         } catch (JsonParseException e) {
