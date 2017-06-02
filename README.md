@@ -40,7 +40,7 @@ Hawki system is built on three main components,
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
     
 ### 3. Select Building
-    ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/buildinfo.jpg)
+  ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/buildinfo.jpg)
 
 ### 4. Collecting your indoor data using APP
 
