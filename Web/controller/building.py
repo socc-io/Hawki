@@ -60,6 +60,7 @@ class CollectRssi(Resource):
             }
         ]
     }):
+        print(data['bid'])
         savePath = 'Data/WRM/RAW/{}.dat'.format(data['bid'])
         with open(savePath, 'a') as f:
             f.write(json.dumps(data) + '\n')
