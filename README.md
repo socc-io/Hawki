@@ -38,10 +38,13 @@ Hawki system is built on three main components,
     Install Android-Studio : https://developer.android.com/studio/index.html?hl=ko
 
     File -> Import Existing Project -> PATH_CLONE_HAWKI/APP/Hawki
+    
+### 3. Select Building
+    ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/buildinfo.jpg)
 
-### 3. Collecting your indoor data using APP
+### 4. Collecting your indoor data using APP
 
- ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/collector1.jpg)
+ ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/collector3.jpg)
 
     1) After Open application, Click the Collector button
 
@@ -49,7 +52,7 @@ Hawki system is built on three main components,
 
     3) Input your coordinate on map and push collect button
 
-### 4. Training indoor data
+### 5. Training indoor data
 
 ![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/raw_data.PNG)
 
@@ -64,9 +67,9 @@ Hawki system is built on three main components,
      $ ./trainer.py [BUILDING_ID]
        - ex) ./trainer.py 12665691
 
-### 5. Predicting location using APP
+### 6. Predicting location using APP
 
-![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/finder1.jpg)
+![alt Hawki](https://github.com/socc-io/Hawki/blob/master/image/finder2.jpg)
 
     1) After Open application, Click the Finder button
 
