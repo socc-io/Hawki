@@ -7,7 +7,6 @@
 
     <ImageView
         android:id="@+id/mapView"
-        class="com.socc.Hawki.app.view.BuildingFragment"
         android:layout_gravity="center_horizontal"
         android:layout_width="400dp"
         android:layout_height="400dp"
@@ -140,6 +139,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="collectorClicked"
-        android:text="실내 위치 신호 수집"
+        android:text="실내위치 신호수집"
         android:textSize="25sp" />
 </LinearLayout>

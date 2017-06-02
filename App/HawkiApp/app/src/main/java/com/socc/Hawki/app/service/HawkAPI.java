@@ -37,6 +37,7 @@ public class HawkAPI extends APIAgent {
         return baseURL + "/static/map/" + buildId + ".jpg";
     }
 
+
     public List<GetBuildingInfoRes> getBuildingInfo(String buildingName) {
         String resString = null;
 

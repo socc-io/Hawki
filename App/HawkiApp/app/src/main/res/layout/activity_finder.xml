@@ -6,8 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/mapView"
-        class="com.socc.Hawki.app.view.BuildingFragment"
+        android:id="@+id/mapView2"
         android:layout_gravity="center_horizontal"
         android:layout_width="400dp"
         android:layout_height="400dp">
@@ -32,7 +31,7 @@
                 android:layout_weight="1"/>
 
             <TextView
-                android:id="@+id/editText_buildingName"
+                android:id="@+id/textView_buildName"
                 android:text="name"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
@@ -54,7 +53,7 @@
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/editText_buildingId"
+            android:id="@+id/textView_buildingId"
             android:text="id"
             android:textSize="20sp"
             android:layout_width="wrap_content"

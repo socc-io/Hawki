@@ -9,20 +9,26 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.deprecated.model.RecvData;
 import com.socc.Hawki.app.service.HawkAPI;
+import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.response.PostGetPositionRes;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 
@@ -32,7 +38,7 @@ import java.util.List;
 /**
  * Created by Jeong on 2016-09-17.
  */
-public class FinderActivity extends Activity {
+public class FinderActivity extends AppCompatActivity {
 
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
@@ -57,7 +63,39 @@ public class FinderActivity extends Activity {
 
         // Holding manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        mapView = (ImageView) findViewById(R.id.mapView);
+
+        TextView buildIdTextView = (TextView)findViewById(R.id.textView_buildingId);
+        buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
+        buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
+
+        initMap();
+    }
+
+    private void initMap() {
+        mapView = (ImageView) findViewById(R.id.mapView2);
+        String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+        String mapURL =  HawkAPI.getInstance().getMapImageURL(buildId);
+        Log.d("Map Url : ", mapURL);
+        Picasso.with(getApplicationContext()).load(mapURL).resize(400,400).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                mapView.setImageBitmap(bitmap);
+                Log.d("맵뷰크기" , mapView.getWidth() + " " + mapView.getHeight());
+                mapView.setVisibility(View.VISIBLE);
+                mapViewBitmap = bitmap;
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
     }
 
     public void finderClicked(View v) throws JSONException {
@@ -73,8 +111,7 @@ public class FinderActivity extends Activity {
         try {
             HawkAPI api = HawkAPI.getInstance(); // get API Instance
 
-            //String bid = BuildingFragment.getInstance().getId(); // get BID
-            String bid ="17573702";
+            String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
             PostGetPositionRes res = api.postGetPosition(bid, wifiScanResult); // do fetching
             if(res == null) {
                 Toast.makeText(this, "실패했습니다", Toast.LENGTH_SHORT).show();

@@ -1,6 +1,5 @@
 package com.socc.Hawki.app.view;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.net.ParseException;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.service.HawkAPI;
-import com.socc.Hawki.app.service.SingleTonMapview;
+import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * Created by Jeong on 2016-09-16.
  */
-public class CollectorActivity extends Activity {
+public class CollectorActivity extends AppCompatActivity {
 
     EditText editTextX, editTextY, editTextZ;
     ImageView mapView;
@@ -50,8 +50,7 @@ public class CollectorActivity extends Activity {
     String loc_x;
     String loc_y;
     String loc_z;
-
-    String bid;
+    
 
     private Bitmap mapViewBitmap;
 
@@ -79,8 +78,8 @@ public class CollectorActivity extends Activity {
         // Holding WIFI manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
-        bid = "17573702";
-        initMap(bid);
+   
+        initMap();
 
         // Attach touch listener to MapView
         mapView.setOnTouchListener(new View.OnTouchListener() {
@@ -116,7 +115,8 @@ public class CollectorActivity extends Activity {
         });
     }
 
-    private void initMap(String bid) {
+    private void initMap() {
+        String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
         String mapURL =  HawkAPI.getInstance().getMapImageURL(bid);
         Log.d("Map Url : ", mapURL);
         Picasso.with(getApplicationContext()).load(mapURL).resize(400,400).into(new Target() {
@@ -153,7 +153,7 @@ public class CollectorActivity extends Activity {
         try {
             //String bid = BuildingFragment.getInstance().getId(); // get BID
 
-            bid = "17573702";
+            String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
 
             float x = Float.parseFloat(loc_x); // parse as Float
             float y = Float.parseFloat(loc_y);
