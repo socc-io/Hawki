@@ -1,9 +1,6 @@
 package com.socc.Hawki.app.view;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
@@ -39,12 +35,13 @@ public class BuildingSearchActivity extends AppCompatActivity {
     private ListView listView;
     private List<HashMap<String, String>> buildList;
     private List<GetBuildingInfoRes> recvBuildingData = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_search);
 
-        listView = (ListView)findViewById(R.id.listView_building);
+        listView = (ListView) findViewById(R.id.listView_building);
         buildingNameEdit = (EditText) findViewById(R.id.nameEdit);
         getBuildInfoButton = (Button) findViewById(R.id.requestBuild);
         buildList = new ArrayList<>();
@@ -54,21 +51,20 @@ public class BuildingSearchActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String buildName = buildingNameEdit.getText().toString();
-                if(buildName.length() <= 0) {
+                if (buildName.length() <= 0) {
                     Toast.makeText(getApplicationContext(), "건물 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 HawkAPI api = HawkAPI.getInstance(); // get API Instance
                 recvBuildingData = api.getBuildingInfo(buildName); // fetch data
-                if(recvBuildingData == null) {
+                if (recvBuildingData == null) {
                     Toast.makeText(getApplicationContext(), "실패했습니다", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // convert List<BuildingData> to List<HashMap<String, String>>
                 buildList.clear();
-                for(GetBuildingInfoRes data: recvBuildingData) {
+                for (GetBuildingInfoRes data : recvBuildingData) {
                     HashMap<String, String> hm = new HashMap<>();
                     hm.put("name", data.getTitle());
                     hm.put("address", data.getAddress());
@@ -90,14 +86,12 @@ public class BuildingSearchActivity extends AppCompatActivity {
         });
     }
 
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener()
-    {
-        public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id)
-        {
+    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id) {
             selectedRecvData = recvBuildingData.get(pos);
             SingleTonBuildingInfo.getInstance().setSelectedBuildId(selectedRecvData.getId());
             SingleTonBuildingInfo.getInstance().setSelectedBuildName(selectedRecvData.getTitle());
-            Intent intent = new Intent(BuildingSearchActivity.this,MainActivity.class);
+            Intent intent = new Intent(BuildingSearchActivity.this, MainActivity.class);
             startActivity(intent);
         }
     };

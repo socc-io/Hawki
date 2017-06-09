@@ -13,6 +13,7 @@ public class SingleTonBuildingInfo {
 
     private String selectedBuildId;
     private String selectedBuildName;
+
     private SingleTonBuildingInfo() {
 
     }
