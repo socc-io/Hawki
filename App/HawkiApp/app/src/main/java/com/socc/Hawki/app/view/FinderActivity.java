@@ -40,8 +40,6 @@ public class FinderActivity extends AppCompatActivity {
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
 
-    private Bitmap mapViewBitmap;
-
     private ImageView canvasView;
     private Bitmap canvasViewBitmap;
 
@@ -88,12 +86,11 @@ public class FinderActivity extends AppCompatActivity {
         String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
         String mapURL =  HawkAPI.getInstance().getMapImageURL(buildId);
         Log.d("Map Url : ", mapURL);
-        Picasso.with(getApplicationContext()).load(mapURL).resize(400,400).into(new Target() {
+        Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 mapView.setImageBitmap(bitmap);
                 mapView.setVisibility(View.VISIBLE);
-                mapViewBitmap = bitmap;
             }
 
             @Override
