@@ -61,15 +61,10 @@ public class FinderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finder);
 
-        // Holding manager
-
-
         TextView buildIdTextView = (TextView)findViewById(R.id.textView_buildingId);
         buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
         TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
-
-
 
         initMap();
         initCanvas();
@@ -119,15 +114,6 @@ public class FinderActivity extends AppCompatActivity {
         canvasViewBitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
     }
 
-    public void finderClicked(View v) throws JSONException {
-        if(wifimanager == null)
-            wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
-        registerReceiver(wifiReceiver, filter);
-        wifimanager.startScan();
-    }
-
     public void getWIFIScanResult() {
         wifiScanResult = wifimanager.getScanResults();
 
@@ -156,6 +142,15 @@ public class FinderActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void finderClicked(View v) throws JSONException {
+        if(wifimanager == null)
+            wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+        registerReceiver(wifiReceiver, filter);
+        wifimanager.startScan();
     }
 }
 

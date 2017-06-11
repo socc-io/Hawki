@@ -31,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
         collectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), BuildingSearchActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CollectorActivity.class);
                 startActivity(intent);
             }
         });
