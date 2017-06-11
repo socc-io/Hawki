@@ -91,7 +91,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
             selectedRecvData = recvBuildingData.get(pos);
             SingleTonBuildingInfo.getInstance().setSelectedBuildId(selectedRecvData.getId());
             SingleTonBuildingInfo.getInstance().setSelectedBuildName(selectedRecvData.getTitle());
-            Intent intent = new Intent(BuildingSearchActivity.this, MainActivity.class);
+            Intent intent = new Intent(BuildingSearchActivity.this, CollectorActivity.class);
             startActivity(intent);
         }
     };

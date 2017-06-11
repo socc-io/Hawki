@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
-import com.socc.Hawki.app.deprecated.model.RecvData;
 import com.socc.Hawki.app.service.HawkAPI;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.response.PostGetPositionRes;
@@ -40,12 +39,15 @@ public class FinderActivity extends AppCompatActivity {
 
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
-    List<RecvData> Indoor = new ArrayList<>();
 
-    ImageView mapView;
-    Bitmap mapViewBitmap;
+    private Bitmap mapViewBitmap;
+
+    private ImageView canvasView;
+    private Bitmap canvasViewBitmap;
+
     Paint mPaint;
 
+    ImageView mapView;
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -60,14 +62,30 @@ public class FinderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_finder);
 
         // Holding manager
-        wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+
 
         TextView buildIdTextView = (TextView)findViewById(R.id.textView_buildingId);
         buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
         TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
 
+
+
         initMap();
+        initCanvas();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+            unregisterReceiver(wifiReceiver);
+        } catch (IllegalArgumentException e) {
+
+        } catch (Exception e) {
+            Log.e("Don't Regist Receiver.", e.getMessage());
+        }
+
     }
 
     private void initMap() {
@@ -95,7 +113,15 @@ public class FinderActivity extends AppCompatActivity {
         });
     }
 
+
+    private void initCanvas() {
+        canvasView = (ImageView) findViewById(R.id.canvasView2);
+        canvasViewBitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
+    }
+
     public void finderClicked(View v) throws JSONException {
+        if(wifimanager == null)
+            wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
@@ -115,13 +141,13 @@ public class FinderActivity extends AppCompatActivity {
                 return;
             }
 
-            Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+            Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
             Canvas canvas = new Canvas(newDrawBitmap);
             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(Color.RED);
             canvas.drawCircle(res.getX() * 20, res.getY() * 20, 5, mPaint);
-            mapView.setImageBitmap(newDrawBitmap);
+            canvasView.setImageBitmap(newDrawBitmap);
 
             unregisterReceiver(wifiReceiver);
 

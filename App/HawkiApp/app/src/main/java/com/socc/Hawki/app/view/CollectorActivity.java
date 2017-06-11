@@ -39,9 +39,13 @@ public class CollectorActivity extends AppCompatActivity {
     private EditText editTextX, editTextY, editTextZ;
     private ImageView mapView;
 
+
     private WifiManager wifimanager;
 
     private Bitmap mapViewBitmap;
+
+    private ImageView canvasView;
+    private Bitmap canvasViewBitmap;
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
@@ -55,9 +59,14 @@ public class CollectorActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(wifiReceiver != null) {
+        try {
             unregisterReceiver(wifiReceiver);
+        } catch (IllegalArgumentException e) {
+
+        } catch (Exception e) {
+            Log.e("리시버가 아직 등록안됨.", e.getMessage());
         }
+
     }
 
     @Override
@@ -69,21 +78,24 @@ public class CollectorActivity extends AppCompatActivity {
         editTextX = (EditText)  findViewById(R.id.editTextX);
         editTextY = (EditText)  findViewById(R.id.editTextY);
         editTextZ = (EditText)  findViewById(R.id.editTextZ);
-        mapView   = (ImageView) findViewById(R.id.mapView);
+
+
 
         // Holding WIFI manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
         initMap();
-        registMapTouchEvent();
+        initCanvas();
+       // registMapTouchEvent();
 
     }
 
     private void initMap() {
+        mapView   = (ImageView) findViewById(R.id.mapView);
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
         String mapURL =  HawkAPI.getInstance().getMapImageURL(bid);
         Log.d("Map Url : ", mapURL);
-        Picasso.with(getApplicationContext()).load(mapURL).resize(400,400).into(new Target() {
+        Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 mapView.setImageBitmap(bitmap);
@@ -93,6 +105,8 @@ public class CollectorActivity extends AppCompatActivity {
 
             @Override
             public void onBitmapFailed(Drawable errorDrawable) {
+                // TODO: 2017. 6. 9. 실내지도 비어있을때 이미지 띄우기.
+
 
             }
 
@@ -103,36 +117,36 @@ public class CollectorActivity extends AppCompatActivity {
         });
     }
 
-    private void registMapTouchEvent() {
-        mapView.setOnTouchListener(new View.OnTouchListener() {
+    private void initCanvas() {
+        canvasViewBitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
+        canvasView = (ImageView) findViewById(R.id.canvasView);
 
+        canvasView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN: // react on only down event
-
+                        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
                         final int cliecdX = (int) (event.getX() / 4);
                         final int cliecdY = (int) (event.getY() / 4);
-
-                        Bitmap newDrawBitmap = mapViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
                         Canvas canvas = new Canvas(newDrawBitmap);
                         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                         mPaint.setStyle(Paint.Style.FILL);
                         mPaint.setColor(Color.RED);
-                        canvas.drawCircle(cliecdX,cliecdY,5,mPaint);
-                        mapView.setImageBitmap(newDrawBitmap);
+                        canvas.drawCircle(cliecdX, cliecdY, 5, mPaint);
+                        canvasView.setImageBitmap(newDrawBitmap);
 
-                        editTextX.setText(String.valueOf((int)event.getX() / 80));
-                        editTextY.setText(String.valueOf((int)event.getY() / 80));
+                        editTextX.setText(String.valueOf((int) event.getX() / 80));
+                        editTextY.setText(String.valueOf((int) event.getY() / 80));
                         editTextZ.setText(String.valueOf(0));
-
                 }
+
                 return true;
             }
         });
-    }
 
+
+    }
 
     public void getWIFIScanResult() {
 
@@ -161,6 +175,8 @@ public class CollectorActivity extends AppCompatActivity {
     }
 
     public void collectorClicked(View v) throws JSONException {
+        if(wifimanager == null)
+            wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
