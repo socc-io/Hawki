@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
@@ -41,6 +42,9 @@ public class CollectorActivity extends AppCompatActivity {
 
 
     private WifiManager wifimanager;
+
+    private TextView buildIdTextView;
+    private TextView buildNameTextView;
 
     private Bitmap mapViewBitmap;
 
@@ -79,8 +83,11 @@ public class CollectorActivity extends AppCompatActivity {
         editTextY = (EditText)  findViewById(R.id.editTextY);
         editTextZ = (EditText)  findViewById(R.id.editTextZ);
 
+        buildIdTextView = (TextView) findViewById(R.id.editText_buildingId);
+        buildNameTextView = (TextView) findViewById(R.id.editText_buildingName);
 
-
+        buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
         // Holding WIFI manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 

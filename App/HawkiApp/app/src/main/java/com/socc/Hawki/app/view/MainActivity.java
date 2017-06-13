@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         collectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CollectorActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BuildingSearchActivity.class);
                 intent.putExtra("TYPE","COLLECTOR");
                 startActivity(intent);
             }
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         finderImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FinderActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BuildingSearchActivity.class);
                 intent.putExtra("TYPE", "FINDER");
                 startActivity(intent);
             }

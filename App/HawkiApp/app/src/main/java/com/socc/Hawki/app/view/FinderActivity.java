@@ -129,6 +129,8 @@ public class FinderActivity extends AppCompatActivity {
             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(Color.RED);
+
+
             canvas.drawCircle(res.getX() * 20, res.getY() * 20, 5, mPaint);
             canvasView.setImageBitmap(newDrawBitmap);
 

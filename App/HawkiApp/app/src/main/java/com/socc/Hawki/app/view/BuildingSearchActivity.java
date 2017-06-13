@@ -97,7 +97,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
             SingleTonBuildingInfo.getInstance().setSelectedBuildName(selectedRecvData.getTitle());
             Intent intent;
 
-            if(type == "COLLECTOR") {
+            if(type.equals("COLLECTOR")) {
                 intent = new Intent(BuildingSearchActivity.this, CollectorActivity.class);
             }
 

@@ -1,8 +1,6 @@
 package com.socc.Hawki.app.service;
 
 import android.net.wifi.ScanResult;
-import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -24,7 +22,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class HawkAPI extends APIAgent {
-    final static private HawkAPI _global = new HawkAPI("http://beaver.socc-io.net:4000");
+    final static private HawkAPI _global = new HawkAPI("http://smilu.link:4000");
 
     private HawkAPI(String baseURL) {
         super(baseURL);
