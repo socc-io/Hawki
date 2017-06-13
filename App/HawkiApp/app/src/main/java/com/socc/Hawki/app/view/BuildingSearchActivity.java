@@ -35,6 +35,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
     private ListView listView;
     private List<HashMap<String, String>> buildList;
     private List<GetBuildingInfoRes> recvBuildingData = new ArrayList<>();
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class BuildingSearchActivity extends AppCompatActivity {
         buildingNameEdit = (EditText) findViewById(R.id.nameEdit);
         getBuildInfoButton = (Button) findViewById(R.id.requestBuild);
         buildList = new ArrayList<>();
+
+        Intent intent = getIntent();
+        type = intent.getStringExtra("TYPE");
 
         getBuildInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +95,17 @@ public class BuildingSearchActivity extends AppCompatActivity {
             selectedRecvData = recvBuildingData.get(pos);
             SingleTonBuildingInfo.getInstance().setSelectedBuildId(selectedRecvData.getId());
             SingleTonBuildingInfo.getInstance().setSelectedBuildName(selectedRecvData.getTitle());
-            Intent intent = new Intent(BuildingSearchActivity.this, MainActivity.class);
+            Intent intent;
+
+            if(type == "COLLECTOR") {
+                intent = new Intent(BuildingSearchActivity.this, CollectorActivity.class);
+            }
+
+            else {
+                intent = new Intent(BuildingSearchActivity.this, FinderActivity.class);
+            }
             startActivity(intent);
+
         }
     };
 

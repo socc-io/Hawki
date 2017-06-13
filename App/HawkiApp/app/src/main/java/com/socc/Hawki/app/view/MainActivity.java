@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CollectorActivity.class);
+                intent.putExtra("TYPE","COLLECTOR");
                 startActivity(intent);
             }
         });
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FinderActivity.class);
+                intent.putExtra("TYPE", "FINDER");
                 startActivity(intent);
             }
         });
