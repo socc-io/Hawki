@@ -3,6 +3,7 @@ package com.socc.Hawki.app.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -13,13 +14,20 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
-import com.socc.Hawki.app.service.HawkAPI;
+import com.socc.Hawki.app.application.GlobalApplication;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
+import com.socc.Hawki.app.service.network.HttpService;
+import com.socc.Hawki.app.service.response.Build;
 import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by young on 2017-06-02.
@@ -28,13 +36,13 @@ import java.util.List;
 
 public class BuildingSearchActivity extends AppCompatActivity {
 
-    public static GetBuildingInfoRes selectedRecvData;
+    public static Build selectedRecvData;
 
     private EditText buildingNameEdit;
     private Button getBuildInfoButton;
     private ListView listView;
     private List<HashMap<String, String>> buildList;
-    private List<GetBuildingInfoRes> recvBuildingData = new ArrayList<>();
+    private List<Build> recvBuildingData = new ArrayList<>();
     private String type;
 
     @Override
@@ -60,30 +68,47 @@ public class BuildingSearchActivity extends AppCompatActivity {
                     return;
                 }
 
-                HawkAPI api = HawkAPI.getInstance(); // get API Instance
-                recvBuildingData = api.getBuildingInfo(buildName); // fetch data
-                if (recvBuildingData == null) {
-                    Toast.makeText(getApplicationContext(), "실패했습니다", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                HawkAPI api = HawkAPI.getInstance(); // get API Instance
+//                recvBuildingData = api.getBuildingInfo(buildName); // fetch data
+//                if (recvBuildingData == null) {
+//                    Toast.makeText(getApplicationContext(), "실패했습니다", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                HttpService httpService = GlobalApplication.getRetrofit().create(HttpService.class);
+                Call<GetBuildingInfoRes> call = httpService.getBuildingInfo(buildName);
+                call.enqueue(new Callback<GetBuildingInfoRes>() {
+                    @Override
+                    public void onResponse(Call<GetBuildingInfoRes> call, Response<GetBuildingInfoRes> response) {
+                        GetBuildingInfoRes res = response.body();
+                        recvBuildingData = res.getBuildList();
 
-                buildList.clear();
-                for (GetBuildingInfoRes data : recvBuildingData) {
-                    HashMap<String, String> hm = new HashMap<>();
-                    hm.put("name", data.getTitle());
-                    hm.put("address", data.getAddress());
-                    hm.put("phone", data.getPhone());
-                    buildList.add(hm);
-                }
+                        buildList.clear();
+                        for (Build data : recvBuildingData) {
+                            HashMap<String, String> hm = new HashMap<>();
+                            hm.put("name", data.getTitle());
+                            hm.put("address", data.getAddress());
+                            hm.put("phone", data.getPhone());
 
-                ListAdapter adapter = new SimpleAdapter(
-                        getApplicationContext(), buildList,
-                        R.layout.list_item, new String[]{"name", "address",
-                        "phone"}, new int[]{R.id.name,
-                        R.id.email, R.id.mobile});
+                            Log.d("SUNO", data.getTitle() +","+data.getAddress()+","+data.getPhone());
+                            buildList.add(hm);
+                        }
 
-                listView.setAdapter(adapter);
-                listView.setOnItemClickListener(itemClickListener);
+                        ListAdapter adapter = new SimpleAdapter(
+                                getApplicationContext(), buildList,
+                                R.layout.list_item, new String[]{"name", "address",
+                                "phone"}, new int[]{R.id.name,
+                                R.id.email, R.id.mobile});
+
+                        listView.setAdapter(adapter);
+                        listView.setOnItemClickListener(itemClickListener);
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetBuildingInfoRes> call, Throwable t) {
+                        Toast.makeText(BuildingSearchActivity.this, "건물 검색 실패 :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        t.printStackTrace();
+                    }
+                });
 
             }
 
