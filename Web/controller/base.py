@@ -3,6 +3,7 @@
 from flask import Blueprint, request, redirect, render_template
 from werkzeug import secure_filename
 from Web import ALLOWED_EXTENSIONS
+from ..config import UPLOAD_FOLDER
 
 import os
 
@@ -27,7 +28,7 @@ def upload_file():
 		return 'Save failed'
 	# save filestream
 	filename = secure_filename(file.filename)
-	path = os.path.join(os.path.dirname(__file__), app.config['UPLOAD_FOLDER'], filename)
+	path = os.path.join(UPLOAD_FOLDER, filename)
 	file.save(path)
 
 	return 'Save success'

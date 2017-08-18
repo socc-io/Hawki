@@ -21,8 +21,8 @@ class BuildingInfo(Resource):
         res = self.getBuildInfoByName(name=buildName)
         if not res:
             return u'다음 API요청에 실패했습니다. 키 값이 만료되었을 수 있습니다'
-        res = jsonify(self.getBuildInfoByName(name=buildName))
-        return res
+        print 'requested daum api: ' + str(res)
+        return jsonify(res)
 
 class GetPosition(Resource):
     global ppl
