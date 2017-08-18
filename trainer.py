@@ -4,6 +4,7 @@ import sys, json
 import time
 import importlib
 import Predictor.Module.APVOCA.SUPER_APVOCA as apvoca
+import glob
 
 def start_train_pipe(building_id, datPath='Data/WRM/RAW/',\
                           train_algorithm='sklearn_gaussianNB'):
@@ -28,5 +29,8 @@ if __name__ == '__main__':
         train_algorithm = sys.argv[2]
         start_train_pipe(building_id, train_algorithm)
     else:
-        print('please run with argument!')
-        print('> python trainer.py [BUILDING_ID] [algorithm]')
+        files = [i.split('/')[-1].split('.')[0] for i in glob.glob('Data/WRM/RAW/*.dat')]
+        for file in files:
+            start_train_pipe(file)
+        # print('please run with argument!')
+        # print('> python trainer.py [BUILDING_ID] [algorithm]')
