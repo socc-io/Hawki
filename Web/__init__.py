@@ -10,7 +10,7 @@ api = Api(app)
 ppl = Pipeline()
 
 # Request for static page
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp'])
 app.config['UPLOAD_FOLDER'] = 'static/map'
 
 @app.route("/static/<string:path>")
