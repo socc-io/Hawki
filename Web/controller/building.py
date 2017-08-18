@@ -1,4 +1,4 @@
-b# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from Web.service.daumAPI import DaumSearchEngine
 from flask_restful import Resource
