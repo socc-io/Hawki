@@ -1,2 +1,2 @@
 
-UPLOAD_FOLDER = 'static/map'
+UPLOAD_FOLDER = 'Web/static/map'

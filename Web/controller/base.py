@@ -28,7 +28,7 @@ def upload_file():
 		return 'Save failed'
 	# save filestream
 	filename = secure_filename(file.filename)
-	path = os.path.join(os.path.dirname(__file__), UPLOAD_FOLDER, filename)
+	path = os.path.join(UPLOAD_FOLDER, filename)
 	file.save(path)
 
 	return 'Save success'
