@@ -23,14 +23,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
+import com.socc.Hawki.app.application.GlobalApplication;
 import com.socc.Hawki.app.service.HawkAPI;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
+import com.socc.Hawki.app.service.network.HttpService;
+import com.socc.Hawki.app.service.request.PostCollectRssiReq;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Jeong on 2016-09-16.
@@ -100,7 +107,7 @@ public class CollectorActivity extends AppCompatActivity {
     private void initMap() {
         mapView   = (ImageView) findViewById(R.id.mapView);
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        String mapURL =  HawkAPI.getInstance().getMapImageURL(bid);
+        String mapURL =  GlobalApplication.getMapImageURL(bid);
         Log.d("Map Url : ", mapURL);
         Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
             @Override
@@ -156,28 +163,32 @@ public class CollectorActivity extends AppCompatActivity {
     }
 
     public void getWIFIScanResult() {
+        String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+        float x = Float.parseFloat(editTextX.getText().toString());
+        float y = Float.parseFloat(editTextY.getText().toString());
+        float z = Float.parseFloat(editTextZ.getText().toString());
+        List<ScanResult> wifiScanResult = wifimanager.getScanResults();
 
-        try {
+        PostCollectRssiReq req = new PostCollectRssiReq(bid, x, y, z, wifiScanResult);
 
-            String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-            float x = Float.parseFloat(editTextX.getText().toString());
-            float y = Float.parseFloat(editTextY.getText().toString());
-            float z = Float.parseFloat(editTextZ.getText().toString());
-            List<ScanResult> wifiScanResult = wifimanager.getScanResults();
+//            HawkAPI api = HawkAPI.getInstance(); // get API Instance
+//            String res = api.postCollectRssi(bid, x, y, z, wifiScanResult); // do fetching
+        HttpService httpService = GlobalApplication.getRetrofit().create(HttpService.class);
+        Call<String> call = httpService.postCollectRssi(req);
 
-            HawkAPI api = HawkAPI.getInstance(); // get API Instance
-            String res = api.postCollectRssi(bid, x, y, z, wifiScanResult); // do fetching
-
-            if(res == null) {
-                Toast.makeText(this, "실패했습니다", Toast.LENGTH_SHORT).show();
-                return;
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.body() == null) {
+                    Toast.makeText(CollectorActivity.this, "실패했습니다", Toast.LENGTH_SHORT).show();
+                }
             }
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(CollectorActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

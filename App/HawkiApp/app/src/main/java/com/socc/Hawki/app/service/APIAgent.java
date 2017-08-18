@@ -49,6 +49,7 @@ public class APIAgent extends AsyncTask<String,Void,String>{
        String urlAppend = params[0];
        String method = params[1];
        Log.d("method", method);
+
        String body = params[2];
 //
        try {

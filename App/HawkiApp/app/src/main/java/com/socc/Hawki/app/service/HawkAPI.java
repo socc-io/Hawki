@@ -9,7 +9,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.socc.Hawki.app.service.request.PostCollectRssiReq;
 import com.socc.Hawki.app.service.request.PostGetPositionReq;
-import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
+import com.socc.Hawki.app.service.response.Build;
 import com.socc.Hawki.app.service.response.PostGetPositionRes;
 
 import java.lang.reflect.Type;
@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class HawkAPI extends APIAgent {
-    final static private HawkAPI _global = new HawkAPI("http://smilu.link:4000");
+    final static private HawkAPI _global = new HawkAPI("http://hawki.smilu.link:4000");
 
     private HawkAPI(String baseURL) {
         super(baseURL);
@@ -35,8 +35,7 @@ public class HawkAPI extends APIAgent {
         return baseURL + "/static/map/" + buildId + ".jpg";
     }
 
-
-    public List<GetBuildingInfoRes> getBuildingInfo(String buildingName) {
+    public List<Build> getBuildingInfo(String buildingName) {
         String resString = null;
 
          try {
@@ -52,8 +51,8 @@ public class HawkAPI extends APIAgent {
         JsonArray  buildings = response.get("Build").getAsJsonArray();
 
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<GetBuildingInfoRes>>(){}.getType();
-        List<GetBuildingInfoRes> res = gson.fromJson(buildings, listType);
+        Type listType = new TypeToken<ArrayList<Build>>(){}.getType();
+        List<Build> res = gson.fromJson(buildings, listType);
 
         return res;
     }
