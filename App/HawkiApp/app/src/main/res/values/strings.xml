@@ -102,4 +102,7 @@
     <string name="name">name</string>
     <string name="buildName">빌딩이름</string>
     <string name="id">빌딩ID</string>
+
+    <string name="collector_info">위의 지도에서 수집할 위치를 터치하면 아래에 좌표가 찍힙니다.
+        좌표가 찍히면 버튼을 눌러 해 좌표의 신호를 수집해주세요</string>
 </resources>

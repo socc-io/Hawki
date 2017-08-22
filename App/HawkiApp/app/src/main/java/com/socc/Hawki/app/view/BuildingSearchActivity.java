@@ -6,21 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
-import com.socc.Hawki.app.application.GlobalApplication;
+import com.socc.Hawki.app.application.HawkiApplication;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.response.Build;
 import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +38,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
     public static Build selectedRecvData;
 
     private EditText buildingNameEdit;
-    private Button getBuildInfoButton;
+    private ImageButton getBuildInfoButton;
     private ListView listView;
     private List<HashMap<String, String>> buildList;
     private List<Build> recvBuildingData = new ArrayList<>();
@@ -52,7 +51,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView_building);
         buildingNameEdit = (EditText) findViewById(R.id.nameEdit);
-        getBuildInfoButton = (Button) findViewById(R.id.requestBuild);
+        getBuildInfoButton = (ImageButton) findViewById(R.id.requestBuild);
         buildList = new ArrayList<>();
 
         Intent intent = getIntent();
@@ -74,7 +73,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
 //                    Toast.makeText(getApplicationContext(), "실패했습니다", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
-                HttpService httpService = GlobalApplication.getRetrofit().create(HttpService.class);
+                HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
                 Call<GetBuildingInfoRes> call = httpService.getBuildingInfo(buildName);
                 call.enqueue(new Callback<GetBuildingInfoRes>() {
                     @Override

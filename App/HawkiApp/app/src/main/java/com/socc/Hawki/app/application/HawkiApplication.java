@@ -16,16 +16,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by suno on 2017. 8. 18..
  */
 
-public class GlobalApplication extends Application {
-    private static volatile GlobalApplication mInstance = null;
+public class HawkiApplication extends Application {
+    private static volatile HawkiApplication mInstance = null;
     private static volatile Activity currentActivity = null;
 
     private static Retrofit retrofit = null;
     private static final String BASE_URL = "http://hawki.smilu.link:4000";
 
-    public static GlobalApplication getGlobalApplicationContext() {
+    public static HawkiApplication getGlobalApplicationContext() {
         if(mInstance == null)
-            throw new IllegalStateException("this application does not inherit GlobalApplication");
+            throw new IllegalStateException("this application does not inherit HawkiApplication");
         return mInstance;
     }
 
@@ -50,7 +50,7 @@ public class GlobalApplication extends Application {
     }
 
     public static void setCurrentActivity(Activity currentActivity) {
-        GlobalApplication.currentActivity = currentActivity;
+        HawkiApplication.currentActivity = currentActivity;
     }
 
     public static Retrofit getRetrofit(){

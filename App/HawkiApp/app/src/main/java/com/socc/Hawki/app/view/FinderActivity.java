@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
-import com.socc.Hawki.app.application.GlobalApplication;
+import com.socc.Hawki.app.application.HawkiApplication;
 import com.socc.Hawki.app.service.HawkAPI;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
@@ -39,8 +39,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.socc.Hawki.app.application.GlobalApplication.getMapImageURL;
-
 /**
  * Created by Jeong on 2016-09-17.
  */
@@ -56,6 +54,10 @@ public class FinderActivity extends AppCompatActivity {
     Paint mPaint;
 
     ImageView mapView;
+    TextView tvFinderX;
+    TextView tvFinderY;
+    TextView tvFinderZ;
+
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -69,10 +71,14 @@ public class FinderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finder);
 
-        TextView buildIdTextView = (TextView)findViewById(R.id.textView_buildingId);
-        buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        //TextView buildIdTextView = (TextView)findViewById(R.id.textView_buildingId);
+        //buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
         TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
+
+        tvFinderX = (TextView)findViewById(R.id.textView_finder_x);
+        tvFinderY = (TextView)findViewById(R.id.textView_finder_y);
+        tvFinderZ = (TextView)findViewById(R.id.textView_finder_z);
 
         initMap();
         initCanvas();
@@ -94,7 +100,7 @@ public class FinderActivity extends AppCompatActivity {
     private void initMap() {
         mapView = (ImageView) findViewById(R.id.mapView2);
         String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        String mapURL =  GlobalApplication.getMapImageURL(buildId);
+        String mapURL =  HawkiApplication.getMapImageURL(buildId);
         Log.d("Map Url : ", mapURL);
         Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
             @Override
@@ -136,7 +142,7 @@ public class FinderActivity extends AppCompatActivity {
 //            }
             PostGetPositionReq req = new PostGetPositionReq(bid, wifiScanResult);
 
-            HttpService httpService = GlobalApplication.getRetrofit().create(HttpService.class);
+            HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
             Call<PostGetPositionRes> call = httpService.postGetPosition(req);
 
             call.enqueue(new Callback<PostGetPositionRes>() {
@@ -161,6 +167,9 @@ public class FinderActivity extends AppCompatActivity {
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(Color.RED);
 
+            tvFinderX.setText(res.getX()+"");
+            tvFinderY.setText(res.getY()+"");
+            tvFinderZ.setText(res.getZ()+"");
 
             canvas.drawCircle(res.getX() * 20, res.getY() * 20, 5, mPaint);
             canvasView.setImageBitmap(newDrawBitmap);
