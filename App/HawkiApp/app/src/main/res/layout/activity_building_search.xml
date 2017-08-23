@@ -3,36 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:background="@drawable/bg_building_search"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="70dp">
 
-        <EditText
-            android:id="@+id/nameEdit"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="0.7"
-            />
+            android:layout_height="48dp"
+            android:layout_weight="7"
+            android:orientation="vertical">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:text="@string/requestBuildingInfo"
+            <EditText
+                android:id="@+id/nameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorWhite"
+                android:hint="빌딩 이름을 입력해주세요"
+                android:textColorHint="@color/colorGray"
+                android:backgroundTint="@color/colorBlack"
+                android:layout_marginLeft="16dp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/bg_search_bar"
+                android:layout_marginLeft="16dp"/>
+        </LinearLayout>
+
+        <ImageButton
             android:id="@+id/requestBuild"
-            android:onClick="searchBtnClicked"
-            android:clickable="false" />
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="3"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_building_search_button"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="4dp"
+            android:onClick="searchBtnClicked" />
     </LinearLayout>
-
 
     <ListView
         android:id="@+id/listView_building"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 
 </LinearLayout>

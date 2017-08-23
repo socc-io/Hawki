@@ -1,89 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <FrameLayout
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center_horizontal"
-        >
-
-        <ImageView
-            android:id="@+id/mapView2"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            >
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/canvasView2"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            />
-
-    </FrameLayout>
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_finder">
 
     <LinearLayout
-        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="70dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_search_bar"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/colorBlack"
+                android:layout_margin="1dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="@string/buildName"
+                    android:textColor="@color/colorGray"
+                    android:textSize="20sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView_buildName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:gravity="center"
+                    android:hint="@string/name"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/border"
+            android:layout_marginTop="4dp">
+
+            <ImageView
+                android:id="@+id/mapView2"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:layout_width="400dp"
+                android:layout_height="400dp" >
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/canvasView2"
+                android:layout_width="400dp"
+                android:layout_height="400dp" />
+
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <TextView
-                android:text="빌딩이름"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:id="@+id/textView_buildName"
-                android:text="name"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"/>
-        </LinearLayout>
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1">
-
-        <TextView
-            android:text="빌딩ID"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:background="@color/colorBlack"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView_buildingId"
-            android:text="id"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@string/id"-->
+            <!--android:textSize="20sp" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/editText_buildingId"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="2"-->
+            <!--android:text="id"-->
+            <!--android:textSize="20sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/collector_info"
+                    android:textColor="@color/colorGray"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBlack"
+                android:layout_weight="4"
+                android:orientation="horizontal" >
+
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_search_bar"
+                    android:layout_margin="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorBlack">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/x"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/textView_finder_x"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_search_bar"
+                    android:layout_margin="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorBlack">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/y"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/textView_finder_y"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_search_bar"
+                    android:layout_margin="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorBlack">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/z"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/textView_finder_z"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_search_bar"
+                android:layout_gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_finder_button"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:onClick="finderClicked" />
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:onClick="finderClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="실내위치 가져오기"
-        android:textSize="25sp"
-        android:layout_gravity="center_horizontal" />
-
-</LinearLayout>
+</FrameLayout>

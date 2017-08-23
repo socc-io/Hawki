@@ -1,159 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center_horizontal"
-        >
-
-        <ImageView
-            android:id="@+id/mapView"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            >
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/canvasView"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            />
-
-    </FrameLayout>
+    android:background="@drawable/bg_collector">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f2f2f2"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="70dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_search_bar"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/colorBlack"
+                android:layout_margin="1dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="@string/buildName"
+                    android:textColor="@color/colorGray"
+                    android:textSize="20sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView_buildingName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:gravity="center"
+                    android:hint="@string/name"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/border"
+            android:layout_marginTop="4dp">
+
+            <ImageView
+                android:id="@+id/mapView"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:layout_width="400dp"
+                android:layout_height="400dp" >
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/canvasView"
+                android:layout_width="400dp"
+                android:layout_height="400dp" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/colorBlack"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/buildName"
-                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/editText_buildingName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="@string/name"
-                android:textSize="17sp" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="horizontal">-->
 
-        </LinearLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="@string/id"-->
+                    <!--android:textSize="20sp" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+                <!--<TextView-->
+                    <!--android:id="@+id/editText_buildingId"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="2"-->
+                    <!--android:text="id"-->
+                    <!--android:textSize="20sp" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/id"
-                android:textSize="20sp" />
+            <!--</LinearLayout>-->
 
-            <TextView
-                android:id="@+id/editText_buildingId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="id"
-                android:textSize="20sp" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-
-            >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="현재위치  "
-                android:textSize="20sp" />
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/collector_info"
+                    android:textColor="@color/colorGray"/>
+            </FrameLayout>
+            
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBlack"
                 android:layout_weight="4"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
-                <TextView
+
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/x"
-                    android:textSize="20sp" />
+                    android:background="@drawable/bg_search_bar"
+                    android:layout_margin="8dp">
 
-                <EditText
-                    android:id="@+id/editTextX"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorBlack">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/x"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <EditText
+                            android:id="@+id/editTextX"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:textSize="20sp" />
+                    android:background="@drawable/bg_search_bar"
+                    android:layout_margin="8dp">
 
-                <TextView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorBlack">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/y"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <EditText
+                            android:id="@+id/editTextY"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/y"
-                    android:textSize="20sp" />
+                    android:background="@drawable/bg_search_bar"
+                    android:layout_margin="8dp">
 
-                <EditText
-                    android:id="@+id/editTextY"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:textSize="20sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorBlack">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/z"
-                    android:textSize="20sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/z"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
 
-                <EditText
-                    android:id="@+id/editTextZ"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:textSize="20sp" />
-
+                        <EditText
+                            android:id="@+id/editTextZ"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+                </FrameLayout>
             </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_search_bar"
+                android:layout_gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_collect_button"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:onClick="collectorClicked" />
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="collectorClicked"
-        android:text="실내위치 신호수집"
-        android:textSize="25sp" />
-</LinearLayout>
+</FrameLayout>

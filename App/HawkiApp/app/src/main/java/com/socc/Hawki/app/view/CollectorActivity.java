@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.net.ParseException;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -23,8 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.socc.Hawki.app.R;
-import com.socc.Hawki.app.application.GlobalApplication;
-import com.socc.Hawki.app.service.HawkAPI;
+import com.socc.Hawki.app.application.HawkiApplication;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostCollectRssiReq;
@@ -90,10 +88,10 @@ public class CollectorActivity extends AppCompatActivity {
         editTextY = (EditText)  findViewById(R.id.editTextY);
         editTextZ = (EditText)  findViewById(R.id.editTextZ);
 
-        buildIdTextView = (TextView) findViewById(R.id.editText_buildingId);
-        buildNameTextView = (TextView) findViewById(R.id.editText_buildingName);
+        //buildIdTextView = (TextView) findViewById(R.id.editText_buildingId);
+        buildNameTextView = (TextView) findViewById(R.id.textView_buildingName);
 
-        buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        //buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
         // Holding WIFI manager
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
@@ -107,7 +105,7 @@ public class CollectorActivity extends AppCompatActivity {
     private void initMap() {
         mapView   = (ImageView) findViewById(R.id.mapView);
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        String mapURL =  GlobalApplication.getMapImageURL(bid);
+        String mapURL =  HawkiApplication.getMapImageURL(bid);
         Log.d("Map Url : ", mapURL);
         Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
             @Override
@@ -173,7 +171,7 @@ public class CollectorActivity extends AppCompatActivity {
 
 //            HawkAPI api = HawkAPI.getInstance(); // get API Instance
 //            String res = api.postCollectRssi(bid, x, y, z, wifiScanResult); // do fetching
-        HttpService httpService = GlobalApplication.getRetrofit().create(HttpService.class);
+        HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
         Call<String> call = httpService.postCollectRssi(req);
 
         call.enqueue(new Callback<String>() {
