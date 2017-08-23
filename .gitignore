@@ -1,6 +1,6 @@
 .pydemon.*
 .idea/
-
+.DS_Store
 # python ignore guide
 # >> https://github.com/github/gitignore/blob/master/Python.gitignore
 
