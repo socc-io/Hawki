@@ -93,8 +93,14 @@ class App extends Component {
     this.setState({ buildingName: name });
     // this.updateSearchResults(name);
   }
-  updateSearchResults(e) {
-    e.preventDefault();
+  handleBuildingFocus(building) {
+    this.setState({ buildingName: building.place_name,
+      searchResults: [building],
+    })
+  }
+  updateSearchResults(event) {
+
+    if(event) event.preventDefault();
 
     const name= this.state.buildingName;
     if(this.places && this.mapAPI && this.clusterer) {
@@ -158,7 +164,7 @@ class App extends Component {
         <div className="search-List">
           {this.state.searchResults.map((result, idx) => (
             <Element key={idx} name={'BuildingInfo-' + idx}>
-              <BuildingInfo info={result} />
+              <BuildingInfo focus={() => this.handleBuildingFocus(result)} info={result} />
             </Element>
           ))}
         </div>

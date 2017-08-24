@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { Layer, Stage, Image, Circle } from 'react-konva';
+
 import './BuildingInfo.css';
 
 import {
@@ -21,6 +24,8 @@ export default class BuildingInfo extends React.Component {
     this.state = {
       loading: true,
       newImage: null,
+      mapImage: null,
+      scale: 1.0,
       imageExist: false,
       uploadModal: false,
       mapImageSrc: 'https://via.placeholder.com/1200x500',
@@ -29,25 +34,13 @@ export default class BuildingInfo extends React.Component {
       POIUrl: '',
       pois: [],
     }
-    this.details = [
-      {
-        key: 'address_name',
-        name: '주소',
-      },
-      {
-        key: 'road_address_name',
-        name: '도로명주소',
-      },
-      {
-        key: 'id',
-        name: '식별번호',
-      },
-    ];
-    this.imageNotExistImage = 'https://via.placeholder.com/1500x500';
+    this.imageWidth = 700;
+    this.imageHeight = 500;
+    this.imageNotExistImage = `https://via.placeholder.com/${this.imageWidth}x${this.imageHeight}`;
   }
   componentDidMount() {
-    this.imageRect = ReactDOM.findDOMNode(this.refs.mapImage)
-      .getBoundingClientRect();
+    // this.imageRect = ReactDOM.findDOMNode(this.refs.mapImage)
+    //   .getBoundingClientRect();
 
     this.id = this.props.info.id;
     this.imageURL = APIBase + '/static/map/' + this.id + '.jpg';
@@ -56,7 +49,7 @@ export default class BuildingInfo extends React.Component {
     this.updatePOI();
   }
   componentDidUpdate() {
-    this.imageRect = ReactDOM.findDOMNode(this.refs.mapImage).getBoundingClientRect();
+    // this.imageRect = ReactDOM.findDOMNode(this.refs.mapImage).getBoundingClientRect();
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.info.id !== this.props.info.id) {
@@ -71,18 +64,30 @@ export default class BuildingInfo extends React.Component {
     }
   }
   updateMapImage() {
-    fetch(this.imageURL)
-    .then((res) => res.blob())
+    const image = new window.Image();
+    image.onload = () => {
+      this.setState({ mapImage: image });
+    }
+    fetch(APIBase + `/building/${this.id}/mapimage`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => res.json())
     .then((res) => {
-      if(res.type === 'text/html') {
-        this.setState({ loading: false, imageExist: false, mapImageSrc: 'https://via.placeholder.com/1500x500' });
+      if(res.success === 1) {
+        image.src = APIBase + `/static/map/${this.id}.jpg?t=${new Date().getTime()}`;
+        this.setState({ loading: false, imageExist: true});
       } else {
-        const objURL = URL.createObjectURL(res);
-        this.setState({ loading: false, imageExist: true, mapImageSrc: objURL });
+        image.src = this.imageNotExistImage;
+        this.setState({ loading: false, imageExist: false });
       }
     })
     .catch((e) => {
-      this.setState({ loading: false, imageExist: false, mapImageSrc: 'https://via.placeholder.com/1500x500' });
+      image.src = this.imageNotExistImage;
+      this.setState({ loading: false, imageExist: false });
     })
   }
   updatePOI() {
@@ -97,10 +102,10 @@ export default class BuildingInfo extends React.Component {
   }
   clickImage(event) {
     if(this.state.imageExist) {
-      const x = event.nativeEvent.offsetX;
-      const y = event.nativeEvent.offsetY;
-      console.log('x,y', x, y);
-      this.setState({ clickPos: [x, y] })
+      const x = (event.evt.layerX - this.refs.imageLayer.attrs.x) / this.state.scale;
+      const y = (event.evt.layerY - this.refs.imageLayer.attrs.y) / this.state.scale;
+      console.log('clicked', x, y);
+      this.setState({ clickPos: [x, y] });
     }
   }
   handleImageSelected(event) {
@@ -115,7 +120,7 @@ export default class BuildingInfo extends React.Component {
     event.target.value = '';
   }
   deleteNewImage() {
-    this.setState({ newImage: null })
+    this.setState({ modal: null })
   }
   uploadNewImage() {
     // this.setState({ mapImageSrc: this.state.newImage });
@@ -136,7 +141,7 @@ export default class BuildingInfo extends React.Component {
     .then((res) => {
       if(res.success) {
         console.log('success to upload');
-        this.setState({ mapImageSrc: this.state.newImage });
+        this.updateMapImage();
         this.setState({
           uploaderMessage: 'successfully uploaded ' + this.state.selected.place_name,
           uploadModal: false,
@@ -230,9 +235,42 @@ export default class BuildingInfo extends React.Component {
     console.log('poi clicked', poi);
     this.setState({ clickPos: null, clickedPOI: poi });
   }
+  getImageAbsolutePosition(x, y) {
+    return {
+      left: x - 5,
+      top: y - this.imageRect.height - 5,
+    };
+  }
+  renderBuildingDetail() {
+    return (
+      <div>
+        <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>주소</td>
+              <td>{this.props.info.address_name}</td>
+            </tr>
+            <tr>
+              <td>도로명주소</td>
+              <td>{this.props.info.road_address_name}</td>
+            </tr>
+            <tr>
+              <td>식별번호</td>
+              <td>{this.props.info.id}</td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+    )
+  }
   renderPOIDetail() {
     const poi = this.state.clickedPOI;
-
     return (
       <div>
         <Table striped bordered condensed hover>
@@ -303,41 +341,54 @@ export default class BuildingInfo extends React.Component {
       </Form>
     )
   }
+  renderImage() {
+    return (
+      <div>
+        <Stage width={this.imageWidth} height={this.imageHeight}
+          scaleX={this.state.scale}
+          scaleY={this.state.scale}
+        >
+          <Layer
+            ref='imageLayer'
+            draggable={this.state.imageExist}>
+            <Image
+              image={this.state.mapImage}
+              onclick={(e) => this.clickImage(e)}/>
+            {this.state.clickPos ? (
+              <Circle
+                radius={10}
+                x={this.state.clickPos[0]}
+                y={this.state.clickPos[1]}
+                fill='red'/>
+            ):null}
+            {this.state.pois.map((poi, idx) => (
+              <Circle
+                key={idx}
+                onclick={() => this.handlePOIClicked(poi, idx)}
+                radius={10}
+                x={poi.x}
+                y={poi.y}
+                fill='blue'/>
+            ))}
+          </Layer>
+        </Stage>
+        <Button onClick={() => this.setState({ scale: this.state.scale - 0.1 })}>-</Button>
+        <Button onClick={() => this.setState({ scale: this.state.scale + 0.1 })}>+</Button>
+      </div>
+    )
+  }
   render() {
-    let rdstyle = {}
-    if(this.state.clickPos) {
-      rdstyle = {
-        left: this.state.clickPos[0] - 5,
-        top: this.state.clickPos[1] - this.imageRect.height - 5,
-      };
-    } else {
-      rdstyle = {
-        display: 'none',
-      };
-    }
-
     return (
       <div className='Building-info-container'>
         <h1>{this.props.info.place_name}</h1>
-        <img alt='mapImage' ref='mapImage' className='Building-info-map' src={this.state.mapImageSrc} onClick={(e) => this.clickImage(e)}/>
-        <div className="Red-dot" style={rdstyle}/>
-        {this.state.pois.map((poi, idx) => (
-          <div onClick={() => this.handlePOIClicked(poi, idx)} key={idx} className="Blue-dot" style={{
-              left: poi.x - 5,
-              top: poi.y - this.imageRect.height - 5 - 10*idx - (this.state.clickPos ? 10 : 0),
-            }} />
-        ))}
+        {this.renderImage()}
         <input type='file' ref='imageSelector' accept="image/*" style={{display: 'none'}} onChange={(e) => this.handleImageSelected(e)}/>
         <div className='Building-info-detail-container'>
-          {this.details.map((detail, idx) => (
-            <div key={idx} className='Building-info-detail-line'>
-              <p className='Building-info-detail-key'>{detail.name}</p>
-              <p className='Building-info-detail-value'>{this.props.info[detail.key]}</p>
-            </div>
-          ))}
+          {this.renderBuildingDetail()}
           <Button href={this.props.info.place_url} bsStyle="primary">Daum Map</Button>
           <Button onClick={() => this.refs.imageSelector.click()}>Upload Image</Button>
           <Button onClick={() => this.clearAllPOI()}>Clear All POI</Button>
+          <Button onClick={() => this.props.focus()}>Focus</Button>
         </div>
         {this.state.clickPos ? this.renderPOIForm() :  null}
         {this.state.clickedPOI ? this.renderPOIDetail() : null}

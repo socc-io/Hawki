@@ -6,6 +6,7 @@ from Web import ALLOWED_EXTENSIONS
 from ..config import UPLOAD_FOLDER
 from ..db import session
 from ..db.mappers.POI import POI
+from PIL import Image
 
 import os, base64
 
@@ -35,24 +36,32 @@ def upload_file():
 
 	return 'Save success'
 
-@app.route('/building/<int:id>/mapimage', methods=['POST'])
-def post_mapimage(id):
-	body = request.get_json()
-	requires = ['image']
+@app.route('/building/<int:id>/mapimage', methods=['GET', 'POST'])
+def get_post_mapimage(id):
+	if request.method == 'GET':
+		path = os.path.join(UPLOAD_FOLDER, '{}.jpg'.format(id))
+		if os.path.isfile(path):
+			img = Image.open(path)
+			return jsonify({'success':1 , 'size': img.size})
+		else:
+			return jsonify({'success':0})
+	elif request.method == 'POST':
+		body = request.get_json()
+		requires = ['image']
 
-	for required in requires:
-		if required not in body.keys():
-			return jsonify({'success': 0, 'message': '{} not found'.format(required)})
+		for required in requires:
+			if required not in body.keys():
+				return jsonify({'success': 0, 'message': '{} not found'.format(required)})
 
-	image = base64.b64decode(body['image'].split(',')[1])
+		image = base64.b64decode(body['image'].split(',')[1])
 
-	filename = '{}.jpg'.format(id)
-	path = os.path.join(UPLOAD_FOLDER, filename)
-	fp = open(path, 'w')
-	fp.write(image)
-	fp.close()
+		filename = '{}.jpg'.format(id)
+		path = os.path.join(UPLOAD_FOLDER, filename)
+		fp = open(path, 'w')
+		fp.write(image)
+		fp.close()
 
-	return jsonify({'success': 1})
+		return jsonify({'success': 1})
 
 @app.route('/building/<int:id>/poi', methods=['GET', 'POST'])
 def get_post_poi(id):

@@ -17,6 +17,7 @@
   height: 10px;
   border-radius: 5px;
   background-color: red;
+  margin-bottom: -10px;
 }
 
 .Blue-dot {
@@ -25,4 +26,5 @@
   height: 10px;
   border-radius: 5px;
   background: blue;
+  margin-bottom: -10px;
 }
