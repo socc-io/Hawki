@@ -1,0 +1,28 @@
+
+.Building-info-container {
+  border-radius: 10px;
+}
+
+.Building-info-detail-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Building-info-map {
+}
+.Red-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: red;
+}
+
+.Blue-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: blue;
+}
