@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Scroll, { Element } from 'react-scroll';
 import './App.css';
 import { defer } from 'q';
 // import _ from 'lodash';
 import daumWrapper from './daumAPI';
+import BuildingInfo from './BuildingInfo';
 
+import { Jumbotron, Button,
+Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
-// const APIBase = 'http://hawki.smilu.link';
-const APIBase = 'http://localhost:4000';
+const introMesssage = [
+  'Hawki is the framework system for indoor positioning service.',
+  'Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation.',
+  'Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc',
+  'You can register map of building in this page.',
+];
 
 class App extends Component {
   constructor(props) {
@@ -36,16 +44,16 @@ class App extends Component {
     this.daumAPILoadPromise.then(() => {
       ReactDOM.unmountComponentAtNode(containerDiv);
       const daumAPI = daumWrapper.getDaumMapAPI();
-      const daumLatLng = new daumAPI.LatLng(...this.state.position);
       const options = {
-        center: daumLatLng,
+        center: new daumAPI.LatLng(...this.state.position),
         level: 3,
+        scrollwheel: false,
       };
       const daumMap = new daumAPI.Map(containerDiv, options);
 
-      daumAPI.event.addListener(daumMap, 'center_changed', this.handleMove);
-      daumAPI.event.addListener(daumMap, 'bounds_changed', this.handleBoundsChange);
-      daumAPI.event.addListener(daumMap, 'zoom_changed', this.handleZoomChange);
+      // daumAPI.event.addListener(daumMap, 'center_changed', this.handleMove);
+      // daumAPI.event.addListener(daumMap, 'bounds_changed', this.handleBoundsChange);
+      // daumAPI.event.addListener(daumMap, 'zoom_changed', this.handleZoomChange);
 
       const clusterer = new daumAPI.MarkerClusterer({
         map: daumMap,
@@ -76,67 +84,19 @@ class App extends Component {
       this.initDeffered.reject(rejection);
     });
   }
-  upload() {
-    if(this.state.mapImage.length <= 0) {
-      alert('Please select map image file');
-      return;
-    }
-    if(this.state.selected === null) {
-      alert('Please select building to submit');
-      return;
-    }
-    const body = JSON.stringify({
-      image: this.state.mapImage,
-      id: this.state.selected.id,
-    });
-
-    fetch(APIBase + '/poi', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body,
-    })
-    .then((res) => res.json())
-    .then((res) => {
-      if(res.success === 1) {
-        this.setState({ uploaderMessage: 'successfully uploaded ' + this.state.selected.place_name });
-      } else {
-        this.setState({ uploaderMessage: 'failed to upload' });
-      }
-    })
-    .catch(e => {
-      this.setState({ uploaderMessage: 'failed to upload' });
-    })
-  }
-  handleMove() {
-
-  }
-  handleBoundsChange() {
-
-  }
-  handleZoomChange() {
-
-  }
-  onMapImageChange(event) {
-    if(event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.setState({ mapImage: e.target.result });
-      }
-      reader.readAsDataURL(event.target.files[0]);
-    }
+  zoom(diff) {
+    const level = this.map.getLevel();
+    this.map.setLevel(level + diff);
   }
   handleBuildingNameChange(event) {
     const name = event.target.value
     this.setState({ buildingName: name });
     // this.updateSearchResults(name);
   }
-  updateSearchResults(name) {
-    if(name === undefined) {
-      name = this.state.buildingName;
-    }
+  updateSearchResults(e) {
+    e.preventDefault();
+
+    const name= this.state.buildingName;
     if(this.places && this.mapAPI && this.clusterer) {
       this.places.keywordSearch(name, (result, status) => {
         if(status === this.mapAPI.services.Status.OK) {
@@ -147,12 +107,17 @@ class App extends Component {
             position: new this.mapAPI.LatLng(e.y, e.x),
             title: e.place_name,
             clickable: true,
+            range: 999999999999999999,
           })))
 
           result.forEach((e,idx) => {
             this.mapAPI.event.addListener(newMarkers[idx], 'click', () => {
               console.log('clicked', e);
               this.setState({ selected: e });
+              Scroll.scroller.scrollTo('BuildingInfo-'+idx, {
+                duration: 300,
+                smooth: true,
+              });
             })
           })
 
@@ -166,41 +131,38 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h1><a href="https://github.com/socc-io/hawki">HawkI POI Page</a></h1>
+        <Jumbotron>
+          <h1>Hawk-I</h1>
+          {introMesssage.map((msg, idx) => (
+            <p key={idx}>{msg}</p>
+          ))}
+          <p><Button href='https://github.com/socc-io/hawki' bsStyle="primary">Go Github Page</Button></p>
+        </Jumbotron>
+        <Form inline onSubmit={(e) => this.updateSearchResults(e)}>
+          <FormGroup controlId="formInlineName">
+            <ControlLabel>Building Name</ControlLabel>
+            {' '}
+            <FormControl type="text" placeholder="대한민국 주소" value={this.state.buildingName}
+              onChange={(e) => this.handleBuildingNameChange(e)}
+              onSubmit={() => this.updateSearchResults()}
+            />
+          </FormGroup>
+          {' '}
+          <Button onClick={(e) => this.updateSearchResults(e)}>
+            Search Building
+          </Button>
+        </Form>
+        <div ref='daumMapContainer' className="Daum-map" ></div>
+        <Button onClick={() => this.zoom(1)}>-</Button>
+        <Button onClick={() => this.zoom(-1)}>+</Button>
+        <div className="search-List">
+          {this.state.searchResults.map((result, idx) => (
+            <Element key={idx} name={'BuildingInfo-' + idx}>
+              <BuildingInfo info={result} />
+            </Element>
+          ))}
         </div>
-        <div className="App-intro">
-          <p>Hawki is the framework system for indoor positioning service.</p>
-          <p>Indoor positioning technology will use in a variety of ways including IOT, Indoor-navigation.</p>
-          <p>Hawki allows you to find where you are in the building or subway by using your wifi-enabled device such as android, iphone, etc.</p>
-          <p>You can register map of building in this page.</p>
-          <p>{this.state.searchResults.length} buildings found</p>
-          {this.state.selected ? (
-            <p>
-              {this.state.selected.place_name}({this.state.selected.id}) is selected
-            </p>
-          ) : null}
-          {this.state.uploaderMessage ? (
-            <p>
-              {this.state.uploaderMessage}
-            </p>
-          ) : null}
-        </div>
-        <div className="Building-form">
-          <img alt="mapThumb" className="map-thumb" src={this.state.mapImage} /> <br/>
-          <input type="file" name="mapImageInput" onChange={(e) => this.onMapImageChange(e)} accept="image/*" />
-        </div>
-        <div className="Building-map">
-          <div className='search-div'>
-            <input className='Building-name-input' type='text' name='buildingName' value={this.state.buildingName} onChange={(e) => this.handleBuildingNameChange(e)} />
-            <input className="Building-name-submit" type="submit" value="SEARCH" onClick={() => this.updateSearchResults()} />
-          </div>
-          <div ref='daumMapContainer' className="Daum-map" style={{ width: '500px', height: '400px' }} ></div>
-          <input className="Building-upload-submit" type="submit" value="UPLOAD"
-            onClick={() => this.upload()} />
-        </div>
-        <div className="footer">
-        </div>
+        <div className="footer"></div>
       </div>
     );
   }

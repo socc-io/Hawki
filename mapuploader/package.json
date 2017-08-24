@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "3",
     "postscribe": "^2.0.8",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-bootstrap": "^0.31.2",
+    "react-dom": "^15.6.1",
+    "react-scroll": "^1.5.4"
   },
   "devDependencies": {
     "react-scripts": "1.0.11"
