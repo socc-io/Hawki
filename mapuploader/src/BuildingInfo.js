@@ -102,10 +102,15 @@ export default class BuildingInfo extends React.Component {
   }
   clickImage(event) {
     if(this.state.imageExist) {
-      const x = (event.evt.layerX - this.refs.imageLayer.attrs.x) / this.state.scale;
-      const y = (event.evt.layerY - this.refs.imageLayer.attrs.y) / this.state.scale;
-      console.log('clicked', x, y);
-      this.setState({ clickPos: [x, y] });
+      const { scale } = this.state;
+      const { layerX, layerY } = event.evt;
+      const { x, y } = this.refs.imageLayer.attrs;
+
+      const rx = (layerX / scale) - x;
+      const ry = (layerY / scale) - y;
+
+      console.log('clicked', rx, ry);
+      this.setState({ clickPos: [rx, ry] });
     }
   }
   handleImageSelected(event) {
