@@ -16,7 +16,8 @@ import {
   Table,
 } from 'react-bootstrap';
 
-const APIBase = 'http://localhost:4000';
+// const APIBase = 'http://localhost:4000';
+const APIBase = 'http://hawki.smilu.link:4000';
 
 export default class BuildingInfo extends React.Component {
   constructor(props) {
