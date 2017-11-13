@@ -56,6 +56,12 @@ public class CollectorActivity extends AppCompatActivity {
     private ImageView canvasView;
     private Bitmap canvasViewBitmap;
 
+    private int mapImageWidth = 0;
+    private int mapImageHeight = 0;
+
+    private int mapImageContainerWidth = 0;
+    private int mapImageContainerHeight = 0;
+
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -98,55 +104,50 @@ public class CollectorActivity extends AppCompatActivity {
 
         initMap();
         initCanvas();
-       // registMapTouchEvent();
 
     }
 
-    private void initMap() {
-        mapView   = (ImageView) findViewById(R.id.mapView);
-        String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        String mapURL =  HawkiApplication.getMapImageURL(bid);
-        Log.d("Map Url : ", mapURL);
-        Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                mapView.setImageBitmap(bitmap);
-                mapView.setVisibility(View.VISIBLE);
-                mapViewBitmap = bitmap;
-            }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        //Here you can get the size!
+        Log.d("onWindowFocusChanged","onWindowFocusChanged 호출");
 
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-                // TODO: 2017. 6. 9. 실내지도 비어있을때 이미지 띄우기.
+        mapImageContainerWidth = canvasView.getWidth();
+        mapImageContainerHeight = canvasView.getHeight();
 
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        });
-    }
-
-    private void initCanvas() {
-        canvasViewBitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
-        canvasView = (ImageView) findViewById(R.id.canvasView);
+        canvasViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
 
         canvasView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN: // react on only down event
+
+                        mapImageWidth = mapViewBitmap.getWidth();
+                        mapImageHeight = mapViewBitmap.getHeight();
                         Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
-                        final int cliecdX = (int) (event.getX() / 4);
-                        final int cliecdY = (int) (event.getY() / 4);
+
+                        Log.d("mapImageWidth", mapImageWidth + "" );
+                        Log.d("mapImageHeight",mapImageHeight + "");
+                        Log.d("event.getX()",event.getX() + "");
+                        Log.d("event.getY()",event.getY() + "" );
+                        final int cliecdX = (int) (event.getX());
+                        final int cliecdY = (int) (event.getY());
+
                         Canvas canvas = new Canvas(newDrawBitmap);
                         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                         mPaint.setStyle(Paint.Style.FILL);
                         mPaint.setColor(Color.RED);
-                        canvas.drawCircle(cliecdX, cliecdY, 5, mPaint);
+                        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
                         canvasView.setImageBitmap(newDrawBitmap);
+
+
+                        int caculateX = (int) (((float)mapImageContainerWidth / (float)mapImageWidth) *  event.getX());
+                        int caculateY = (int) (((float)mapImageContainerHeight / (float)mapImageHeight) *  event.getX());
+
+                        Log.d("caculateX", caculateX + "" );
+                        Log.d("caculateY",caculateY + "");
 
                         editTextX.setText(String.valueOf((int) event.getX() / 80));
                         editTextY.setText(String.valueOf((int) event.getY() / 80));
@@ -158,6 +159,47 @@ public class CollectorActivity extends AppCompatActivity {
         });
 
 
+        // TODO: 2017. 11. 12 여기서 클릭이벤트 등록 기기
+
+    }
+
+    private void initMap() {
+
+        Log.d("initMap","initMap 호출");
+        mapView   = (ImageView) findViewById(R.id.mapView);
+        String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+        String mapURL =  HawkiApplication.getMapImageURL(bid);
+        Log.d("Map Url : ", mapURL);
+
+        Picasso.with(getApplicationContext()).load(mapURL);
+        Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+
+                Log.d("onBitmapLoaded","onBitmapLoaded 호출");
+                mapView.setImageBitmap(bitmap);
+                mapView.setVisibility(View.VISIBLE);
+                mapViewBitmap = bitmap;
+
+                initCanvas();
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
+    }
+
+    private void initCanvas() {
+
+        Log.d("canvasView","canvasView 호출");
+        canvasView = (ImageView) findViewById(R.id.canvasView);
     }
 
     public void getWIFIScanResult() {

@@ -49,23 +49,22 @@
         </FrameLayout>
 
         <FrameLayout
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_gravity="center_horizontal"
             android:background="@drawable/border"
             android:layout_marginTop="4dp">
 
             <ImageView
                 android:id="@+id/mapView"
                 android:background="@null"
+                android:layout_width="match_parent"
                 android:scaleType="fitXY"
-                android:layout_width="400dp"
                 android:layout_height="400dp" >
             </ImageView>
 
             <ImageView
                 android:id="@+id/canvasView"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="400dp" />
 
         </FrameLayout>
@@ -77,29 +76,6 @@
             android:orientation="vertical">
 
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="horizontal">-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:text="@string/id"-->
-                    <!--android:textSize="20sp" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/editText_buildingId"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="2"-->
-                    <!--android:text="id"-->
-                    <!--android:textSize="20sp" />-->
-
-            <!--</LinearLayout>-->
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
@@ -110,21 +86,22 @@
                     android:text="@string/collector_info"
                     android:textColor="@color/colorGray"/>
             </FrameLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorBlack"
                 android:layout_weight="4"
-                android:orientation="horizontal" >
+                android:background="@color/colorBlack"
+                android:orientation="horizontal"
+                android:visibility="visible">
 
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_search_bar"
-                    android:layout_margin="8dp">
+                    android:background="@drawable/bg_search_bar">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -136,9 +113,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@string/x"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"/>
+                            android:textColor="@color/colorWhite" />
 
                         <EditText
                             android:id="@+id/editTextX"
@@ -147,8 +124,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:inputType="number"
-                            android:textSize="20sp"
-                            android:textColor="@color/colorWhite" />
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                 </FrameLayout>
@@ -156,9 +133,9 @@
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_search_bar"
-                    android:layout_margin="8dp">
+                    android:background="@drawable/bg_search_bar">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -170,9 +147,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@string/y"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"/>
+                            android:textColor="@color/colorWhite" />
 
                         <EditText
                             android:id="@+id/editTextY"
@@ -181,8 +158,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:inputType="number"
-                            android:textSize="20sp"
-                            android:textColor="@color/colorWhite" />
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                 </FrameLayout>
@@ -190,9 +167,9 @@
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_search_bar"
-                    android:layout_margin="8dp">
+                    android:background="@drawable/bg_search_bar">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -204,9 +181,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@string/z"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"/>
+                            android:textColor="@color/colorWhite" />
 
                         <EditText
                             android:id="@+id/editTextZ"
@@ -215,8 +192,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:inputType="number"
-                            android:textSize="20sp"
-                            android:textColor="@color/colorWhite" />
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20sp" />
                     </LinearLayout>
                 </FrameLayout>
             </LinearLayout>
