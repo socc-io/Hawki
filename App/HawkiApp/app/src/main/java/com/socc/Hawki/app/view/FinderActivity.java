@@ -22,7 +22,6 @@ import android.widget.Toast;
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.application.HawkiApplication;
-import com.socc.Hawki.app.service.HawkAPI;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostGetPositionReq;
@@ -71,8 +70,6 @@ public class FinderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finder);
 
-        //TextView buildIdTextView = (TextView)findViewById(R.id.textView_buildingId);
-        //buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
         TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
 
@@ -131,15 +128,7 @@ public class FinderActivity extends AppCompatActivity {
         wifiScanResult = wifimanager.getScanResults();
 
         try {
-            HawkAPI api = HawkAPI.getInstance(); // get API Instance
-
             String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-
-//            PostGetPositionRes res = api.postGetPosition(bid, wifiScanResult); // do fetching
-//            if(res == null) {
-//                Toast.makeText(this, "실패했습니다", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
             PostGetPositionReq req = new PostGetPositionReq(bid, wifiScanResult);
 
             HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
@@ -153,6 +142,18 @@ public class FinderActivity extends AppCompatActivity {
                     }
 
                     res = response.body();
+                    Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+                    Canvas canvas = new Canvas(newDrawBitmap);
+                    mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                    mPaint.setStyle(Paint.Style.FILL);
+                    mPaint.setColor(Color.RED);
+
+                    tvFinderX.setText(res.getX()+"");
+                    tvFinderY.setText(res.getY()+"");
+                    tvFinderZ.setText(res.getZ()+"");
+
+                    canvas.drawCircle(res.getX() * 20, res.getY() * 20, 5, mPaint);
+                    canvasView.setImageBitmap(newDrawBitmap);
                 }
 
                 @Override
@@ -160,21 +161,6 @@ public class FinderActivity extends AppCompatActivity {
                     t.printStackTrace();
                 }
             });
-
-            Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
-            Canvas canvas = new Canvas(newDrawBitmap);
-            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mPaint.setStyle(Paint.Style.FILL);
-            mPaint.setColor(Color.RED);
-
-            tvFinderX.setText(res.getX()+"");
-            tvFinderY.setText(res.getY()+"");
-            tvFinderZ.setText(res.getZ()+"");
-
-            canvas.drawCircle(res.getX() * 20, res.getY() * 20, 5, mPaint);
-            canvasView.setImageBitmap(newDrawBitmap);
-
-            unregisterReceiver(wifiReceiver);
 
         } catch (JsonParseException e) {
             e.printStackTrace();

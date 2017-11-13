@@ -117,7 +117,6 @@ public class CollectorActivity extends AppCompatActivity {
         mapImageContainerHeight = canvasView.getHeight();
 
         canvasViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
-
         canvasView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -165,18 +164,13 @@ public class CollectorActivity extends AppCompatActivity {
 
     private void initMap() {
 
-        Log.d("initMap","initMap 호출");
         mapView   = (ImageView) findViewById(R.id.mapView);
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
         String mapURL =  HawkiApplication.getMapImageURL(bid);
-        Log.d("Map Url : ", mapURL);
 
-        Picasso.with(getApplicationContext()).load(mapURL);
         Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-
-                Log.d("onBitmapLoaded","onBitmapLoaded 호출");
                 mapView.setImageBitmap(bitmap);
                 mapView.setVisibility(View.VISIBLE);
                 mapViewBitmap = bitmap;
@@ -186,7 +180,7 @@ public class CollectorActivity extends AppCompatActivity {
 
             @Override
             public void onBitmapFailed(Drawable errorDrawable) {
-
+                mapViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
             }
 
             @Override
@@ -210,9 +204,6 @@ public class CollectorActivity extends AppCompatActivity {
         List<ScanResult> wifiScanResult = wifimanager.getScanResults();
 
         PostCollectRssiReq req = new PostCollectRssiReq(bid, x, y, z, wifiScanResult);
-
-//            HawkAPI api = HawkAPI.getInstance(); // get API Instance
-//            String res = api.postCollectRssi(bid, x, y, z, wifiScanResult); // do fetching
         HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
         Call<String> call = httpService.postCollectRssi(req);
 
