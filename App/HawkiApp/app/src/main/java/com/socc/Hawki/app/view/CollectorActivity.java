@@ -132,7 +132,7 @@ public class CollectorActivity extends AppCompatActivity {
             }
         };
         mapView.setTag(target);
-        Picasso.with(this).load(mapURL).into(mapView);
+        Picasso.with(this).load(mapURL).into(target);
     }
 
     private void initMapViewTouchListener() {
