@@ -1,5 +1,6 @@
 package com.socc.Hawki.app.view;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -98,36 +99,40 @@ public class CollectorActivity extends AppCompatActivity {
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        //Here you can get the size!
-        Log.d("onWindowFocusChanged","onWindowFocusChanged 호출");
-    }
-
     private void initMap() {
 
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        String mapURL =  HawkiApplication.getMapImageURL(bid);
+        String mapURL = HawkiApplication.getMapImageURL(bid);
+        Log.d("mapURL",mapURL);
 
-        Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
+
+        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("지도를 불러오는중...");
+        mProgressDialog.setIndeterminate(false);
+
+        Target target = new Target() {
+
             @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                mapView.setImageBitmap(bitmap);
-                mapView.setVisibility(View.VISIBLE);
-                mapViewBitmap = bitmap;
+            public void onPrepareLoad(Drawable arg0) {
+                mProgressDialog.show();
             }
 
             @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
+            public void onBitmapLoaded(Bitmap arg0, Picasso.LoadedFrom arg1) {
+                mapView.setImageBitmap(arg0);
+                mapViewBitmap = arg0;
+                mProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable arg0) {
+                // TODO Auto-generated method stub
                 mapViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
+                mProgressDialog.dismiss();
             }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        });
+        };
+        mapView.setTag(target);
+        Picasso.with(this).load(mapURL).into(mapView);
     }
 
     private void initMapViewTouchListener() {
