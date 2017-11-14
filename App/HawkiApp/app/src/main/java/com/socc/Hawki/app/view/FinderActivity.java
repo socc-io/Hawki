@@ -79,6 +79,12 @@ public class FinderActivity extends AppCompatActivity {
 
         initMap();
         initCanvas();
+
+        if(wifimanager == null)
+            wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+        registerReceiver(wifiReceiver, filter);
     }
 
     @Override
@@ -170,11 +176,7 @@ public class FinderActivity extends AppCompatActivity {
     }
 
     public void finderClicked(View v) throws JSONException {
-        if(wifimanager == null)
-            wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
-        registerReceiver(wifiReceiver, filter);
+
         wifimanager.startScan();
     }
 }
