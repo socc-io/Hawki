@@ -1,71 +1,42 @@
 # -*- coding: utf-8 -*-
 
 from Web.service.daumAPI import DaumSearchEngine
-from flask_restful import Resource
 from Web import ppl
-from flask import jsonify, request
+from flask import jsonify, request, Blueprint
 
 import CONFIG, json
 
-class BuildingInfo(Resource):
-    # Request location info to DAUM
-    def getBuildInfoByName(self, name='김포공항'):  # Request location info to DAUM
-        building_search_engine = None
-        if CONFIG.COMMON['BUILDING_SEARCH_ENGINE'] == 'DAUM':
-            building_search_engine = DaumSearchEngine()
+app = Blueprint('__building_route__', __name__)
 
-        return building_search_engine.getBuildInfoByName(name)
+@app.route('/buildinginfo', methods=['GET'])
+def get_building_info():
+    building_name = request.args.get('buildName', '김포공항')
+    search_engine = DaumSearchEngine()
+    res = search_engine.getBuildInfoByName(building_name)
+    if not res:
+        return u'Failed to request daum API'
+    print 'requested daum api: ' + repr(res).decode('unicode-escape')
+    return jsonify(res)
 
-    def get(self):
-        buildName = request.args.get('buildName', '김포공항')
-        res = self.getBuildInfoByName(name=buildName)
-        if not res:
-            return u'다음 API요청에 실패했습니다. 키 값이 만료되었을 수 있습니다'
-        print 'requested daum api: ' + str(res)
-        return jsonify(res)
-
-class GetPosition(Resource):
+@app.route('/getposition', methods=['POST'])
+def post_get_position():
     global ppl
-    def predictPositionByRssi(self, wrm={'abcd':-99}, buildId='COEX',\
-            module='SCIKIT', algorithm='GNB'):
-        print('Request position at: ' + buildId)
-        ppl.load_pipe(module)
+    json = request.get_json()
+    rssi, bid = json['data'], json['bid']
+    ppl.load_pipe('SCIKIT')
+    res = ppl.process(rssi, config={'building_id':bid, 'algorithm':'GNB', 'min_rssi':-999})
+    res = {'x': res[0], 'y': res[1], 'z': 0}
 
-        res = ppl.process(wrm, config={'building_id':buildId, 'algorithm':algorithm, 'min_rssi':-999})
-        resJson = {
-            'x': res[0],
-            'y': res[1],
-            'z': 0
-        }
-        return resJson
+    print 'predict result: {}'.format(repr(res).decode('unicode-escape'))
+    
+    return jsonify(res)
 
-    def post(self):
-        json = request.get_json()
-        rssi, bid = json['rssi'], json['bid']
-        return jsonify(\
-            self.predictPositionByRssi(\
-                rssi, bid \
-            )\
-        )
-
-class CollectRssi(Resource):
-    def saveRssiInfo(self, data = \
-    {
-        "bid":"TEST",
-        "x": 2, "y": 2, "z": 2,
-        "rssi":[
-            {
-                "bssid": "39:33:34:f2:dd:cc",
-                "dbm": -47
-            }
-        ]
-    }):
-        print(data['bid'])
-        savePath = 'Data/WRM/RAW/{}.dat'.format(data['bid'])
-        with open(savePath, 'a') as f:
-            f.write(json.dumps(data) + '\n')
-        return 'save data'
-
-    def post(self):
-        return self.saveRssiInfo(data=request.get_json())
+@app.route('/collectrssi', methods=['POST'])
+def post_collect_rssi():
+    data = request.get_json()
+    print data['bid']
+    save_path = 'Data/WRM/RAW/{}.dat'.format(data['bid'])
+    with open(save_path, 'a') as f:
+        f.write(json.dumps(data) + '\n')
+    return jsonify({'success': 1, 'msg':'Successfully saved'})
 

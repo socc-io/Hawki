@@ -1,5 +1,9 @@
 package com.socc.Hawki.app.service.request;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import com.socc.Hawki.app.service.ScanResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +11,14 @@ import java.util.List;
  * Created by gim-yeongjin on 2017. 5. 29..
  */
 
-public class PostGetPositionReq implements HawkRequest {
-    String bid;
+public class PostGetPositionReq {
+
+    @SerializedName("bid")
+    @Expose
+    private String bid;
+
+    @SerializedName("data")
+    private
     List<ScanResult> rssi;
 
     public PostGetPositionReq(String bid, List<android.net.wifi.ScanResult> rssi) {
@@ -35,29 +45,4 @@ public class PostGetPositionReq implements HawkRequest {
         this.rssi = rssi;
     }
 
-    public class ScanResult {
-        String bssid;
-        int dbm;
-
-        public ScanResult(String bssid, int dbm) {
-            this.bssid = bssid;
-            this.dbm = dbm;
-        }
-
-        public String getBssid() {
-            return bssid;
-        }
-
-        public void setBssid(String bssid) {
-            this.bssid = bssid;
-        }
-
-        public int getDbm() {
-            return dbm;
-        }
-
-        public void setDbm(int dbm) {
-            this.dbm = dbm;
-        }
-    }
 }

@@ -27,9 +27,12 @@ import android.widget.TextView;
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.application.HawkiApplication;
+import com.socc.Hawki.app.service.LocationPosition;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostGetPositionReq;
+import com.socc.Hawki.app.service.response.GetPoiListReq;
+import com.socc.Hawki.app.service.response.Poi;
 import com.socc.Hawki.app.service.response.PostGetPositionRes;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -52,6 +55,21 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
+    List<LocationPosition> locationHistory = new ArrayList<LocationPosition>();
+    public float current_x = 0;
+    public float current_y = 0;
+    public float current_z = 0;
+
+    int PDR_HISTORY_COUNT = 5;
+    private final static double EPSILON = 0.00001;
+
+
+    private void addLocationHistory(LocationPosition lp) {
+        locationHistory.add(lp);
+        if (locationHistory.size() > PDR_HISTORY_COUNT){
+            locationHistory.remove(0);
+        }
+    }
 
     private Bitmap canvasViewBitmap;
     private PostGetPositionRes res = null;
@@ -61,8 +79,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private int canvasWidth = 0;
     private int canvasHeight = 0;
 
-    private int mapImageWidth = 0;
-    private int mapImageHeight = 0;
+    private float mapImageWidth = 0;
+    private float mapImageHeight = 0;
 
     private SensorManager mSensorManager;
     private final float[] mAccelerometerReading = new float[3];
@@ -79,6 +97,20 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     @BindView(R.id.canvasView2)
     ImageView canvasView;
+
+    public void PDR_dot_update(int speed){
+        float tmp_x = current_x; float tmp_y = current_y; float tmp_z = current_z;
+        float dir_x= 0; float dir_y = 0; float dir_z = 0;
+        for(int i = locationHistory.size()-1; i >=0; i--){
+            LocationPosition loc = locationHistory.get(i);
+            dir_x += tmp_x - loc.x; dir_y += tmp_y - loc.y; dir_z += tmp_z - loc.z;
+            tmp_x = loc.x; tmp_y = loc.y; tmp_z = loc.z;
+        }
+        double vec_len = Math.sqrt(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z) + EPSILON;
+        dir_x /= vec_len; dir_y /= vec_len; dir_z /= vec_len;
+        current_x += dir_x * speed; current_y += dir_y * speed; current_z += dir_z * speed;
+        drawDot(current_x, current_y);
+    }
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
@@ -100,6 +132,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         initMap();
         initCanvasView();
+        initPOIDataList();
 
         if (wifimanager == null)
             wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
@@ -121,6 +154,26 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
     }
 
+    private void initPOIDataList() {
+
+        HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
+        Call<GetPoiListReq> poiListReqCall = httpService.getPOIList(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
+            @Override
+            public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
+                if(response.isSuccessful()) {
+                    List<Poi> pois = response.body().getPois();
+                    Log.d("pois", pois.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetPoiListReq> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -130,7 +183,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         } catch (Exception e) {
             Log.e("Don't Regist Receiver.", e.getMessage());
         }
-
     }
 
     private void initMap() {
@@ -174,17 +226,29 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             public void onGlobalLayout() {
                 canvasWidth = canvasView.getMeasuredWidth();
                 canvasHeight = canvasView.getMeasuredHeight();
+<<<<<<< HEAD
                 canvasViewBitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
 
+=======
+                canvasViewBitmap = Bitmap.createBitmap(canvasWidth,canvasHeight,Bitmap.Config.ARGB_8888);
+>>>>>>> 94934f24d48149c68ef1e0661df8bd4ff2b33f46
                 Log.d("canvasWidth", canvasWidth + "");
                 Log.d("canvasHeight", canvasHeight + "");
 
                 Log.d("mapImageWidth", mapImageWidth + "");
                 Log.d("mapImageHeight", mapImageHeight + "");
-
-
             }
         });
+    }
+
+    public void drawDot(float cliecdX, float cliecdY){
+        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+        Canvas canvas = new Canvas(newDrawBitmap);
+        Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.RED);
+        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
+        canvasView.setImageBitmap(newDrawBitmap);
     }
 
     public void getWIFIScanResult() {
@@ -208,6 +272,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
                     if (response.isSuccessful()) {
                         res = response.body();
+<<<<<<< HEAD
                         if (res != null) {
                             Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
                             Canvas canvas = new Canvas(newDrawBitmap);
@@ -224,10 +289,24 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
                             canvas.drawCircle(xLoc, yLoc, 10, mPaint);
                             canvasView.setImageBitmap(newDrawBitmap);
+=======
+                        if(res != null) {
+                            current_x  =  res.getX();
+                            current_y =  res.getY();
+                            current_z = 0;
+                            addLocationHistory(new LocationPosition(current_x, current_y, current_z));
+
+                            float caculateX = current_x / mapImageWidth * canvasWidth ;
+                            float caculateY = current_y / mapImageHeight * canvasHeight;
+                            //TODO : xLoc, yLoc should be change to display resolution
+                            drawDot(caculateX,caculateY);
+
+                            Log.d("caculateX", caculateX + "");
+                            Log.d("caculateY", caculateY + "");
+>>>>>>> 94934f24d48149c68ef1e0661df8bd4ff2b33f46
                         }
 
                     }
-
                 }
 
                 @Override

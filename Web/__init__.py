@@ -12,7 +12,7 @@ api = Api(app)
 ppl = Pipeline()
 
 # Request for static page
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'bmp'])
 
 @app.route("/static/<string:path>")
 def static_pages(path):

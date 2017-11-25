@@ -27,10 +27,13 @@ import com.socc.Hawki.app.application.HawkiApplication;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostCollectRssiReq;
+import com.socc.Hawki.app.service.response.GetPoiListReq;
+import com.socc.Hawki.app.service.response.Poi;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -94,11 +97,22 @@ public class CollectorActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initMap();
         initMapViewTouchListener();
+        initPOIDataList();
 
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
         Log.i("CollectorActivity", "thread start");
+    }
+
+    public void drawDot(int cliecdX, int cliecdY){
+        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+        Canvas canvas = new Canvas(newDrawBitmap);
+        Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.RED);
+        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
+        canvasView.setImageBitmap(newDrawBitmap);
     }
 
     private void initMap() {
@@ -153,6 +167,7 @@ public class CollectorActivity extends AppCompatActivity {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: // react on only down event
 
+<<<<<<< HEAD
                                 Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
                                 Log.d("mapImageContainerWidth", mapImageContainerWidth + "");
@@ -161,19 +176,27 @@ public class CollectorActivity extends AppCompatActivity {
                                 Log.d("mapImageHeight", mapImageHeight + "");
                                 Log.d("event.getX()", event.getX() + "");
                                 Log.d("event.getY()", event.getY() + "");
+=======
+                                Log.d("mapImageContainerWidth", mapImageContainerWidth + "" );
+                                Log.d("mapImageContainerHeight", mapImageContainerHeight + "" );
+                                Log.d("mapImageWidth", mapImageWidth + "" );
+                                Log.d("mapImageHeight",mapImageHeight + "");
+                                Log.d("event.getX()",event.getX() + "");
+                                Log.d("event.getY()",event.getY() + "" );
+>>>>>>> 94934f24d48149c68ef1e0661df8bd4ff2b33f46
 
                                 final int cliecdX = (int) (event.getX());
                                 final int cliecdY = (int) (event.getY());
 
-                                Canvas canvas = new Canvas(newDrawBitmap);
-                                Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                                mPaint.setStyle(Paint.Style.FILL);
-                                mPaint.setColor(Color.RED);
-                                canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
-                                canvasView.setImageBitmap(newDrawBitmap);
+                                drawDot(cliecdX, cliecdY);
 
+<<<<<<< HEAD
                                 int caculateX = (int) (event.getX() / mapImageContainerWidth * mapImageWidth);
                                 int caculateY = (int) (event.getX() / mapImageContainerHeight * mapImageHeight);
+=======
+                                int caculateX =  (int)(event.getX() / mapImageContainerWidth * mapImageWidth);
+                                int caculateY =  (int)(event.getY() / mapImageContainerHeight * mapImageHeight);
+>>>>>>> 94934f24d48149c68ef1e0661df8bd4ff2b33f46
 
                                 Log.d("caculateX", caculateX + "");
                                 Log.d("caculateY", caculateY + "");
@@ -198,22 +221,50 @@ public class CollectorActivity extends AppCompatActivity {
 
         PostCollectRssiReq req = new PostCollectRssiReq(bid, xLoc, yLoc, zLoc, wifiScanResult);
         HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
-        Call<String> call = httpService.postCollectRssi(req);
+        Call<JSONObject> call = httpService.postCollectRssi(req);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<JSONObject>() {
             @Override
+<<<<<<< HEAD
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.body() == null) {
                     Toast.makeText(CollectorActivity.this, "실패했습니다", Toast.LENGTH_SHORT).show();
+=======
+            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(CollectorActivity.this,  "데이터 업로드 성공",Toast.LENGTH_SHORT).show();
+>>>>>>> 94934f24d48149c68ef1e0661df8bd4ff2b33f46
                 }
+
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<JSONObject> call, Throwable t) {
+                t.printStackTrace();
                 Toast.makeText(CollectorActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+
+    private void initPOIDataList() {
+        Log.d("initPOIDataList","initPOIDataList");
+        HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
+        Call<GetPoiListReq> poiListReqCall = httpService.getPOIList(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
+            @Override
+            public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
+                if(response.isSuccessful()) {
+                    List<Poi> pois = response.body().getPois();
+                    Log.d("pois", pois.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetPoiListReq> call, Throwable t) {
+
+            }
+        });
     }
 
     public void collectorClicked(View v) throws JSONException {
