@@ -15,10 +15,12 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
@@ -78,6 +80,8 @@ public class FinderActivity extends AppCompatActivity {
     private float mapImageWidth = 0;
     private float mapImageHeight = 0;
 
+    private List<Poi> pois;
+
     @BindView(R.id.mapView2)
     ImageView mapView;
 
@@ -119,6 +123,7 @@ public class FinderActivity extends AppCompatActivity {
         initMap();
         initCanvasView();
         initPOIDataList();
+        initMapViewTouchListener();
 
         if(wifimanager == null)
             wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
@@ -136,7 +141,7 @@ public class FinderActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
                 if(response.isSuccessful()) {
-                    List<Poi> pois = response.body().getPois();
+                    pois = response.body().getPois();
                     Log.d("pois", pois.toString());
                 }
             }
@@ -144,6 +149,59 @@ public class FinderActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<GetPoiListReq> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void initMapViewTouchListener() {
+
+        canvasView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                canvasView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                canvasWidth  = canvasView.getMeasuredWidth();
+                canvasHeight = canvasView.getMeasuredHeight();
+
+                canvasViewBitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
+                canvasView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN: // react on only down event
+
+                                Log.d("mapImageContainerWidth", canvasWidth + "" );
+                                Log.d("mapImageContainerHeight", canvasHeight + "" );
+                                Log.d("mapImageWidth", mapImageWidth + "" );
+                                Log.d("mapImageHeight",mapImageHeight + "");
+                                Log.d("event.getX()",event.getX() + "");
+                                Log.d("event.getY()",event.getY() + "" );
+
+                                final int clickedX = (int) (event.getX());
+                                final int clickedY = (int) (event.getY());
+
+                                int calculateX =  (int)(event.getX() / canvasWidth * mapImageWidth);
+                                int calculateY =  (int)(event.getY() / canvasHeight * mapImageHeight);
+
+                                Log.d("caculateX", calculateX + "" );
+                                Log.d("caculateY",calculateY + "");
+                                Toast.makeText(getApplicationContext(), calculateX + " " + calculateY,Toast.LENGTH_SHORT).show();
+
+                                if(pois != null) {
+                                    for(Poi poi: pois) {
+                                        double dx = poi.getX() - calculateX;
+                                        double dy = poi.getY() - calculateY;
+                                        double dist = Math.sqrt(dx * dx + dy * dy);
+                                        if(dist < 10.0f) {
+                                            Toast.makeText(FinderActivity.this, poi.getName(), Toast.LENGTH_SHORT).show();
+                                            break;
+                                        }
+                                    }
+                                }
+                        }
+
+                        return true;
+                    }
+                });
             }
         });
     }
@@ -179,6 +237,21 @@ public class FinderActivity extends AppCompatActivity {
                 mapImageWidth = arg0.getWidth();
                 mapImageHeight = arg0.getHeight();
                 mProgressDialog.dismiss();
+
+                // Draw dots
+                Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+                Canvas canvas = new Canvas(newDrawBitmap);
+                Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                mPaint.setStyle(Paint.Style.FILL);
+                mPaint.setColor(Color.BLUE);
+                if(pois != null) {
+                    for(Poi poi : pois) {
+                        Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
+                        Integer y = (int)((float)poi.getY() / mapImageHeight * canvasHeight);
+                        canvas.drawCircle(x, y, 10, mPaint);
+                    }
+                }
+                canvasView.setImageBitmap(newDrawBitmap);
             }
 
             @Override
@@ -207,6 +280,7 @@ public class FinderActivity extends AppCompatActivity {
                 Log.d("mapImageHeight", mapImageHeight + "");
             }
         });
+
     }
 
     public void drawDot(float cliecdX, float cliecdY){
@@ -246,13 +320,32 @@ public class FinderActivity extends AppCompatActivity {
                             current_z = 0;
                             addLocationHistory(new LocationPosition(current_x, current_y, current_z));
 
-                            float caculateX = current_x / mapImageWidth * canvasWidth ;
-                            float caculateY = current_y / mapImageHeight * canvasHeight;
+                            float calculateX = current_x / mapImageWidth * canvasWidth ;
+                            float calculateY = current_y / mapImageHeight * canvasHeight;
                             //TODO : xLoc, yLoc should be change to display resolution
-                            drawDot(caculateX,caculateY);
 
-                            Log.d("caculateX", caculateX + "");
-                            Log.d("caculateY", caculateY + "");
+                            // Draw dots
+                            Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+                            Canvas canvas = new Canvas(newDrawBitmap);
+                            Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                            mPaint.setStyle(Paint.Style.FILL);
+                            mPaint.setColor(Color.RED);
+
+                            canvas.drawCircle(calculateX, calculateY, 10, mPaint);
+
+                            mPaint.setColor(Color.BLUE);
+                            if(pois != null) {
+                                for(Poi poi : pois) {
+                                    Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
+                                    Integer y = (int)((float)poi.getY() / mapImageHeight * canvasHeight);
+                                    canvas.drawCircle(x, y, 10, mPaint);
+                                }
+                            }
+
+                            canvasView.setImageBitmap(newDrawBitmap);
+
+                            Log.d("caculateX", calculateX + "");
+                            Log.d("caculateY", calculateY + "");
                         }
 
                     }

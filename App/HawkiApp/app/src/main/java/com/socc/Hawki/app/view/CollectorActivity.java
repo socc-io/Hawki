@@ -59,6 +59,8 @@ public class CollectorActivity extends AppCompatActivity {
     private int mapImageContainerWidth = 0;
     private int mapImageContainerHeight = 0;
 
+    private List<Poi> pois;
+
     private int xLoc,yLoc,zLoc = 0;
 
     @BindView(R.id.textView_buildingName)
@@ -176,10 +178,31 @@ public class CollectorActivity extends AppCompatActivity {
                                 Log.d("event.getX()",event.getX() + "");
                                 Log.d("event.getY()",event.getY() + "" );
 
-                                final int cliecdX = (int) (event.getX());
-                                final int cliecdY = (int) (event.getY());
+                                final int clickedX = (int) (event.getX());
+                                final int clickedY = (int) (event.getY());
 
-                                drawDot(cliecdX, cliecdY);
+                                // Draw dots
+                                Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+                                Canvas canvas = new Canvas(newDrawBitmap);
+                                Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                                mPaint.setStyle(Paint.Style.FILL);
+                                mPaint.setColor(Color.RED);
+
+                                canvas.drawCircle(clickedX, clickedY, 10, mPaint);
+
+                                /*
+                                 * 아래 코드는 POI의 파란점을 그리는 코드입니다. Collector에서는 그리지 않는 것으로 하고 주석처리되었습니다
+                                 */
+//                                mPaint.setColor(Color.BLUE);
+//                                if(pois != null) {
+//                                    for(Poi poi : pois) {
+//                                        Integer x = (int)((float)poi.getX() / mapImageWidth * mapImageContainerWidth);
+//                                        Integer y = (int)((float)poi.getY() / mapImageHeight * mapImageContainerHeight);
+//                                        canvas.drawCircle(x, y, 10, mPaint);
+//                                    }
+//                                }
+
+                                canvasView.setImageBitmap(newDrawBitmap);
 
                                 int caculateX =  (int)(event.getX() / mapImageContainerWidth * mapImageWidth);
                                 int caculateY =  (int)(event.getY() / mapImageContainerHeight * mapImageHeight);
@@ -233,7 +256,7 @@ public class CollectorActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
                 if(response.isSuccessful()) {
-                    List<Poi> pois = response.body().getPois();
+                    pois = response.body().getPois();
                     Log.d("pois", pois.toString());
                 }
             }
