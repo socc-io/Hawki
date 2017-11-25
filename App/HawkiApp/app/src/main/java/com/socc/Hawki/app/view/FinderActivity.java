@@ -102,11 +102,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private final float[] mRotationMatrix = new float[9];
     private final float[] mOrientationAngles = new float[3];
 
-<<<<<<< HEAD
     private int index = 0;
 
-=======
->>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
     @BindView(R.id.mapView2)
     ImageView mapView;
 
@@ -189,13 +186,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
             @Override
             public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
-<<<<<<< HEAD
-                if(response.isSuccessful()) {
-                    pois = response.body().getPois();
-=======
                 if (response.isSuccessful()) {
                     List<Poi> pois = response.body().getPois();
->>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
                     Log.d("pois", pois.toString());
                 }
             }
@@ -327,15 +319,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             public void onGlobalLayout() {
                 canvasWidth = canvasView.getMeasuredWidth();
                 canvasHeight = canvasView.getMeasuredHeight();
-<<<<<<< HEAD
-                canvasViewBitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
-
-=======
 
                 canvasViewBitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
 
-
->>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
                 Log.d("canvasWidth", canvasWidth + "");
                 Log.d("canvasHeight", canvasHeight + "");
 
@@ -377,8 +363,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
                     if (response.isSuccessful()) {
                         res = response.body();
-
-<<<<<<< HEAD
                         if(res != null) {
                             current_x  =  res.getX();
                             current_y =  res.getY();
@@ -411,22 +395,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
                             Log.d("caculateX", calculateX + "");
                             Log.d("caculateY", calculateY + "");
-
-=======
-                        if (res != null) {
-                            current_x = res.getX();
-                            current_y = res.getY();
-                            current_z = 0;
-                            addLocationHistory(new LocationPosition(current_x, current_y, current_z));
-
-                            float caculateX = current_x / mapImageWidth * canvasWidth;
-                            float caculateY = current_y / mapImageHeight * canvasHeight;
-                            //TODO : xLoc, yLoc should be change to display resolution
-                            drawDot(caculateX, caculateY);
-
-                            Log.d("caculateX", caculateX + "");
-                            Log.d("caculateY", caculateY + "");
->>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
                         }
 
                     }
