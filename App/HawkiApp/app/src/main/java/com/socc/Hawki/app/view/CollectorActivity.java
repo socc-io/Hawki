@@ -100,14 +100,18 @@ public class CollectorActivity extends AppCompatActivity {
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
     }
 
-    public void drawDot(int cliecdX, int cliecdY){
+    public void drawDot(int clickedX, int clickedY, int color) {
         Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
         Canvas canvas = new Canvas(newDrawBitmap);
         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.RED);
-        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
+        mPaint.setColor(color);
+        canvas.drawCircle(clickedX, clickedY, 10, mPaint);
         canvasView.setImageBitmap(newDrawBitmap);
+    }
+
+    public void drawDot(int clickedX, int clickedY) {
+        drawDot(clickedX, clickedY, Color.RED);
     }
 
     private void initMap() {
@@ -208,7 +212,6 @@ public class CollectorActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(CollectorActivity.this,  "데이터 업로드 성공",Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
@@ -217,7 +220,6 @@ public class CollectorActivity extends AppCompatActivity {
                 Toast.makeText(CollectorActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void collectorClicked(View v) throws JSONException {
