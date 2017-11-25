@@ -187,7 +187,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
                 if (response.isSuccessful()) {
-                    List<Poi> pois = response.body().getPois();
+                    pois = response.body().getPois();
                     Log.d("pois", pois.toString());
                 }
             }
@@ -230,18 +230,21 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
                                 Log.d("caculateX", calculateX + "" );
                                 Log.d("caculateY",calculateY + "");
-                                Toast.makeText(getApplicationContext(), calculateX + " " + calculateY,Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getApplicationContext(), calculateX + " " + calculateY,Toast.LENGTH_SHORT).show();
 
                                 if(pois != null) {
+                                    Poi nearest_poi = null;
+                                    double min_dist = 9999999.0f;
                                     for(Poi poi: pois) {
                                         double dx = poi.getX() - calculateX;
                                         double dy = poi.getY() - calculateY;
                                         double dist = Math.sqrt(dx * dx + dy * dy);
-                                        if(dist < 10.0f) {
-                                            Toast.makeText(FinderActivity.this, poi.getName(), Toast.LENGTH_SHORT).show();
-                                            break;
+                                        if(dist < min_dist) {
+                                            min_dist = dist;
+                                            nearest_poi = poi;
                                         }
                                     }
+                                    Toast.makeText(FinderActivity.this, nearest_poi.getName(), Toast.LENGTH_SHORT).show();
                                 }
                         }
 
