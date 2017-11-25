@@ -1,5 +1,6 @@
 package com.socc.Hawki.app.view;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +31,12 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,19 +46,27 @@ import retrofit2.Response;
  */
 public class CollectorActivity extends AppCompatActivity {
 
-    private EditText editTextX, editTextY, editTextZ;
-    private ImageView mapView;
-
-
     private WifiManager wifimanager;
 
-    private TextView buildIdTextView;
-    private TextView buildNameTextView;
-
     private Bitmap mapViewBitmap;
-
-    private ImageView canvasView;
     private Bitmap canvasViewBitmap;
+
+    private int mapImageWidth = 0;
+    private int mapImageHeight = 0;
+
+    private int mapImageContainerWidth = 0;
+    private int mapImageContainerHeight = 0;
+
+    private int xLoc,yLoc,zLoc = 0;
+
+    @BindView(R.id.textView_buildingName)
+    TextView buildNameTextView;
+
+    @BindView(R.id.canvasView)
+    ImageView canvasView;
+
+    @BindView(R.id.mapView)
+    ImageView mapView;
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
@@ -70,8 +82,6 @@ public class CollectorActivity extends AppCompatActivity {
         super.onPause();
         try {
             unregisterReceiver(wifiReceiver);
-        } catch (IllegalArgumentException e) {
-
         } catch (Exception e) {
             Log.e("리시버가 아직 등록안됨.", e.getMessage());
         }
@@ -82,108 +92,128 @@ public class CollectorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector);
-
-        // Holding view
-        editTextX = (EditText)  findViewById(R.id.editTextX);
-        editTextY = (EditText)  findViewById(R.id.editTextY);
-        editTextZ = (EditText)  findViewById(R.id.editTextZ);
-
-        //buildIdTextView = (TextView) findViewById(R.id.editText_buildingId);
-        buildNameTextView = (TextView) findViewById(R.id.textView_buildingName);
-
-        //buildIdTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
-        buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
-        // Holding WIFI manager
-        wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-
+        ButterKnife.bind(this);
         initMap();
-        initCanvas();
-       // registMapTouchEvent();
+        initMapViewTouchListener();
 
+        buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
+        wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+    }
+
+    public void drawDot(int cliecdX, int cliecdY){
+        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+        Canvas canvas = new Canvas(newDrawBitmap);
+        Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.RED);
+        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
+        canvasView.setImageBitmap(newDrawBitmap);
     }
 
     private void initMap() {
-        mapView   = (ImageView) findViewById(R.id.mapView);
+
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        String mapURL =  HawkiApplication.getMapImageURL(bid);
-        Log.d("Map Url : ", mapURL);
-        Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
+        String mapURL = HawkiApplication.getMapImageURL(bid);
+        Log.d("mapURL",mapURL);
+
+        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("지도를 불러오는중...");
+        mProgressDialog.setIndeterminate(false);
+
+        Target target = new Target() {
+
             @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                mapView.setImageBitmap(bitmap);
-                mapView.setVisibility(View.VISIBLE);
-                mapViewBitmap = bitmap;
+            public void onPrepareLoad(Drawable arg0) {
+                mProgressDialog.show();
             }
 
             @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-                // TODO: 2017. 6. 9. 실내지도 비어있을때 이미지 띄우기.
-
-
+            public void onBitmapLoaded(Bitmap arg0, Picasso.LoadedFrom arg1) {
+                mapView.setImageBitmap(arg0);
+                mapImageWidth = arg0.getWidth();
+                mapImageHeight = arg0.getHeight();
+                mProgressDialog.dismiss();
             }
 
             @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
+            public void onBitmapFailed(Drawable arg0) {
+                // TODO Auto-generated method stub
+                mapViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
+                mProgressDialog.dismiss();
             }
-        });
+        };
+        mapView.setTag(target);
+        Picasso.with(this).load(mapURL).into(target);
     }
 
-    private void initCanvas() {
-        canvasViewBitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
-        canvasView = (ImageView) findViewById(R.id.canvasView);
+    private void initMapViewTouchListener() {
 
-        canvasView.setOnTouchListener(new View.OnTouchListener() {
+        canvasView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: // react on only down event
-                        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
-                        final int cliecdX = (int) (event.getX() / 4);
-                        final int cliecdY = (int) (event.getY() / 4);
-                        Canvas canvas = new Canvas(newDrawBitmap);
-                        Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                        mPaint.setStyle(Paint.Style.FILL);
-                        mPaint.setColor(Color.RED);
-                        canvas.drawCircle(cliecdX, cliecdY, 5, mPaint);
-                        canvasView.setImageBitmap(newDrawBitmap);
+            public void onGlobalLayout() {
+                canvasView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                mapImageContainerWidth = canvasView.getMeasuredWidth();
+                mapImageContainerHeight = canvasView.getMeasuredHeight();
 
-                        editTextX.setText(String.valueOf((int) event.getX() / 80));
-                        editTextY.setText(String.valueOf((int) event.getY() / 80));
-                        editTextZ.setText(String.valueOf(0));
-                }
+                canvasViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
+                canvasView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN: // react on only down event
 
-                return true;
+                                Log.d("mapImageContainerWidth", mapImageContainerWidth + "" );
+                                Log.d("mapImageContainerHeight", mapImageContainerHeight + "" );
+                                Log.d("mapImageWidth", mapImageWidth + "" );
+                                Log.d("mapImageHeight",mapImageHeight + "");
+                                Log.d("event.getX()",event.getX() + "");
+                                Log.d("event.getY()",event.getY() + "" );
+
+                                final int cliecdX = (int) (event.getX());
+                                final int cliecdY = (int) (event.getY());
+
+                                drawDot(cliecdX, cliecdY);
+
+                                int caculateX =  (int)(event.getX() / mapImageContainerWidth * mapImageWidth);
+                                int caculateY =  (int)(event.getY() / mapImageContainerHeight * mapImageHeight);
+
+                                Log.d("caculateX", caculateX + "" );
+                                Log.d("caculateY",caculateY + "");
+                                Toast.makeText(getApplicationContext(), caculateX + " " + caculateY,Toast.LENGTH_SHORT).show();
+
+                                xLoc = caculateX;
+                                yLoc = caculateY;
+                                zLoc = 0;
+                        }
+
+                        return true;
+                    }
+                });
             }
         });
-
 
     }
 
     public void getWIFIScanResult() {
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        float x = Float.parseFloat(editTextX.getText().toString());
-        float y = Float.parseFloat(editTextY.getText().toString());
-        float z = Float.parseFloat(editTextZ.getText().toString());
         List<ScanResult> wifiScanResult = wifimanager.getScanResults();
 
-        PostCollectRssiReq req = new PostCollectRssiReq(bid, x, y, z, wifiScanResult);
-
-//            HawkAPI api = HawkAPI.getInstance(); // get API Instance
-//            String res = api.postCollectRssi(bid, x, y, z, wifiScanResult); // do fetching
+        PostCollectRssiReq req = new PostCollectRssiReq(bid, xLoc, yLoc, zLoc, wifiScanResult);
         HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
-        Call<String> call = httpService.postCollectRssi(req);
+        Call<JSONObject> call = httpService.postCollectRssi(req);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<JSONObject>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body() == null) {
-                    Toast.makeText(CollectorActivity.this, "실패했습니다", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(CollectorActivity.this,  "데이터 업로드 성공",Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<JSONObject> call, Throwable t) {
+                t.printStackTrace();
                 Toast.makeText(CollectorActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

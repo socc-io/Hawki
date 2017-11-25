@@ -5,6 +5,8 @@ import com.socc.Hawki.app.service.request.PostGetPositionReq;
 import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
 import com.socc.Hawki.app.service.response.PostGetPositionRes;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -23,7 +25,7 @@ public interface HttpService {
 
     @Headers("Content-type: application/json; charset=utf-8")
     @POST("collectrssi")
-    Call<String> postCollectRssi(@Body PostCollectRssiReq req);
+    Call<JSONObject> postCollectRssi(@Body PostCollectRssiReq req);
 
     @Headers("Content-type: application/json; charset=utf-8")
     @POST("getposition")

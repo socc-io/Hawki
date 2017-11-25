@@ -57,7 +57,7 @@ public class HawkAPI extends APIAgent {
         return res;
     }
 
-    public String postCollectRssi(String bid, float x, float y, float z, List<ScanResult> scanResult) {
+    public String postCollectRssi(String bid, int x, int y, int z, List<ScanResult> scanResult) {
         PostCollectRssiReq req = new PostCollectRssiReq(bid, x, y, z, scanResult);
         Gson gson = new Gson();
 

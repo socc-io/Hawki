@@ -21,7 +21,7 @@ public class HawkiApplication extends Application {
     private static volatile Activity currentActivity = null;
 
     private static Retrofit retrofit = null;
-    private static final String BASE_URL = "http://hawki.smilu.link:4000";
+    private static final String BASE_URL = "http://smilu.cc:4000";
 
     public static HawkiApplication getGlobalApplicationContext() {
         if(mInstance == null)
