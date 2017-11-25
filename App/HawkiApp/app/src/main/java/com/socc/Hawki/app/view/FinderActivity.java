@@ -68,6 +68,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     final int SENSOR_HISTORY_COUNT = 10;
     private final static double EPSILON = 0.00001;
 
+
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
         if (locationHistory.size() > PDR_HISTORY_COUNT) {
@@ -111,13 +112,14 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     ImageView canvasView;
 
     public void PDR_dot_update(int speed) {
+        if(current_x == 0 && current_y== 0  && current_z == 0) return;
         float tmp_x = current_x;
         float tmp_y = current_y;
         float tmp_z = current_z;
         float dir_x = 0;
         float dir_y = 0;
         float dir_z = 0;
-        for (int i = locationHistory.size() - 1; i >= 0; i--) {
+        for (int i = locationHistory.size() - 2; i >= 0; i--) {
             LocationPosition loc = locationHistory.get(i);
             dir_x += tmp_x - loc.x;
             dir_y += tmp_y - loc.y;
@@ -126,13 +128,16 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             tmp_y = loc.y;
             tmp_z = loc.z;
         }
+        Log.d("PDR_dot_vector", "dir_x : " + dir_x + ", dir_y : " + dir_y + ", dir_z : " + dir_z);
         double vec_len = Math.sqrt(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z) + EPSILON;
         dir_x /= vec_len;
         dir_y /= vec_len;
         dir_z /= vec_len;
+        Log.d("PDR_dot_vector", "dir_x : " + dir_x + ", dir_y : " + dir_y + ", dir_z : " + dir_z);
         current_x += dir_x * speed;
         current_y += dir_y * speed;
         current_z += dir_z * speed;
+
         drawDot(current_x, current_y);
     }
 
@@ -336,12 +341,25 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
     public void drawDot(float cliecdX, float cliecdY) {
+        float calculateX = cliecdX / mapImageWidth * canvasWidth;
+        float calculateY = cliecdY / mapImageHeight * canvasHeight;
         Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
         Canvas canvas = new Canvas(newDrawBitmap);
         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.RED);
-        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
+        canvas.drawCircle(calculateX, calculateY, 10, mPaint);
+
+        mPaint.setColor(Color.BLUE);
+        if(pois != null) {
+            for(Poi poi : pois) {
+                Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
+                Integer y = (int)((float)poi.getY() / mapImageHeight * canvasHeight);
+                canvas.drawCircle(x, y, 10, mPaint);
+            }
+        }
+
         canvasView.setImageBitmap(newDrawBitmap);
     }
 
@@ -367,37 +385,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                     if (response.isSuccessful()) {
                         res = response.body();
                         if(res != null) {
-                            current_x  =  res.getX();
-                            current_y =  res.getY();
+                            current_x = res.getX();
+                            current_y = res.getY();
                             current_z = 0;
                             addLocationHistory(new LocationPosition(current_x, current_y, current_z));
-
-                            float calculateX = current_x / mapImageWidth * canvasWidth ;
-                            float calculateY = current_y / mapImageHeight * canvasHeight;
-                            //TODO : xLoc, yLoc should be change to display resolution
-
-                            // Draw dots
-                            Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
-                            Canvas canvas = new Canvas(newDrawBitmap);
-                            Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                            mPaint.setStyle(Paint.Style.FILL);
-                            mPaint.setColor(Color.RED);
-
-                            canvas.drawCircle(calculateX, calculateY, 10, mPaint);
-
-                            mPaint.setColor(Color.BLUE);
-                            if(pois != null) {
-                                for(Poi poi : pois) {
-                                    Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
-                                    Integer y = (int)((float)poi.getY() / mapImageHeight * canvasHeight);
-                                    canvas.drawCircle(x, y, 10, mPaint);
-                                }
-                            }
-
-                            canvasView.setImageBitmap(newDrawBitmap);
-
-                            Log.d("caculateX", calculateX + "");
-                            Log.d("caculateY", calculateY + "");
+                            drawDot(current_x, current_y);
                         }
 
                     }
@@ -428,9 +420,10 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                     0, mAccelerometerReading.length);
 
             if (checkMoveStatus(event)) {
+                PDR_dot_update(1);
                 Log.i("onSensorChanged", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
             } else {
-                Log.i("onSensorChanged", "--dont moving--");
+                //Log.i("onSensorChanged", "--dont moving--");
             }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
             System.arraycopy(event.values, 0, mMagnetometerReading,
@@ -461,7 +454,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             double avgY = sumY / 10.0;
             double avgZ = sumZ / 10.0;
 
-            Log.i("checkMoveStatus", avgX + "," + event.values[0] + "///" + avgY + "," + event.values[1] + avgZ + "," + event.values[2]);
+            //Log.i("checkMoveStatus", avgX + "," + event.values[0] + "///" + avgY + "," + event.values[1] + avgZ + "," + event.values[2]);
             if ((Math.abs(avgX - event.values[0]) + Math.abs(avgY - event.values[1]) + Math.abs(avgZ - event.values[2])) > 10) {
                 return true; //working
             } else {
