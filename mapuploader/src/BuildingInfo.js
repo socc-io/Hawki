@@ -17,7 +17,7 @@ import {
 } from 'react-bootstrap';
 
 // const APIBase = 'http://localhost:4000';
-const APIBase = 'http://hawki.smilu.link:4000';
+const APIBase = 'http://smilu.cc:4000';
 
 export default class BuildingInfo extends React.Component {
   constructor(props) {
@@ -362,7 +362,7 @@ export default class BuildingInfo extends React.Component {
               onclick={(e) => this.clickImage(e)}/>
             {this.state.clickPos ? (
               <Circle
-                radius={10}
+                radius={5}
                 x={this.state.clickPos[0]}
                 y={this.state.clickPos[1]}
                 fill='red'/>
@@ -371,7 +371,7 @@ export default class BuildingInfo extends React.Component {
               <Circle
                 key={idx}
                 onclick={() => this.handlePOIClicked(poi, idx)}
-                radius={10}
+                radius={5}
                 x={poi.x}
                 y={poi.y}
                 fill='blue'/>

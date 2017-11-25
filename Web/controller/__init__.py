@@ -2,14 +2,9 @@
 
 def register(app, api):
 	# register base.py
-	from Web.controller.building import \
-	    BuildingInfo,\
-	    GetPosition,\
-	    CollectRssi
-	api.add_resource(BuildingInfo, '/buildinginfo')
-	api.add_resource(GetPosition, '/getposition')
-	api.add_resource(CollectRssi, '/collectrssi')
+        from .building import app as building_cnt
+        from .base     import app as base_cnt
 
-	# register building.py
-	from Web.controller.base import app as baseCnt
-	app.register_blueprint(baseCnt)
+        app.register_blueprint(building_cnt)
+        app.register_blueprint(base_cnt)
+        
