@@ -10,6 +10,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -44,7 +48,7 @@ import retrofit2.Response;
 /**
  * Created by Jeong on 2016-09-17.
  */
-public class FinderActivity extends AppCompatActivity {
+public class FinderActivity extends AppCompatActivity implements SensorEventListener {
 
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
@@ -59,6 +63,16 @@ public class FinderActivity extends AppCompatActivity {
 
     private int mapImageWidth = 0;
     private int mapImageHeight = 0;
+
+    private SensorManager mSensorManager;
+    private final float[] mAccelerometerReading = new float[3];
+    private final float[] mMagnetometerReading = new float[3];
+
+    private final float[] mRotationMatrix = new float[9];
+    private final float[] mOrientationAngles = new float[3];
+
+    private
+    private int index = 0;
 
     @BindView(R.id.mapView2)
     ImageView mapView;
@@ -87,12 +101,24 @@ public class FinderActivity extends AppCompatActivity {
         initMap();
         initCanvasView();
 
-        if(wifimanager == null)
+        if (wifimanager == null)
             wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
+                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
     }
 
     @Override
@@ -100,6 +126,7 @@ public class FinderActivity extends AppCompatActivity {
         super.onPause();
         try {
             unregisterReceiver(wifiReceiver);
+            mSensorManager.unregisterListener(this);
         } catch (Exception e) {
             Log.e("Don't Regist Receiver.", e.getMessage());
         }
@@ -108,7 +135,7 @@ public class FinderActivity extends AppCompatActivity {
 
     private void initMap() {
         String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
-        String mapURL =  HawkiApplication.getMapImageURL(buildId);
+        String mapURL = HawkiApplication.getMapImageURL(buildId);
         Log.d("Map Url : ", mapURL);
 
         final ProgressDialog mProgressDialog = new ProgressDialog(this);
@@ -132,7 +159,7 @@ public class FinderActivity extends AppCompatActivity {
             @Override
             public void onBitmapFailed(Drawable arg0) {
 //                canvasViewBitmap = Bitmap.createBitmap(canvasWidth,canvasHeight,Bitmap.Config.ARGB_8888);
-          //      canvasViewBitmap = Bitmap.createBitmap(mapView.getMeasuredWidth(),mapView.getMeasuredHeight(),Bitmap.Config.ARGB_8888);
+                //      canvasViewBitmap = Bitmap.createBitmap(mapView.getMeasuredWidth(),mapView.getMeasuredHeight(),Bitmap.Config.ARGB_8888);
 //                mapViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
                 mProgressDialog.dismiss();
             }
@@ -147,7 +174,7 @@ public class FinderActivity extends AppCompatActivity {
             public void onGlobalLayout() {
                 canvasWidth = canvasView.getMeasuredWidth();
                 canvasHeight = canvasView.getMeasuredHeight();
-                canvasViewBitmap = Bitmap.createBitmap(canvasWidth,canvasHeight,Bitmap.Config.ARGB_8888);
+                canvasViewBitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
 
                 Log.d("canvasWidth", canvasWidth + "");
                 Log.d("canvasHeight", canvasHeight + "");
@@ -179,9 +206,9 @@ public class FinderActivity extends AppCompatActivity {
                     Log.d("resmapImageWidth", mapImageWidth + "");
                     Log.d("resmapImageHeight", mapImageHeight + "");
 
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         res = response.body();
-                        if(res != null) {
+                        if (res != null) {
                             Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
                             Canvas canvas = new Canvas(newDrawBitmap);
                             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -218,6 +245,46 @@ public class FinderActivity extends AppCompatActivity {
 
     public void finderClicked(View v) throws JSONException {
         wifimanager.startScan();
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)) {
+            System.arraycopy(event.values, 0, mAccelerometerReading,
+                    0, mAccelerometerReading.length);
+
+            checkMoveStatus(event);
+
+            Log.i("onSensorChanged", event.values[0] + "," + event.values[1] + "," + event.values[2]);
+        } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
+            System.arraycopy(event.values, 0, mMagnetometerReading,
+                    0, mMagnetometerReading.length);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+        // Do something here if sensor accuracy changes.
+        // You must implement this callback in your code.
+    }
+
+    public boolean checkMoveStatus(SensorEvent event){
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+
+        double result = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+        if(result > 5.0){
+            Log.i("checkMoveStatus", "--moving--");
+
+            return true;
+        }
+        else{
+            Log.i("checkMoveStatus", "--don't moving--");
+
+            return false;
+        }
     }
 }
 
