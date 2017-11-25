@@ -50,9 +50,9 @@ public class FinderActivity extends AppCompatActivity {
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
     List<LocationPosition> locationHistory = new ArrayList<LocationPosition>();
-    public int current_x = 0;
-    public int current_y = 0;
-    public int current_z = 0;
+    public float current_x = 0;
+    public float current_y = 0;
+    public float current_z = 0;
 
     int PDR_HISTORY_COUNT = 5;
     private final static double EPSILON = 0.00001;
@@ -72,8 +72,8 @@ public class FinderActivity extends AppCompatActivity {
     private int canvasWidth = 0;
     private int canvasHeight = 0;
 
-    private int mapImageWidth = 0;
-    private int mapImageHeight = 0;
+    private float mapImageWidth = 0;
+    private float mapImageHeight = 0;
 
     @BindView(R.id.mapView2)
     ImageView mapView;
@@ -82,8 +82,8 @@ public class FinderActivity extends AppCompatActivity {
     ImageView canvasView;
 
     public void PDR_dot_update(int speed){
-        int tmp_x = current_x; int tmp_y = current_y; int tmp_z = current_z;
-        int dir_x= 0; int dir_y = 0; int dir_z = 0;
+        float tmp_x = current_x; float tmp_y = current_y; float tmp_z = current_z;
+        float dir_x= 0; float dir_y = 0; float dir_z = 0;
         for(int i = locationHistory.size()-1; i >=0; i--){
             LocationPosition loc = locationHistory.get(i);
             dir_x += tmp_x - loc.x; dir_y += tmp_y - loc.y; dir_z += tmp_z - loc.z;
@@ -185,7 +185,7 @@ public class FinderActivity extends AppCompatActivity {
         });
     }
 
-    public void drawDot(int cliecdX, int cliecdY){
+    public void drawDot(float cliecdX, float cliecdY){
         Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
         Canvas canvas = new Canvas(newDrawBitmap);
         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -217,16 +217,18 @@ public class FinderActivity extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         res = response.body();
                         if(res != null) {
-                            current_x  = (int) res.getX();
-                            current_y = (int) res.getY();
+                            current_x  =  res.getX();
+                            current_y =  res.getY();
                             current_z = 0;
                             addLocationHistory(new LocationPosition(current_x, current_y, current_z));
 
+                            float caculateX = current_x / mapImageWidth * canvasWidth ;
+                            float caculateY = current_y / mapImageHeight * canvasHeight;
                             //TODO : xLoc, yLoc should be change to display resolution
-                            drawDot(current_x, current_y);
+                            drawDot(caculateX,caculateY);
 
-                            Log.d("caculateX", current_x + "");
-                            Log.d("caculateY", current_y + "");
+                            Log.d("caculateX", caculateX + "");
+                            Log.d("caculateY", caculateY + "");
                         }
 
                     }

@@ -5,10 +5,10 @@ package com.socc.Hawki.app.service;
  */
 
 public class LocationPosition {
-    public int x;
-    public int y;
-    public int z;
-    public LocationPosition(int x, int y, int z){
+    public float x;
+    public float y;
+    public float z;
+    public LocationPosition(float x, float y, float z){
         this.x = x; this.y = y; this.z = z;
     }
 }
