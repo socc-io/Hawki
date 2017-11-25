@@ -27,6 +27,8 @@ import com.socc.Hawki.app.service.LocationPosition;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostGetPositionReq;
+import com.socc.Hawki.app.service.response.GetPoiListReq;
+import com.socc.Hawki.app.service.response.Poi;
 import com.socc.Hawki.app.service.response.PostGetPositionRes;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -56,6 +58,7 @@ public class FinderActivity extends AppCompatActivity {
 
     int PDR_HISTORY_COUNT = 5;
     private final static double EPSILON = 0.00001;
+
 
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
@@ -115,6 +118,7 @@ public class FinderActivity extends AppCompatActivity {
 
         initMap();
         initCanvasView();
+        initPOIDataList();
 
         if(wifimanager == null)
             wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
@@ -122,6 +126,26 @@ public class FinderActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
+    }
+
+    private void initPOIDataList() {
+
+        HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
+        Call<GetPoiListReq> poiListReqCall = httpService.getPOIList(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
+            @Override
+            public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
+                if(response.isSuccessful()) {
+                    List<Poi> pois = response.body().getPois();
+                    Log.d("pois", pois.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetPoiListReq> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

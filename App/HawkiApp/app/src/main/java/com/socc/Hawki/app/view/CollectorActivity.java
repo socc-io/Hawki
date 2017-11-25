@@ -27,6 +27,8 @@ import com.socc.Hawki.app.application.HawkiApplication;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostCollectRssiReq;
+import com.socc.Hawki.app.service.response.GetPoiListReq;
+import com.socc.Hawki.app.service.response.Poi;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -95,6 +97,7 @@ public class CollectorActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initMap();
         initMapViewTouchListener();
+        initPOIDataList();
 
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
@@ -218,6 +221,26 @@ public class CollectorActivity extends AppCompatActivity {
             public void onFailure(Call<JSONObject> call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(CollectorActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initPOIDataList() {
+        Log.d("initPOIDataList","initPOIDataList");
+        HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
+        Call<GetPoiListReq> poiListReqCall = httpService.getPOIList(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
+            @Override
+            public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
+                if(response.isSuccessful()) {
+                    List<Poi> pois = response.body().getPois();
+                    Log.d("pois", pois.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetPoiListReq> call, Throwable t) {
+
             }
         });
     }
