@@ -99,6 +99,16 @@ public class CollectorActivity extends AppCompatActivity {
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
     }
 
+    public void drawDot(int cliecdX, int cliecdY){
+        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+        Canvas canvas = new Canvas(newDrawBitmap);
+        Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.RED);
+        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
+        canvasView.setImageBitmap(newDrawBitmap);
+    }
+
     private void initMap() {
 
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
@@ -151,8 +161,6 @@ public class CollectorActivity extends AppCompatActivity {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: // react on only down event
 
-                                Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
-
                                 Log.d("mapImageContainerWidth", mapImageContainerWidth + "" );
                                 Log.d("mapImageContainerHeight", mapImageContainerHeight + "" );
                                 Log.d("mapImageWidth", mapImageWidth + "" );
@@ -163,15 +171,10 @@ public class CollectorActivity extends AppCompatActivity {
                                 final int cliecdX = (int) (event.getX());
                                 final int cliecdY = (int) (event.getY());
 
-                                Canvas canvas = new Canvas(newDrawBitmap);
-                                Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                                mPaint.setStyle(Paint.Style.FILL);
-                                mPaint.setColor(Color.RED);
-                                canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
-                                canvasView.setImageBitmap(newDrawBitmap);
+                                drawDot(cliecdX, cliecdY);
 
                                 int caculateX =  (int)(event.getX() / mapImageContainerWidth * mapImageWidth);
-                                int caculateY =  (int)(event.getX() / mapImageContainerHeight * mapImageHeight);
+                                int caculateY =  (int)(event.getY() / mapImageContainerHeight * mapImageHeight);
 
                                 Log.d("caculateX", caculateX + "" );
                                 Log.d("caculateY",caculateY + "");

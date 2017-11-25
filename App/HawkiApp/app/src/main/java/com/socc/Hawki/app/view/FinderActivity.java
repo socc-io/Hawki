@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.application.HawkiApplication;
+import com.socc.Hawki.app.service.LocationPosition;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostGetPositionReq;
@@ -48,6 +49,20 @@ public class FinderActivity extends AppCompatActivity {
 
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
+    List<LocationPosition> locationHistory = new ArrayList<LocationPosition>();
+    public int current_x = 0;
+    public int current_y = 0;
+    public int current_z = 0;
+
+    int PDR_HISTORY_COUNT = 5;
+    private final static double EPSILON = 0.00001;
+
+    private void addLocationHistory(LocationPosition lp) {
+        locationHistory.add(lp);
+        if (locationHistory.size() > PDR_HISTORY_COUNT){
+            locationHistory.remove(0);
+        }
+    }
 
     private Bitmap canvasViewBitmap;
     private PostGetPositionRes res = null;
@@ -65,6 +80,20 @@ public class FinderActivity extends AppCompatActivity {
 
     @BindView(R.id.canvasView2)
     ImageView canvasView;
+
+    public void PDR_dot_update(int speed){
+        int tmp_x = current_x; int tmp_y = current_y; int tmp_z = current_z;
+        int dir_x= 0; int dir_y = 0; int dir_z = 0;
+        for(int i = locationHistory.size()-1; i >=0; i--){
+            LocationPosition loc = locationHistory.get(i);
+            dir_x += tmp_x - loc.x; dir_y += tmp_y - loc.y; dir_z += tmp_z - loc.z;
+            tmp_x = loc.x; tmp_y = loc.y; tmp_z = loc.z;
+        }
+        double vec_len = Math.sqrt(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z) + EPSILON;
+        dir_x /= vec_len; dir_y /= vec_len; dir_z /= vec_len;
+        current_x += dir_x * speed; current_y += dir_y * speed; current_z += dir_z * speed;
+        drawDot(current_x, current_y);
+    }
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
@@ -103,7 +132,6 @@ public class FinderActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("Don't Regist Receiver.", e.getMessage());
         }
-
     }
 
     private void initMap() {
@@ -148,16 +176,23 @@ public class FinderActivity extends AppCompatActivity {
                 canvasWidth = canvasView.getMeasuredWidth();
                 canvasHeight = canvasView.getMeasuredHeight();
                 canvasViewBitmap = Bitmap.createBitmap(canvasWidth,canvasHeight,Bitmap.Config.ARGB_8888);
-
                 Log.d("canvasWidth", canvasWidth + "");
                 Log.d("canvasHeight", canvasHeight + "");
 
                 Log.d("mapImageWidth", mapImageWidth + "");
                 Log.d("mapImageHeight", mapImageHeight + "");
-
-
             }
         });
+    }
+
+    public void drawDot(int cliecdX, int cliecdY){
+        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+        Canvas canvas = new Canvas(newDrawBitmap);
+        Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.RED);
+        canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
+        canvasView.setImageBitmap(newDrawBitmap);
     }
 
     public void getWIFIScanResult() {
@@ -182,25 +217,19 @@ public class FinderActivity extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         res = response.body();
                         if(res != null) {
-                            Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
-                            Canvas canvas = new Canvas(newDrawBitmap);
-                            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                            mPaint.setStyle(Paint.Style.FILL);
-                            mPaint.setColor(Color.RED);
+                            current_x  = (int) res.getX();
+                            current_y = (int) res.getY();
+                            current_z = 0;
+                            addLocationHistory(new LocationPosition(current_x, current_y, current_z));
 
-                            int xLoc = (int) res.getX();
-                            int yLoc = (int) res.getY();
-                            int zLoc = 0;
+                            //TODO : xLoc, yLoc should be change to display resolution
+                            drawDot(current_x, current_y);
 
-                            Log.d("caculateX", xLoc + "");
-                            Log.d("caculateY", yLoc + "");
-
-                            canvas.drawCircle(xLoc, yLoc, 10, mPaint);
-                            canvasView.setImageBitmap(newDrawBitmap);
+                            Log.d("caculateX", current_x + "");
+                            Log.d("caculateY", current_y + "");
                         }
 
                     }
-
                 }
 
                 @Override
