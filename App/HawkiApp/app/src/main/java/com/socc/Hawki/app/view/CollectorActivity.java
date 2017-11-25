@@ -206,8 +206,8 @@ public class CollectorActivity extends AppCompatActivity {
 
                                 canvasView.setImageBitmap(newDrawBitmap);
 
-                                int caculateX = (int) (event.getX() / mapImageContainerWidth * mapImageWidth);
-                                int caculateY = (int) (event.getX() / mapImageContainerHeight * mapImageHeight);
+                                int caculateX =  (int)(event.getX() / mapImageContainerWidth * mapImageWidth);
+                                int caculateY =  (int)(event.getY() / mapImageContainerHeight * mapImageHeight);
 
                                 Log.d("caculateX", caculateX + "");
                                 Log.d("caculateY", caculateY + "");
@@ -238,7 +238,7 @@ public class CollectorActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(CollectorActivity.this,  "데이터 업로드 성공",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CollectorActivity.this, "데이터 업로드 성공", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -30,6 +30,7 @@ import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.application.HawkiApplication;
 import com.socc.Hawki.app.service.LocationPosition;
+import com.socc.Hawki.app.service.OrientationSensor;
 import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostGetPositionReq;
@@ -58,18 +59,26 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
     List<LocationPosition> locationHistory = new ArrayList<LocationPosition>();
+    List<OrientationSensor> sensorHistory = new ArrayList<OrientationSensor>();
     public float current_x = 0;
     public float current_y = 0;
     public float current_z = 0;
 
     int PDR_HISTORY_COUNT = 5;
+    final int SENSOR_HISTORY_COUNT = 10;
     private final static double EPSILON = 0.00001;
-
 
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
-        if (locationHistory.size() > PDR_HISTORY_COUNT){
+        if (locationHistory.size() > PDR_HISTORY_COUNT) {
             locationHistory.remove(0);
+        }
+    }
+
+    private void addSensorHistory(SensorEvent sensor) {
+        sensorHistory.add(new OrientationSensor(sensor.values[0], sensor.values[1], sensor.values[2]));
+        if (sensorHistory.size() > SENSOR_HISTORY_COUNT) {
+            sensorHistory.remove(0);
         }
     }
 
@@ -93,25 +102,40 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private final float[] mRotationMatrix = new float[9];
     private final float[] mOrientationAngles = new float[3];
 
+<<<<<<< HEAD
     private int index = 0;
 
+=======
+>>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
     @BindView(R.id.mapView2)
     ImageView mapView;
 
     @BindView(R.id.canvasView2)
     ImageView canvasView;
 
-    public void PDR_dot_update(int speed){
-        float tmp_x = current_x; float tmp_y = current_y; float tmp_z = current_z;
-        float dir_x= 0; float dir_y = 0; float dir_z = 0;
-        for(int i = locationHistory.size()-1; i >=0; i--){
+    public void PDR_dot_update(int speed) {
+        float tmp_x = current_x;
+        float tmp_y = current_y;
+        float tmp_z = current_z;
+        float dir_x = 0;
+        float dir_y = 0;
+        float dir_z = 0;
+        for (int i = locationHistory.size() - 1; i >= 0; i--) {
             LocationPosition loc = locationHistory.get(i);
-            dir_x += tmp_x - loc.x; dir_y += tmp_y - loc.y; dir_z += tmp_z - loc.z;
-            tmp_x = loc.x; tmp_y = loc.y; tmp_z = loc.z;
+            dir_x += tmp_x - loc.x;
+            dir_y += tmp_y - loc.y;
+            dir_z += tmp_z - loc.z;
+            tmp_x = loc.x;
+            tmp_y = loc.y;
+            tmp_z = loc.z;
         }
         double vec_len = Math.sqrt(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z) + EPSILON;
-        dir_x /= vec_len; dir_y /= vec_len; dir_z /= vec_len;
-        current_x += dir_x * speed; current_y += dir_y * speed; current_z += dir_z * speed;
+        dir_x /= vec_len;
+        dir_y /= vec_len;
+        dir_z /= vec_len;
+        current_x += dir_x * speed;
+        current_y += dir_y * speed;
+        current_z += dir_z * speed;
         drawDot(current_x, current_y);
     }
 
@@ -165,8 +189,13 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
             @Override
             public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
+<<<<<<< HEAD
                 if(response.isSuccessful()) {
                     pois = response.body().getPois();
+=======
+                if (response.isSuccessful()) {
+                    List<Poi> pois = response.body().getPois();
+>>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
                     Log.d("pois", pois.toString());
                 }
             }
@@ -298,8 +327,15 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             public void onGlobalLayout() {
                 canvasWidth = canvasView.getMeasuredWidth();
                 canvasHeight = canvasView.getMeasuredHeight();
+<<<<<<< HEAD
                 canvasViewBitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
 
+=======
+
+                canvasViewBitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
+
+
+>>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
                 Log.d("canvasWidth", canvasWidth + "");
                 Log.d("canvasHeight", canvasHeight + "");
 
@@ -310,8 +346,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     }
 
-    public void drawDot(float cliecdX, float cliecdY){
-        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
+    public void drawDot(float cliecdX, float cliecdY) {
+        Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
         Canvas canvas = new Canvas(newDrawBitmap);
         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
@@ -342,6 +378,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                     if (response.isSuccessful()) {
                         res = response.body();
 
+<<<<<<< HEAD
                         if(res != null) {
                             current_x  =  res.getX();
                             current_y =  res.getY();
@@ -375,6 +412,21 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                             Log.d("caculateX", calculateX + "");
                             Log.d("caculateY", calculateY + "");
 
+=======
+                        if (res != null) {
+                            current_x = res.getX();
+                            current_y = res.getY();
+                            current_z = 0;
+                            addLocationHistory(new LocationPosition(current_x, current_y, current_z));
+
+                            float caculateX = current_x / mapImageWidth * canvasWidth;
+                            float caculateY = current_y / mapImageHeight * canvasHeight;
+                            //TODO : xLoc, yLoc should be change to display resolution
+                            drawDot(caculateX, caculateY);
+
+                            Log.d("caculateX", caculateX + "");
+                            Log.d("caculateY", caculateY + "");
+>>>>>>> a94842ef2c183f294024ea9ffe0f5589f8a3d16f
                         }
 
                     }
@@ -404,9 +456,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             System.arraycopy(event.values, 0, mAccelerometerReading,
                     0, mAccelerometerReading.length);
 
-            checkMoveStatus(event);
-
-            Log.i("onSensorChanged", event.values[0] + "," + event.values[1] + "," + event.values[2]);
+            if (checkMoveStatus(event)) {
+                Log.i("onSensorChanged", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
+            } else {
+                Log.i("onSensorChanged", "--dont moving--");
+            }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
             System.arraycopy(event.values, 0, mMagnetometerReading,
                     0, mMagnetometerReading.length);
@@ -419,21 +473,32 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         // You must implement this callback in your code.
     }
 
-    public boolean checkMoveStatus(SensorEvent event){
-        float x = event.values[0];
-        float y = event.values[1];
-        float z = event.values[2];
+    public boolean checkMoveStatus(SensorEvent event) {
+        if (sensorHistory.size() == 10) {
+            float sumX = 0;
+            float sumY = 0;
+            float sumZ = 0;
+            for (int i = 0; i < sensorHistory.size(); i++) {
+                sumX += sensorHistory.get(i).getX();
+                sumY += sensorHistory.get(i).getY();
+                sumZ += sensorHistory.get(i).getZ();
+            }
 
-        double result = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
-        if(result > 5.0){
-            Log.i("checkMoveStatus", "--moving--");
+            addSensorHistory(event);
 
-            return true;
-        }
-        else{
-            Log.i("checkMoveStatus", "--don't moving--");
+            double avgX = sumX / 10.0;
+            double avgY = sumY / 10.0;
+            double avgZ = sumZ / 10.0;
 
-            return false;
+            Log.i("checkMoveStatus", avgX + "," + event.values[0] + "///" + avgY + "," + event.values[1] + avgZ + "," + event.values[2]);
+            if ((Math.abs(avgX - event.values[0]) + Math.abs(avgY - event.values[1]) + Math.abs(avgZ - event.values[2])) > 10) {
+                return true; //working
+            } else {
+                return false; //don't working
+            }
+        } else {
+            addSensorHistory(event);
+            return false; //don't working
         }
     }
 }
