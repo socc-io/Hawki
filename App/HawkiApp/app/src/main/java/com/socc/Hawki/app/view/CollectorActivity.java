@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -199,18 +200,20 @@ public class CollectorActivity extends AppCompatActivity {
 
         PostCollectRssiReq req = new PostCollectRssiReq(bid, xLoc, yLoc, zLoc, wifiScanResult);
         HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
-        Call<String> call = httpService.postCollectRssi(req);
+        Call<JSONObject> call = httpService.postCollectRssi(req);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<JSONObject>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body() == null) {
-                    Toast.makeText(CollectorActivity.this, "실패했습니다", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(CollectorActivity.this,  "데이터 업로드 성공",Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<JSONObject> call, Throwable t) {
+                t.printStackTrace();
                 Toast.makeText(CollectorActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
