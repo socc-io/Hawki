@@ -1,5 +1,6 @@
 package com.socc.Hawki.app.view;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +16,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
@@ -34,6 +35,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,16 +49,22 @@ public class FinderActivity extends AppCompatActivity {
     WifiManager wifimanager;
     List<ScanResult> wifiScanResult = new ArrayList<ScanResult>();
 
-    private ImageView canvasView;
     private Bitmap canvasViewBitmap;
     private PostGetPositionRes res = null;
 
     Paint mPaint;
 
+    private int canvasWidth = 0;
+    private int canvasHeight = 0;
+
+    private int mapImageWidth = 0;
+    private int mapImageHeight = 0;
+
+    @BindView(R.id.mapView2)
     ImageView mapView;
-    TextView tvFinderX;
-    TextView tvFinderY;
-    TextView tvFinderZ;
+
+    @BindView(R.id.canvasView2)
+    ImageView canvasView;
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
@@ -70,18 +79,17 @@ public class FinderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finder);
 
+        ButterKnife.bind(this);
+
         TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
 
-        tvFinderX = (TextView)findViewById(R.id.textView_finder_x);
-        tvFinderY = (TextView)findViewById(R.id.textView_finder_y);
-        tvFinderZ = (TextView)findViewById(R.id.textView_finder_z);
-
         initMap();
-        initCanvas();
+        initCanvasView();
 
         if(wifimanager == null)
             wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
@@ -92,8 +100,6 @@ public class FinderActivity extends AppCompatActivity {
         super.onPause();
         try {
             unregisterReceiver(wifiReceiver);
-        } catch (IllegalArgumentException e) {
-
         } catch (Exception e) {
             Log.e("Don't Regist Receiver.", e.getMessage());
         }
@@ -101,33 +107,57 @@ public class FinderActivity extends AppCompatActivity {
     }
 
     private void initMap() {
-        mapView = (ImageView) findViewById(R.id.mapView2);
         String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
         String mapURL =  HawkiApplication.getMapImageURL(buildId);
         Log.d("Map Url : ", mapURL);
-        Picasso.with(getApplicationContext()).load(mapURL).into(new Target() {
+
+        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("지도를 불러오는중...");
+        mProgressDialog.setIndeterminate(false);
+
+        Target target = new Target() {
             @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                mapView.setImageBitmap(bitmap);
-                mapView.setVisibility(View.VISIBLE);
+            public void onPrepareLoad(Drawable arg0) {
+                mProgressDialog.show();
             }
 
             @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-
+            public void onBitmapLoaded(Bitmap arg0, Picasso.LoadedFrom arg1) {
+                mapView.setImageBitmap(arg0);
+                mapImageWidth = arg0.getWidth();
+                mapImageHeight = arg0.getHeight();
+                mProgressDialog.dismiss();
             }
 
             @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
+            public void onBitmapFailed(Drawable arg0) {
+//                canvasViewBitmap = Bitmap.createBitmap(canvasWidth,canvasHeight,Bitmap.Config.ARGB_8888);
+          //      canvasViewBitmap = Bitmap.createBitmap(mapView.getMeasuredWidth(),mapView.getMeasuredHeight(),Bitmap.Config.ARGB_8888);
+//                mapViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
+                mProgressDialog.dismiss();
+            }
+        };
+        mapView.setTag(target);
+        Picasso.with(this).load(mapURL).into(target);
+    }
+
+    private void initCanvasView() {
+        canvasView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                canvasWidth = canvasView.getMeasuredWidth();
+                canvasHeight = canvasView.getMeasuredHeight();
+                canvasViewBitmap = Bitmap.createBitmap(canvasWidth,canvasHeight,Bitmap.Config.ARGB_8888);
+
+                Log.d("canvasWidth", canvasWidth + "");
+                Log.d("canvasHeight", canvasHeight + "");
+
+                Log.d("mapImageWidth", mapImageWidth + "");
+                Log.d("mapImageHeight", mapImageHeight + "");
+
 
             }
         });
-    }
-
-
-    private void initCanvas() {
-        canvasView = (ImageView) findViewById(R.id.canvasView2);
-        canvasViewBitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
     }
 
     public void getWIFIScanResult() {
@@ -143,23 +173,34 @@ public class FinderActivity extends AppCompatActivity {
             call.enqueue(new Callback<PostGetPositionRes>() {
                 @Override
                 public void onResponse(Call<PostGetPositionRes> call, Response<PostGetPositionRes> response) {
-                    if(response.body() == null) {
-                        Toast.makeText(FinderActivity.this, "실패했습니다", Toast.LENGTH_SHORT).show();
+                    Log.d("rescanvasWidth", canvasWidth + "");
+                    Log.d("rescanvasHeight", canvasHeight + "");
+
+                    Log.d("resmapImageWidth", mapImageWidth + "");
+                    Log.d("resmapImageHeight", mapImageHeight + "");
+
+                    if(response.isSuccessful()) {
+                        res = response.body();
+                        if(res != null) {
+                            Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+                            Canvas canvas = new Canvas(newDrawBitmap);
+                            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                            mPaint.setStyle(Paint.Style.FILL);
+                            mPaint.setColor(Color.RED);
+
+                            int xLoc = (int) res.getX();
+                            int yLoc = (int) res.getY();
+                            int zLoc = 0;
+
+                            Log.d("caculateX", xLoc + "");
+                            Log.d("caculateY", yLoc + "");
+
+                            canvas.drawCircle(xLoc, yLoc, 10, mPaint);
+                            canvasView.setImageBitmap(newDrawBitmap);
+                        }
+
                     }
 
-                    res = response.body();
-                    Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
-                    Canvas canvas = new Canvas(newDrawBitmap);
-                    mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                    mPaint.setStyle(Paint.Style.FILL);
-                    mPaint.setColor(Color.RED);
-
-                    tvFinderX.setText(res.getX()+"");
-                    tvFinderY.setText(res.getY()+"");
-                    tvFinderZ.setText(res.getZ()+"");
-
-                    canvas.drawCircle(res.getX() * 20, res.getY() * 20, 5, mPaint);
-                    canvasView.setImageBitmap(newDrawBitmap);
                 }
 
                 @Override
@@ -176,7 +217,6 @@ public class FinderActivity extends AppCompatActivity {
     }
 
     public void finderClicked(View v) throws JSONException {
-
         wifimanager.startScan();
     }
 }

@@ -105,7 +105,6 @@ public class CollectorActivity extends AppCompatActivity {
         String mapURL = HawkiApplication.getMapImageURL(bid);
         Log.d("mapURL",mapURL);
 
-
         final ProgressDialog mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("지도를 불러오는중...");
         mProgressDialog.setIndeterminate(false);
@@ -120,7 +119,8 @@ public class CollectorActivity extends AppCompatActivity {
             @Override
             public void onBitmapLoaded(Bitmap arg0, Picasso.LoadedFrom arg1) {
                 mapView.setImageBitmap(arg0);
-                mapViewBitmap = arg0;
+                mapImageWidth = arg0.getWidth();
+                mapImageHeight = arg0.getHeight();
                 mProgressDialog.dismiss();
             }
 
@@ -151,14 +151,15 @@ public class CollectorActivity extends AppCompatActivity {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: // react on only down event
 
-                                mapImageWidth = mapViewBitmap.getWidth();
-                                mapImageHeight = mapViewBitmap.getHeight();
                                 Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
 
+                                Log.d("mapImageContainerWidth", mapImageContainerWidth + "" );
+                                Log.d("mapImageContainerHeight", mapImageContainerHeight + "" );
                                 Log.d("mapImageWidth", mapImageWidth + "" );
                                 Log.d("mapImageHeight",mapImageHeight + "");
                                 Log.d("event.getX()",event.getX() + "");
                                 Log.d("event.getY()",event.getY() + "" );
+
                                 final int cliecdX = (int) (event.getX());
                                 final int cliecdY = (int) (event.getY());
 
@@ -169,12 +170,12 @@ public class CollectorActivity extends AppCompatActivity {
                                 canvas.drawCircle(cliecdX, cliecdY, 10, mPaint);
                                 canvasView.setImageBitmap(newDrawBitmap);
 
-
-                                int caculateX = (int) (((float)mapImageContainerWidth / (float)mapImageWidth) *  event.getX());
-                                int caculateY = (int) (((float)mapImageContainerHeight / (float)mapImageHeight) *  event.getX());
+                                int caculateX =  (int)(event.getX() / mapImageContainerWidth * mapImageWidth);
+                                int caculateY =  (int)(event.getX() / mapImageContainerHeight * mapImageHeight);
 
                                 Log.d("caculateX", caculateX + "" );
                                 Log.d("caculateY",caculateY + "");
+                                Toast.makeText(getApplicationContext(), caculateX + " " + caculateY,Toast.LENGTH_SHORT).show();
 
                                 xLoc = caculateX;
                                 yLoc = caculateY;
