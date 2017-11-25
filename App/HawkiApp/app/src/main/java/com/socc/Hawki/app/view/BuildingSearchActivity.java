@@ -82,7 +82,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
                             hm.put("address", data.getAddress());
                             hm.put("phone", data.getPhone());
 
-                            Log.d("SUNO", data.getTitle() +","+data.getAddress()+","+data.getPhone());
+                            Log.d("SUNO", data.getTitle() + "," + data.getAddress() + "," + data.getPhone());
                             buildList.add(hm);
                         }
 
@@ -98,7 +98,7 @@ public class BuildingSearchActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<GetBuildingInfoRes> call, Throwable t) {
-                        Toast.makeText(BuildingSearchActivity.this, "건물 검색 실패 :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BuildingSearchActivity.this, "건물 검색 실패 :" + t.getMessage(), Toast.LENGTH_SHORT).show();
                         t.printStackTrace();
                     }
                 });
@@ -115,11 +115,9 @@ public class BuildingSearchActivity extends AppCompatActivity {
             SingleTonBuildingInfo.getInstance().setSelectedBuildName(selectedRecvData.getTitle());
             Intent intent;
 
-            if(type.equals("COLLECTOR")) {
+            if (type.equals("COLLECTOR")) {
                 intent = new Intent(BuildingSearchActivity.this, CollectorActivity.class);
-            }
-
-            else {
+            } else {
                 intent = new Intent(BuildingSearchActivity.this, FinderActivity.class);
             }
             startActivity(intent);

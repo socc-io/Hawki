@@ -60,8 +60,7 @@ public class CollectorActivity extends AppCompatActivity {
     private int mapImageContainerHeight = 0;
 
     private List<Poi> pois;
-
-    private int xLoc,yLoc,zLoc = 0;
+    private int xLoc, yLoc, zLoc = 0;
 
     @BindView(R.id.textView_buildingName)
     TextView buildNameTextView;
@@ -103,6 +102,8 @@ public class CollectorActivity extends AppCompatActivity {
 
         buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
         wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+
+        Log.i("CollectorActivity", "thread start");
     }
 
     public void drawDot(int clickedX, int clickedY, int color) {
@@ -123,7 +124,7 @@ public class CollectorActivity extends AppCompatActivity {
 
         String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
         String mapURL = HawkiApplication.getMapImageURL(bid);
-        Log.d("mapURL",mapURL);
+        Log.d("mapURL", mapURL);
 
         final ProgressDialog mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("지도를 불러오는중...");
@@ -171,18 +172,19 @@ public class CollectorActivity extends AppCompatActivity {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: // react on only down event
 
-                                Log.d("mapImageContainerWidth", mapImageContainerWidth + "" );
-                                Log.d("mapImageContainerHeight", mapImageContainerHeight + "" );
-                                Log.d("mapImageWidth", mapImageWidth + "" );
-                                Log.d("mapImageHeight",mapImageHeight + "");
-                                Log.d("event.getX()",event.getX() + "");
-                                Log.d("event.getY()",event.getY() + "" );
+                                Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+                                Log.d("mapImageContainerWidth", mapImageContainerWidth + "");
+                                Log.d("mapImageContainerHeight", mapImageContainerHeight + "");
+                                Log.d("mapImageWidth", mapImageWidth + "");
+                                Log.d("mapImageHeight", mapImageHeight + "");
+                                Log.d("event.getX()", event.getX() + "");
+                                Log.d("event.getY()", event.getY() + "");
 
                                 final int clickedX = (int) (event.getX());
                                 final int clickedY = (int) (event.getY());
 
                                 // Draw dots
-                                Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
                                 Canvas canvas = new Canvas(newDrawBitmap);
                                 Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                                 mPaint.setStyle(Paint.Style.FILL);
@@ -204,12 +206,12 @@ public class CollectorActivity extends AppCompatActivity {
 
                                 canvasView.setImageBitmap(newDrawBitmap);
 
-                                int caculateX =  (int)(event.getX() / mapImageContainerWidth * mapImageWidth);
-                                int caculateY =  (int)(event.getY() / mapImageContainerHeight * mapImageHeight);
+                                int caculateX = (int) (event.getX() / mapImageContainerWidth * mapImageWidth);
+                                int caculateY = (int) (event.getX() / mapImageContainerHeight * mapImageHeight);
 
-                                Log.d("caculateX", caculateX + "" );
-                                Log.d("caculateY",caculateY + "");
-                                Toast.makeText(getApplicationContext(), caculateX + " " + caculateY,Toast.LENGTH_SHORT).show();
+                                Log.d("caculateX", caculateX + "");
+                                Log.d("caculateY", caculateY + "");
+                                Toast.makeText(getApplicationContext(), caculateX + " " + caculateY, Toast.LENGTH_SHORT).show();
 
                                 xLoc = caculateX;
                                 yLoc = caculateY;
@@ -269,12 +271,11 @@ public class CollectorActivity extends AppCompatActivity {
     }
 
     public void collectorClicked(View v) throws JSONException {
-        if(wifimanager == null)
+        if (wifimanager == null)
             wifimanager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(wifiReceiver, filter);
         wifimanager.startScan();
     }
-
 }
