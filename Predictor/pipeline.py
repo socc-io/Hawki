@@ -34,8 +34,9 @@ class Pipeline:
     def process(self, input_data, config, verbose=False):
         global module_list
         if verbose:
-            print('[Pipeline : ', self.main_name, '] is now processing...')
+            print('[Pipeline : {}] is now processing...'.format(self.main_name))
         last_vector = input_data
+
         pipe_result = []
         for mname in self.main_pipe:
             mod = module_list[mname]

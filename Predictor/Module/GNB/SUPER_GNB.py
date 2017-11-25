@@ -1,4 +1,5 @@
 import pickle
+from PIL import Image
 
 # Predictor
 class GNB:
@@ -8,22 +9,26 @@ class GNB:
 
     def resume(self, config):
         #Always load data (load each process)
-        building_id = config['building_id']
+        self.build_id = config['building_id']
         algorithm = config['algorithm']
         pklPath = 'Predictor/Module/GNB/bin/'
-        pklXPath = pklPath + building_id + '_' + algorithm + '_x_0.pkl'
-        pklYPath = pklPath + building_id + '_' + algorithm + '_y_0.pkl'
-        with open(pklXPath, 'rb') as f:
-            self.clf_x = pickle.load(f)
-        with open(pklYPath, 'rb') as f:
-            self.clf_y = pickle.load(f)
+        pklPath = '{}{}_{}.pkl'.format(pklPath, self.build_id, algorithm)
+        with open(pklPath, 'rb') as f:
+            self.clf = pickle.load(f)
 
     def convert(self, vector, verbose=False):
-        #Return ( x,y,z,confidence )
-        preds_x = self.clf_x.predict(vector)
+        #Return ( x,y,z,confidence )i
+        preds = self.clf.predict(vector)
         if verbose:
-            print('x_result_set: ' + str(preds_x))
-        preds_y = self.clf_y.predict(vector)
-        if verbose:
-            print('y_result_set: ' + str(preds_y))
-        return preds_x[0], preds_y[0]
+            print('result_set: ' + str(preds))
+
+        img = Image.open('Web/static/map/{}.jpg'.format(self.build_id))
+        img_size = img.size
+        img_size_unit = (img_size[0] / 200, img_size[1] / 200)
+
+        preds = int(preds)
+        x = int(preds / 200) * img_size_unit[0] + img_size_unit[0] / 2
+        y = int(preds % 200) * img_size_unit[1] + img_size_unit[1] / 2
+        
+        return x, y
+
