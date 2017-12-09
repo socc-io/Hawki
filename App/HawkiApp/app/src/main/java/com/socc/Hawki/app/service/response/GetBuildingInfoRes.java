@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by suno on 2017. 8. 18..
+ * Created by suno on 2017. 8. 18.
  */
 
 public class GetBuildingInfoRes {

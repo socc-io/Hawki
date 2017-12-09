@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".application.HawkiApplication"
@@ -13,18 +13,20 @@
         android:icon="@mipmap/ic_app_hawki"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".view.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.BuildingSearchActivity"/>
+        <activity android:name=".view.BuildingSearchActivity" />
         <activity android:name=".view.CollectorActivity" />
         <activity android:name=".view.FinderActivity" />
+        <activity android:name=".view.POISearchActivity"></activity>
     </application>
 
 </manifest>
