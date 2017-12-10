@@ -23,6 +23,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,6 +70,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     int PDR_HISTORY_COUNT = 5;
     final int SENSOR_HISTORY_COUNT = 10;
     private final static double EPSILON = 0.00001;
+    private final static long PDR_TASK_INTERVAL = 3000;
 
 
     private void addLocationHistory(LocationPosition lp) {
@@ -85,6 +89,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     private Bitmap canvasViewBitmap;
     private PostGetPositionRes res = null;
+    private Timer pdrTimer;
 
     Paint mPaint;
 
@@ -110,6 +115,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     @BindView(R.id.canvasView2)
     ImageView canvasView;
+
+    @BindView(R.id.switch_pdr)
+    Switch switch_pdr;
 
     public void PDR_dot_update(int speed) {
         if(current_x == 0 && current_y== 0  && current_z == 0) return;
@@ -172,6 +180,21 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         registerReceiver(wifiReceiver, filter);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        switch_pdr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(((Switch)view).isChecked()){ //pdr switch on
+                    pdrTimer = new Timer();
+                    pdrTimer.schedule(new PDRTask(), PDR_TASK_INTERVAL, PDR_TASK_INTERVAL);
+                    Log.i("--PDR scheduler--", "pdr swtich on --> task is schduled!");
+                }
+                else { //pdr switch off
+                    pdrTimer.cancel();
+                    Log.i("--PDR scheduler--", "pdr swtich off --> task cancel!");
+                }
+            }
+        });
 
     }
 
@@ -412,7 +435,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         wifimanager.startScan();
     }
 
-
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)) {
@@ -463,6 +485,14 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         } else {
             addSensorHistory(event);
             return false; //don't working
+        }
+    }
+
+    private class PDRTask extends TimerTask {
+        @Override
+        public void run() {
+            wifimanager.startScan();
+            Log.i("--PDR Task--", "pdr task is running!!");
         }
     }
 }

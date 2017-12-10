@@ -101,21 +101,29 @@
                     android:textColor="@color/colorGray"/>
             </FrameLayout>
 
-            <FrameLayout
-                android:layout_width="120dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/bg_search_bar"
-                android:layout_gravity="center"
                 android:layout_margin="8dp">
 
                 <ImageButton
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:src="@drawable/ic_finder_button"
                     android:scaleType="fitXY"
                     android:background="@android:color/transparent"
                     android:onClick="finderClicked" />
-            </FrameLayout>
+
+                <Switch
+                    android:id="@+id/switch_pdr"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
