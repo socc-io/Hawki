@@ -165,7 +165,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         ButterKnife.bind(this);
 
         TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
-        buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
+        //buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
+        buildNameTextView.setText("강남역 2호선");
 
         initMap();
         initCanvasView();
@@ -295,7 +296,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
     private void initMap() {
-        String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+        //TODO default
+        //String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+        String buildId = "21160803";
         String mapURL = HawkiApplication.getMapImageURL(buildId);
         Log.d("Map Url : ", mapURL);
 
@@ -498,4 +501,13 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 }
 
 
+/*
+
+12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "address": "\uc11c\uc6b8 \uac15\ub0a8\uad6c \uc5ed\uc0bc\ub3d9",
+12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "id": "21160803",
+12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "phone": "02-6110-2221",
+12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "title": "\uac15\ub0a8\uc5ed 2\ud638\uc120"
+12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:     },
+
+ */
 
