@@ -139,7 +139,10 @@ def post_delete_building_tag(id, poi_id):
 		if tag_name is None:
 			return jsonify({'success': 0, 'msg': 'Tag not found'})
 
-		poi.tags.remove(tag)
+		try:
+			poi.tags.remove(tag)
+		except:
+			pass
 		session.commit()
 
 		return jsonify({'success': 0, 'msg': 'Successfully removed tag from poi'})
