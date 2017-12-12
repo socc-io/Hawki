@@ -31,7 +31,7 @@ class App extends Component {
       mapImage: '',
       options: {},
       position: [33.450701, 126.570667],
-      buildingName: '명달로6길 20',
+      buildingName: '강남역',
       searchResults: [],
       markers: [],
       selected: null,
