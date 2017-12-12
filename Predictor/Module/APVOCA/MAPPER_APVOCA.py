@@ -13,7 +13,7 @@ class APVOCA:
         try:
             f = open(bd_voca_file, 'rb')
         except:
-            print 'Failed to find {}'.format(bd_voca_file)
+            print('Failed to find {}'.format(bd_voca_file))
 
         try:
             self.voca = f.read().split(',')
@@ -22,7 +22,7 @@ class APVOCA:
                     self.voca_idx_map[v] = idx
             self.min_val = config['min_rssi']
         except:
-            print 'Failed to parse bssi data'
+            print('Failed to parse bssi data')
 
     def convert(self, vector):
         try:
@@ -34,5 +34,5 @@ class APVOCA:
                     res[self.voca_idx_map[bssid]] = rssi
             return np.array([res])
         except:
-            print 'Failed to convert in MAPPER_APVOCA'
+            print('Failed to convert in MAPPER_APVOCA')
             return None

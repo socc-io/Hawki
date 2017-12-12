@@ -24,4 +24,4 @@ class DaumSearchEngine:
                 results.append(temp)
             return { 'Build': results }
         except Exception as e:
-            print e
+            print(e)
