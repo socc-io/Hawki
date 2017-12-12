@@ -145,7 +145,7 @@ def post_delete_building_tag(id, poi_id):
 			pass
 		session.commit()
 
-		return jsonify({'success': 0, 'msg': 'Successfully removed tag from poi'})
+		return jsonify({'success': 1, 'msg': 'Successfully removed tag from poi'})
 
 @app.route('/building/<int:id>/poi/<int:poi_id>/tags', methods=['GET'])
 def get_building_tags(id, poi_id):
