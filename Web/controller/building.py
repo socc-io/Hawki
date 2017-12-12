@@ -22,7 +22,13 @@ def get_building_info():
 def post_get_position():
     global ppl
     json = request.get_json()
-    rssi, bid = json['data'], json['bid']
+
+    try:
+        rssi, bid = json['data'], json['bid']
+    except:
+        print('Failed to get rssi, bid')
+        return
+        
     ppl.load_pipe('SCIKIT')
     res = ppl.process(rssi, config={'building_id':bid, 'algorithm':'GNB', 'min_rssi':-999})
     res = {'x': res[0], 'y': res[1], 'z': 0}
