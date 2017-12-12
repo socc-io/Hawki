@@ -27,8 +27,8 @@ def post_get_position():
         rssi, bid = json['data'], json['bid']
     except:
         print('Failed to get rssi, bid')
-        return
-        
+        return jsonify({'success': 0, 'msg': 'Failed to get data, bid'})
+
     ppl.load_pipe('SCIKIT')
     res = ppl.process(rssi, config={'building_id':bid, 'algorithm':'GNB', 'min_rssi':-999})
     res = {'x': res[0], 'y': res[1], 'z': 0}
