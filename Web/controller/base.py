@@ -146,8 +146,7 @@ def post_delete_building_tag(id, poi_id):
 
 @app.route('/building/<int:id>/poi/<int:poi_id>/tags', methods=['GET'])
 def get_building_tags(id, poi_id):
-	json = request.get_json()
-
+    	
 	poi = session.query(POI).filter(POI.id == poi_id and POI.building_id == id).first()
 
 	if poi is None:
