@@ -5,7 +5,7 @@ from werkzeug import secure_filename
 from Web import ALLOWED_EXTENSIONS
 from ..config import UPLOAD_FOLDER
 from ..db import session
-from ..db.mappers.POI import POI
+from ..db.mappers.POI import POI, POITag
 from PIL import Image
 
 import os, base64
@@ -109,3 +109,50 @@ def delete_poi_all(id):
 	session.commit()
 
 	return jsonify({'success': 1})
+
+@app.route('/building/<int:id>/poi/<int:poi_id>/tag', methods=['POST', 'DELETE'])
+def post_delete_building_tag(id, poi_id):
+	json = request.get_json()
+
+	poi = session.query(POI).filter(POI.id == poi_id and POI.building_id == id).first()
+
+	if poi is None:
+		return jsonify({'success': 0, 'msg': 'POI not found'})
+
+	tag_name = json.get('tag_name', None)
+	if tag_name is None:
+		return jsonify({'success': 0, 'msg': 'Failed to get tag_name'})
+
+	tag = session.query(POITag).filter(POITag.name == tag_name).first()
+
+	if request.method == 'POST':
+		if tag is None:
+			tag = POITag(name=tag_name)
+		
+		session.add(tag)
+		poi.tags.append(tag)
+
+		session.commit()
+		
+		return jsonify({'success': 1, 'tag_id': tag.id, 'msg': 'Successfully added tag'})
+	elif request.method == 'DELETE':
+		if tag_name is None:
+			return jsonify({'success': 0, 'msg': 'Tag not found'})
+
+		poi.tags.remove(tag)
+		session.commit()
+
+		return jsonify({'success': 0, 'msg': 'Successfully removed tag from poi'})
+
+@app.route('/building/<int:id>/poi/<int:poi_id>/tags', methods=['GET'])
+def get_building_tags(id, poi_id):
+	json = request.get_json()
+
+	poi = session.query(POI).filter(POI.id == poi_id and POI.building_id == id).first()
+
+	if poi is None:
+		return jsonify({'success': 0, 'msg': 'POI not found'})
+	
+	tags = [tag.serialize for tag in poi.tags]
+
+	return jsonify({'success': 1, 'tags': tags})

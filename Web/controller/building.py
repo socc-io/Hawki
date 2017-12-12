@@ -39,4 +39,3 @@ def post_collect_rssi():
     with open(save_path, 'a') as f:
         f.write(json.dumps(data) + '\n')
     return jsonify({'success': 1, 'msg':'Successfully saved'})
-
