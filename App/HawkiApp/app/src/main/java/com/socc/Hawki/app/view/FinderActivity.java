@@ -108,6 +108,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private final float[] mRotationMatrix = new float[9];
     private final float[] mOrientationAngles = new float[3];
 
+    private float initialAngle = 0.0f;
     private int index = 0;
 
     @BindView(R.id.mapView2)
@@ -119,28 +120,39 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     @BindView(R.id.switch_pdr)
     Switch switch_pdr;
 
-    public void PDR_dot_update(int speed) {
+    public void PDR_dot_update(int speed, boolean use_history) {
         if(current_x == 0 && current_y== 0  && current_z == 0) return;
+
+
         float tmp_x = current_x;
         float tmp_y = current_y;
         float tmp_z = current_z;
         float dir_x = 0;
         float dir_y = 0;
         float dir_z = 0;
-        for (int i = locationHistory.size() - 2; i >= 0; i--) {
-            LocationPosition loc = locationHistory.get(i);
-            dir_x += tmp_x - loc.x;
-            dir_y += tmp_y - loc.y;
-            dir_z += tmp_z - loc.z;
-            tmp_x = loc.x;
-            tmp_y = loc.y;
-            tmp_z = loc.z;
+
+        if(use_history) {
+            for (int i = locationHistory.size() - 2; i >= 0; i--) {
+                LocationPosition loc = locationHistory.get(i);
+                dir_x += tmp_x - loc.x;
+                dir_y += tmp_y - loc.y;
+                dir_z += tmp_z - loc.z;
+                tmp_x = loc.x;
+                tmp_y = loc.y;
+                tmp_z = loc.z;
+            }
+            double vec_len = Math.sqrt(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z) + EPSILON;
+            dir_x /= vec_len;
+            dir_y /= vec_len;
+            dir_z /= vec_len;
+        }else{
+            updateOrientationAngles();
+            Log.i("Orientation", "--orientation--" + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2]);
+            float turn_angle = mOrientationAngles[0] - initialAngle;
+            dir_x = (float)Math.sin(turn_angle);
+            dir_y = -1.0f * (float)Math.cos(turn_angle);
+            dir_z = 0.0f;
         }
-        Log.d("PDR_dot_vector", "dir_x : " + dir_x + ", dir_y : " + dir_y + ", dir_z : " + dir_z);
-        double vec_len = Math.sqrt(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z) + EPSILON;
-        dir_x /= vec_len;
-        dir_y /= vec_len;
-        dir_z /= vec_len;
         Log.d("PDR_dot_vector", "dir_x : " + dir_x + ", dir_y : " + dir_y + ", dir_z : " + dir_z);
         current_x += dir_x * speed;
         current_y += dir_y * speed;
@@ -206,6 +218,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
+                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
     }
 
     private void initPOIDataList() {
@@ -257,9 +271,17 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                                 int calculateX =  (int)(event.getX() / canvasWidth * mapImageWidth);
                                 int calculateY =  (int)(event.getY() / canvasHeight * mapImageHeight);
 
+                                drawDot(calculateX, calculateY);
+
                                 Log.d("caculateX", calculateX + "" );
                                 Log.d("caculateY",calculateY + "");
-                                // Toast.makeText(getApplicationContext(), calculateX + " " + calculateY,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), calculateX + " " + calculateY,Toast.LENGTH_SHORT).show();
+
+                                current_x = calculateX;
+                                current_y = calculateY;
+                                current_z = 0.0f;
+                                updateOrientationAngles();
+                                initialAngle = mOrientationAngles[0];
 
                                 if(pois != null) {
                                     Poi nearest_poi = null;
@@ -337,9 +359,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
             @Override
             public void onBitmapFailed(Drawable arg0) {
-//                canvasViewBitmap = Bitmap.createBitmap(canvasWidth,canvasHeight,Bitmap.Config.ARGB_8888);
-                //      canvasViewBitmap = Bitmap.createBitmap(mapView.getMeasuredWidth(),mapView.getMeasuredHeight(),Bitmap.Config.ARGB_8888);
-//                mapViewBitmap = Bitmap.createBitmap(mapImageContainerWidth, mapImageContainerHeight, Bitmap.Config.ARGB_8888);
                 mProgressDialog.dismiss();
             }
         };
@@ -443,17 +462,22 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)) {
             System.arraycopy(event.values, 0, mAccelerometerReading,
                     0, mAccelerometerReading.length);
-
             if (checkMoveStatus(event)) {
-                PDR_dot_update(1);
-                Log.i("onSensorChanged", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
-            } else {
-                //Log.i("onSensorChanged", "--dont moving--");
+                Log.i("Accelerometer", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
+                PDR_dot_update(5, false);
             }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
             System.arraycopy(event.values, 0, mMagnetometerReading,
                     0, mMagnetometerReading.length);
         }
+        updateOrientationAngles();
+
+    }
+
+    public void updateOrientationAngles() {
+        mSensorManager.getRotationMatrix(mRotationMatrix, null,
+                mAccelerometerReading, mMagnetometerReading);
+        mSensorManager.getOrientation(mRotationMatrix, mOrientationAngles);
     }
 
     @Override
