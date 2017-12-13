@@ -14,6 +14,7 @@ import {
   ControlLabel,
   FormControl,
   Table,
+  Badge,
 } from 'react-bootstrap';
 
 // const APIBase = 'http://localhost:4000';
@@ -34,6 +35,8 @@ export default class BuildingInfo extends React.Component {
       POIName: '',
       POIUrl: '',
       pois: [],
+      tags: [],
+      tagName: '',
     }
     this.imageWidth = 700;
     this.imageHeight = 500;
@@ -239,13 +242,119 @@ export default class BuildingInfo extends React.Component {
   }
   handlePOIClicked(poi, idx) {
     console.log('poi clicked', poi);
-    this.setState({ clickPos: null, clickedPOI: poi });
+    this.setState({ tags: [], clickPos: null, clickedPOI: poi }, () => {
+      this.loadTags();
+    });
+  }
+  loadTags() {
+    const poi_id = this.state.clickedPOI.id;
+    
+    fetch(APIBase + `/building/${this.id}/poi/${poi_id}/tags`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => res.json())
+    .then(res => {
+      if(res.success) {
+        this.setState({ tags: res.tags });
+      } else {
+        alert('failed to get tags');
+      }
+    })
+    .catch(e => {
+      alert('failed to get tags');
+    })
   }
   getImageAbsolutePosition(x, y) {
     return {
       left: x - 5,
       top: y - this.imageRect.height - 5,
     };
+  }
+  registerTag() {
+    const name = this.state.tagName;
+    const poi_id = this.state.clickedPOI.id;
+    fetch(APIBase + `/building/${this.id}/poi/${poi_id}/tag`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tag_name: name
+      })
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      if(res.success) {
+        console.log('success to register tag');
+        this.loadTags()
+      } else {
+        this.setState({ uploaderMessage: 'failed to register tag', uploadModal: false });
+      }
+    })
+    .catch(e => {
+      this.setState({ uploaderMessage: 'failed to register tag', uploadModal: false });
+    });
+  }
+  deleteTag(tagName) {
+    const poi_id = this.state.clickedPOI.id;
+    fetch(APIBase + `/building/${this.id}/poi/${poi_id}/tag`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tag_name: tagName
+      })
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      if(res.success) {
+        console.log('success to delete tag');
+        this.loadTags()
+      } else {
+        this.setState({ uploaderMessage: 'failed to register tag', uploadModal: false });
+      }
+    })
+    .catch(e => {
+      this.setState({ uploaderMessage: 'failed to register tag', uploadModal: false });
+    });
+  }
+  renderTags() {
+    return (
+      <div>
+        {this.state.tags.map((tag,idx) => (
+          <Badge key={idx} onClick={() => this.deleteTag(tag.name)}>
+            {tag.name}
+          </Badge>
+        ))}
+        <Form horizontal>
+          <FormGroup controlId="formHorizontalEmail">
+            <Col componentClass={ControlLabel} sm={2}>
+              Name
+            </Col>
+            <Col sm={10}>
+              <FormControl type="text" placeholder="Name" value={this.state.tagName}
+                onChange={(e) => this.setState({ tagName: e.target.value })}
+              />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Button onClick={() => this.registerTag()} bsStyle="primary">
+                Register Tag
+              </Button>
+            </Col>
+          </FormGroup>
+        </Form>
+      </div>
+    )
   }
   renderBuildingDetail() {
     return (
@@ -279,6 +388,7 @@ export default class BuildingInfo extends React.Component {
     const poi = this.state.clickedPOI;
     return (
       <div>
+        {this.renderTags()}
         <Table striped bordered condensed hover>
           <thead>
             <tr>

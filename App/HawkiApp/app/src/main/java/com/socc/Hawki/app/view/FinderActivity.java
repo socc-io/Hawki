@@ -412,7 +412,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         wifiScanResult = wifimanager.getScanResults();
 
         try {
-            String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+            //String bid = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+            String bid = "21160803"; //강남역
             PostGetPositionReq req = new PostGetPositionReq(bid, wifiScanResult);
 
             HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
