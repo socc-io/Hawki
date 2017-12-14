@@ -2,12 +2,16 @@ package com.socc.Hawki.app.view;
 
         import android.content.Intent;
         import android.os.Bundle;
+        import android.support.annotation.Nullable;
         import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.LinearLayoutManager;
+        import android.support.v7.widget.RecyclerView;
         import android.util.Log;
         import android.view.View;
         import android.widget.AdapterView;
         import android.widget.EditText;
         import android.widget.ImageButton;
+        import android.widget.LinearLayout;
         import android.widget.ListAdapter;
         import android.widget.ListView;
         import android.widget.SimpleAdapter;
@@ -19,11 +23,16 @@ package com.socc.Hawki.app.view;
         import com.socc.Hawki.app.service.network.HttpService;
         import com.socc.Hawki.app.service.response.Build;
         import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
+        import com.socc.Hawki.app.service.response.GetPoiListReq;
+        import com.socc.Hawki.app.service.response.Poi;
 
         import java.util.ArrayList;
         import java.util.HashMap;
         import java.util.List;
 
+        import butterknife.BindView;
+        import butterknife.ButterKnife;
+        import butterknife.OnClick;
         import retrofit2.Call;
         import retrofit2.Callback;
         import retrofit2.Response;
@@ -33,96 +42,61 @@ package com.socc.Hawki.app.view;
  */
 
 public class POISearchActivity extends AppCompatActivity {
+    @BindView(R.id.recyclerView)
+    RecyclerView poiRcv;
 
-    public static Build selectedRecvData;
-
-    private EditText poiNameEdit;
-    private ImageButton getPoiListButton;
-    private ListView listView;
-    private List<HashMap<String, String>> poiList;
-    private List<Build> recvPoiData = new ArrayList<>();
-    private String type;
-
+    private POIAdapter adapeter;
+    private List<Poi> itemList;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poi_search);
+        ButterKnife.bind(this);
 
-        listView = (ListView) findViewById(R.id.listView_poi);
-        poiNameEdit = (EditText) findViewById(R.id.nameEdit);
-        getPoiListButton = (ImageButton) findViewById(R.id.requestPoi);
-        poiList = new ArrayList<>();
+        initPOIDataList();
+        initRecyclerView();
+    }
 
-        Intent intent = getIntent();
-        type = intent.getStringExtra("TYPE");
+    private void initPOIDataList() {
 
-        getPoiListButton.setOnClickListener(new View.OnClickListener() {
+        HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
+        Call<GetPoiListReq> poiListReqCall = httpService.getPOIList(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
+        poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
             @Override
-            public void onClick(View view) {
-
-                String poiName = poiNameEdit.getText().toString();
-                if (poiName.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "실내 장소명을 입력해주세요", Toast.LENGTH_SHORT).show();
-                    return;
+            public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
+                if (response.isSuccessful()) {
+                    itemList = response.body().getPois();
+                    Log.d("itemList", itemList.toString());
                 }
-
-                HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
-                Call<GetBuildingInfoRes> call = httpService.getBuildingInfo(poiName);
-                call.enqueue(new Callback<GetBuildingInfoRes>() {
-                    @Override
-                    public void onResponse(Call<GetBuildingInfoRes> call, Response<GetBuildingInfoRes> response) {
-                        GetBuildingInfoRes res = response.body();
-                        recvPoiData = res.getBuildList();
-
-                        poiList.clear();
-                        for (Build data : recvPoiData) {
-                            HashMap<String, String> hm = new HashMap<>();
-                            hm.put("name", data.getTitle());
-                            hm.put("address", data.getAddress());
-                            hm.put("phone", data.getPhone());
-
-                            Log.d("SUNO", data.getTitle() + "," + data.getAddress() + "," + data.getPhone());
-                            poiList.add(hm);
-                        }
-
-                        ListAdapter adapter = new SimpleAdapter(
-                                getApplicationContext(), poiList,
-                                R.layout.list_item, new String[]{"name", "address",
-                                "phone"}, new int[]{R.id.name,
-                                R.id.email, R.id.mobile});
-
-                        listView.setAdapter(adapter);
-                        listView.setOnItemClickListener(itemClickListener);
-                    }
-
-                    @Override
-                    public void onFailure(Call<GetBuildingInfoRes> call, Throwable t) {
-                        Toast.makeText(POISearchActivity.this, "건물 검색 실패 :" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                        t.printStackTrace();
-                    }
-                });
-
             }
 
+            @Override
+            public void onFailure(Call<GetPoiListReq> call, Throwable t) {
+
+            }
         });
     }
 
-    ///
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-        public void onItemClick(AdapterView<?> adapterView, View clickedView, int pos, long id) {
-            selectedRecvData = recvPoiData.get(pos);
-            SingleTonBuildingInfo.getInstance().setSelectedBuildId(selectedRecvData.getId());
-            SingleTonBuildingInfo.getInstance().setSelectedBuildName(selectedRecvData.getTitle());
-            Intent intent;
+    public void initRecyclerView(){
+        poiRcv.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        poiRcv.setLayoutManager(layoutManager);
 
-            if (type.equals("COLLECTOR")) {
-                intent = new Intent(POISearchActivity.this, CollectorActivity.class);
-            } else {
-                intent = new Intent(POISearchActivity.this, FinderActivity.class);
-            }
-            startActivity(intent);
+        adapeter = new POIAdapter(this, itemList);
+        poiRcv.setAdapter(adapeter);
+    }
 
+    @OnClick({R.id.imgBtn_beauty, R.id.imgBtn_cafe})
+    public void categoryBtnClick(View v){
+        switch (v.getId()){
+            case R.id.imgBtn_beauty:
+                Log.d("POISearchActivity", "imgBtn_beauty");
+                break;
+            case R.id.imgBtn_cafe:
+                Log.d("POISearchActivity", "imgBtn_cafe");
+                break;
         }
-    };
+    }
 }
 

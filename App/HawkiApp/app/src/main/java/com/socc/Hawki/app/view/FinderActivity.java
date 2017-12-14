@@ -22,8 +22,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +50,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,6 +73,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private final static double EPSILON = 0.00001;
     private final static long PDR_TASK_INTERVAL = 3000;
 
+    private boolean isTrackButton = false;
+
+    CircleImageView circleImageView;
 
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
@@ -111,14 +115,23 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private float initialAngle = 0.0f;
     private int index = 0;
 
-    @BindView(R.id.mapView2)
-    ImageView mapView;
+    @BindView(R.id.mapView)
+    ImageView mapview;
 
-    @BindView(R.id.canvasView2)
+    @BindView(R.id.canvasView)
     ImageView canvasView;
 
-    @BindView(R.id.switch_pdr)
-    Switch switch_pdr;
+    @BindView(R.id.ic_search_button)
+    ImageButton searchButton;
+
+    @BindView(R.id.ic_track)
+    CircleImageView trackButton;
+
+    @BindView(R.id.poiTitle)
+    TextView poiTitleTextView;
+
+    @BindView(R.id.poiTag)
+    TextView poiTagTextView;
 
     public void PDR_dot_update(int speed, boolean use_history) {
         if(current_x == 0 && current_y== 0  && current_z == 0) return;
@@ -147,8 +160,13 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             dir_z /= vec_len;
         }else{
             updateOrientationAngles();
-            Log.i("Orientation", "--orientation--" + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2]);
-            float turn_angle = mOrientationAngles[0] - initialAngle;
+            float newAngle = mOrientationAngles[0];
+            float turn_angle = 0.0f;
+            if(Math.signum(initialAngle) == Math.signum(newAngle)){
+                turn_angle = newAngle - initialAngle;
+            }else{
+                turn_angle = newAngle - initialAngle + Math.signum(initialAngle) * 2 * (float) Math.PI;
+            }
             dir_x = (float)Math.sin(turn_angle);
             dir_y = -1.0f * (float)Math.cos(turn_angle);
             dir_z = 0.0f;
@@ -158,7 +176,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         current_y += dir_y * speed;
         current_z += dir_z * speed;
 
-        drawDot(current_x, current_y);
+        drawDot(current_x, current_y, dir_x, dir_y );
     }
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
@@ -176,10 +194,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         ButterKnife.bind(this);
 
-        TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
-        //buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
-        buildNameTextView.setText("강남역 2호선");
-
         initMap();
         initCanvasView();
         initPOIDataList();
@@ -194,18 +208,25 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        switch_pdr.setOnClickListener(new View.OnClickListener() {
+        trackButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(((Switch)view).isChecked()){ //pdr switch on
+            public void onClick(View v) {
+                isTrackButton = !isTrackButton;
+                if(isTrackButton) {
                     pdrTimer = new Timer();
                     pdrTimer.schedule(new PDRTask(), PDR_TASK_INTERVAL, PDR_TASK_INTERVAL);
                     Log.i("--PDR scheduler--", "pdr swtich on --> task is schduled!");
-                }
-                else { //pdr switch off
+                } else {
                     pdrTimer.cancel();
                     Log.i("--PDR scheduler--", "pdr swtich off --> task cancel!");
                 }
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 2017-12-14 activity change
             }
         });
 
@@ -244,6 +265,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     private void initMapViewTouchListener() {
 
+
         canvasView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -271,7 +293,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                                 int calculateX =  (int)(event.getX() / canvasWidth * mapImageWidth);
                                 int calculateY =  (int)(event.getY() / canvasHeight * mapImageHeight);
 
-                                drawDot(calculateX, calculateY);
+                                drawDot(calculateX, calculateY, 0, -1);
 
                                 Log.d("caculateX", calculateX + "" );
                                 Log.d("caculateY",calculateY + "");
@@ -318,8 +340,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
     private void initMap() {
-        //TODO default
-        //String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+
         String buildId = "21160803";
         String mapURL = HawkiApplication.getMapImageURL(buildId);
         Log.d("Map Url : ", mapURL);
@@ -336,7 +357,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
             @Override
             public void onBitmapLoaded(Bitmap arg0, Picasso.LoadedFrom arg1) {
-                mapView.setImageBitmap(arg0);
+                mapview.setImageBitmap(arg0);
                 mapImageWidth = arg0.getWidth();
                 mapImageHeight = arg0.getHeight();
                 mProgressDialog.dismiss();
@@ -362,7 +383,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 mProgressDialog.dismiss();
             }
         };
-        mapView.setTag(target);
+        mapview.setTag(target);
         Picasso.with(this).load(mapURL).into(target);
     }
 
@@ -385,7 +406,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     }
 
-    public void drawDot(float cliecdX, float cliecdY) {
+    public void drawDot(float cliecdX, float cliecdY, float dirX, float dirY) {
         float calculateX = cliecdX / mapImageWidth * canvasWidth;
         float calculateY = cliecdY / mapImageHeight * canvasHeight;
         Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
@@ -394,7 +415,12 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.RED);
-        canvas.drawCircle(calculateX, calculateY, 10, mPaint);
+        canvas.drawCircle(calculateX, calculateY, 20, mPaint);
+
+        Paint mPaint_dir = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint_dir.setStyle(Paint.Style.FILL);
+        mPaint_dir.setColor(Color.RED);
+        canvas.drawCircle(calculateX + dirX * 25, calculateY + dirY * 25, 7, mPaint);
 
         mPaint.setColor(Color.BLUE);
         if(pois != null) {
@@ -435,7 +461,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                             current_y = res.getY();
                             current_z = 0;
                             addLocationHistory(new LocationPosition(current_x, current_y, current_z));
-                            drawDot(current_x, current_y);
+                            drawDot(current_x, current_y, 0, -1);
                         }
 
                     }
@@ -455,7 +481,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
     public void finderClicked(View v) throws JSONException {
-        wifimanager.startScan();
+        //wifimanager.startScan();
     }
 
     @Override
@@ -464,15 +490,16 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             System.arraycopy(event.values, 0, mAccelerometerReading,
                     0, mAccelerometerReading.length);
             if (checkMoveStatus(event)) {
-                Log.i("Accelerometer", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
-                PDR_dot_update(5, false);
+                Log.i("Accelerometer", "—moving—" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
+                //PDR_dot_update(5, false);
             }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
             System.arraycopy(event.values, 0, mMagnetometerReading,
                     0, mMagnetometerReading.length);
+            PDR_dot_update(1, false);
         }
         updateOrientationAngles();
-
+        //Log.i("Orientation", "—orientation ( " + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2] + ")");
     }
 
     public void updateOrientationAngles() {
@@ -520,19 +547,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void run() {
             wifimanager.startScan();
-            Log.i("--PDR Task--", "pdr task is running!!");
+            Log.i("—PDR Task—", "pdr task is running!!");
         }
     }
 }
-
-
-/*
-
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "address": "\uc11c\uc6b8 \uac15\ub0a8\uad6c \uc5ed\uc0bc\ub3d9",
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "id": "21160803",
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "phone": "02-6110-2221",
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "title": "\uac15\ub0a8\uc5ed 2\ud638\uc120"
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:     },
-
- */
-

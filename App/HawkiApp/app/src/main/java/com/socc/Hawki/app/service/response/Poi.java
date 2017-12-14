@@ -9,6 +9,9 @@ public class Poi {
     @SerializedName("building_id")
     @Expose
     private Integer buildingId;
+    @SerializedName("catefory")
+    @Expose
+    private String category;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -41,9 +44,10 @@ public class Poi {
      * @param x
      * @param buildingId
      */
-    public Poi(Integer buildingId, Integer id, String name, String url, Integer x, Integer y) {
+    public Poi(Integer buildingId, String category, Integer id, String name, String url, Integer x, Integer y) {
         super();
         this.buildingId = buildingId;
+        this.category = category;
         this.id = id;
         this.name = name;
         this.url = url;
@@ -57,6 +61,14 @@ public class Poi {
 
     public void setBuildingId(Integer buildingId) {
         this.buildingId = buildingId;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Integer getId() {
