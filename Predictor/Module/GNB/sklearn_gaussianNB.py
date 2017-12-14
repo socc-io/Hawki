@@ -26,7 +26,7 @@ def get_building_image_size(building_id):
     try:
         img = Image.open(pathname)
     except:
-        print 'Failed to load image'
+        print('Failed to load image')
         return None
 
     return img.size
