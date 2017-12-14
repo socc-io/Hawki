@@ -47,7 +47,7 @@ class POI(Base):
 		for tag in self.tags:
 			if tag.name in categories:
 				return tag.name
-		return '기타'
+		return '편의'
 
 class POITag(Base):
 	__tablename__ = 'poi_tag'
