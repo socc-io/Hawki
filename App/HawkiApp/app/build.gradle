@@ -35,6 +35,7 @@ dependencies {
 
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.android.support:recyclerview-v7:25.4.0'
 
     compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
