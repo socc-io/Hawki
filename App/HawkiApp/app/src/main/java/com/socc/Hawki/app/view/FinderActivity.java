@@ -32,16 +32,12 @@ import com.socc.Hawki.app.R;
 import com.socc.Hawki.app.application.HawkiApplication;
 import com.socc.Hawki.app.service.LocationPosition;
 import com.socc.Hawki.app.service.OrientationSensor;
-import com.socc.Hawki.app.service.SingleTonBuildingInfo;
 import com.socc.Hawki.app.service.network.HttpService;
 import com.socc.Hawki.app.service.request.PostGetPositionReq;
-import com.socc.Hawki.app.service.response.GetPoiListReq;
 import com.socc.Hawki.app.service.response.Poi;
 import com.socc.Hawki.app.service.response.PostGetPositionRes;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,9 +69,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private final static double EPSILON = 0.00001;
     private final static long PDR_TASK_INTERVAL = 3000;
 
-    private boolean isTrackButton = false;
+    private final int REQUEST_POI = 9998;
 
-    CircleImageView circleImageView;
+    private boolean isTrackButton = false;
 
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
@@ -196,7 +192,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         initMap();
         initCanvasView();
-        initPOIDataList();
+        //initPOIDataList();
         initMapViewTouchListener();
 
         if (wifimanager == null)
@@ -215,6 +211,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 if(isTrackButton) {
                     pdrTimer = new Timer();
                     pdrTimer.schedule(new PDRTask(), PDR_TASK_INTERVAL, PDR_TASK_INTERVAL);
+                    current_x = mapImageWidth  / 2;
+                    current_y = mapImageHeight / 2;
+                    current_z = 0.0f;
+                    updateOrientationAngles();
+                    initialAngle = mOrientationAngles[0];
                     Log.i("--PDR scheduler--", "pdr swtich on --> task is schduled!");
                 } else {
                     pdrTimer.cancel();
@@ -243,28 +244,19 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
     }
 
-    private void initPOIDataList() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
 
-        HttpService httpService = HawkiApplication.getRetrofit().create(HttpService.class);
-        Call<GetPoiListReq> poiListReqCall = httpService.getPOIList(SingleTonBuildingInfo.getInstance().getSelectedBuildId());
-        poiListReqCall.enqueue(new Callback<GetPoiListReq>() {
-            @Override
-            public void onResponse(Call<GetPoiListReq> call, Response<GetPoiListReq> response) {
-                if (response.isSuccessful()) {
-                    pois = response.body().getPois();
-                    Log.d("pois", pois.toString());
-                }
+        if(requestCode == REQUEST_POI) {
+            if(resultCode == RESULT_OK) {
+                ArrayList<Poi> pois =  (ArrayList<Poi>)intent.getSerializableExtra("pois");
             }
+        }
 
-            @Override
-            public void onFailure(Call<GetPoiListReq> call, Throwable t) {
-
-            }
-        });
     }
 
     private void initMapViewTouchListener() {
-
 
         canvasView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -280,30 +272,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: // react on only down event
 
-                                Log.d("mapImageContainerWidth", canvasWidth + "" );
-                                Log.d("mapImageContainerHeight", canvasHeight + "" );
-                                Log.d("mapImageWidth", mapImageWidth + "" );
-                                Log.d("mapImageHeight",mapImageHeight + "");
-                                Log.d("event.getX()",event.getX() + "");
-                                Log.d("event.getY()",event.getY() + "" );
-
-                                final int clickedX = (int) (event.getX());
-                                final int clickedY = (int) (event.getY());
-
                                 int calculateX =  (int)(event.getX() / canvasWidth * mapImageWidth);
                                 int calculateY =  (int)(event.getY() / canvasHeight * mapImageHeight);
 
-                                drawDot(calculateX, calculateY, 0, -1);
-
                                 Log.d("caculateX", calculateX + "" );
                                 Log.d("caculateY",calculateY + "");
-                                Toast.makeText(getApplicationContext(), calculateX + " " + calculateY,Toast.LENGTH_SHORT).show();
-
-                                current_x = calculateX;
-                                current_y = calculateY;
-                                current_z = 0.0f;
-                                updateOrientationAngles();
-                                initialAngle = mOrientationAngles[0];
 
                                 if(pois != null) {
                                     Poi nearest_poi = null;
@@ -422,12 +395,13 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         mPaint_dir.setColor(Color.RED);
         canvas.drawCircle(calculateX + dirX * 25, calculateY + dirY * 25, 7, mPaint);
 
-        mPaint.setColor(Color.BLUE);
         if(pois != null) {
             for(Poi poi : pois) {
                 Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
                 Integer y = (int)((float)poi.getY() / mapImageHeight * canvasHeight);
-                canvas.drawCircle(x, y, 10, mPaint);
+
+//                canvas.drawBitmap(x,y,);
+//                canvas.drawCircle(x, y, 10, mPaint);
             }
         }
 
@@ -478,10 +452,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void finderClicked(View v) throws JSONException {
-        //wifimanager.startScan();
     }
 
     @Override
