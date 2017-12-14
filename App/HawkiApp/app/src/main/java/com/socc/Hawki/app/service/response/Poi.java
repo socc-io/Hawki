@@ -4,12 +4,14 @@ package com.socc.Hawki.app.service.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Poi {
+import java.io.Serializable;
+
+public class Poi implements Serializable {
 
     @SerializedName("building_id")
     @Expose
     private Integer buildingId;
-    @SerializedName("catefory")
+    @SerializedName("category")
     @Expose
     private String category;
     @SerializedName("id")

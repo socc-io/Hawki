@@ -70,9 +70,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private final static double EPSILON = 0.00001;
     private final static long PDR_TASK_INTERVAL = 3000;
 
-    private final int REQUEST_POI = 9998;
+    public static int POI_RESULT_OK = 101;
+    public static int REQUEST_CODE = 102;
 
     private boolean isTrackButton = false;
+    private final int REQUEST_POI = 9998;
 
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
@@ -235,9 +237,27 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onClick(View v) {
                 // TODO: 2017-12-14 activity change
+                Intent intent = new Intent(FinderActivity.this, POISearchActivity.class);
+                startActivityForResult(intent, FinderActivity.REQUEST_CODE);
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == FinderActivity.REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                ArrayList<Poi> poiList = (ArrayList<Poi>)data.getSerializableExtra("poiList");
+                for(Poi poi : poiList){
+                    Log.d("REQUEST_CODE_OK", poi.getName() +","+poi.getCategory());
+                }
+
+            }
+
+        }
     }
 
     @Override
@@ -249,17 +269,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-        if(requestCode == REQUEST_POI) {
-            if(resultCode == RESULT_OK) {
-                pois = (ArrayList<Poi>)intent.getSerializableExtra("pois");
-            }
-        }
     }
 
     private void initMapViewTouchListener() {
@@ -464,8 +473,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                     0, mAccelerometerReading.length);
             if (checkMoveStatus(event)) {
                 Log.i("Accelerometer", "—moving—" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
-
-                //PDR_dot_update(5, false);
             }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
             System.arraycopy(event.values, 0, mMagnetometerReading,
@@ -473,7 +480,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             PDR_dot_update(1, false);
         }
         updateOrientationAngles();
-
     }
 
     public void updateOrientationAngles() {
@@ -526,5 +532,4 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
 }
-
 
