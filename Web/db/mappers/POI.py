@@ -44,7 +44,7 @@ class POI(Base):
 		}
 	
 	def get_category():
-    	for tag in tags:
+    	for tag in self.tags:
     		if tag.name in categories:
     			return tag.name
 		return ''
