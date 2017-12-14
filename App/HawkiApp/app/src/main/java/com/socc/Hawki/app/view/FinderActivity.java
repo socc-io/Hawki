@@ -26,7 +26,6 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.socc.Hawki.app.R;
@@ -250,11 +249,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         if(requestCode == FinderActivity.REQUEST_CODE){
             if(resultCode == RESULT_OK){
-                ArrayList<Poi> poiList = (ArrayList<Poi>)data.getSerializableExtra("poiList");
-                for(Poi poi : poiList){
-                    Log.d("REQUEST_CODE_OK", poi.getName() +","+poi.getCategory());
-                }
-
+                pois = (ArrayList<Poi>)data.getSerializableExtra("poiList");
             }
 
         }
@@ -303,9 +298,13 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                                         if(dist < min_dist) {
                                             min_dist = dist;
                                             nearest_poi = poi;
-                                        }
+                                        }git
                                     }
-                                    Toast.makeText(FinderActivity.this, nearest_poi.getName(), Toast.LENGTH_SHORT).show();
+                                    if(min_dist < 50) {
+                                        poiTitleTextView.setText(nearest_poi.getName());
+                                        poiTagTextView.setText(nearest_poi.getCategory());
+                                        // Toast.makeText(FinderActivity.this, nearest_poi.getName() + ' ' + String.valueOf(min_dist), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                         }
 
@@ -397,14 +396,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_marker);
 
-        List<Poi> old_pois = pois;
-
-        pois = new ArrayList<>();
-        Poi test_poi = new Poi();
-        test_poi.setX(100);
-        test_poi.setY(100);
-        pois.add(test_poi);
-
         if(pois != null) {
             for(Poi poi : pois) {
                 Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
@@ -414,8 +405,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 // canvas.drawCircle(x, y, 10, mPaint);
             }
         }
-
-        pois = old_pois;
 
         canvasView.setImageBitmap(newDrawBitmap);
     }
