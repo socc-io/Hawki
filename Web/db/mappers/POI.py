@@ -38,7 +38,7 @@ class POI(Base):
 			'building_id': self.building_id,
 			'name': self.name,
 			'url': self.url,
-			'category': self.get_category()
+			'category': self.get_category(),
 			'x': self.x,
 			'y': self.y
 		}
