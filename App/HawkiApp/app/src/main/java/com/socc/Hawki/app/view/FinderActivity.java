@@ -490,11 +490,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             System.arraycopy(event.values, 0, mAccelerometerReading,
                     0, mAccelerometerReading.length);
             if (checkMoveStatus(event)) {
-<<<<<<< HEAD
                 Log.i("Accelerometer", "—moving—" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
-=======
-                Log.i("Accelerometer", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
->>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
                 //PDR_dot_update(5, false);
             }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
@@ -503,11 +499,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             PDR_dot_update(1, false);
         }
         updateOrientationAngles();
-<<<<<<< HEAD
         //Log.i("Orientation", "—orientation ( " + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2] + ")");
-=======
-        //Log.i("Orientation", "--orientation ( " + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2] + ")");
->>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
     }
 
     public void updateOrientationAngles() {
@@ -558,9 +550,4 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             Log.i("—PDR Task—", "pdr task is running!!");
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373

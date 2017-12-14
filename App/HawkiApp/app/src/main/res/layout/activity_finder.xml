@@ -29,7 +29,6 @@
         app:layout_constraintTop_toTopOf="@+id/hawkiMainTitleBar"
         app:layout_constraintBottom_toBottomOf="@+id/hawkiMainTitleBar"
         />
-<<<<<<< HEAD
 
     <ImageButton
         android:id="@+id/ic_search_button"
@@ -43,21 +42,6 @@
         android:layout_marginEnd="16dp"
         />
 
-=======
-
-    <ImageButton
-        android:id="@+id/ic_search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_search_white_36dp"
-        app:layout_constraintTop_toTopOf="@+id/hawkiMainTitleBar"
-        app:layout_constraintBottom_toBottomOf="@+id/hawkiMainTitleBar"
-        app:layout_constraintRight_toRightOf="@+id/hawkiMainTitleBar"
-        android:background="@null"
-        android:layout_marginEnd="16dp"
-        />
-    
->>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
     <ImageView
         android:id="@+id/mapView"
         android:layout_width="0dp"
@@ -67,11 +51,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hawkiMainTitleBar"
-<<<<<<< HEAD
         />
-=======
-    />
->>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
 
     <ImageView
         android:id="@+id/canvasView"
