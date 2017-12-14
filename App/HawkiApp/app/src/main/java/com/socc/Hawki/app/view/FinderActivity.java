@@ -147,8 +147,13 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             dir_z /= vec_len;
         }else{
             updateOrientationAngles();
-            Log.i("Orientation", "--orientation--" + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2]);
-            float turn_angle = mOrientationAngles[0] - initialAngle;
+            float newAngle = mOrientationAngles[0];
+            float turn_angle = 0.0f;
+            if(Math.signum(initialAngle) == Math.signum(newAngle)){
+                turn_angle = newAngle - initialAngle;
+            }else{
+                turn_angle = newAngle - initialAngle + Math.signum(initialAngle) * 2 * (float) Math.PI;
+            }
             dir_x = (float)Math.sin(turn_angle);
             dir_y = -1.0f * (float)Math.cos(turn_angle);
             dir_z = 0.0f;
@@ -158,7 +163,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         current_y += dir_y * speed;
         current_z += dir_z * speed;
 
-        drawDot(current_x, current_y);
+        drawDot(current_x, current_y, dir_x, dir_y );
     }
 
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
@@ -271,7 +276,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                                 int calculateX =  (int)(event.getX() / canvasWidth * mapImageWidth);
                                 int calculateY =  (int)(event.getY() / canvasHeight * mapImageHeight);
 
-                                drawDot(calculateX, calculateY);
+                                drawDot(calculateX, calculateY, 0, -1);
 
                                 Log.d("caculateX", calculateX + "" );
                                 Log.d("caculateY",calculateY + "");
@@ -385,7 +390,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     }
 
-    public void drawDot(float cliecdX, float cliecdY) {
+    public void drawDot(float cliecdX, float cliecdY, float dirX, float dirY) {
         float calculateX = cliecdX / mapImageWidth * canvasWidth;
         float calculateY = cliecdY / mapImageHeight * canvasHeight;
         Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
@@ -394,7 +399,12 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.RED);
-        canvas.drawCircle(calculateX, calculateY, 10, mPaint);
+        canvas.drawCircle(calculateX, calculateY, 20, mPaint);
+
+        Paint mPaint_dir = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint_dir.setStyle(Paint.Style.FILL);
+        mPaint_dir.setColor(Color.RED);
+        canvas.drawCircle(calculateX + dirX * 25, calculateY + dirY * 25, 7, mPaint);
 
         mPaint.setColor(Color.BLUE);
         if(pois != null) {
@@ -435,7 +445,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                             current_y = res.getY();
                             current_z = 0;
                             addLocationHistory(new LocationPosition(current_x, current_y, current_z));
-                            drawDot(current_x, current_y);
+                            drawDot(current_x, current_y, 0, -1);
                         }
 
                     }
@@ -455,7 +465,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
     public void finderClicked(View v) throws JSONException {
-        wifimanager.startScan();
+        //wifimanager.startScan();
     }
 
     @Override
@@ -465,14 +475,15 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                     0, mAccelerometerReading.length);
             if (checkMoveStatus(event)) {
                 Log.i("Accelerometer", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
-                PDR_dot_update(5, false);
+                //PDR_dot_update(5, false);
             }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
             System.arraycopy(event.values, 0, mMagnetometerReading,
                     0, mMagnetometerReading.length);
+            PDR_dot_update(1, false);
         }
         updateOrientationAngles();
-
+        //Log.i("Orientation", "--orientation ( " + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2] + ")");
     }
 
     public void updateOrientationAngles() {
