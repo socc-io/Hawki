@@ -218,6 +218,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                     initialAngle = mOrientationAngles[0];
                     Log.i("--PDR scheduler--", "pdr swtich on --> task is schduled!");
                 } else {
+                    current_x = 0;
+                    current_y = 0;
+                    current_z = 0;
                     pdrTimer.cancel();
                     Log.i("--PDR scheduler--", "pdr swtich off --> task cancel!");
                 }
@@ -334,21 +337,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 mapImageWidth = arg0.getWidth();
                 mapImageHeight = arg0.getHeight();
                 mProgressDialog.dismiss();
-
-                // Draw dots
-                Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888,true);
-                Canvas canvas = new Canvas(newDrawBitmap);
-                Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                mPaint.setStyle(Paint.Style.FILL);
-                mPaint.setColor(Color.BLUE);
-                if(pois != null) {
-                    for(Poi poi : pois) {
-                        Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
-                        Integer y = (int)((float)poi.getY() / mapImageHeight * canvasHeight);
-                        canvas.drawCircle(x, y, 10, mPaint);
-                    }
-                }
-                canvasView.setImageBitmap(newDrawBitmap);
             }
 
             @Override
