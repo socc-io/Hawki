@@ -1,71 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    >
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="실내장소 리스트"
-    android:textColor="#ffffff"
-    android:textSize="16sp"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop="20dp"
-    />
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:orientation="horizontal"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop="70dp">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_weight="7"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        
         <EditText
-            android:id="@+id/nameEdit"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:textSize="16sp"
-            android:textColor="@color/colorWhite"
-            android:hint="실내 장소를 입력해주세요"
-            android:textColorHint="@color/colorGray"
-            android:backgroundTint="@color/colorBlack"
-            android:layout_marginLeft="16dp"/>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@drawable/bg_search_bar"
-            android:layout_marginLeft="16dp"/>
+            android:layout_width="300dp"
+            android:layout_height="40dp" />
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/requestPoi"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:layout_weight="3"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_building_search_button"
-        android:background="@android:color/transparent"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="4dp"
-        android:onClick="searchBtnClicked" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageButton
+            android:id="@+id/imgBtn_beauty"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/bt_beauty"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/imgBtn_cafe"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/bt_cafe"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/imgBtn_fashion"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/bt_fashion"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/imgBtn_food"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/bt_food"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/imgBtn_toilet"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/bt_toilet"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>
-
-<ListView
-    android:id="@+id/listView_poi"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-
-</android.support.constraint.ConstraintLayout>
