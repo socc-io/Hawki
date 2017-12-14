@@ -19,13 +19,11 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +42,6 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +50,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -77,6 +75,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     private boolean isTrackButton = false;
 
+    CircleImageView circleImageView;
 
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
@@ -122,11 +121,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     @BindView(R.id.canvasView)
     ImageView canvasView;
 
-    @BindView(R.id.ic_search)
+    @BindView(R.id.ic_search_button)
     ImageButton searchButton;
 
     @BindView(R.id.ic_track)
-    ImageButton trackButton;
+    CircleImageView trackButton;
 
     @BindView(R.id.poiTitle)
     TextView poiTitleTextView;

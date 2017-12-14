@@ -30,21 +30,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/hawkiMainTitleBar"
         />
 
-    <ImageView
-        android:id="@+id/ic_search"
+    <ImageButton
+        android:id="@+id/ic_search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_search_white_36dp"
         app:layout_constraintTop_toTopOf="@+id/hawkiMainTitleBar"
         app:layout_constraintBottom_toBottomOf="@+id/hawkiMainTitleBar"
         app:layout_constraintRight_toRightOf="@+id/hawkiMainTitleBar"
+        android:background="@null"
         android:layout_marginEnd="16dp"
         />
     
     <ImageView
         android:id="@+id/mapView"
         android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:background="@null"
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -55,16 +56,16 @@
     <ImageView
         android:id="@+id/canvasView"
         android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hawkiMainTitleBar"
         />
 
-    <ImageButton
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ic_track"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@null"
         android:src="@drawable/ic_track"
         app:layout_constraintRight_toRightOf="@+id/mapView"
