@@ -73,6 +73,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private final static double EPSILON = 0.00001;
     private final static long PDR_TASK_INTERVAL = 3000;
 
+    public static int POI_RESULT_OK = 101;
+    public static int REQUEST_CODE = 102;
+
     private boolean isTrackButton = false;
 
     CircleImageView circleImageView;
@@ -227,9 +230,27 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onClick(View v) {
                 // TODO: 2017-12-14 activity change
+                Intent intent = new Intent(FinderActivity.this, POISearchActivity.class);
+                startActivityForResult(intent, FinderActivity.REQUEST_CODE);
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == FinderActivity.REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                ArrayList<Poi> poiList = (ArrayList<Poi>)data.getSerializableExtra("poiList");
+                for(Poi poi : poiList){
+                    Log.d("REQUEST_CODE_OK", poi.getName() +","+poi.getCategory());
+                }
+
+            }
+
+        }
     }
 
     @Override

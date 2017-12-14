@@ -7,63 +7,93 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"/>
         
         <EditText
-            android:layout_width="300dp"
-            android:layout_height="40dp" />
+            android:id="@+id/editText_search"
+            android:layout_width="240dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="16dp" />
+
+        <Button
+            android:id="@+id/button_search"
+            android:layout_width="52dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:text="검색"/>
     </LinearLayout>
 
-    <LinearLayout
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="92dp">
 
-        <ImageButton
-            android:id="@+id/imgBtn_beauty"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/bt_beauty"
-            android:scaleType="fitXY"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/imgBtn_beauty"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bt_beauty"
+                android:scaleType="fitXY"/>
 
-        <ImageButton
-            android:id="@+id/imgBtn_cafe"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/bt_cafe"
-            android:scaleType="fitXY"/>
+            <ImageButton
+                android:id="@+id/imgBtn_cafe"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bt_cafe"
+                android:scaleType="fitXY"/>
 
-        <ImageButton
-            android:id="@+id/imgBtn_fashion"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/bt_fashion"
-            android:scaleType="fitXY"/>
+            <ImageButton
+                android:id="@+id/imgBtn_fashion"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bt_fashion"
+                android:scaleType="fitXY"/>
 
-        <ImageButton
-            android:id="@+id/imgBtn_food"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/bt_food"
-            android:scaleType="fitXY"/>
+            <ImageButton
+                android:id="@+id/imgBtn_food"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bt_food"
+                android:scaleType="fitXY"/>
 
-        <ImageButton
-            android:id="@+id/imgBtn_toilet"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/bt_toilet"
-            android:scaleType="fitXY"/>
+            <ImageButton
+                android:id="@+id/imgBtn_toilet"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bt_toilet"
+                android:scaleType="fitXY"/>
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/imgBtn_etc"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bt_ect"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
 
     </android.support.v7.widget.RecyclerView>
 
