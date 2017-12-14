@@ -19,13 +19,11 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +42,6 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +50,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -77,6 +75,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     private boolean isTrackButton = false;
 
+    CircleImageView circleImageView;
 
     private void addLocationHistory(LocationPosition lp) {
         locationHistory.add(lp);
@@ -122,11 +121,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     @BindView(R.id.canvasView)
     ImageView canvasView;
 
-    @BindView(R.id.ic_search)
+    @BindView(R.id.ic_search_button)
     ImageButton searchButton;
 
     @BindView(R.id.ic_track)
-    ImageButton trackButton;
+    CircleImageView trackButton;
 
     @BindView(R.id.poiTitle)
     TextView poiTitleTextView;
@@ -491,7 +490,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             System.arraycopy(event.values, 0, mAccelerometerReading,
                     0, mAccelerometerReading.length);
             if (checkMoveStatus(event)) {
+<<<<<<< HEAD
+                Log.i("Accelerometer", "—moving—" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
+=======
                 Log.i("Accelerometer", "--moving--" + event.values[0] + "," + event.values[1] + "," + event.values[2]);
+>>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
                 //PDR_dot_update(5, false);
             }
         } else if (event.sensor == mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)) {
@@ -500,7 +503,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
             PDR_dot_update(1, false);
         }
         updateOrientationAngles();
+<<<<<<< HEAD
+        //Log.i("Orientation", "—orientation ( " + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2] + ")");
+=======
         //Log.i("Orientation", "--orientation ( " + mOrientationAngles[0] + "," + mOrientationAngles[1] + "," + mOrientationAngles[2] + ")");
+>>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
     }
 
     public void updateOrientationAngles() {
@@ -548,8 +555,12 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void run() {
             wifimanager.startScan();
-            Log.i("--PDR Task--", "pdr task is running!!");
+            Log.i("—PDR Task—", "pdr task is running!!");
         }
     }
+<<<<<<< HEAD
+}
+=======
 }
 
+>>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
