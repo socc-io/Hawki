@@ -19,9 +19,11 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -42,6 +44,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +74,8 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     final int SENSOR_HISTORY_COUNT = 10;
     private final static double EPSILON = 0.00001;
     private final static long PDR_TASK_INTERVAL = 3000;
+
+    private boolean isTrackButton = false;
 
 
     private void addLocationHistory(LocationPosition lp) {
@@ -111,14 +116,23 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     private float initialAngle = 0.0f;
     private int index = 0;
 
-    @BindView(R.id.mapView2)
-    ImageView mapView;
+    @BindView(R.id.mapView)
+    ImageView mapview;
 
-    @BindView(R.id.canvasView2)
+    @BindView(R.id.canvasView)
     ImageView canvasView;
 
-    @BindView(R.id.switch_pdr)
-    Switch switch_pdr;
+    @BindView(R.id.ic_search)
+    ImageButton searchButton;
+
+    @BindView(R.id.ic_track)
+    ImageButton trackButton;
+
+    @BindView(R.id.poiTitle)
+    TextView poiTitleTextView;
+
+    @BindView(R.id.poiTag)
+    TextView poiTagTextView;
 
     public void PDR_dot_update(int speed, boolean use_history) {
         if(current_x == 0 && current_y== 0  && current_z == 0) return;
@@ -181,10 +195,6 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         ButterKnife.bind(this);
 
-        TextView buildNameTextView = (TextView) findViewById(R.id.textView_buildName);
-        //buildNameTextView.setText(SingleTonBuildingInfo.getInstance().getSelectedBuildName());
-        buildNameTextView.setText("강남역 2호선");
-
         initMap();
         initCanvasView();
         initPOIDataList();
@@ -199,18 +209,25 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        switch_pdr.setOnClickListener(new View.OnClickListener() {
+        trackButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(((Switch)view).isChecked()){ //pdr switch on
+            public void onClick(View v) {
+                isTrackButton = !isTrackButton;
+                if(isTrackButton) {
                     pdrTimer = new Timer();
                     pdrTimer.schedule(new PDRTask(), PDR_TASK_INTERVAL, PDR_TASK_INTERVAL);
                     Log.i("--PDR scheduler--", "pdr swtich on --> task is schduled!");
-                }
-                else { //pdr switch off
+                } else {
                     pdrTimer.cancel();
                     Log.i("--PDR scheduler--", "pdr swtich off --> task cancel!");
                 }
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 2017-12-14 activity change
             }
         });
 
@@ -248,6 +265,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
     private void initMapViewTouchListener() {
+
 
         canvasView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -323,8 +341,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     }
 
     private void initMap() {
-        //TODO default
-        //String buildId = SingleTonBuildingInfo.getInstance().getSelectedBuildId();
+
         String buildId = "21160803";
         String mapURL = HawkiApplication.getMapImageURL(buildId);
         Log.d("Map Url : ", mapURL);
@@ -341,7 +358,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
             @Override
             public void onBitmapLoaded(Bitmap arg0, Picasso.LoadedFrom arg1) {
-                mapView.setImageBitmap(arg0);
+                mapview.setImageBitmap(arg0);
                 mapImageWidth = arg0.getWidth();
                 mapImageHeight = arg0.getHeight();
                 mProgressDialog.dismiss();
@@ -367,7 +384,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                 mProgressDialog.dismiss();
             }
         };
-        mapView.setTag(target);
+        mapview.setTag(target);
         Picasso.with(this).load(mapURL).into(target);
     }
 
@@ -535,15 +552,4 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         }
     }
 }
-
-
-/*
-
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "address": "\uc11c\uc6b8 \uac15\ub0a8\uad6c \uc5ed\uc0bc\ub3d9",
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "id": "21160803",
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "phone": "02-6110-2221",
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:       "title": "\uac15\ub0a8\uc5ed 2\ud638\uc120"
-12-10 17:41:49.986 13573-14540/com.example.jeong.httpclient D/OkHttp:     },
-
- */
 
