@@ -2,6 +2,7 @@
 .idea/
 .DS_Store
 dbfile.db
+*.db.bak
 # python ignore guide
 # >> https://github.com/github/gitignore/blob/master/Python.gitignore
 

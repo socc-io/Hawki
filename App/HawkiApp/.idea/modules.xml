@@ -3,8 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HawkiApp.iml" filepath="$PROJECT_DIR$/HawkiApp.iml" />
+<<<<<<< HEAD
       <module fileurl="file://C:\Users\Jinwon\Desktop\GITHUB\Hawki\App\HawkiApp\HawkiApp.iml" filepath="C:\Users\Jinwon\Desktop\GITHUB\Hawki\App\HawkiApp\HawkiApp.iml" />
       <module fileurl="file://C:\Users\Jinwon\Desktop\GITHUB\HawkiApp\App\HawkiApp\HawkiApp.iml" filepath="C:\Users\Jinwon\Desktop\GITHUB\HawkiApp\App\HawkiApp\HawkiApp.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/HawkiApp.iml" filepath="$PROJECT_DIR$/HawkiApp.iml" />
+      <module fileurl="file://C:\Users\Jinwon\Desktop\GITHUB\Hawki\App\HawkiApp\HawkiApp.iml" filepath="C:\Users\Jinwon\Desktop\GITHUB\Hawki\App\HawkiApp\HawkiApp.iml" />
+      <module fileurl="file://C:\Users\Jinwon\Desktop\GITHUB\HawkiApp\App\HawkiApp\HawkiApp.iml" filepath="C:\Users\Jinwon\Desktop\GITHUB\HawkiApp\App\HawkiApp\HawkiApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+>>>>>>> c03ac7d1430ca2bb0e59947c764b90686d848373
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Jinwon\Desktop\GITHUB\HawkiApp\App\HawkiApp\app\app.iml" filepath="C:\Users\Jinwon\Desktop\GITHUB\HawkiApp\App\HawkiApp\app\app.iml" />
       <module fileurl="file://C:\Users\Jinwon\Desktop\GITHUB\Hawki\App\HawkiApp\app\app.iml" filepath="C:\Users\Jinwon\Desktop\GITHUB\Hawki\App\HawkiApp\app\app.iml" />
