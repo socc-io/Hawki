@@ -21,8 +21,9 @@ class APVOCA:
             for idx, v in enumerate(self.voca):
                     self.voca_idx_map[v] = idx
             self.min_val = config['min_rssi']
-        except:
+        except Exception as e:
             print('Failed to parse bssi data')
+            print(e)
 
     def convert(self, vector):
         try:

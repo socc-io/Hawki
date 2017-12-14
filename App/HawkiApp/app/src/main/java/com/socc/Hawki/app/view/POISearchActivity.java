@@ -145,7 +145,7 @@ public class POISearchActivity extends AppCompatActivity {
             }
         }
         adapter.changeList(substitute);
-        setResultToActivity(substitute);
+        //setResultToActivity(substitute);
     }
 
 }

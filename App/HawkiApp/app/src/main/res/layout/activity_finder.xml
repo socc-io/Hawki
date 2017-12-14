@@ -53,6 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hawkiMainTitleBar"
         />
 
+
     <ImageView
         android:id="@+id/canvasView"
         android:layout_width="0dp"
