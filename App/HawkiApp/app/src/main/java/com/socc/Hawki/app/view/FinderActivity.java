@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -130,8 +131,11 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
     TextView poiTagTextView;
 
     public void PDR_dot_update(int speed, boolean use_history) {
-        if(current_x == 0 && current_y== 0  && current_z == 0) return;
-
+        if(isTrackButton == false) {
+            current_x = -100.0f;
+            current_y = -100.0f;
+        }
+        // if(current_x == 0 && current_y== 0  && current_z == 0) return;
 
         float tmp_x = current_x;
         float tmp_y = current_y;
@@ -253,10 +257,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
         if(requestCode == REQUEST_POI) {
             if(resultCode == RESULT_OK) {
-                ArrayList<Poi> pois =  (ArrayList<Poi>)intent.getSerializableExtra("pois");
+                pois = (ArrayList<Poi>)intent.getSerializableExtra("pois");
             }
         }
-
     }
 
     private void initMapViewTouchListener() {
@@ -367,9 +370,9 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
 
     }
 
-    public void drawDot(float cliecdX, float cliecdY, float dirX, float dirY) {
-        float calculateX = cliecdX / mapImageWidth * canvasWidth;
-        float calculateY = cliecdY / mapImageHeight * canvasHeight;
+    public void drawDot(float clickedX, float clickedY, float dirX, float dirY) {
+        float calculateX = clickedX / mapImageWidth * canvasWidth;
+        float calculateY = clickedY / mapImageHeight * canvasHeight;
         Bitmap newDrawBitmap = canvasViewBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
         Canvas canvas = new Canvas(newDrawBitmap);
@@ -383,15 +386,27 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
         mPaint_dir.setColor(Color.RED);
         canvas.drawCircle(calculateX + dirX * 25, calculateY + dirY * 25, 7, mPaint);
 
+        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_marker);
+
+        List<Poi> old_pois = pois;
+
+        pois = new ArrayList<>();
+        Poi test_poi = new Poi();
+        test_poi.setX(100);
+        test_poi.setY(100);
+        pois.add(test_poi);
+
         if(pois != null) {
             for(Poi poi : pois) {
                 Integer x = (int)((float)poi.getX() / mapImageWidth * canvasWidth);
                 Integer y = (int)((float)poi.getY() / mapImageHeight * canvasHeight);
 
-//                canvas.drawBitmap(x,y,);
-//                canvas.drawCircle(x, y, 10, mPaint);
+                canvas.drawBitmap(icon, x - icon.getWidth() / 2, y - icon.getHeight(), mPaint);
+                // canvas.drawCircle(x, y, 10, mPaint);
             }
         }
+
+        pois = old_pois;
 
         canvasView.setImageBitmap(newDrawBitmap);
     }
