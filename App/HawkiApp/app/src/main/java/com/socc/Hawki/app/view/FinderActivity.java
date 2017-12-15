@@ -298,7 +298,7 @@ public class FinderActivity extends AppCompatActivity implements SensorEventList
                                         if(dist < min_dist) {
                                             min_dist = dist;
                                             nearest_poi = poi;
-                                        }git
+                                        }
                                     }
                                     if(min_dist < 50) {
                                         poiTitleTextView.setText(nearest_poi.getName());
