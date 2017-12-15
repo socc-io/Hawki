@@ -1,46 +1,32 @@
 package com.socc.Hawki.app.view;
 
         import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.util.Log;
-        import android.view.KeyEvent;
-        import android.view.View;
-        import android.view.inputmethod.EditorInfo;
-        import android.widget.AdapterView;
-        import android.widget.EditText;
-        import android.widget.ImageButton;
-        import android.widget.LinearLayout;
-        import android.widget.ListAdapter;
-        import android.widget.ListView;
-        import android.widget.SimpleAdapter;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
-        import com.socc.Hawki.app.R;
-        import com.socc.Hawki.app.application.HawkiApplication;
-        import com.socc.Hawki.app.listener.OnPoiClickListener;
-        import com.socc.Hawki.app.service.SingleTonBuildingInfo;
-        import com.socc.Hawki.app.service.network.HttpService;
-        import com.socc.Hawki.app.service.response.Build;
-        import com.socc.Hawki.app.service.response.GetBuildingInfoRes;
-        import com.socc.Hawki.app.service.response.GetPoiListReq;
-        import com.socc.Hawki.app.service.response.Poi;
+import com.socc.Hawki.app.R;
+import com.socc.Hawki.app.application.HawkiApplication;
+import com.socc.Hawki.app.service.network.HttpService;
+import com.socc.Hawki.app.service.response.GetPoiListReq;
+import com.socc.Hawki.app.service.response.Poi;
 
-        import java.util.ArrayList;
-        import java.util.HashMap;
-        import java.util.List;
-        import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-        import butterknife.BindView;
-        import butterknife.ButterKnife;
-        import butterknife.OnClick;
-        import retrofit2.Call;
-        import retrofit2.Callback;
-        import retrofit2.Response;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by jinwon on 2017-12-09.
@@ -51,6 +37,10 @@ public class POISearchActivity extends AppCompatActivity {
     RecyclerView poiRcv;
     @BindView(R.id.editText_search)
     EditText etSearch;
+    @OnClick(R.id.back_button)
+    public void onClickBackButton() {
+        finish();
+    }
 
     private POIAdapter adapter;
     private List<Poi> itemList;
